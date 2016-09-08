@@ -1,4 +1,5 @@
 name: "DMwR2"
+output_dir: "."
 navbar:
   title: "DMwR 2nd Edition"
   left:
