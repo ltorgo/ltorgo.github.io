@@ -1,0 +1,14 @@
+name: "DMwR2"
+navbar:
+  title: "DMwR 2nd Edition"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Contents"
+      href: 1-example.html
+    - text: "R Code"
+      href: 3-inline.html
+    - text: "Datasets"
+      href: 3-inline.html
+    - text: "Contact"
+      href: 3-inline.html
