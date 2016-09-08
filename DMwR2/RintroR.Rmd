@@ -1,0 +1,29 @@
+---
+title: "Introduction to R"
+output: html_document
+---
+
+## Starting with R 
+```{r eval=FALSE}
+install.packages("RMySQL")
+```
+
+## Basic Interaction with the R Console 
+```{r eval=FALSE}
+rnorm(4, mean = 10, sd = 2)
+mean(sample(1:10, 5))
+```
+
+## R Objects and Variables
+### R Functions
+#### Vectors
+- Vectorization
+- Factors
+- Generating Sequences
+- Sub-Setting
+- Matrices and Arrays
+- Lists
+- DataFrames 
+- Useful Extensions to Data Frames
+- Objects, Classes, and Methods
+- Managing Your Sessions

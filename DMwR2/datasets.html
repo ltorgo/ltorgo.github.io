@@ -11,7 +11,7 @@
 
 
 
-<title>DMwR 2nd Edtion</title>
+<title>More colors</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
@@ -179,90 +178,23 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
-    <span class="fa fa-home"></span>
-     
-    Home
-  </a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-indent"></span>
-     
-    Contents
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Part I - R and Data Mining</li>
-    <li>
-      <a href="introR.html">Introduction to R</a>
-    </li>
-    <li>
-      <a href="introDM.html">Introduction to Data Mining</a>
-    </li>
-    <li class="dropdown-header">Part II - Case Studies</li>
-    <li>
-      <a href="algae.html">Predicting Algae Blooms</a>
-    </li>
-    <li>
-      <a href="stocks.html">Predicting Stock Market Returns</a>
-    </li>
-    <li>
-      <a href="fraud.html">Detecting Fraudulent Transactions</a>
-    </li>
-    <li>
-      <a href="bio.html">Classifying Micro Array Samples</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-code"></span>
-     
-    R Code
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Part I - R and Data Mining</li>
-    <li>
-      <a href="RintroR.html">Introduction to R</a>
-    </li>
-    <li>
-      <a href="RintroDM.html">Introduction to Data Mining</a>
-    </li>
-    <li class="dropdown-header">Part II - Case Studies</li>
-    <li>
-      <a href="Ralgae.html">Predicting Algae Blooms</a>
-    </li>
-    <li>
-      <a href="Rstocks.html">Predicting Stock Market Returns</a>
-    </li>
-    <li>
-      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
-    </li>
-    <li>
-      <a href="bio.html">Classifying Micro Array Samples</a>
-    </li>
-  </ul>
+  <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="datasets.html">
-    <span class="fa fa-database"></span>
-     
-    Datasets
-  </a>
+  <a href="1-example.html">Contents</a>
+</li>
+<li>
+  <a href="3-inline.html">R Code</a>
+</li>
+<li>
+  <a href="3-inline.html">Datasets</a>
+</li>
+<li>
+  <a href="3-inline.html">Contact</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="about.html">
-    <span class="fa fa-info-circle"></span>
-     
-    Contact
-  </a>
-</li>
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -272,35 +204,20 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">DMwR 2nd Edtion</h1>
+<h1 class="title toc-ignore">More colors</h1>
 
 </div>
 
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-<h1 id="data-mining-with-r"><strong>Data Mining with R</strong></h1>
-<h2 id="learning-with-case-studies" style="padding-top: 0px;"><em>learning with case studies</em></h2>
-<h3 id="nd-edtition" style="padding-top: 0px;">(2nd edtition)</h3>
-<p>R Markdown is an authoring format that enables easy creation of dynamic documents, presentations, and reports from R. It combines the core syntax of <a href="https://daringfireball.net/projects/markdown/">markdown</a> (an easy to write plain text format) with embedded R code chunks that are run so their output can be included in the final document.</p>
-<p>R Markdown documents are fully reproducible (they can be automatically regenerated whenever underlying R code or data changes).</p>
-<p>R Markdown has many available output formats including <a href="http://rmarkdown.rstudio.com/html_document_format.html">HTML</a>, <a href="http://rmarkdown.rstudio.com/pdf_document_format.html">PDF</a>, <a href="http://rmarkdown.rstudio.com/word_document_format.html">MS Word</a>, <a href="http://rmarkdown.rstudio.com/beamer_presentation_format.html">Beamer</a>, <a href="http://rmarkdown.rstudio.com/ioslides_presentation_format.html">HTML5 slides</a>, <a href="http://rmarkdown.rstudio.com/tufte_handout_format.html">Tufte handouts</a>, <a href="https://bookdown.org">books</a>, <a href="http://rmarkdown.rstudio.com/flexdashboard/">dashboards</a>, and <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">websites</a>.</p>
-</div>
-<div class="col-sm-6">
-
+<p>Base R comes with many functions for generating colors. The code below demonstrates the terrain.colors function.</p>
+<div id="terrain.colors" class="section level2">
+<h2>terrain.colors</h2>
 <div class="figure">
-<img src="images/RMarkdownOutputFormats.png" />
-
+<img src="3-inline_files/figure-html/unnamed-chunk-2-1.png" alt="The Maunga Whau volcano." width="672" />
+<p class="caption">
+The Maunga Whau volcano.
+</p>
+</div>
 </div>
 
 

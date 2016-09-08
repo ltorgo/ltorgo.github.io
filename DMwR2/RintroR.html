@@ -11,7 +11,7 @@
 
 
 
-<title>DMwR 2nd Edtion</title>
+<title>Introduction to R</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -272,35 +272,40 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">DMwR 2nd Edtion</h1>
+<h1 class="title toc-ignore">Introduction to R</h1>
 
 </div>
 
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-<h1 id="data-mining-with-r"><strong>Data Mining with R</strong></h1>
-<h2 id="learning-with-case-studies" style="padding-top: 0px;"><em>learning with case studies</em></h2>
-<h3 id="nd-edtition" style="padding-top: 0px;">(2nd edtition)</h3>
-<p>R Markdown is an authoring format that enables easy creation of dynamic documents, presentations, and reports from R. It combines the core syntax of <a href="https://daringfireball.net/projects/markdown/">markdown</a> (an easy to write plain text format) with embedded R code chunks that are run so their output can be included in the final document.</p>
-<p>R Markdown documents are fully reproducible (they can be automatically regenerated whenever underlying R code or data changes).</p>
-<p>R Markdown has many available output formats including <a href="http://rmarkdown.rstudio.com/html_document_format.html">HTML</a>, <a href="http://rmarkdown.rstudio.com/pdf_document_format.html">PDF</a>, <a href="http://rmarkdown.rstudio.com/word_document_format.html">MS Word</a>, <a href="http://rmarkdown.rstudio.com/beamer_presentation_format.html">Beamer</a>, <a href="http://rmarkdown.rstudio.com/ioslides_presentation_format.html">HTML5 slides</a>, <a href="http://rmarkdown.rstudio.com/tufte_handout_format.html">Tufte handouts</a>, <a href="https://bookdown.org">books</a>, <a href="http://rmarkdown.rstudio.com/flexdashboard/">dashboards</a>, and <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">websites</a>.</p>
+<div id="starting-with-r" class="section level2">
+<h2>Starting with R</h2>
+<pre class="r"><code>install.packages(&quot;RMySQL&quot;)</code></pre>
 </div>
-<div class="col-sm-6">
-
-<div class="figure">
-<img src="images/RMarkdownOutputFormats.png" />
-
+<div id="basic-interaction-with-the-r-console" class="section level2">
+<h2>Basic Interaction with the R Console</h2>
+<pre class="r"><code>rnorm(4, mean = 10, sd = 2)
+mean(sample(1:10, 5))</code></pre>
+</div>
+<div id="r-objects-and-variables" class="section level2">
+<h2>R Objects and Variables</h2>
+<div id="r-functions" class="section level3">
+<h3>R Functions</h3>
+<div id="vectors" class="section level4">
+<h4>Vectors</h4>
+<ul>
+<li>Vectorization</li>
+<li>Factors</li>
+<li>Generating Sequences</li>
+<li>Sub-Setting</li>
+<li>Matrices and Arrays</li>
+<li>Lists</li>
+<li>DataFrames</li>
+<li>Useful Extensions to Data Frames</li>
+<li>Objects, Classes, and Methods</li>
+<li>Managing Your Sessions</li>
+</ul>
+</div>
+</div>
 </div>
 
 

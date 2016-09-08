@@ -4,12 +4,46 @@ navbar:
   title: "DMwR 2nd Edition"
   left:
     - text: "Home"
+      icon: fa-home
       href: index.html
     - text: "Contents"
-      href: 1-example.html
+      icon: fa-indent
+      menu:
+        - text: "Part I - R and Data Mining"
+        - text: "Introduction to R"
+          href: introR.html
+        - text: "Introduction to Data Mining"
+          href: introDM.html
+        - text: "Part II - Case Studies"
+        - text: "Predicting Algae Blooms"
+          href: algae.html
+        - text: "Predicting Stock Market Returns"
+          href: stocks.html
+        - text: "Detecting Fraudulent Transactions"
+          href: fraud.html
+        - text: "Classifying Micro Array Samples"
+          href: bio.html
     - text: "R Code"
-      href: 3-inline.html
+      icon: fa-code
+      menu:
+        - text: "Part I - R and Data Mining"
+        - text: "Introduction to R"
+          href: RintroR.html
+        - text: "Introduction to Data Mining"
+          href: RintroDM.html
+        - text: "Part II - Case Studies"
+        - text: "Predicting Algae Blooms"
+          href: Ralgae.html
+        - text: "Predicting Stock Market Returns"
+          href: Rstocks.html
+        - text: "Detecting Fraudulent Transactions"
+          href: Rfraud.html
+        - text: "Classifying Micro Array Samples"
+          href: bio.html
     - text: "Datasets"
-      href: 3-inline.html
+      icon: fa-database
+      href: datasets.html
+  right:
     - text: "Contact"
-      href: 3-inline.html
+      icon: fa-info-circle
+      href: about.html

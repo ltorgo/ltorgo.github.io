@@ -1,0 +1,20 @@
+---
+title: "Introduction to R"
+output: html_document
+---
+
+- Starting with R 
+- Basic Interaction with the R Console 
+- R Objects and Variables
+- R Functions
+- Vectors
+- Vectorization
+- Factors
+- Generating Sequences
+- Sub-Setting
+- Matrices and Arrays
+- Lists
+- DataFrames 
+- Useful Extensions to Data Frames
+- Objects, Classes, and Methods
+- Managing Your Sessions

@@ -11,7 +11,7 @@
 
 
 
-<title>Viridis Demo</title>
+<title>Introduction to R</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,7 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
@@ -178,23 +179,90 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-indent"></span>
+     
+    Contents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="introR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="introDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="algae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="stocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="fraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    R Code
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="RintroR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="RintroDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="Ralgae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="Rstocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
 </li>
 <li>
-  <a href="1-example.html">Contents</a>
-</li>
-<li>
-  <a href="3-inline.html">R Code</a>
-</li>
-<li>
-  <a href="3-inline.html">Datasets</a>
-</li>
-<li>
-  <a href="3-inline.html">Contact</a>
+  <a href="datasets.html">
+    <span class="fa fa-database"></span>
+     
+    Datasets
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Contact
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -204,22 +272,28 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Viridis Demo</h1>
+<h1 class="title toc-ignore">Introduction to R</h1>
 
 </div>
 
 
-<p>The code below demonstrates two color palettes in the <a href="https://github.com/sjmgarnier/viridis">viridis</a> package. Each plot displays a contour map of the Maunga Whau volcano in Auckland, New Zealand.</p>
-<div id="viridis-colors" class="section level2">
-<h2>Viridis colors</h2>
-<pre class="r"><code>image(volcano, col = viridis(200))</code></pre>
-<p><img src="1-example_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
-<div id="magma-colors" class="section level2">
-<h2>Magma colors</h2>
-<pre class="r"><code>image(volcano, col = viridis(200, option = &quot;A&quot;))</code></pre>
-<p><img src="1-example_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-</div>
+<ul>
+<li>Starting with R</li>
+<li>Basic Interaction with the R Console</li>
+<li>R Objects and Variables</li>
+<li>R Functions</li>
+<li>Vectors</li>
+<li>Vectorization</li>
+<li>Factors</li>
+<li>Generating Sequences</li>
+<li>Sub-Setting</li>
+<li>Matrices and Arrays</li>
+<li>Lists</li>
+<li>DataFrames</li>
+<li>Useful Extensions to Data Frames</li>
+<li>Objects, Classes, and Methods</li>
+<li>Managing Your Sessions</li>
+</ul>
 
 
 
