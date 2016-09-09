@@ -1,177 +1,115 @@
----
-title: Introduction to R
-output: html_document
----
+#############
+##  Code of Chapter:  Introduction to R
+#############
 
 
-```{r echo=FALSE}
-knitr::opts_chunk$set(eval =FALSE)
-```
 
 
-The following is a [script file](RCode/RintroR.R) containing all R code of all sections in this chapter.
+####### Section:  Starting with \R
 
-
-<!-- intro2R.Rnw --> 
-
-
-### Starting with \R
-```{r}
+##
 install.packages("RMySQL")
-```
 
-
-```{r}
+##
 install.packages("DMwR2")
-```
 
-
-```{r}
+##
 library(DMwR2)
-```
 
-
-```{r}
+##
 installed.packages()
-```
 
-
-```{r}
+##
 library()
-```
 
-
-```{r}
+##
 old.packages()
-```
 
-
-```{r}
+##
 update.packages()
-```
 
-
-```{r}
+##
 RSiteSearch('neural networks')
-```
 
 
+####### Section:  Managing Your Sessions
 
-
-### Managing Your Sessions
-```{r}
+##
 source('mycode.R')
-```
 
-
-```{r}
+##
 save(f,my.dataset,file='mysession.RData')
-```
 
-
-```{r}
+##
 load('mysession.RData')
-```
 
-
-```{r}
+##
 save.image()
-```
 
 
-<!-- basicInter.Rnw --> 
+####### Section:  Basic Interaction with the \R Console
 
-
-### Basic Interaction with the \R Console
-```{r}
+##
 4 + 3 / 5^2
-```
 
-
-```{r}
+##
 rnorm(4, mean = 10, sd = 2)
 mean(sample(1:10, 5))
-```
 
-
-```{r}
+##
 plot(x=sample(1:10,5),y=sample(1:10,5),
      main="Five random points",xlab="X values",ylab="Y values")
-```
 
 
-<!-- objs.Rnw --> 
+####### Section:  \R Objects and Variables
 
-
-### \R Objects and Variables
-```{r}
+##
 vat <- 0.2
-```
 
-
-```{r}
+##
 vat
-```
 
-
-```{r}
+##
 y <- 39
 y
 y <- 43
 y
-```
 
-
-```{r}
+##
 z <- 5
 w <- z^2
 w
 i <- (z * 2 + 45)/2
 i
-```
 
-
-```{r}
+##
 ls()
 rm(vat,y,z,w,i)
-```
 
 
-<!-- funcs.Rnw --> 
+####### Section:  \R Functions
 
-
-### \R Functions
-```{r}
+##
 max(4, 5, 6, 12, -4)
-```
 
-
-```{r}
+##
 max(sample(1:100, 30))
-```
 
-
-```{r}
+##
 exists("se")
-```
 
-
-```{r}
+##
 se <- function(x) {
    v <- var(x)
    n <- length(x)
    return(sqrt(v/n))
 }
-```
 
-
-```{r}
+##
 mySample <- rnorm(100, mean=20, sd=4)
 se(mySample)
-```
 
-
-```{r}
+##
 convMeters <- function(val, to="inch") {
     mult <- switch(to,inch=39.3701,foot=3.28084,yard=1.09361,mile=0.000621371,NA)
     if (is.na(mult)) stop("Unknown target unit of length.")
@@ -181,382 +119,264 @@ convMeters(23,"foot")
 convMeters(40,"inch")
 convMeters(40)
 convMeters(2.4,"km")
-```
 
-
-```{r}
+##
 convMeters(56.2,"yard")
-```
 
-
-```{r}
+##
 convMeters(to="yard",val=56.2)
-```
 
-
-```{r}
+##
 convMeters(56.2,to="yard")
-```
 
-
-```{r}
+##
 f(10,43.2,tol=0.25)
-```
 
 
-<!-- vectors.Rnw --> 
+####### Section:  Vectors
 
-
-### Vectors
-```{r}
+##
 v <- c(4, 7, 23.5, 76.2, 80)
 v
 length(v)
 mode(v)
-```
 
-
-```{r}
+##
 v <- c(4, 7, 23.5, 76.2, 80, "rrt")
 v
 mode(v)
-```
 
-
-```{r}
+##
 u <- c(4, 6, NA, 2)
 u
 k <- c(TRUE, FALSE, FALSE, NA, TRUE)
 k
-```
 
-
-```{r}
+##
 u[2]
-```
 
-
-```{r}
+##
 k[4] <- TRUE
 k
-```
 
-
-```{r}
+##
 x <- vector()
-```
 
-
-```{r}
+##
 x[3] <- 45
 x
-```
 
-
-```{r}
+##
 length(x)
 x[10]
 x[5] <- 4
 x
-```
 
-
-```{r}
+##
 v <- c(45, 243, 78, 343, 445, 44, 56, 77)
 v
 v <- c(v[5], v[7])
 v
-```
 
 
-<!-- vectorization.Rnw --> 
+####### Section:  Vectorization
 
-
-### Vectorization
-```{r}
+##
 v <- c(4, 7, 23.5, 76.2, 80)
 sqrt(v)
-```
 
-
-```{r}
+##
 v1 <- c(4, 6, 87)
 v2 <- c(34, 32.4, 12)
 v1 + v2
-```
 
-
-```{r}
+##
 v1 <- c(4, 6, 8, 24)
 v2 <- c(10, 2)
 v1 + v2
-```
 
-
-```{r}
+##
 v1 <- c(4, 6, 8, 24)
 v2 <- c(10, 2, 4)
 v1 + v2
-```
 
-
-```{r}
+##
 v1 <- c(4, 6, 8, 24)
 2 * v1
-```
 
 
-<!-- factors.Rnw --> 
+####### Section:  Factors
 
-
-### Factors
-```{r}
+##
 g <- c("f", "m", "m", "m", "f", "m", "f", "m", "f", "f")
 g
-```
 
-
-```{r}
+##
 g <- factor(g)
 g
-```
 
-
-```{r}
+##
 g[3]
 g[3] == "m"
-```
 
-
-```{r}
+##
 other.g <- factor(c("m", "m", "m", "m", "m"), levels = c("f","m"))
 other.g
-```
 
-
-```{r}
+##
 table(g)
 table(other.g)
-```
 
-
-```{r}
+##
 a <- factor(c('adult','adult','juvenile','juvenile','adult',
               'adult','adult','juvenile','adult','juvenile'))
 table(a, g)
-```
 
-
-```{r}
+##
 t <- table(a, g)
 margin.table(t, 1)
 margin.table(t, 2)
-```
 
-
-```{r}
+##
 prop.table(t, 1)
 prop.table(t, 2)
 prop.table(t)
-```
 
 
-<!-- seqs.Rnw --> 
+####### Section:  Generating Sequences
 
-
-### Generating Sequences
-```{r}
+##
 x <- 1:100
-```
 
-
-```{r}
+##
 10:15 - 1
 10:(15 - 1)
-```
 
-
-```{r}
+##
 5:0
-```
 
-
-```{r}
+##
 seq(-4, 1, 0.5)
-```
 
-
-```{r}
+##
 seq(from = 1, to = 5, length = 4)
 seq(from = 1, to = 5, length = 2)
 seq(length = 10, from = -2, by = 0.2)
-```
 
-
-```{r}
+##
 rep(5, 10)
 rep("hi", 3)
 rep(1:2, 3)
 rep(1:2, each = 3)
-```
 
-
-```{r}
+##
 gl(3, 5)
 gl(2, 5, labels = c("female", "male"))
-```
 
-
-```{r}
+##
 rnorm(10)
-```
 
-
-```{r}
+##
 rnorm(4, mean = 10, sd = 3)
-```
 
-
-```{r}
+##
 rt(5, df = 10)
 
-```
 
 
-<!-- indexing.Rnw --> 
+####### Section:  Sub-Setting
 
-
-### Sub-Setting
-```{r}
+##
 x <- c(0, -3, 4, -1, 45, 90, -5)
 x > 0
-```
 
-
-```{r}
+##
 x[x > 0]
-```
 
-
-```{r}
+##
 x[x <= -2 | x > 5]
 x[x > 40 & x < 100]
-```
 
-
-```{r}
+##
 x[c(4, 6)]
 x[1:3]
 y <- c(1, 4)
 x[y]
-```
 
-
-```{r}
+##
 x[-1]
 x[-c(4, 6)]
 x[-(1:3)]
-```
 
-
-```{r}
+##
 pH <- c(4.5, 7, 7.3, 8.2, 6.3)
 names(pH) <- c("area1", "area2", "mud", "dam", "middle")
 pH
-```
 
-
-```{r}
+##
 pH <- c(area1 = 4.5, area2 = 7, mud = 7.3, dam = 8.2, middle = 6.3)
-```
 
-
-```{r}
+##
 pH["mud"]
 pH[c("area1", "dam")]
-```
 
 
-<!-- ma.Rnw --> 
+####### Section:  Matrices and Arrays
 
-
-### Matrices and Arrays
-```{r}
+##
 m <- c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23)
 m
 dim(m) <- c(2, 5)
 m
-```
 
-
-```{r}
+##
 m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
-```
 
-
-```{r}
+##
 m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5, byrow = TRUE)
-```
 
-
-```{r}
+##
 m[2, 3]
-```
 
-
-```{r}
+##
 m[-2, 1]
 m[1, -c(3, 5)]
-```
 
-
-```{r}
+##
 m[1, ]
 m[, 4]
-```
 
-
-```{r}
+##
 m[1, , drop = FALSE]
 m[, 4, drop = FALSE]
-```
 
-
-```{r}
+##
 m1 <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
 cbind(c(4, 76), m1[, 4])
 m2 <- matrix(rep(10, 20), 4, 5)
 m2
 m3 <- rbind(m1[1, ], m2[3, ])
 m3
-```
 
-
-```{r}
+##
 results <- matrix(c(10, 30, 40, 50, 43, 56, 21, 30), 2, 4, byrow = TRUE)
 colnames(results) <- c("1qrt", "2qrt", "3qrt", "4qrt")
 rownames(results) <- c("store1", "store2")
 results
 results["store1", ]
 results["store2", c("1qrt", "4qrt")]
-```
 
-
-```{r}
+##
 a <- array(1:24, dim = c(4, 3, 2))
 a
-```
 
-
-```{r}
+##
 a[1, 3, 2]
 a[1, , 2]
 a[4, 3, ]
 a[c(2, 3), , -2]
-```
 
-
-```{r}
+##
 m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
 m
 m * 3
@@ -565,234 +385,156 @@ m1
 m2 <- matrix(c(12, 65, 32, 7, 4, 78), 2, 3)
 m2
 m1 + m2
-```
 
 
-<!-- lists.Rnw --> 
+####### Section:  Lists
 
-
-### Lists
-```{r}
+##
 my.lst <- list(stud.id=34453, 
                stud.name="John", 
                stud.marks=c(14.3,12,15,19))
-```
 
-
-```{r}
+##
 my.lst
-```
 
-
-```{r}
+##
 my.lst[[1]]
 my.lst[[3]]
-```
 
-
-```{r}
+##
 my.lst[1]
-```
 
-
-```{r}
+##
 mode(my.lst[1])
 mode(my.lst[[1]])
-```
 
-
-```{r}
+##
 my.lst$stud.id
-```
 
-
-```{r}
+##
 names(my.lst)
 names(my.lst) <- c("id", "name", "marks")
 my.lst
-```
 
-
-```{r}
+##
 my.lst$parents.names <- c("Ana", "Mike")
 my.lst
-```
 
-
-```{r}
+##
 length(my.lst)
-```
 
-
-```{r}
+##
 my.lst <- my.lst[-5]
-```
 
-
-```{r}
+##
 other <- list(age = 19, sex = "male")
 lst <- c(my.lst, other)
 lst
-```
 
-
-```{r}
+##
 unlist(my.lst)
-```
 
 
-<!-- df.Rnw --> 
+####### Section:  Data Frames
 
-
-### Data Frames
-```{r}
+##
 my.dataset <- data.frame(site=c('A','B','A','A','B'),
                          season=c('Winter','Summer','Summer','Spring','Fall'),
                          pH = c(7.4,6.3,8.6,7.2,8.9))
 my.dataset
-```
 
-
-```{r}
+##
 my.dataset[3, 2]
-```
 
-
-```{r}
+##
 my.dataset$pH
 my.dataset[["site"]]
-```
 
-
-```{r}
+##
 my.dataset[my.dataset$pH > 7, ]
 my.dataset[my.dataset$site == "A", "pH"]
 my.dataset[my.dataset$season == "Summer", c("site", "pH")]
-```
 
-
-```{r}
+##
 my.dataset[pH > 7, ]
-```
 
-
-```{r}
+##
 attach(my.dataset)
 my.dataset[site=='B', ]
 season
-```
 
-
-```{r}
+##
 detach(my.dataset)
 season
-```
 
-
-```{r}
+##
 subset(my.dataset, pH > 8)
 subset(my.dataset, season == "Summer", season:pH)
-```
 
-
-```{r}
+##
 my.dataset[my.dataset$season == 'Summer','pH'] <- 
       my.dataset[my.dataset$season == 'Summer','pH'] + 1
-```
 
-
-```{r}
+##
 my.dataset$NO3 <- c(234.5, 256.6, 654.1, 356.7, 776.4)
 my.dataset
-```
 
-
-```{r}
+##
 nrow(my.dataset)
 ncol(my.dataset)
 dim(my.dataset)
-```
 
-
-```{r}
+##
 my.dataset <- edit(my.dataset)
-```
 
-
-```{r}
+##
 new.data <- edit(data.frame())
-```
 
-
-```{r}
+##
 names(my.dataset)
 names(my.dataset) <- c("area", "season", "pH", "NO3")
 my.dataset
-```
 
-
-```{r}
+##
 names(my.dataset)[4] <- "PO4"
 my.dataset
-```
 
 
-<!-- dft.Rnw --> 
+####### Section:  Useful Extensions to Data Frames
 
-
-### Useful Extensions to Data Frames
-```{r}
+##
 dat <- tibble(TempCels = sample(-10:40, size=100, replace=TRUE), 
               TempFahr = TempCels*9/5 + 32,
               Location = rep(letters[1:2], each=50))
 dat
-```
 
-
-```{r}
+##
 data(iris)
 dim(iris)
 class(iris)
-```
 
-
-```{r}
+##
 library(tibble)
 ir <- as_tibble(iris)
 class(ir)
 ir
-```
 
-
-```{r}
+##
 print(ir, n=Inf, width=Inf)
-```
 
-
-```{r}
+##
 iris[1:15, "Petal.Length"]
 class(iris[1:15, "Petal.Length"])
-```
 
-
-```{r}
+##
 ir[1:15, "Petal.Length"]
-```
 
-
-```{r}
+##
 ir$Petal.Length[1:15]
 ir[["Petal.Length"]][1:15]
-```
 
-
-```{r}
+##
 select(filter(ir,Species=="setosa"),Petal.Width,Petal.Length)
-```
 
-
-```{r}
+##
 filter(ir,Species == "setosa") %>% select(Petal.Width,Petal.Length)
-```
-
-

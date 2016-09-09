@@ -39,7 +39,7 @@ navbar:
         - text: "Detecting Fraudulent Transactions"
           href: Rfraud.html
         - text: "Classifying Micro Array Samples"
-          href: bio.html
+          href: Rbio.html
     - text: "Datasets"
       icon: fa-database
       href: datasets.html

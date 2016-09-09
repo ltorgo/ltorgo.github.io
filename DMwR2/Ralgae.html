@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Predicting Algae Blooms</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">DMwR 2nd Edition</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-indent"></span>
+     
+    Contents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="introR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="introDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="algae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="stocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="fraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    R Code
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="RintroR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="RintroDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="Ralgae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="Rstocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="Rbio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="datasets.html">
+    <span class="fa fa-database"></span>
+     
+    Datasets
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Predicting Algae Blooms</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/Ralgae.R">script file</a> containing all R code of all sections in this chapter.</p>
+<!-- loadData.Rnw -->
+<div id="loading-the-data-into" class="section level3">
+<h3>Loading the Data into </h3>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+algae</code></pre>
+<pre class="r"><code>algae &lt;- read.table(&#39;Analysis.txt&#39;,
+           header=FALSE,
+           dec=&#39;.&#39;,
+           col.names=c(&#39;season&#39;,&#39;size&#39;,&#39;speed&#39;,&#39;mxPH&#39;,&#39;mnO2&#39;,&#39;Cl&#39;,
+           &#39;NO3&#39;,&#39;NH4&#39;,&#39;oPO4&#39;,&#39;PO4&#39;,&#39;Chla&#39;,&#39;a1&#39;,&#39;a2&#39;,&#39;a3&#39;,&#39;a4&#39;,
+           &#39;a5&#39;,&#39;a6&#39;,&#39;a7&#39;),
+           na.strings=c(&#39;XXXXXXX&#39;))</code></pre>
+<pre class="r"><code>tibble::as_tibble(algae)</code></pre>
+<!-- vizSum.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(dplyr)
+data(algae)</code></pre>
+</div>
+<div id="data-visualization-and-summarization" class="section level3">
+<h3>Data Visualization and Summarization</h3>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+summary(algae)</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(algae,aes(x=mxPH)) + geom_histogram(aes(y=..density..))</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(algae,aes(x=mxPH)) + geom_histogram(aes(y=..density..))</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=mxPH)) + 
+    geom_histogram(aes(y=..density..)) + 
+    geom_density(color=&quot;red&quot;) + geom_rug() + 
+    ggtitle(&quot;The Histogram of mxPH (maximum pH)&quot;) + 
+    xlab(&quot;&quot;) + ylab(&quot;&quot;)
+library(car)
+qqPlot(algae$mxPH,main=&#39;Normal QQ plot of maximum pH&#39;,ylab=&quot;&quot;)</code></pre>
+<pre class="r"><code>library(car)
+gh &lt;- ggplot(algae,aes(x=mxPH)) + geom_histogram(aes(y=..density..)) + geom_density(color=&quot;red&quot;) + geom_rug() + ggtitle(&quot;The Histogram of mxPH (maximum pH)&quot;) + xlab(&quot;&quot;) + ylab(&quot;&quot;)
+par(mfrow=c(1,2))
+vpL &lt;- viewport(height=unit(1, &quot;npc&quot;), width=unit(0.5, &quot;npc&quot;), 
+                           just=&quot;left&quot;, 
+                           y=0.5, x=0)
+qqPlot(algae$mxPH,main=&#39;Normal QQ plot of maximum pH&#39;)
+print(gh,vp=vpL)
+qqPlot(algae$mxPH,main=&#39;Normal QQ plot of maximum pH&#39;,ylab=&quot;&quot;)</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=factor(0),y=oPO4)) + 
+    geom_boxplot() + geom_rug() + 
+    geom_hline(aes(yintercept=mean(algae$oPO4, na.rm = TRUE)),
+               linetype=2,colour=&quot;red&quot;) +
+    ylab(&quot;Orthophosphate (oPO4)&quot;) + xlab(&quot;&quot;) + scale_x_discrete(breaks=NULL)</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=factor(0),y=oPO4)) + 
+    geom_boxplot() + geom_rug() + 
+    geom_hline(aes(yintercept=mean(algae$oPO4, na.rm = TRUE)),linetype=2,colour=&quot;red&quot;) +
+    ylab(&quot;Orthophosphate (oPO4)&quot;) + xlab(&quot;&quot;) + scale_x_discrete(breaks=NULL)</code></pre>
+<pre class="r"><code>plot(algae$NH4, xlab = &quot;&quot;)
+abline(h = mean(algae$NH4, na.rm = T), lty = 1)
+abline(h = mean(algae$NH4, na.rm = T) + sd(algae$NH4, na.rm = T), lty = 2)
+abline(h = median(algae$NH4, na.rm = T), lty = 3)
+identify(algae$NH4)</code></pre>
+<pre class="r"><code>plot(algae$NH4, xlab = &quot;&quot;)
+clickedRows &lt;- identify(algae$NH4)
+algae[clickedRows, ]</code></pre>
+<pre class="r"><code>library(dplyr)
+filter(algae, NH4 &gt; 19000)</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + geom_boxplot() +
+    xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
+<pre class="r"><code>library(forcats)
+algae &lt;- mutate(algae,
+                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
+                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
+                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + geom_boxplot() +
+    xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + 
+    geom_violin() + geom_jitter() + xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + geom_violin() + geom_jitter() + xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
+<pre class="r"><code>data2graph &lt;- filter(algae,!is.na(mnO2)) %&gt;%
+    mutate(minO2=cut(mnO2, quantile(mnO2,c(0,0.25,.5,.75,1)), include.lowest=TRUE))
+ggplot(data2graph,aes(x=a3,y=season, color=season)) + geom_point() + 
+    facet_wrap(~ minO2) + 
+    guides(color=FALSE)</code></pre>
+<pre class="r"><code>data2graph &lt;- filter(algae,!is.na(mnO2)) %&gt;%
+    mutate(minO2=cut(mnO2, 
+                     quantile(mnO2,c(0,0.25,0.5,0.75,1)), 
+                     include.lowest=TRUE))
+#data2graph &lt;- algae[!is.na(algae$mnO2),]
+#data2graph &lt;- cbind(data2graph,
+#                    minO2=cut(data2graph$mnO2,
+#                              quantile(data2graph$mnO2,c(0,0.25,.5,.75,1)),
+#                              include.lowest=TRUE))
+ggplot(data2graph,aes(x=a3,y=season,col=season)) + geom_point() + facet_wrap(~ minO2) + guides(color=FALSE)</code></pre>
+<!-- Unknown.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(dplyr) 
+library(forcats)
+data(algae)
+algae &lt;- mutate(algae,
+                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
+                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
+                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))</code></pre>
+</div>
+<div id="unknown-values" class="section level3">
+<h3>Unknown Values</h3>
+<pre class="r"><code>library(DMwR2)
+library(dplyr)  
+data(algae)  </code></pre>
+<pre class="r"><code>filter(algae, !complete.cases(algae) )</code></pre>
+<pre class="r"><code>algae &lt;- na.omit(algae)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;) # only necessary if you executed the above na.omit()
+algae &lt;- algae[-c(62, 199), ]</code></pre>
+<pre class="r"><code>apply(algae, 1, function(x) sum(is.na(x)))</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+manyNAs(algae, 0.2)</code></pre>
+<pre class="r"><code>algae &lt;- algae[-manyNAs(algae), ]</code></pre>
+<pre class="r"><code>algae[48, &quot;mxPH&quot;] &lt;- mean(algae$mxPH, na.rm = TRUE)</code></pre>
+<pre class="r"><code>algae[is.na(algae$Chla), &quot;Chla&quot;] &lt;- median(algae$Chla, na.rm = TRUE)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+algae &lt;- algae[-manyNAs(algae), ]
+algae &lt;- centralImputation(algae)</code></pre>
+<pre class="r"><code>cor(algae[, 4:18], use = &quot;complete.obs&quot;)</code></pre>
+<pre class="r"><code>symnum(cor(algae[,4:18],use=&quot;complete.obs&quot;))</code></pre>
+<pre class="r"><code>library(corrplot)
+cm &lt;- cor(algae[,4:18], use=&quot;complete.obs&quot;)
+corrplot(cm, type=&quot;upper&quot;, tl.pos=&quot;d&quot;)
+corrplot(cm, add=TRUE, type=&quot;lower&quot;, method=&quot;number&quot;, 
+         diag=FALSE, tl.pos=&quot;n&quot;, cl.pos=&quot;n&quot;)</code></pre>
+<pre class="r"><code>library(corrplot)
+cm &lt;- cor(algae[,4:18],use=&quot;complete.obs&quot;)
+corrplot(cm,type=&quot;upper&quot;,tl.pos=&quot;d&quot;,tl.cex=0.75)
+corrplot(cm,add=TRUE, type=&quot;lower&quot;, method=&quot;number&quot;,tl.cex=0.75, diag=FALSE,tl.pos=&quot;n&quot;, cl.pos=&quot;n&quot;)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+algae &lt;- algae[-manyNAs(algae), ]
+lm(PO4 ~ oPO4, data = algae)</code></pre>
+<pre class="r"><code>algae[28, &quot;PO4&quot;] &lt;- 42.897 + 1.293 * algae[28, &quot;oPO4&quot;]</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+algae &lt;- algae[-manyNAs(algae), ]
+fillPO4 &lt;- function(oP) ifelse(is.na(oP),NA,42.897 + 1.293 * oP)
+algae[is.na(algae$PO4), &quot;PO4&quot;] &lt;- sapply(algae[is.na(algae$PO4), &quot;oPO4&quot;], fillPO4)</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(forcats)
+algae &lt;- mutate(algae,
+                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
+                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
+                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))
+ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + facet_wrap(~ season)</code></pre>
+<pre class="r"><code>library(ggplot2) 
+algae &lt;- mutate(algae,
+                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
+                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
+                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))
+ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + facet_wrap(~ season)</code></pre>
+<pre class="r"><code>ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + 
+    facet_wrap(size ~ speed)</code></pre>
+<pre class="r"><code>ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + 
+    facet_wrap(~speed) + geom_jitter(height = 0.4)</code></pre>
+<pre class="r"><code>ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + facet_wrap(~speed) + geom_jitter(height = 0.4)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+algae &lt;- algae[-manyNAs(algae), ]</code></pre>
+<pre class="r"><code>algae &lt;- knnImputation(algae, k = 10)</code></pre>
+<pre class="r"><code>algae &lt;- knnImputation(algae, k = 10, meth = &quot;median&quot;)</code></pre>
+<!-- LinRegr.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(DMwR2)
+library(dplyr)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+algae &lt;-  algae[-manyNAs(algae), ]
+clean.algae &lt;- knnImputation(algae, k = 10)</code></pre>
+<pre class="r"><code>lm.a1 &lt;- lm(a1 ~ ., data = clean.algae[, 1:12])</code></pre>
+<pre class="r"><code>summary(lm.a1)</code></pre>
+<pre class="r"><code>anova(lm.a1)</code></pre>
+<pre class="r"><code>lm2.a1 &lt;- update(lm.a1, . ~ . - season)</code></pre>
+<pre class="r"><code>summary(lm2.a1)</code></pre>
+<pre class="r"><code>anova(lm.a1,lm2.a1)</code></pre>
+<pre class="r"><code>final.lm &lt;- step(lm.a1)</code></pre>
+<pre class="r"><code>summary(final.lm)</code></pre>
+<!-- RTs.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(DMwR2)
+library(dplyr)</code></pre>
+<pre class="r"><code>library(rpart)
+data(algae, package=&quot;DMwR2&quot;) 
+algae &lt;- algae[-manyNAs(algae), ]
+rt.a1 &lt;- rpart(a1 ~ ., data = algae[, 1:12])</code></pre>
+<pre class="r"><code>rt.a1</code></pre>
+<pre class="r"><code>library(rpart.plot)
+prp(rt.a1,extra=101,box.col=&quot;orange&quot;,split.box.col=&quot;grey&quot;)</code></pre>
+<pre class="r"><code>library(rpart.plot)
+prp(rt.a1,extra=101,box.col=&quot;orange&quot;,split.box.col=&quot;grey&quot;)</code></pre>
+<pre class="r"><code>printcp(rt.a1)</code></pre>
+<pre class="r"><code>rt2.a1 &lt;- prune(rt.a1, cp = 0.08)
+rt2.a1</code></pre>
+<pre class="r"><code>(rt.a1 &lt;- rpartXse(a1 ~ ., data = algae[, 1:12]))</code></pre>
+<pre class="r"><code>first.tree &lt;- rpart(a1 ~ ., data = algae[, 1:12])
+snip.rpart(first.tree, c(4, 7))</code></pre>
+<pre class="r"><code>plot(first.tree)
+text(first.tree)
+snip.rpart(first.tree)</code></pre>
+<!-- EvalAndSel.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(dplyr)
+library(rpart)
+data(algae)
+algae &lt;- algae[-manyNAs(algae), ]
+clean.algae &lt;- knnImputation(algae, k = 10)
+lm.a1 &lt;- lm(a1 ~ ., data = clean.algae[, 1:12])
+final.lm &lt;- step(lm.a1)
+rt.a1 &lt;- rpart(a1 ~ ., data = algae[, 1:12])</code></pre>
+</div>
+<div id="model-evaluation-and-selection" class="section level3">
+<h3>Model Evaluation and Selection</h3>
+<pre class="r"><code>lm.predictions.a1 &lt;- predict(final.lm, clean.algae)
+rt.predictions.a1 &lt;- predict(rt.a1, algae)</code></pre>
+<pre class="r"><code>(mae.a1.lm &lt;- mean(abs(lm.predictions.a1 - algae[[&quot;a1&quot;]])))
+(mae.a1.rt &lt;- mean(abs(rt.predictions.a1 - algae[[&quot;a1&quot;]])))</code></pre>
+<pre class="r"><code>(mse.a1.lm &lt;- mean((lm.predictions.a1 - algae[[&quot;a1&quot;]])^2))
+(mse.a1.rt &lt;- mean((rt.predictions.a1 - algae[[&quot;a1&quot;]])^2))</code></pre>
+<pre class="r"><code>(nmse.a1.lm &lt;- mean((lm.predictions.a1-algae[[&#39;a1&#39;]])^2)/
+               mean((mean(algae[[&#39;a1&#39;]])-algae[[&#39;a1&#39;]])^2))
+(nmse.a1.rt &lt;- mean((rt.predictions.a1-algae[[&#39;a1&#39;]])^2)/
+               mean((mean(algae[[&#39;a1&#39;]])-algae[[&#39;a1&#39;]])^2))</code></pre>
+<pre class="r"><code>library(ggplot2)
+dg &lt;- data.frame(lm.a1=lm.predictions.a1,
+                 rt.a1=rt.predictions.a1,
+                 true.a1=algae[[&quot;a1&quot;]])
+ggplot(dg,aes(x=lm.a1,y=true.a1)) +
+    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
+    ggtitle(&quot;Linear Model&quot;)
+ggplot(dg,aes(x=rt.a1,y=true.a1)) +
+    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
+    ggtitle(&quot;Regression Tree&quot;)</code></pre>
+<pre class="r"><code>library(grid)
+dg &lt;- data.frame(lm.a1=lm.predictions.a1,rt.a1=rt.predictions.a1,true.a1=algae[[&quot;a1&quot;]])
+g1 &lt;- ggplot(dg,aes(x=lm.a1,y=true.a1)) +
+    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
+    ggtitle(&quot;Linear Model&quot;)
+g2 &lt;- ggplot(dg,aes(x=rt.a1,y=true.a1)) +
+    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
+    ggtitle(&quot;Regression Tree&quot;)
+grid.newpage()
+pushViewport(viewport(layout=grid.layout(1,2)))
+print(g1,vp=viewport(layout.pos.row=1,layout.pos.col=1))
+print(g2,vp=viewport(layout.pos.row=1,layout.pos.col=2))</code></pre>
+<pre class="r"><code>plot(lm.predictions.a1,algae[[&#39;a1&#39;]],main=&quot;Linear Model&quot;,
+     xlab=&quot;Predictions&quot;,ylab=&quot;True Values&quot;)
+abline(0,1,col=&quot;red&quot;)
+algae[identify(lm.predictions.a1,algae[[&#39;a1&#39;]]),]</code></pre>
+<pre class="r"><code>sensible.lm.predictions.a1 &lt;- ifelse(lm.predictions.a1 &lt; 0, 0, lm.predictions.a1)
+(mae.a1.lm &lt;- mean(abs(lm.predictions.a1 - algae[[&quot;a1&quot;]])))
+(smae.a1.lm &lt;- mean(abs(sensible.lm.predictions.a1 - algae[[&quot;a1&quot;]])))</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+res &lt;- performanceEstimation(
+    PredTask(a1 ~ ., algae[, 1:12], &quot;a1&quot;),
+    c(Workflow(learner=&quot;lm&quot;,pre=&quot;knnImp&quot;,post=&quot;onlyPos&quot;),
+      workflowVariants(learner=&quot;rpartXse&quot;,learner.pars=list(se=c(0,0.5,1)))),
+    EstimationTask(metrics=&quot;nmse&quot;,method=CV(nReps=5,nFolds=10))
+)</code></pre>
+<pre class="r"><code>summary(res) </code></pre>
+<pre class="r"><code>plot(res)</code></pre>
+<pre class="r"><code>plot( res ) </code></pre>
+<pre class="r"><code>getWorkflow(&quot;rpartXse.v1&quot;, res)</code></pre>
+<pre class="r"><code>DSs &lt;- sapply(names(algae)[12:18],
+          function(x,names.attrs) { 
+            f &lt;- as.formula(paste(x, &quot;~ .&quot;))
+            PredTask(f, algae[,c(names.attrs,x)], x, copy=TRUE) 
+          },
+          names(algae)[1:11])
+res.all &lt;- performanceEstimation(
+    DSs,
+    c(Workflow(learner=&quot;lm&quot;, pre=&quot;knnImp&quot;, post=&quot;onlyPos&quot;),
+      workflowVariants(learner=&quot;rpartXse&quot;, learner.pars=list(se=c(0,0.5,1)))),
+    EstimationTask(metrics=&quot;nmse&quot; ,method=CV(nReps=5, nFolds=10)))</code></pre>
+<pre class="r"><code>plot(res.all)</code></pre>
+<pre class="r"><code>plot(res.all)</code></pre>
+<pre class="r"><code>topPerformers(res.all)</code></pre>
+<pre class="r"><code>library(randomForest)
+res.all &lt;- performanceEstimation(
+    DSs,
+    c(Workflow(learner=&quot;lm&quot;, pre=&quot;knnImp&quot;,post=&quot;onlyPos&quot;),
+      workflowVariants(learner=&quot;rpartXse&quot;,
+                       learner.pars=list(se=c(0,0.5,1))),
+      workflowVariants(learner=&quot;randomForest&quot;, pre=&quot;knnImp&quot;,
+                       learner.pars=list(ntree=c(200,500,700)))),
+    EstimationTask(metrics=&quot;nmse&quot;,method=CV(nReps=5,nFolds=10)))</code></pre>
+<pre class="r"><code>rankWorkflows(res.all, top=3)</code></pre>
+<pre class="r"><code>p &lt;- pairedComparisons(res.all,baseline=&quot;randomForest.v3&quot;)
+p$nmse$F.test
+p$nmse$BonferroniDunn.test</code></pre>
+<pre class="r"><code>CDdiagram.BD(p)</code></pre>
+<!-- Preds.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(performanceEstimation)
+library(randomForest)
+data(algae, package=&quot;DMwR2&quot;)
+algae &lt;- algae[-manyNAs(algae), ]
+load(&quot;algResAll.Rdata&quot;)</code></pre>
+</div>
+<div id="predictions-for-the-seven-algae" class="section level3">
+<h3>Predictions for the Seven Algae</h3>
+<pre class="r"><code>wfs &lt;- sapply(taskNames(res.all),
+              function(t) topPerformer(res.all,metric=&quot;nmse&quot;,task=t))
+wfs[[&quot;a1&quot;]]
+wfs[[&quot;a7&quot;]]</code></pre>
+<pre class="r"><code>full.test.algae &lt;- cbind(test.algae, algae.sols)
+pts &lt;- array(dim = c(140,7,2),
+             dimnames = list(1:140, paste0(&quot;a&quot;,1:7), c(&quot;trues&quot;,&quot;preds&quot;)))
+for(i in 1:7) {
+    res &lt;- runWorkflow(wfs[[i]],
+                       as.formula(paste(names(wfs)[i],&quot;~.&quot;)),
+                       algae[,c(1:11,11+i)],
+                       full.test.algae[,c(1:11,11+i)])
+    pts[,i,&quot;trues&quot;] &lt;- res$trues
+    pts[,i,&quot;preds&quot;] &lt;- res$preds
+}</code></pre>
+<pre class="r"><code>pts[1:3,c(&quot;a1&quot;,&quot;a3&quot;),]</code></pre>
+<pre class="r"><code>avg.preds &lt;- apply(algae[,12:18], 2, mean)
+apply((pts[,,&quot;trues&quot;] - pts[,,&quot;preds&quot;])^2, 2 ,sum) /
+    apply( (scale(pts[,,&quot;trues&quot;], avg.preds, FALSE))^2, 2, sum)</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+---
+title: Introduction to Data Mining
+output: html_document
+---
+
+
+This chapter contains the following main sections:
+
+
+<!-- DCandBU.Rnw --> 
+- Data Collection and Business Understanding
+<!-- dataPP.Rnw --> 
+- Data Pre-Processing
+<!-- modeling.Rnw --> 
+- Modeling
+<!-- evaluation.Rnw --> 
+- Evaluation
+<!-- DeployAndReport.Rnw --> 
+- Reporting  and Deployment

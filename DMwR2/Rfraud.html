@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Detecting Fraudulent Transactions</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">DMwR 2nd Edition</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-indent"></span>
+     
+    Contents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="introR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="introDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="algae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="stocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="fraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    R Code
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="RintroR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="RintroDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="Ralgae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="Rstocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="Rbio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="datasets.html">
+    <span class="fa fa-database"></span>
+     
+    Datasets
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Detecting Fraudulent Transactions</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/Rfraud.R">script file</a> containing all R code of all sections in this chapter.</p>
+<!-- availData.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)</code></pre>
+<div id="the-available-data" class="section level3">
+<h3>The Available Data</h3>
+<pre class="r"><code>library(dplyr)
+data(sales, package=&quot;DMwR2&quot;)</code></pre>
+<pre class="r"><code>sales</code></pre>
+<pre class="r"><code>summary(sales)</code></pre>
+<pre class="r"><code>nlevels(sales$ID)
+nlevels(sales$Prod)</code></pre>
+<pre class="r"><code>filter(sales,is.na(Quant),is.na(Val))</code></pre>
+<pre class="r"><code>table(sales$Insp)/nrow(sales) * 100</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(group_by(sales,ID) %&gt;% summarize(nTrans=n()),aes(x=ID,y=nTrans)) +
+    geom_bar(stat=&quot;identity&quot;) + 
+    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
+    xlab(&quot;Salesmen&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
+    ggtitle(&quot;Nr. of Transactions per Salesman&quot;)
+ggplot(group_by(sales,Prod) %&gt;% summarize(nTrans=n()),aes(x=Prod,y=nTrans)) +
+    geom_bar(stat=&quot;identity&quot;) + 
+    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
+    xlab(&quot;Product&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
+    ggtitle(&quot;Nr. of Transactions per Product&quot;)</code></pre>
+<pre class="r"><code>ggplot(group_by(sales,ID) %&gt;% summarize(nTrans=n()),aes(x=ID,y=nTrans)) +
+    geom_bar(stat=&quot;identity&quot;) + 
+    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
+    xlab(&quot;Product&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
+    ggtitle(&quot;Nr. of Transactions per Salesman&quot;)</code></pre>
+<pre class="r"><code>ggplot(group_by(sales,Prod) %&gt;% summarize(nTrans=n()),aes(x=Prod,y=nTrans)) +
+    geom_bar(stat=&quot;identity&quot;) + 
+    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
+    xlab(&quot;Salesmen&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
+    ggtitle(&quot;Nr. of Transactions per Product&quot;)</code></pre>
+<pre class="r"><code>sales &lt;- mutate(sales,Uprice=Val/Quant)</code></pre>
+<pre class="r"><code>summary(sales$Uprice)</code></pre>
+<pre class="r"><code>prods &lt;- group_by(sales,Prod)
+mpProds &lt;- summarize(prods,medianPrice=median(Uprice,na.rm=TRUE))
+bind_cols(mpProds %&gt;% arrange(medianPrice) %&gt;% slice(1:5),
+          mpProds %&gt;% arrange(desc(medianPrice)) %&gt;% slice(1:5))</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(forcats)
+ggplot(filter(sales,Prod %in% c(&quot;p3689&quot;,&quot;p560&quot;)),aes(x=fct_drop(Prod),y=Uprice)) +
+    geom_boxplot() + scale_y_log10() + 
+    xlab(&quot;&quot;) + ylab(&quot;log10(UnitPrice)&quot;)</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(forcats)
+ggplot(filter(sales,Prod %in% c(&quot;p3689&quot;,&quot;p560&quot;)),aes(x=fct_drop(Prod),y=Uprice)) +
+    geom_boxplot() + scale_y_log10() + 
+    xlab(&quot;&quot;) + ylab(&quot;log10(UnitPrice)&quot;)</code></pre>
+<pre class="r"><code>ids &lt;- group_by(sales,ID)
+tvIDs &lt;- summarize(ids,totalVal=sum(Val,na.rm=TRUE))
+bind_cols(tvIDs %&gt;% arrange(totalVal) %&gt;% slice(1:5),
+          tvIDs %&gt;% arrange(desc(totalVal)) %&gt;% slice(1:5))</code></pre>
+<pre class="r"><code>arrange(tvIDs,desc(totalVal)) %&gt;% slice(1:100) %&gt;% 
+    summarize(t100=sum(totalVal)) / 
+    (summarize(tvIDs,sum(totalVal))) * 100
+arrange(tvIDs,totalVal) %&gt;% slice(1:2000) %&gt;% 
+    summarize(b2000=sum(totalVal)) / 
+    (summarize(tvIDs,sum(totalVal))) * 100</code></pre>
+<pre class="r"><code>prods &lt;- group_by(sales,Prod)
+qtProds &lt;- summarize(prods,totalQty=sum(Quant,na.rm=TRUE))
+bind_cols(qtProds %&gt;% arrange(desc(totalQty)) %&gt;% slice(1:5),
+          qtProds %&gt;% arrange(totalQty) %&gt;% slice(1:5))</code></pre>
+<pre class="r"><code>arrange(qtProds,desc(totalQty)) %&gt;% slice(1:100) %&gt;% 
+    summarize(t100=sum(as.numeric(totalQty))) / 
+    (summarize(qtProds,sum(as.numeric(totalQty)))) * 100
+arrange(qtProds,totalQty) %&gt;% slice(1:4000) %&gt;% 
+    summarize(b4000=sum(as.numeric(totalQty))) / 
+    (summarize(qtProds,sum(as.numeric(totalQty)))) * 100</code></pre>
+<pre class="r"><code>nouts &lt;- function(x) length(boxplot.stats(x)$out)
+noutsProds &lt;- summarise(prods,nOut=nouts(Uprice))</code></pre>
+<pre class="r"><code>arrange(noutsProds,desc(nOut))</code></pre>
+<pre class="r"><code>summarize(noutsProds,totalOuts=sum(nOut))
+summarize(noutsProds,totalOuts=sum(nOut))/nrow(sales)*100</code></pre>
+<pre class="r"><code>prop.naQandV &lt;- function(q,v) 100*sum(is.na(q) &amp; is.na(v))/length(q)
+summarise(ids,nProbs=prop.naQandV(Quant,Val)) %&gt;% arrange(desc(nProbs))</code></pre>
+<pre class="r"><code>summarise(prods,nProbs=prop.naQandV(Quant,Val)) %&gt;% arrange(desc(nProbs))</code></pre>
+<pre class="r"><code>sales &lt;- filter(sales,!(is.na(Quant) &amp; is.na(Val)))</code></pre>
+<pre class="r"><code>prop.nas &lt;- function(x) 100*sum(is.na(x))/length(x)
+summarise(prods,propNA.Q=prop.nas(Quant)) %&gt;% arrange(desc(propNA.Q))</code></pre>
+<pre class="r"><code>filter(sales, Prod %in% c(&quot;p2442&quot;,&quot;p2443&quot;)) %&gt;% 
+    group_by(Insp) %&gt;% count()</code></pre>
+<pre class="r"><code>sales &lt;- droplevels(filter(sales,!(Prod %in% c(&quot;p2442&quot;, &quot;p2443&quot;))))</code></pre>
+<pre class="r"><code>summarise(ids,propNA.Q=prop.nas(Quant)) %&gt;% arrange(desc(propNA.Q))</code></pre>
+<pre class="r"><code>summarise(prods,propNA.V=prop.nas(Val)) %&gt;% arrange(desc(propNA.V))</code></pre>
+<pre class="r"><code>summarise(ids,propNA.V=prop.nas(Val)) %&gt;% arrange(desc(propNA.V))</code></pre>
+<pre class="r"><code>tPrice &lt;- filter(sales, Insp != &quot;fraud&quot;) %&gt;% 
+          group_by(Prod) %&gt;% 
+          summarise(medianPrice = median(Uprice,na.rm=TRUE))</code></pre>
+<pre class="r"><code>noQuantMedPrices &lt;- filter(sales, is.na(Quant)) %&gt;% 
+    inner_join(tPrice) %&gt;% 
+    select(medianPrice)
+noValMedPrices &lt;- filter(sales, is.na(Val)) %&gt;% 
+    inner_join(tPrice) %&gt;% 
+    select(medianPrice)
+
+noQuant &lt;- which(is.na(sales$Quant))
+noVal &lt;- which(is.na(sales$Val))
+sales[noQuant,&#39;Quant&#39;] &lt;- ceiling(sales[noQuant,&#39;Val&#39;] /noQuantMedPrices)
+sales[noVal,&#39;Val&#39;] &lt;- sales[noVal,&#39;Quant&#39;] * noValMedPrices</code></pre>
+<pre class="r"><code>sales$Uprice &lt;- sales$Val/sales$Quant</code></pre>
+<pre class="r"><code>save(sales, file = &quot;salesClean.Rdata&quot;)</code></pre>
+<pre class="r"><code>ms &lt;- filter(sales,Insp != &quot;fraud&quot;) %&gt;% 
+    group_by(Prod) %&gt;% 
+    summarize(median=median(Uprice,na.rm=TRUE),
+              iqr=IQR(Uprice,na.rm=TRUE),
+              nTrans=n(),
+              fewTrans=ifelse(nTrans&gt;20,FALSE,TRUE))
+ms</code></pre>
+<pre class="r"><code>ggplot(ms,aes(x=median,y=iqr,color=fewTrans)) + 
+    geom_point() + 
+    xlab(&quot;Median&quot;) + ylab(&quot;IQR&quot;)
+ggplot(ms,aes(x=median,y=iqr,color=fewTrans)) + 
+    geom_point() + 
+    scale_y_log10() + scale_x_log10() + 
+    xlab(&quot;log(Median)&quot;) + ylab(&quot;log(IQR)&quot;)</code></pre>
+<pre class="r"><code>ms &lt;- mutate(ms,smedian=scale(median),siqr=scale(iqr))
+smalls &lt;- which(ms$fewTrans)
+nsmalls &lt;- as.character(ms$Prod[smalls])
+similar &lt;- matrix(NA,length(smalls),7,
+    dimnames=list(nsmalls,
+      c(&quot;RowSimProd&quot;, &quot;ks.stat&quot;, &quot;ks.p&quot;, &quot;medP&quot;, &quot;iqrP&quot;, &quot;medS&quot;,&quot;iqrS&quot;)))
+xprods &lt;- tapply(sales$Uprice, sales$Prod, list)
+for(i in seq_along(smalls)) {
+    d &lt;- scale(ms[,c(&quot;smedian&quot;,&quot;siqr&quot;)],
+               c(ms$smedian[smalls[i]],ms$siqr[smalls[i]]),
+               FALSE)
+    d &lt;- sqrt(drop(d^2 %*% rep(1, ncol(d))))
+    stat &lt;- ks.test(xprods[[nsmalls[i]]], xprods[[order(d)[2]]])
+    similar[i, ] &lt;- c(order(d)[2], stat$statistic, stat$p.value,
+                      ms$median[smalls[i]],ms$iqr[smalls[i]],
+                      ms$median[order(d)[2]],ms$iqr[order(d)[2]])
+}</code></pre>
+<pre class="r"><code>head(similar)</code></pre>
+<pre class="r"><code>bind_rows(filter(ms,Prod==rownames(similar)[1]),
+          ms[similar[1,1],])</code></pre>
+<pre class="r"><code>nrow(similar[similar[, &quot;ks.p&quot;] &gt;= 0.9, ])</code></pre>
+<pre class="r"><code>sum(similar[, &quot;ks.p&quot;] &gt;= 0.9)</code></pre>
+<pre class="r"><code>save(similar, file = &quot;similarProducts.Rdata&quot;)</code></pre>
+<!-- defTasks.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)</code></pre>
+</div>
+<div id="defining-the-data-mining-tasks" class="section level3">
+<h3>Defining the Data Mining Tasks</h3>
+<pre class="r"><code>library(ROCR)
+data(ROCR.simple)
+pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
+perf &lt;- performance(pred, &quot;prec&quot;, &quot;rec&quot;)
+plot(perf)</code></pre>
+<pre class="r"><code>PRcurve &lt;- function(preds, trues, ...) {
+    require(ROCR, quietly = TRUE)
+    pd &lt;- prediction(preds, trues)
+    pf &lt;- performance(pd, &quot;prec&quot;, &quot;rec&quot;)
+    pf@y.values &lt;- lapply(pf@y.values, function(x) rev(cummax(rev(x))))
+    plot(pf, ...)
+}</code></pre>
+<pre class="r"><code>PRcurve(ROCR.simple$predictions, ROCR.simple$labels)</code></pre>
+<pre class="r"><code>library(ROCR)
+data(ROCR.simple)
+pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
+perf &lt;- performance(pred, &quot;prec&quot;, &quot;rec&quot;)
+par( mfrow=c(1,2) )
+plot(perf)
+PRcurve(ROCR.simple$predictions, ROCR.simple$labels)
+par( mfrow=c(1,1) )</code></pre>
+<pre class="r"><code>pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
+perf &lt;- performance(pred, &quot;lift&quot;, &quot;rpp&quot;)
+plot(perf, main = &quot;Lift Chart&quot;)</code></pre>
+<pre class="r"><code>CRchart &lt;- function(preds, trues, ...) {
+    require(ROCR, quietly = T)
+    pd &lt;- prediction(preds, trues)
+    pf &lt;- performance(pd, &quot;rec&quot;, &quot;rpp&quot;)
+    plot(pf, ...)
+}</code></pre>
+<pre class="r"><code>CRchart(ROCR.simple$predictions, ROCR.simple$labels, 
+        main=&#39;Cumulative Recall Chart&#39;)</code></pre>
+<pre class="r"><code>avgNDTP &lt;- function(toInsp,train,stats) {
+  if (missing(train) &amp;&amp; missing(stats)) 
+      stop(&#39;Provide either the training data or the product stats&#39;)
+  if (missing(stats)) {
+      stats &lt;- as.matrix(filter(train,Insp != &#39;fraud&#39;) %&gt;%
+                         group_by(Prod) %&gt;%
+                         summarise(median=median(Uprice),iqr=IQR(Uprice)) %&gt;%
+                         select(median,iqr))
+      rownames(stats) &lt;- levels(train$Prod)
+      stats[which(stats[,&#39;iqr&#39;]==0),&#39;iqr&#39;] &lt;- stats[which(stats[,&#39;iqr&#39;]==0),&#39;median&#39;]
+  }
+  
+  return(mean(abs(toInsp$Uprice-stats[toInsp$Prod,&#39;median&#39;]) /
+                 stats[toInsp$Prod,&#39;iqr&#39;]))
+}</code></pre>
+<pre class="r"><code>evalOutlierRanking &lt;- function(testSet,rankOrder,Threshold,statsProds,...) 
+{
+   ordTS &lt;- testSet[rankOrder,]
+   N &lt;- nrow(testSet)
+   nF &lt;- if (Threshold &lt; 1) as.integer(Threshold*N) else Threshold
+   cm &lt;- table(c(rep(&#39;fraud&#39;,nF),rep(&#39;ok&#39;,N-nF)),ordTS$Insp)
+   prec &lt;- cm[&#39;fraud&#39;,&#39;fraud&#39;]/sum(cm[&#39;fraud&#39;,])
+   rec &lt;- cm[&#39;fraud&#39;,&#39;fraud&#39;]/sum(cm[,&#39;fraud&#39;])
+   AVGndtp &lt;- avgNDTP(ordTS[1:nF,],stats=statsProds)
+   return(c(Precision=prec,Recall=rec,avgNDTP=AVGndtp))
+}</code></pre>
+<!-- obtainingRanks.Rnw -->
+</div>
+<div id="obtaining-outlier-rankings" class="section level3">
+<h3>Obtaining Outlier Rankings</h3>
+<!-- BPrule.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(dplyr)
+load( &quot;salesClean.Rdata&quot; ) 
+source( &quot;evaluationCode.R&quot; ) </code></pre>
+<pre class="r"><code>BPrule.wf &lt;- function(form,train,test,...) {
+    require(dplyr, quietly=TRUE)
+    ms &lt;- as.matrix(filter(train,Insp != &#39;fraud&#39;) %&gt;%
+                    group_by(Prod) %&gt;%
+                    summarise(median=median(Uprice),iqr=IQR(Uprice)) %&gt;%
+                    select(median,iqr))
+    rownames(ms) &lt;- levels(train$Prod)
+    ms[which(ms[,&#39;iqr&#39;]==0),&#39;iqr&#39;] &lt;- ms[which(ms[,&#39;iqr&#39;]==0),&#39;median&#39;]
+    ORscore &lt;- abs(test$Uprice-ms[test$Prod,&#39;median&#39;]) /
+               ms[test$Prod,&#39;iqr&#39;]
+    rankOrder &lt;- order(ORscore,decreasing=TRUE)
+    res &lt;- list(testSet=test,rankOrder=rankOrder,
+                probs=matrix(c(ORscore,ifelse(test$Insp==&#39;fraud&#39;,1,0)),
+                             ncol=2))
+    res
+}</code></pre>
+<pre class="r"><code>library(dplyr)
+globalStats &lt;- as.matrix(filter(sales,Insp != &#39;fraud&#39;) %&gt;%
+                         group_by(Prod) %&gt;%
+                         summarise(median=median(Uprice),iqr=IQR(Uprice)) %&gt;%
+                         select(median,iqr))
+rownames(globalStats) &lt;- levels(sales$Prod)
+globalStats[which(globalStats[,&#39;iqr&#39;]==0),&#39;iqr&#39;] &lt;- 
+    globalStats[which(globalStats[,&#39;iqr&#39;]==0),&#39;median&#39;]
+head(globalStats,3)</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+bp.res &lt;- performanceEstimation(
+    PredTask(Insp ~ ., sales),
+    Workflow(&quot;BPrule.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3, hldSz=0.3, strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1, statsProds=globalStats))
+)</code></pre>
+<pre class="r"><code>summary(bp.res)</code></pre>
+<pre class="r"><code>ps.bp &lt;- sapply(getIterationsInfo(bp.res),function(i) i$probs[,1])
+ts.bp &lt;- sapply(getIterationsInfo(bp.res),function(i) i$probs[,2])
+PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,avg=&quot;vertical&quot;)
+CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,avg=&#39;vertical&#39;)</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.bp &lt;- sapply(getIterationsInfo(bp.res), function(i) i$probs[,1])
+ts.bp &lt;- sapply(getIterationsInfo(bp.res), function(i) i$probs[,2])
+PRcurve(ps.bp, ts.bp, main=&quot;PR curve&quot;, avg=&quot;vertical&quot;)
+CRchart(ps.bp, ts.bp, main=&#39;Cumulative Recall curve&#39;, avg=&#39;vertical&#39;)</code></pre>
+<!-- LOF.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(dplyr)
+library(performanceEstimation)
+load( &quot;salesClean.Rdata&quot; ) 
+source( &quot;evaluationCode.R&quot; ) 
+load(&quot;BPres.Rdata&quot;)</code></pre>
+<pre class="r"><code>LOF.wf &lt;- function(form, train, test, k, ...) {
+    require(DMwR2, quietly=TRUE)
+    ntr &lt;- nrow(train)
+    all &lt;- as.data.frame(rbind(train,test))
+    N &lt;- nrow(all)
+    ups &lt;- split(all$Uprice,all$Prod)
+    r &lt;- list(length=ups)
+    for(u in seq(along=ups)) 
+        r[[u]] &lt;- if (NROW(ups[[u]]) &gt; 3) 
+                      lofactor(ups[[u]],min(k,NROW(ups[[u]]) %/% 2)) 
+                  else if (NROW(ups[[u]])) rep(0,NROW(ups[[u]])) 
+                  else NULL
+    all$lof &lt;- vector(length=N)
+    split(all$lof,all$Prod) &lt;- r
+    all$lof[which(!(is.infinite(all$lof) | is.nan(all$lof)))] &lt;- 
+        SoftMax(all$lof[which(!(is.infinite(all$lof) | is.nan(all$lof)))])
+    
+    res &lt;- list(testSet=test,
+                rankOrder=order(all[(ntr+1):N,&#39;lof&#39;],decreasing=TRUE),
+                probs=as.matrix(cbind(all[(ntr+1):N,&#39;lof&#39;],
+                                      ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+}</code></pre>
+<pre class="r"><code>lof.res &lt;- performanceEstimation(
+    PredTask(Insp ~ . , sales),
+    Workflow(&quot;LOF.wf&quot;, k=7),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3, hldSz=0.3, strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1, statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(lof.res)</code></pre>
+<pre class="r"><code>ps.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,1])
+ts.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,2])
+PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))
+
+CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,1])
+ts.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,2])
+PRcurve(ps.bp, ts.bp,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.lof, ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))
+CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.lof,ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))</code></pre>
+<!-- ORh.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(dplyr)
+library(performanceEstimation)
+load( &quot;salesClean.Rdata&quot; ) 
+source( &quot;evaluationCode.R&quot; ) 
+load(&quot;BPres.Rdata&quot;)
+load(&quot;LOFres.Rdata&quot;)</code></pre>
+<pre class="r"><code>ORh.wf &lt;- function(form, train, test, ...) {
+    require(DMwR2, quietly=TRUE)
+    ntr &lt;- nrow(train)
+    all &lt;- as.data.frame(rbind(train,test))
+    N &lt;- nrow(all)
+    ups &lt;- split(all$Uprice,all$Prod)
+    r &lt;- list(length=ups)
+    for(u in seq(along=ups)) 
+        r[[u]] &lt;- if (NROW(ups[[u]]) &gt; 3) 
+                      outliers.ranking(ups[[u]])$prob.outliers
+                  else if (NROW(ups[[u]])) rep(0,NROW(ups[[u]])) 
+                  else NULL
+    all$orh &lt;- vector(length=N)
+    split(all$orh,all$Prod) &lt;- r
+    all$orh[which(!(is.infinite(all$orh) | is.nan(all$orh)))] &lt;- 
+        SoftMax(all$orh[which(!(is.infinite(all$orh) | is.nan(all$orh)))])
+    res &lt;- list(testSet=test,
+                rankOrder=order(all[(ntr+1):N,&#39;orh&#39;],decreasing=TRUE),
+                probs=as.matrix(cbind(all[(ntr+1):N,&#39;orh&#39;],
+                                      ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+    
+}</code></pre>
+<pre class="r"><code>orh.res &lt;- performanceEstimation(
+    PredTask(Insp ~ . , sales),
+    Workflow(&quot;ORh.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3, hldSz=0.3, strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1, statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(orh.res)</code></pre>
+<pre class="r"><code>ps.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,1])
+ts.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,2])
+PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+PRcurve(ps.orh,ts.orh,add=TRUE,lty=1,col=&#39;grey&#39;, avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
+       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+
+CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=TRUE,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
+       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,1])
+ts.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,2])
+PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.lof,ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
+PRcurve(ps.orh,ts.orh,add=T,lty=1,col=&#39;grey&#39;, avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
+       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+
+CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.lof,ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=T,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
+       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<!-- classImb.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)</code></pre>
+<pre class="r"><code>library(UBL)
+data(iris)
+data &lt;- iris[, c(1, 2, 5)]
+data$Species &lt;- factor(ifelse(data$Species == &quot;setosa&quot;, &quot;rare&quot;,&quot;common&quot;))
+table(data$Species)
+newData &lt;- SmoteClassif(Species ~ ., data, C.perc = &quot;balance&quot;)
+table(newData$Species)
+newData2 &lt;- SmoteClassif(Species ~ ., data, C.perc = list(common = 1,rare = 6))
+table(newData2$Species)</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(data,aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
+    geom_point() + ggtitle(&quot;Original Data&quot;)
+ggplot(newData2,aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
+    geom_point() + ggtitle(&quot;SMOTE&#39;d Data&quot;)</code></pre>
+<pre class="r"><code>library(grid)
+g1 &lt;- ggplot(data, aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
+    geom_point() + ggtitle(&quot;Original Data&quot;)
+g2 &lt;- ggplot(newData2, aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
+    geom_point() + ggtitle(&quot;SMOTE&#39;d Data&quot;)
+grid.newpage()
+pushViewport(viewport(layout= grid.layout(1,2)))
+print(g1,vp=viewport(layout.pos.row=1,layout.pos.col=1))
+print(g2,vp=viewport(layout.pos.row=1,layout.pos.col=2))</code></pre>
+<!-- nb.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(dplyr)
+library(UBL)
+library(performanceEstimation)
+load( &quot;salesClean.Rdata&quot; ) 
+source( &quot;evaluationCode.R&quot; ) 
+load(&quot;BPres.Rdata&quot;)
+load(&quot;LOFres.Rdata&quot;)
+load(&quot;ORHres.Rdata&quot;)</code></pre>
+<pre class="r"><code>NB.wf &lt;- function(form,train,test,...) {
+    require(e1071,quietly=TRUE)
+    sup &lt;- which(train$Insp != &#39;unkn&#39;)
+    data &lt;- as.data.frame(train[sup,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
+    data$Insp &lt;- factor(data$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
+    model &lt;- naiveBayes(Insp ~ .,data, ...)
+    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)], type=&#39;raw&#39;)
+    rankOrder &lt;- order(preds[,&#39;fraud&#39;], decreasing=TRUE)
+    rankScore &lt;- preds[,&#39;fraud&#39;]
+    res &lt;- list(testSet=test,
+                rankOrder=rankOrder,
+                probs=as.matrix(cbind(rankScore,
+                                ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+}</code></pre>
+<pre class="r"><code>nb.res &lt;- performanceEstimation(
+    PredTask(Insp ~ . , sales),
+    Workflow(&quot;NB.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1,
+                                       statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(nb.res)</code></pre>
+<pre class="r"><code>ps.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,1])
+ts.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,1])
+ts.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>NBsm.wf &lt;- function(form,train,test,C.perc=&quot;balance&quot;,dist=&quot;HEOM&quot;,...) {
+    require(e1071,quietly=TRUE)
+    require(UBL,quietly=TRUE)
+
+    sup &lt;- which(train$Insp != &#39;unkn&#39;)
+    data &lt;- as.data.frame(train[sup,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
+    data$Insp &lt;- factor(data$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
+    newData &lt;- SmoteClassif(Insp ~ .,data,C.perc=C.perc,dist=dist,...)
+    model &lt;- naiveBayes(Insp ~ .,newData)
+    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],type=&#39;raw&#39;)
+    rankOrder &lt;- order(preds[,&#39;fraud&#39;],decreasing=T)
+    rankScore &lt;- preds[,&#39;fraud&#39;]
+    
+    res &lt;- list(testSet=test,
+              rankOrder=rankOrder,
+              probs=as.matrix(cbind(rankScore,
+                                    ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+}</code></pre>
+<pre class="r"><code>nbs.res &lt;- performanceEstimation(
+    PredTask(Insp ~ ., sales),
+    Workflow(&quot;NBsm.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1,
+                                       statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(nbs.res) </code></pre>
+<pre class="r"><code>ps.nbs &lt;- sapply(getIterationsInfo(nbs.res), function(i) i$probs[,1])
+ts.nbs &lt;- sapply(getIterationsInfo(nbs.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=TRUE,lty=2, avg=&#39;vertical&#39;)
+PRcurve(ps.nbs,ts.nbs,add=TRUE,lty=1, col=&#39;grey&#39;,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),lty=c(1,2,1),
+       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+CRchart(ps.nbs,ts.nbs,add=TRUE,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),lty=c(1,2,1),
+       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.nbs &lt;- sapply(getIterationsInfo(nbs.res),  function(i) i$probs[,1])
+ts.nbs &lt;- sapply(getIterationsInfo(nbs.res),  function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
+PRcurve(ps.nbs,ts.nbs,add=T,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),
+       lty=c(1,2,1),col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
+CRchart(ps.nbs,ts.nbs,add=T,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),
+       lty=c(1,2,1),col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<!-- adaB.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(dplyr)
+library(performanceEstimation)
+load( &quot;salesClean.Rdata&quot; ) 
+source( &quot;evaluationCode.R&quot; ) 
+load(&quot;BPres.Rdata&quot;)
+load(&quot;LOFres.Rdata&quot;)
+load(&quot;ORHres.Rdata&quot;)
+load(&quot;NBres.Rdata&quot;)</code></pre>
+<pre class="r"><code>library(RWeka)
+WOW(AdaBoostM1)</code></pre>
+<pre class="r"><code>data(iris)
+idx &lt;- sample(150,100)
+model &lt;- AdaBoostM1(Species ~ .,iris[idx,], control=Weka_control(I=100))
+preds &lt;- predict(model,iris[-idx,])
+head(preds)
+table(preds,iris[-idx,&#39;Species&#39;])</code></pre>
+<pre class="r"><code>ab.wf &lt;- function(form,train,test,ntrees=100,...) {
+    require(RWeka,quietly=TRUE)
+    sup &lt;- which(train$Insp != &#39;unkn&#39;)
+    data &lt;- as.data.frame(train[sup,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
+    data$Insp &lt;- factor(data$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
+    model &lt;- AdaBoostM1(Insp ~ .,data,
+                       control=Weka_control(I=ntrees))
+    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],
+                     type=&#39;probability&#39;)
+    rankOrder &lt;- order(preds[,&quot;fraud&quot;],decreasing=TRUE)
+    rankScore &lt;- preds[,&quot;fraud&quot;]
+    
+    res &lt;- list(testSet=test,
+                rankOrder=rankOrder,
+                probs=as.matrix(cbind(rankScore,
+                                      ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+}</code></pre>
+<pre class="r"><code>ab.res &lt;- performanceEstimation(
+    PredTask(Insp ~ .,sales),
+    Workflow(&quot;ab.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1,
+                                       statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(ab.res)</code></pre>
+<pre class="r"><code>ps.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,1])
+ts.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=TRUE,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
+PRcurve(ps.ab,ts.ab,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=TRUE,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+CRchart(ps.ab,ts.ab,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,1])
+ts.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+PRcurve(ps.ab,ts.ab,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+CRchart(ps.ab,ts.ab,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<!-- Semisupervised.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(DMwR2)
+library(dplyr)
+library(performanceEstimation)
+load( &quot;salesClean.Rdata&quot; ) 
+source( &quot;evaluationCode.R&quot; ) 
+load(&quot;BPres.Rdata&quot;)
+load(&quot;LOFres.Rdata&quot;)
+load(&quot;ORHres.Rdata&quot;)
+load(&quot;NBres.Rdata&quot;)
+load(&quot;ABres.Rdata&quot;)</code></pre>
+<pre class="r"><code>library(DMwR2)
+library(e1071)
+data(iris) 
+set.seed(1234)
+idx &lt;- sample(150, 100)
+tr &lt;- iris[idx, ]
+ts &lt;- iris[-idx, ]
+nb &lt;- naiveBayes(Species ~ ., tr)
+table(predict(nb, ts), ts$Species)
+trST &lt;- tr
+nas &lt;- sample(100, 90)
+trST[nas, &quot;Species&quot;] &lt;- NA
+func &lt;- function(m, d) {
+    p &lt;- predict(m, d, type = &quot;raw&quot;)
+    data.frame(cl = colnames(p)[ apply(p, 1, which.max) ], 
+               p = apply(p, 1, max))
+}
+nbSTbase &lt;- naiveBayes(Species ~ ., trST[-nas, ])
+table(predict(nbSTbase, ts), ts$Species)
+nbST &lt;- SelfTrain(Species ~ ., trST, 
+                  learner=&quot;naiveBayes&quot;, learner.pars=list(),
+                  pred=&quot;func&quot;)
+table(predict(nbST, ts), ts$Species)</code></pre>
+<pre class="r"><code>pred.nb &lt;- function(m,d) {
+    p &lt;- predict(m,d,type=&#39;raw&#39;)
+    data.frame(cl=colnames(p)[apply(p,1,which.max)],
+               p=apply(p,1,max)
+               )
+}
+ 
+nb.st.wf &lt;- function(form,train,test,...) {
+    require(e1071,quietly=TRUE)
+    require(DMwR2, quietly=TRUE)
+    train &lt;- as.data.frame(train[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
+    train[which(train$Insp == &#39;unkn&#39;),&#39;Insp&#39;] &lt;- NA
+    train$Insp &lt;- factor(train$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
+    model &lt;- SelfTrain(form,train,
+                       learner=&#39;naiveBayes&#39;, learner.pars=list(),
+                       pred=&#39;pred.nb&#39;)
+    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],
+                     type=&#39;raw&#39;)
+
+    rankOrder &lt;- order(preds[,&#39;fraud&#39;],decreasing=TRUE)
+    rankScore &lt;- preds[,&quot;fraud&quot;]
+    
+    res &lt;- list(testSet=test,
+              rankOrder=rankOrder,
+              probs=as.matrix(cbind(rankScore,
+                                    ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+}</code></pre>
+<pre class="r"><code>nb.st.res &lt;- performanceEstimation(
+    PredTask(Insp ~ .,sales),
+    Workflow(&quot;nb.st.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1,
+                                       statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(nb.st.res)</code></pre>
+<pre class="r"><code>ps.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,1])
+ts.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=TRUE,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
+PRcurve(ps.nb.st,ts.nb.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=TRUE,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+CRchart(ps.nb.st,ts.nb.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,1])
+ts.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,2])
+PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.orh,ts.orh,add=T,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
+PRcurve(ps.nb.st,ts.nb.st,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+
+CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.orh,ts.orh,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+CRchart(ps.nb.st,ts.nb.st,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>pred.ada &lt;- function(m,d) {
+    p &lt;- predict(m,d,type=&#39;probability&#39;)
+    data.frame(cl=colnames(p)[apply(p,1,which.max)],
+               p=apply(p,1,max)
+               )
+}
+ 
+ab.st.wf &lt;- function(form,train,test,ntrees=100,...) {
+    require(RWeka,quietly=TRUE)
+    require(DMwR2,quietly=TRUE)
+    train &lt;- as.data.frame(train[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
+    train[which(train$Insp == &#39;unkn&#39;),&#39;Insp&#39;] &lt;- NA
+    train$Insp &lt;- factor(train$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
+    model &lt;- SelfTrain(form,train,
+                       learner=&#39;AdaBoostM1&#39;,
+                       learner.pars=list(control=Weka_control(I=ntrees)),
+                       pred=&#39;pred.ada&#39;)
+    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],
+                     type=&#39;probability&#39;)
+
+    rankOrder &lt;- order(preds[,&#39;fraud&#39;],decreasing=T)
+    rankScore &lt;- preds[,&quot;fraud&quot;]
+    
+    res &lt;- list(testSet=test,
+              rankOrder=rankOrder,
+              probs=as.matrix(cbind(rankScore,
+                                    ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res
+}</code></pre>
+<pre class="r"><code>ab.st.res &lt;- performanceEstimation(
+    PredTask(Insp ~ .,sales),
+    Workflow(&quot;ab.st.wf&quot;),
+    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
+                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
+                   evaluator=&quot;evalOutlierRanking&quot;,
+                   evaluator.pars=list(Threshold=0.1,
+                                       statsProds=globalStats))
+    )</code></pre>
+<pre class="r"><code>summary(ab.st.res)</code></pre>
+<pre class="r"><code>ps.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,1])
+ts.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,2])
+PRcurve(ps.orh,ts.orh,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.ab,ts.ab,add=TRUE,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
+PRcurve(ps.ab.st,ts.ab.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+
+CRchart(ps.orh,ts.orh,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.ab,ts.ab,add=TRUE,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+CRchart(ps.ab.st,ts.ab.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2)) 
+ps.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,1])
+ts.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,2])
+PRcurve(ps.orh,ts.orh,main=&quot;PR curve&quot;,lty=1,
+        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
+PRcurve(ps.ab,ts.ab,add=T,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
+PRcurve(ps.ab.st,ts.ab.st,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;topright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+
+CRchart(ps.orh,ts.orh,main=&#39;Cumulative Recall curve&#39;,
+        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
+CRchart(ps.ab,ts.ab,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
+CRchart(ps.ab.st,ts.ab.st,add=T,lty=2,avg=&#39;vertical&#39;)
+legend(&#39;bottomright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
+       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

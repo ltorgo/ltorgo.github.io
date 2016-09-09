@@ -1,0 +1,21 @@
+---
+title: Predicting Stock Market Returns
+output: html_document
+---
+
+
+This chapter contains the following main sections:
+
+
+<!-- availData.Rnw --> 
+- The Available Data
+<!-- predTask.Rnw --> 
+- Defining the Prediction Tasks
+<!-- PredModels.Rnw --> 
+- The Prediction Models
+<!-- Trading.Rnw --> 
+- From Predictions into Actions
+<!-- EvalAndSel.Rnw --> 
+- Model Evaluation and Selection
+<!-- TradSys.Rnw --> 
+- The Trading System

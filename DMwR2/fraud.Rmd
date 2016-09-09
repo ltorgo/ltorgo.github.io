@@ -1,0 +1,22 @@
+---
+title: Detecting Fraudulent Transactions
+output: html_document
+---
+
+
+This chapter contains the following main sections:
+
+
+<!-- availData.Rnw --> 
+- The Available Data
+<!-- defTasks.Rnw --> 
+- Defining the Data Mining Tasks
+<!-- obtainingRanks.Rnw --> 
+- Obtaining Outlier Rankings
+<!-- BPrule.Rnw --> 
+<!-- LOF.Rnw --> 
+<!-- ORh.Rnw --> 
+<!-- classImb.Rnw --> 
+<!-- nb.Rnw --> 
+<!-- adaB.Rnw --> 
+<!-- Semisupervised.Rnw --> 

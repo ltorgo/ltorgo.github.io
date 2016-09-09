@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Classifying Micro Array Samples</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">DMwR 2nd Edition</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-indent"></span>
+     
+    Contents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="introR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="introDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="algae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="stocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="fraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    R Code
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="RintroR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="RintroDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="Ralgae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="Rstocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="Rbio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="datasets.html">
+    <span class="fa fa-database"></span>
+     
+    Datasets
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Classifying Micro Array Samples</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/Rbio.R">script file</a> containing all R code of all sections in this chapter.</p>
+<!-- availData.Rnw -->
+<div id="the-available-data" class="section level3">
+<h3>The Available Data</h3>
+<pre class="r"><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
+biocLite()
+biocLite(&quot;ALL&quot;)</code></pre>
+<pre class="r"><code>library(Biobase)
+library(ALL)
+data(ALL)</code></pre>
+<pre class="r"><code>ALL</code></pre>
+<pre class="r"><code>pD &lt;- phenoData(ALL)
+varMetadata(pD)
+table(ALL$BT)
+table(ALL$mol.biol)
+table(ALL$BT, ALL$mol.bio)</code></pre>
+<pre class="r"><code>featureNames(ALL)[1:10]
+sampleNames(ALL)[1:5]</code></pre>
+<pre class="r"><code>tgt.cases &lt;- which(ALL$BT %in% levels(ALL$BT)[1:5] &amp; 
+                   ALL$mol.bio %in% levels(ALL$mol.bio)[1:4])
+ALLb &lt;- ALL[,tgt.cases]
+ALLb</code></pre>
+<pre class="r"><code>ALLb$BT &lt;- factor(ALLb$BT)
+ALLb$mol.bio &lt;- factor(ALLb$mol.bio)</code></pre>
+<pre class="r"><code>save(ALLb, file = &quot;myALL.Rdata&quot;)</code></pre>
+<!-- ExploratoryAnal.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(Biobase)
+library(ALL)
+data(ALL)
+load(&quot;myALL.Rdata&quot;)</code></pre>
+<pre class="r"><code>es &lt;- exprs(ALLb)
+dim(es)</code></pre>
+<pre class="r"><code>summary(as.vector(es))</code></pre>
+<pre class="r"><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;genefilter&quot;)</code></pre>
+<pre class="r"><code>library(genefilter)
+library(ggplot2)
+exprVs &lt;- data.frame(exprVal=as.vector(es))
+ds &lt;- data.frame(Stat=c(&quot;1stQ&quot;,&quot;Median&quot;,&quot;3rdQ&quot;,&quot;Shorth&quot;),
+                 Value=c(quantile(exprVs$exprVal, 
+                         probs=c(0.25, 0.5, 0.75)),
+                         shorth(exprVs$exprVal)),
+                 Color=c(&quot;red&quot;,&quot;green&quot;,&quot;red&quot;,&quot;yellow&quot;))
+ggplot(exprVs,aes(x=exprVal)) + geom_histogram(fill=&quot;lightgrey&quot;) + 
+    geom_vline(data=ds,aes(xintercept=Value,color=Color)) + 
+    geom_text(data=ds,aes(x=Value-0.2,y=0,label=Stat,colour=Color),
+              angle=90,hjust=&quot;left&quot;) +
+    xlab(&quot;Expression Levels&quot;) + guides(colour=&quot;none&quot;, fill=&quot;none&quot;) </code></pre>
+<pre class="r"><code>library(genefilter)
+library(ggplot2)
+exprVs &lt;- data.frame(exprVal=as.vector(es))
+ds &lt;- data.frame(Stat=c(&quot;1stQ&quot;,&quot;Median&quot;,&quot;3rdQ&quot;,&quot;Shorth&quot;),
+                 Value=c(quantile(exprVs$exprVal, probs=c(0.25, 0.5, 0.75)),
+                     shorth(exprVs$exprVal)),
+                 Color=c(&quot;red&quot;,&quot;green&quot;,&quot;red&quot;,&quot;yellow&quot;))
+ggplot(exprVs,aes(x=exprVal)) + geom_histogram(fill=&quot;lightgrey&quot;) + 
+    geom_vline(data=ds,aes(xintercept=Value,color=Color)) + 
+    geom_text(data=ds,aes(x=Value-0.2,y=0,label=Stat,colour=Color),angle=90,hjust=&quot;left&quot;) +
+    xlab(&quot;Expression Levels&quot;) + guides(colour=&quot;none&quot;, fill=&quot;none&quot;)    </code></pre>
+<pre class="r"><code>sapply(levels(ALLb$mol.bio), 
+       function(x) summary(as.vector(es[, which(ALLb$mol.bio == x)])))</code></pre>
+<!-- FeatureSel.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(Biobase)
+library(ALL)
+data(ALL)
+load(&quot;myALL.Rdata&quot;)
+es &lt;- exprs(ALLb)</code></pre>
+</div>
+<div id="gene-feature-selection" class="section level3">
+<h3>Gene (Feature) Selection</h3>
+<pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;hgu95av2.db&quot;)</code></pre>
+<pre class="r"><code>rowIQRs &lt;- function(em) 
+    rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
+library(ggplot2)
+dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
+ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
+    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
+    ggtitle(&quot;Main Characteristics of Genes Expression Levels&quot;)</code></pre>
+<pre class="r"><code>rowIQRs &lt;- function(em) rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
+library(ggplot2)
+dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
+ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
+    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
+    ggtitle(&quot;Main Characteristics of Genes Expression Levels&quot;)</code></pre>
+<pre class="r"><code>library(genefilter)
+resFilter &lt;- nsFilter(ALLb,
+                 var.func=IQR,
+                 var.cutoff=IQR(as.vector(es))/5, 
+                 feature.exclude=&quot;^AFFX&quot;)
+resFilter</code></pre>
+<pre class="r"><code>ALLb &lt;- resFilter$eset
+es &lt;- exprs(ALLb)
+dim(es)</code></pre>
+<pre class="r"><code>f &lt;- Anova(ALLb$mol.bio, p = 0.01)
+ff &lt;- filterfun(f)
+selGenes &lt;- genefilter(exprs(ALLb), ff)
+sum(selGenes)</code></pre>
+<pre class="r"><code>ALLb &lt;- ALLb[selGenes, ]
+ALLb
+es &lt;- exprs(ALLb)
+dim(es)</code></pre>
+<pre class="r"><code>dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
+ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
+    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
+    ggtitle(&quot;Distribution Properties of the Selected Genes&quot;)</code></pre>
+<pre class="r"><code>dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
+ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
+    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
+    ggtitle(&quot;Distribution Properties of the Selected Genes&quot;)</code></pre>
+<pre class="r"><code>library(randomForest)
+dt &lt;- data.frame(t(es), Mut = ALLb$mol.bio)
+dt$Mut &lt;- droplevels(dt$Mut)
+set.seed(1234)
+rf &lt;- randomForest(Mut ~ ., dt, importance = TRUE)
+imp &lt;- importance(rf)
+rf.genes &lt;- rownames(imp)[order(imp[,&quot;MeanDecreaseAccuracy&quot;], 
+                                decreasing = TRUE)[1:30]]</code></pre>
+<pre class="r"><code>sapply(rf.genes, function(g) tapply(dt[, g], dt$Mut, median))</code></pre>
+<pre class="r"><code>library(tidyr)
+library(dplyr)
+d &lt;- gather(dt[,c(rf.genes,&quot;Mut&quot;)],Gene,ExprValue,1:length(rf.genes))
+dat &lt;- group_by(d,Mut,Gene) %&gt;% 
+    summarise(med=median(ExprValue), iqr=IQR(ExprValue))
+ggplot(dat, aes(x=med,y=iqr,color=Mut)) +  
+    geom_point(size=6) + facet_wrap(~ Gene) + 
+    labs(x=&quot;MEDIAN expression level&quot;,y=&quot;IQR expression level&quot;,color=&quot;Mutation&quot;)</code></pre>
+<pre class="r"><code>library(Hmisc)
+vc &lt;- varclus(t(es))
+clus30 &lt;- cutree(vc$hclust, 30)
+table(clus30)</code></pre>
+<pre class="r"><code>getVarsSet &lt;- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
+    if (!is.null(seed)) set.seed(seed)
+    
+    cls &lt;- cutree(cluster,nvars)
+    tots &lt;- table(cls)
+    vars &lt;- c()
+    vars &lt;- sapply(1:nvars,function(clID)
+    {
+        if (!length(tots[clID])) stop(&#39;Empty cluster! (&#39;,clID,&#39;)&#39;)
+        x &lt;- sample(1:tots[clID],1)
+        names(cls[cls==clID])[x]
+    })
+    if (verb)  structure(vars,clusMemb=cls,clusTots=tots)
+    else       vars
+}
+getVarsSet(vc$hclust)
+getVarsSet(vc$hclust)</code></pre>
+<!-- PredTasks.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(Biobase)
+library(ALL)
+data(ALL)
+load(&quot;myALL.Rdata&quot;)
+es &lt;- exprs(ALLb)
+rowIQRs &lt;- function(em)  rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
+getVarsSet &lt;- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
+    if (!is.null(seed)) set.seed(seed)
+    
+    cls &lt;- cutree(cluster,nvars)
+    tots &lt;- table(cls)
+    vars &lt;- c()
+    vars &lt;- sapply(1:nvars,function(clID)
+    {
+        if (!length(tots[clID])) stop(&#39;Empty cluster! (&#39;,clID,&#39;)&#39;)
+        x &lt;- sample(1:tots[clID],1)
+        names(cls[cls==clID])[x]
+    })
+    if (verb)  structure(vars,clusMemb=cls,clusTots=tots)
+    else       vars
+}</code></pre>
+</div>
+<div id="predicting-cytogenetic-abnormalities" class="section level3">
+<h3>Predicting Cytogenetic Abnormalities</h3>
+<pre class="r"><code>library(performanceEstimation)
+library(DMwR2)
+data(iris)
+exp &lt;- performanceEstimation(
+    PredTask(Species ~ ., iris), 
+    Workflow(learner=&quot;rpartXse&quot;, predictor.pars=list(type=&quot;class&quot;)),
+    EstimationTask(metrics=&quot;acc&quot;,method=Bootstrap(nReps=100)))</code></pre>
+<pre class="r"><code>summary(exp)</code></pre>
+<pre class="r"><code>library(class)
+data(iris)
+idx &lt;- sample(1:nrow(iris), as.integer(0.7 * nrow(iris)))
+tr &lt;- iris[idx, ]
+ts &lt;- iris[-idx, ]
+preds &lt;- knn(tr[, -5], ts[, -5], tr[, 5], k = 3)
+table(preds, ts[, 5])</code></pre>
+<pre class="r"><code>kNN &lt;- function(form, train, test, stand = TRUE, stand.stats = NULL, ...) {
+    require(class, quietly = TRUE)
+    tgtCol &lt;- which(colnames(train) == as.character(form[[2]]))
+    if (stand) {
+        if (is.null(stand.stats)) 
+            tmp &lt;- scale(train[, -tgtCol], center = TRUE, scale = TRUE)
+        else tmp &lt;- scale(train[, -tgtCol], center = stand.stats[[1]], 
+                          scale = stand.stats[[2]])
+        train[, -tgtCol] &lt;- tmp
+        ms &lt;- attr(tmp, &quot;scaled:center&quot;)
+        ss &lt;- attr(tmp, &quot;scaled:scale&quot;)
+        test[, -tgtCol] &lt;- scale(test[, -tgtCol], center = ms, scale = ss)
+    }
+    knn(train[, -tgtCol], test[, -tgtCol], train[, tgtCol], ...)
+}</code></pre>
+<pre class="r"><code>preds.stand &lt;- kNN(Species ~ ., tr, ts, k = 3)
+table(preds.stand,ts[, 5])
+preds.notStand &lt;- kNN(Species ~ ., tr, ts, stand = FALSE, k = 3)
+table(preds.notStand, ts[, 5]) </code></pre>
+<pre class="r"><code>varsEnsemble &lt;- function(tgt,train,test,
+                         fs.meth,
+                         baseLearner,blPars,
+                         predictor,predPars,
+                         verb=FALSE)
+{
+    require(Hmisc,quietly=TRUE)
+    v &lt;- varclus(as.matrix(train[,-which(colnames(train)==tgt)]))
+    varsSets &lt;- lapply(1:fs.meth[[3]],function(x)
+        getVarsSet(v$hclust,nvars=fs.meth[[2]]))
+    
+    preds &lt;- matrix(NA,ncol=length(varsSets),nrow=NROW(test))
+    for(v in seq(along=varsSets)) {
+        if (baseLearner==&#39;knn&#39;)
+            preds[,v] &lt;- do.call(&quot;kNN&quot;,
+                                 c(list(as.formula(paste(tgt,
+                                                 paste(varsSets[[v]],
+                                                       collapse=&#39;+&#39;),
+                                                 sep=&#39;~&#39;)),
+                                        train[,c(tgt,varsSets[[v]])],
+                                        test[,c(tgt,varsSets[[v]])]),
+                                   blPars)
+                                 )
+        else {
+            m &lt;- do.call(baseLearner,
+                         c(list(as.formula(paste(tgt,
+                                                 paste(varsSets[[v]],
+                                                       collapse=&#39;+&#39;),
+                                                 sep=&#39;~&#39;)),
+                                train[,c(tgt,varsSets[[v]])]),
+                           blPars)
+                         )
+            preds[,v] &lt;- do.call(predictor,
+                                 c(list(m,test[,c(tgt,varsSets[[v]])]),
+                                   predPars))
+        }
+    }
+
+    ps &lt;- apply(preds,1,function(x)
+        levels(factor(x))[which.max(table(factor(x)))])
+    factor(ps,
+           levels=1:nlevels(train[,tgt]),
+           labels=levels(train[,tgt]))
+}</code></pre>
+<pre class="r"><code>ALLb.wf &lt;- function(form, train, test,
+                    learner, learner.pars=NULL,
+                    predictor=&quot;predict&quot;,predictor.pars=NULL,
+                    featSel.meth = &quot;s2&quot;, 
+                    available.fsMethods=list(s1=list(&quot;all&quot;),s2=list(&#39;rf&#39;,30),
+                                             s3=list(&#39;varclus&#39;,30,50)),
+                    .model=FALSE,
+                    ...)
+{
+    ## The characteristics of the selected feature selection method
+    fs.meth &lt;- available.fsMethods[[featSel.meth]] 
+    
+    ## The target variable
+    tgt &lt;- as.character(form[[2]])
+    tgtCol &lt;- which(colnames(train)==tgt)
+
+    ## Anova filtering  
+    f &lt;- Anova(train[,tgt],p=0.01)
+    ff &lt;- filterfun(f)
+    genes &lt;- genefilter(t(train[,-tgtCol]),ff)
+    genes &lt;- names(genes)[genes]
+    train &lt;- train[,c(tgt,genes)]
+    test &lt;- test[,c(tgt,genes)]
+    tgtCol &lt;- 1
+
+    ## Specific filtering 
+    if (fs.meth[[1]]==&#39;varclus&#39;) {
+      pred &lt;- varsEnsemble(tgt,train,test,fs.meth,
+                            learner,learner.pars,
+                            predictor,predictor.pars,
+                            list(...))
+
+    } else {
+      if (fs.meth[[1]]==&#39;rf&#39;) {
+        require(randomForest,quietly=TRUE)
+        rf &lt;- randomForest(form,train,importance=TRUE)
+        imp &lt;- importance(rf)
+        rf.genes &lt;- rownames(imp)[order(imp[,&quot;MeanDecreaseAccuracy&quot;], 
+                                        decreasing = TRUE)[1:fs.meth[[2]]]]
+        train &lt;- train[,c(tgt,rf.genes)]
+        test &lt;- test[,c(tgt,rf.genes)]
+      }
+
+      if (learner == &#39;knn&#39;) 
+        pred &lt;- kNN(form,train,test,
+                    stand.stats=list(rowMedians(t(as.matrix(train[,-tgtCol]))),
+                        rowIQRs(t(as.matrix(train[,-tgtCol])))),
+                    ...)
+      else {
+        model &lt;- do.call(learner,c(list(form,train),learner.pars))
+        pred &lt;- do.call(predictor,c(list(model,test),predictor.pars))
+      }
+
+    }
+
+    return(list(trues=responseValues(form,test), preds=pred, 
+                model=if (.model &amp;&amp; learner!=&quot;knn&quot;) model else NULL))
+
+}</code></pre>
+<pre class="r"><code>vars &lt;- list()
+vars$randomForest &lt;- list(learner.pars=list(ntree=c(500,750,1000),
+                                            mtry=c(5,15)),
+                          preditor.pars=list(type=&quot;response&quot;))
+vars$svm &lt;- list(learner.pars=list(cost=c(1,100),
+                                   gamma=c(0.01,0.001,0.0001)))
+vars$knn &lt;- list(learner.pars=list(k=c(3,5,7),
+                                   stand=c(TRUE,FALSE)))
+vars$featureSel &lt;- list(featSel.meth=c(&quot;s1&quot;, &quot;s2&quot;, &quot;s3&quot;))</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+library(class)
+library(randomForest)
+library(e1071)
+library(genefilter)
+load(&#39;myALL.Rdata&#39;)  # loading the previously saved object with the data
+
+es &lt;- exprs(ALLb)
+
+## simple filtering
+ALLb &lt;- nsFilter(ALLb,
+                 var.func=IQR,var.cutoff=IQR(as.vector(es))/5, 
+                 feature.exclude=&quot;^AFFX&quot;)
+ALLb &lt;- ALLb$eset
+
+## the source dataset after the basic filtering
+dt &lt;- data.frame(t(exprs(ALLb)),Mut=ALLb$mol.bio)
+
+set.seed(1234)
+## The learners to evaluate
+TODO &lt;- c(&#39;knn&#39;,&#39;svm&#39;,&#39;randomForest&#39;)
+for(td in TODO) {
+    assign(td,
+         performanceEstimation(
+             PredTask(Mut ~ .,dt,&#39;ALL&#39;),
+             do.call(&#39;workflowVariants&#39;,
+                     c(list(&#39;ALLb.wf&#39;,learner=td,varsRootName=td),
+                       vars[[td]],
+                       vars$featureSel
+                       )
+                     ),
+             EstimationTask(metrics=&quot;acc&quot;,method=Bootstrap(nReps=100)),
+             cluster=TRUE
+         )
+         )
+    save(list=td,file=paste(td,&#39;Rdata&#39;,sep=&#39;.&#39;))
+}</code></pre>
+<pre class="r"><code>## load results of the exps
+load(&quot;knn.Rdata&quot;)
+load(&quot;svm.Rdata&quot;)
+load(&quot;randomForest.Rdata&quot;)</code></pre>
+<pre class="r"><code>rankWorkflows(svm, maxs = TRUE)</code></pre>
+<pre class="r"><code>all.trials &lt;- mergeEstimationRes(svm, knn, randomForest, by =&quot;workflows&quot;)</code></pre>
+<pre class="r"><code>rankWorkflows(all.trials, top=10, maxs = TRUE)</code></pre>
+<pre class="r"><code>getWorkflow(&quot;svm.v8&quot;, all.trials)</code></pre>
+<pre class="r"><code>top10WFnames &lt;- rankWorkflows(all.trials, top=10, 
+                              maxs = TRUE)[[&quot;ALL&quot;]][[&quot;acc&quot;]][,&quot;Workflow&quot;]
+sapply(top10WFnames, function(WFid) getWorkflow(WFid,all.trials)@pars$featSel.meth)</code></pre>
+<pre class="r"><code>plot(subset(all.trials,workflows=top10WFnames))</code></pre>
+<pre class="r"><code>plot(subset(all.trials,workflows=top10WFnames))</code></pre>
+<pre class="r"><code>ps &lt;- pairedComparisons(subset(all.trials,workflows=top10WFnames),baseline=&quot;svm.v8&quot;)
+ps$acc$WilcoxonSignedRank.test</code></pre>
+<pre class="r"><code>iteration &lt;- 1  # any number between 1 and 100 in this case
+itInfo &lt;- getIterationsInfo(all.trials,workflow=&quot;svm.v8&quot;,it=iteration)
+table(itInfo$trues, itInfo$preds)</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+---
+title: Predicting Algae Blooms
+output: html_document
+---
+
+
+This chapter contains the following main sections:
+
+
+<!-- loadData.Rnw --> 
+- Loading the Data into \R
+<!-- vizSum.Rnw --> 
+- Data Visualization and Summarization
+<!-- Unknown.Rnw --> 
+- Unknown Values
+<!-- LinRegr.Rnw --> 
+<!-- RTs.Rnw --> 
+<!-- EvalAndSel.Rnw --> 
+- Model Evaluation and Selection
+<!-- Preds.Rnw --> 
+- Predictions for the Seven Algae

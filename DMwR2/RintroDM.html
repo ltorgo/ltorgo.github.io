@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Introduction to Data Mining</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">DMwR 2nd Edition</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-indent"></span>
+     
+    Contents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="introR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="introDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="algae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="stocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="fraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    R Code
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="RintroR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="RintroDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="Ralgae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="Rstocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="Rbio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="datasets.html">
+    <span class="fa fa-database"></span>
+     
+    Datasets
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introduction to Data Mining</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/RintroDM.R">script file</a> containing all R code of all sections in this chapter.</p>
+<!-- DCandBU.Rnw -->
+<div id="data-collection-and-business-understanding" class="section level3">
+<h3>Data Collection and Business Understanding</h3>
+<pre class="r"><code>library(readr)
+dat &lt;- read_csv(&quot;x.csv&quot;)
+dat
+class(dat)</code></pre>
+<pre class="r"><code>d &lt;- read_delim(&quot;z.txt&quot;, delim=&quot; &quot;, na=&quot;???&quot;)
+d</code></pre>
+<pre class="r"><code>library(DBI)
+## The DBMS-specific code starts here
+library(RMySQL)
+drv &lt;- dbDriver(&quot;MySQL&quot;)  # Loading the MySQL driver
+con &lt;- dbConnect(drv,dbname=&quot;transDB&quot;,  # connecting to the DBMS
+                 username=&quot;myuser&quot;,password=&quot;mypasswd&quot;,
+                 host=&quot;localhost&quot;)
+## The DBMS-specific code ends here
+
+## getting the results of an SQL query as a data frame
+data &lt;- dbGetQuery(con,&quot;SELECT * FROM clients&quot;) 
+
+## closing up stuff
+dbDisconnect(con)  
+dbUnloadDriver(drv)</code></pre>
+<pre class="r"><code>library(DBI)
+library(RMySQL)
+drv &lt;- dbDriver(&quot;MySQL&quot;)  # Loading the MySQL driver
+con &lt;- dbConnect(drv,dbname=&quot;transDB&quot;,  # connecting to the DBMS
+                 username=&quot;myuser&quot;,password=&quot;mypasswd&quot;,
+                 host=&quot;localhost&quot;)
+
+res  &lt;- dbSendQuery(con,&quot;SELECT * FROM transactions&quot;) 
+while (!dbHasCompleted(res)) {
+    # get the next 50 records on a data frame
+    someData &lt;- fetch(res, n = 50)  
+    # call some function that handles the current chunk
+    myProcessingFunction(someData)  
+}
+dbClearResult(res) # clear the results set
+
+dbDisconnect(con)  # closing up stuff
+dbUnloadDriver(drv)</code></pre>
+<pre class="r"><code>library(RMySQL)
+library(dplyr)
+dbConn &lt;- src_mysql(&quot;sonae&quot;,
+                    host=&quot;localhost&quot;,user=&quot;prodUser&quot;,password=&quot;myPassword&quot;)</code></pre>
+<pre class="r"><code>sensors &lt;- tbl(dbConn,&quot;sensor_values&quot;)</code></pre>
+<pre class="r"><code>sensors %&gt;% 
+    filter(sid==274,value &gt; 100) %&gt;% 
+    select(time,value)</code></pre>
+<pre class="r"><code>d &lt;- read.table(&quot;clipboard&quot;, header=TRUE)</code></pre>
+<pre class="r"><code>library(readxl)
+fc &lt;- &quot;c:\\Documents and Settings\\xpto\\My Documents\\calc.xls&quot;
+dat &lt;- read_excel(fc,sheet=1)</code></pre>
+<!-- dataPP.Rnw -->
+</div>
+<div id="data-pre-processing" class="section level3">
+<h3>Data Pre-Processing</h3>
+<pre class="r"><code>library(readr)
+std &lt;- read_delim(&quot;stud.txt&quot;, delim=&quot; &quot;, 
+                  skip=1, col_names=c(&quot;StudentName&quot;,&quot;Math&quot;,&quot;English&quot;))
+std</code></pre>
+<pre class="r"><code>library(tidyr)
+stdL &lt;- gather(std, Subject, Grade, Math:English)
+stdL</code></pre>
+<pre class="r"><code>spread(stdL, Subject, Grade)</code></pre>
+<pre class="r"><code>std2 &lt;- read_delim(&quot;stud2.txt&quot;, delim=&quot; &quot;,
+                   skip=1, col_names=c(&quot;StudentName&quot;,&quot;Math&quot;,&quot;English&quot;,&quot;Degree_Year&quot;))
+std2
+std2L &lt;- gather(std2, Subject, Grade, Math:English)
+std2L &lt;- separate(std2L, Degree_Year, c(&quot;Degree&quot;,&quot;Year&quot;))
+std2L</code></pre>
+<pre class="r"><code>library(lubridate)
+ymd(&quot;20151021&quot;)
+ymd(&quot;2015/11/30&quot;)
+myd(&quot;11.2012.3&quot;)
+dmy_hms(&quot;2/12/2013 14:05:01&quot;)
+mdy(&quot;120112&quot;)</code></pre>
+<pre class="r"><code>dates &lt;- c(20120521, &quot;2010-12-12&quot;, &quot;2007/01/5&quot;, &quot;2015-2-04&quot;, 
+           &quot;Measured on 2014-12-6&quot;, &quot;2013-7+ 25&quot;)
+dates &lt;- ymd(dates)
+dates</code></pre>
+<pre class="r"><code>data.frame(Dates=dates,WeekDay=wday(dates),nWeekDay=wday(dates,label=TRUE),
+           Year=year(dates),Month=month(dates,label=TRUE))</code></pre>
+<pre class="r"><code>date &lt;- ymd_hms(&quot;20150823 18:00:05&quot;,tz=&quot;Europe/Berlin&quot;)
+date</code></pre>
+<pre class="r"><code>with_tz(date,tz=&quot;Pacific/Auckland&quot;)</code></pre>
+<pre class="r"><code>force_tz(date,tz=&quot;Pacific/Auckland&quot;)</code></pre>
+<pre class="r"><code>library(dplyr)
+library(stringr)
+library(readr)
+uci.repo &lt;- &quot;https://archive.ics.uci.edu/ml/machine-learning-databases/&quot;
+dataset &lt;- &quot;audiology/audiology.standardized&quot;
+dataF &lt;- str_c(uci.repo,dataset,&quot;.data&quot;)
+namesF &lt;- str_c(uci.repo,dataset,&quot;.names&quot;)
+## Reading the data file
+data &lt;- read_csv(url(dataF), col_names=FALSE, na=&quot;?&quot;)
+data
+dim(data)
+## Now reading the names file
+text &lt;- read_lines(url(namesF))
+text[1:3]
+length(text)
+text[67:70]</code></pre>
+<pre class="r"><code>nms &lt;- str_split_fixed(text[67:135],&quot;:&quot;,n=2)[,1] # get the names
+nms[1:3]
+nms &lt;- str_trim(nms) # trim white space
+nms[1:3]
+nms &lt;- str_replace_all(nms,&quot;\\(|\\)&quot;,&quot;&quot;) # delete invalid chars.
+nms[1:3]
+colnames(data)[1:69] &lt;- nms
+data[1:3,1:10]</code></pre>
+<pre class="r"><code>dat
+class(dat$Y)</code></pre>
+<pre class="r"><code>library(readr)
+dat$Y &lt;- parse_integer(dat$Y, na=&quot;?&quot;)
+dat
+class(dat$Y)</code></pre>
+<pre class="r"><code>library(dplyr)
+data(iris)
+iris.stand &lt;- cbind(scale(select(iris,-Species)),select(iris,Species))
+summary(iris.stand)</code></pre>
+<pre class="r"><code>mxs &lt;- apply(select(iris,-Species), 2, max, na.rm=TRUE)
+mns &lt;- apply(select(iris,-Species), 2, min, na.rm=TRUE)
+iris.norm &lt;- cbind(scale(select(iris,-Species), center=mns, scale=mxs-mns),
+                   select(iris,Species))
+summary(iris.norm)</code></pre>
+<pre class="r"><code>library(Hmisc) # for cut2()
+data(Boston, package=&quot;MASS&quot;) # loading the data
+summary(Boston$age) # the numeric variable we are going to discretize</code></pre>
+<pre class="r"><code>Boston$newAge &lt;- cut(Boston$age,5)
+table(Boston$newAge)
+Boston$newAge &lt;- cut(Boston$age,5, # alternative using our own labels for the bins
+                     labels=c(&quot;verynew&quot;,&quot;new&quot;,&quot;normal&quot;,&quot;old&quot;,&quot;veryold&quot;))
+table(Boston$newAge)</code></pre>
+<pre class="r"><code>Boston$newAge &lt;- cut2(Boston$age, g=5)
+table(Boston$newAge)</code></pre>
+<pre class="r"><code>Boston$newAge &lt;- factor(cut2(Boston$age, g=5),
+                        labels=c(&quot;verynew&quot;,&quot;new&quot;,&quot;normal&quot;,&quot;old&quot;,&quot;veryold&quot;))
+table(Boston$newAge)</code></pre>
+<pre class="r"><code>library(lubridate)
+library(xts)
+sp500 &lt;- xts(c(1102.94,1104.49,1115.71,1118.31),
+             ymd(c(&quot;2010-02-25&quot;,&quot;2010-02-26&quot;,&quot;2010-03-01&quot;,&quot;2010-03-02&quot;),
+                 tz=Sys.getenv(&quot;TZ&quot;))
+             )
+sp500</code></pre>
+<pre class="r"><code>sp500[&quot;2010-03-02&quot;]
+sp500[&quot;2010-03&quot;]
+sp500[&quot;2010-03-01/&quot;]
+sp500[&quot;2010-02-26/2010-03-01&quot;]</code></pre>
+<pre class="r"><code>library(xts)
+data(AirPassengers)
+ap &lt;- as.xts(AirPassengers)
+apRel &lt;- diff(ap)/ap[-length(ap)]</code></pre>
+<pre class="r"><code>head(ap)
+head(embed(ap,4))</code></pre>
+<pre class="r"><code>createEmbedDS &lt;- function(s, emb=4) {
+    d &lt;- dim(s)
+    if (!is.null(d) &amp;&amp; d[2] &gt; 1) stop(&quot;Only applicable to uni-variate time series&quot;)
+    if (emb &lt; 2 || emb &gt; length(s)) stop(&quot;Invalid embed size&quot;)
+    e &lt;- embed(s,emb)
+    colnames(e) &lt;- c(&quot;T&quot;,paste(&quot;T&quot;,1:(emb-1),sep=&quot;_&quot;))
+    if (is.xts(s)) return(xts(e,index(s)[emb:length(s)])) else return(e)
+}
+dataSet &lt;- createEmbedDS(ap,emb=5)
+head(dataSet)</code></pre>
+<pre class="r"><code>library(readr)
+ff &lt;- read_csv(&quot;forestFires.txt&quot;)
+ff</code></pre>
+<pre class="r"><code>library(sp)
+library(dplyr)
+spatialCoords &lt;- select(ff,long=x,lat=y) # the contextual data
+firesData &lt;- select(ff,ano2000) # the behavioral data
+coordRefSys &lt;- CRS(&quot;+proj=longlat +ellps=WGS84&quot;)
+fires2000 &lt;- SpatialPointsDataFrame(spatialCoords,
+                                    firesData,
+                                    proj4string=coordRefSys)
+fires2000[1:3,]</code></pre>
+<pre class="r"><code>bbox(fires2000)
+coordinates(fires2000)[1:3,]
+summary(fires2000)</code></pre>
+<pre class="r"><code>library(ggmap)
+library(tibble)
+mapPT &lt;- get_map(&quot;Portugal&quot;,zoom=7)
+d4plot &lt;- as_tibble(cbind(coordinates(fires2000),burnt=fires2000$ano2000))
+ggmap(mapPT) + 
+    geom_point(data=filter(d4plot, burnt==1),aes(x=long,y=lat),col=&quot;orange&quot;)</code></pre>
+<pre class="r"><code>library(tm)
+docs &lt;- Corpus(DirSource(&quot;Documents&quot;))
+docs</code></pre>
+<pre class="r"><code>docs[[2]]
+content(docs[[2]])[1:3]</code></pre>
+<pre class="r"><code>docs &lt;- docs %&gt;%
+        tm_map(removePunctuation) %&gt;%
+        tm_map(content_transformer(tolower)) %&gt;%
+        tm_map(removeNumbers) %&gt;%
+        tm_map(removeWords, stopwords(&quot;en&quot;)) %&gt;%
+        tm_map(stripWhitespace) %&gt;%
+        tm_map(stemDocument)
+content(docs[[2]])[1:3]</code></pre>
+<pre class="r"><code>data &lt;- DocumentTermMatrix(docs, control=list(weighting=weightTfIdf))
+data
+inspect(data[1:2,1:5])</code></pre>
+<pre class="r"><code>findFreqTerms(data,0.9)</code></pre>
+<pre class="r"><code>findAssocs(data,&quot;race&quot;,0.5)</code></pre>
+<pre class="r"><code>newData &lt;- removeSparseTerms(data,0.7)
+newData</code></pre>
+<pre class="r"><code>library(tibble)
+as_tibble(as.matrix(newData))</code></pre>
+<pre class="r"><code>data(iris)
+prop2sample &lt;- 0.5
+rowIDs &lt;- sample(1:nrow(iris), as.integer(prop2sample*nrow(iris)))
+iris.sample &lt;- iris[rowIDs,]</code></pre>
+<pre class="r"><code>data(iris)
+prop2sample &lt;- 0.5
+rowIDs &lt;- sample(1:nrow(iris), as.integer(prop2sample*nrow(iris)), replace=TRUE)
+iris.sample &lt;- iris[rowIDs,]</code></pre>
+<pre class="r"><code>nrLinesFile &lt;- function(f) {
+    if (.Platform$OS.type == &quot;unix&quot;) 
+        as.integer(strsplit(trimws(system(paste(&quot;wc -l&quot;,f),intern=TRUE)),
+                            &quot; &quot;)[[1]][1]) 
+    else 
+        stop(&quot;This function requires unix-based systems&quot;)
+}
+
+sampleCSV &lt;- function(file, percORn, nrLines, header=TRUE, mxPerc=0.5) {
+    if (.Platform$OS.type != &quot;unix&quot;) 
+        stop(&quot;This function requires unix-based systems&quot;)
+    require(readr, quietly=TRUE)
+    
+    if (missing(nrLines)) nrLines &lt;- nrLinesFile(file)
+    
+    if (percORn &lt; 1)
+        if (percORn &gt; mxPerc) 
+            stop(&quot;This function is not adequate for that big samples.&quot;)
+        else percORn &lt;- as.integer(percORn*nrLines)
+    perc &lt;- min(2*percORn/nrLines, mxPerc)
+    
+    system(paste0(&quot;perl -ne &#39;print if (rand() &lt; &quot;,perc,&quot;)&#39; &quot;,file,
+                  &quot; &gt; &quot;,file,&quot;.tmp.csv&quot;))
+    dt &lt;- read_csv(paste0(file,&quot;.tmp.csv&quot;),col_names=header, n_max=percORn)
+    file.remove(paste0(file,&quot;.tmp.csv&quot;))
+    if (nrow(dt) != percORn) 
+        warning(paste(&quot;Expecting&quot;,percORn,&quot;rows, but got&quot;,nrow(dt)))
+    dt
+}</code></pre>
+<pre class="r"><code>t &lt;- Sys.time()
+d &lt;- sampleCSV(&quot;allsensors.csv&quot;, 0.01)
+Sys.time()-t
+nrow(d)</code></pre>
+<pre class="r"><code>library(DBI)
+library(RMySQL)
+drv &lt;- dbDriver(&quot;MySQL&quot;)  # Loading the MySQL driver
+con &lt;- dbConnect(drv,dbname=&quot;transDB&quot;,  
+                 username=&quot;myuser&quot;,password=&quot;mypassword&quot;,
+                 host=&quot;localhost&quot;)</code></pre>
+<pre class="r"><code>sampleDBMS &lt;- function(dbConn, tbl, percORn, mxPerc=0.5) {
+    nrRecords &lt;- unlist(dbGetQuery(dbConn, paste(&quot;select count(*) from&quot;,tbl)))
+    
+    if (percORn &lt; 1)
+        if (percORn &gt; mxPerc) 
+            stop(&quot;This function is not adequate for that big samples.&quot;)
+        else percORn &lt;- as.integer(percORn*nrRecords)
+    perc &lt;- min(2*percORn/nrRecords, mxPerc)
+    
+    dt &lt;- dbGetQuery(dbConn,paste(&quot;select * from (select * from&quot;,tbl,
+                                  &quot;where rand() &lt;= &quot;,perc,&quot;) as t limit &quot;,percORn))
+    if (nrow(dt) != percORn) 
+        warning(paste(&quot;Expecting&quot;,percORn,&quot;rows, but got&quot;,nrow(dt)))
+    dt
+}</code></pre>
+<pre class="r"><code>t1 &lt;- Sys.time()
+d &lt;- sampleDBMS(con,&quot;sensor_values&quot;,10000)
+Sys.time()-t1
+nrow(d)</code></pre>
+<pre class="r"><code>dbDisconnect(con)  
+dbUnloadDriver(drv)</code></pre>
+<pre class="r"><code>library(CORElearn)
+data(iris)
+attrEval(Species ~ ., iris, estimator=&quot;GainRatio&quot;)
+attrEval(Species ~ ., iris, estimator=&quot;InfGain&quot;)
+attrEval(Species ~ ., iris, estimator=&quot;Gini&quot;)
+attrEval(Species ~ ., iris, estimator=&quot;MDL&quot;)</code></pre>
+<pre class="r"><code>infoCore(what=&quot;attrEval&quot;)</code></pre>
+<pre class="r"><code>data(algae, package =&quot;DMwR2&quot;)
+attrEval(a1 ~ ., algae[,1:12], estimator=&quot;MSEofMean&quot;)
+attrEval(a1 ~ ., algae[,1:12], estimator=&quot;RReliefFexpRank&quot;)
+infoCore(what=&quot;attrEvalReg&quot;)</code></pre>
+<pre class="r"><code>data(iris)
+pca.data &lt;- iris[,-5] # each case is described by the first 4 variables
+pca &lt;- princomp(pca.data)
+loadings(pca)</code></pre>
+<pre class="r"><code>pca$scores[1:5,]</code></pre>
+<pre class="r"><code>dim(iris)
+reduced.iris &lt;- data.frame(pca$scores[,1:2],Species=iris$Species)
+dim(reduced.iris)
+head(reduced.iris)</code></pre>
+<!-- modeling.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  showFig3=list(fig.width=8,fig.height=8,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(dplyr)</code></pre>
+</div>
+<div id="modeling" class="section level3">
+<h3>Modeling</h3>
+<pre class="r"><code>data(algae,package=&quot;DMwR2&quot;)
+mean(algae$a1)
+mean(algae$NO3)
+mean(algae$NO3, na.rm=TRUE)
+median(algae$a3)
+median(algae$mxPH, na.rm=TRUE)</code></pre>
+<pre class="r"><code>library(dplyr)
+alg &lt;- tbl_df(algae)
+summarise(alg, avgNO3=mean(NO3,na.rm=TRUE), medA1=median(a1))
+select(alg, mxPH:Cl) %&gt;%  
+    summarise_each(funs(mean(.,na.rm=TRUE),median(.,na.rm=TRUE)))</code></pre>
+<pre class="r"><code>group_by(alg, season, size) %&gt;% 
+    summarize(nObs=n(), mA7=median(a7)) %&gt;% 
+        ungroup() %&gt;% arrange(desc(mA7))</code></pre>
+<pre class="r"><code>Mode &lt;- function(x, na.rm = FALSE) {
+  if(na.rm) x &lt;- x[!is.na(x)]
+  ux &lt;- unique(x)
+  return(ux[which.max(tabulate(match(x, ux)))])
+}
+Mode(algae$mxPH, na.rm=TRUE)
+Mode(algae$season)</code></pre>
+<pre class="r"><code>library(DMwR2)
+centralValue(algae$a1)
+centralValue(algae$speed)</code></pre>
+<pre class="r"><code>var(algae$a1)
+sd(algae$Cl, na.rm=TRUE)
+IQR(algae$mxPH, na.rm=TRUE)
+quantile(algae$a3)
+quantile(algae$a3, probs=c(0.2,0.8))
+range(algae$a1)
+max(algae$a5)-min(algae$a5)</code></pre>
+<pre class="r"><code>select(alg,a1:a7) %&gt;% summarise_each(funs(var))</code></pre>
+<pre class="r"><code>data(iris)
+group_by(iris,Species) %&gt;% summarise(qs=quantile(Sepal.Length))</code></pre>
+<pre class="r"><code>aggregate(iris$Sepal.Length, list(Species=iris$Species), quantile)</code></pre>
+<pre class="r"><code>aggregate(Sepal.Length ~ Species, data=iris, quantile)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+nasRow &lt;- apply(algae,1,function(r) sum(is.na(r)))
+cat(&quot;The Algae dataset contains &quot;,sum(nasRow),&quot; NA values.\n&quot;)
+cat(&quot;There are &quot;,sum(!complete.cases(algae)),
+    &quot; rows that have at least one NA value.\n&quot;)</code></pre>
+<pre class="r"><code>bpRule &lt;- function(x, const=1.5, positions=FALSE) { 
+    x &lt;- x[!is.na(x)]
+    qs &lt;- quantile(x,probs = c(0.25,0.75))
+    iqr &lt;- qs[2]-qs[1]
+    if (!positions) x[x &lt; qs[1]-const*iqr | x &gt; qs[2]+const*iqr]
+    else which(x &lt; qs[1]-const*iqr | x &gt; qs[2]+const*iqr)
+}
+bpRule(algae$a1)
+bpRule(algae$NO3)
+bpRule(algae$NO3, positions=TRUE)</code></pre>
+<pre class="r"><code>data(iris)
+summary(iris)</code></pre>
+<pre class="r"><code>library(Hmisc)
+describe(iris)</code></pre>
+<pre class="r"><code>by(algae[,2:5], algae$season,summary)</code></pre>
+<pre class="r"><code>plot(sin(seq(0,10,by=0.1)),type=&quot;l&quot;)</code></pre>
+<pre class="r"><code>plot(sin(seq(0,10,by=0.1)),type=&quot;l&quot;)</code></pre>
+<pre class="r"><code>pdf(&quot;myplot.pdf&quot;)
+plot(sin(seq(0,10,by=0.1)),type=&quot;l&quot;)
+dev.off()</code></pre>
+<pre class="r"><code>jpeg(&quot;myplot.jpg&quot;)
+plot(sin(seq(0,10,by=0.1)),type=&quot;l&quot;)
+dev.off()</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(iris)
+ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) + geom_point(size=4)</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(algae, package=&quot;DMwR2&quot;)
+## Plot on the left (standard)
+freqOcc &lt;- table(algae$season)
+barplot(freqOcc,main=&#39;Frequency of the Seasons&#39;)
+## Plot on the right (ggplot2)
+ggplot(algae,aes(x=season)) + geom_bar() + ggtitle(&quot;Frequency of the Seasons&quot;)</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(grid)
+data(algae, package=&quot;DMwR2&quot;)
+freqOcc &lt;- table(algae$season)
+
+gh &lt;- ggplot(algae,aes(x=season)) + geom_bar() + 
+    ggtitle(&quot;Frequency of the Seasons&quot;)
+par(mfrow=c(1,2))
+vp &lt;- viewport(height=unit(1,&quot;npc&quot;),width=unit(0.5,&quot;npc&quot;),
+               just=c(&quot;left&quot;,&quot;top&quot;),y=1,x=0.5)
+barplot(freqOcc,main=&#39;Frequency of the Seasons&#39;)
+print(gh,vp=vp)</code></pre>
+<pre class="r"><code>ggplot(algae,aes(x=season)) + geom_bar() + 
+    ggtitle(&quot;Frequency of the Seasons&quot;) + coord_flip()</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(iris)
+## Plot on the left (standard)
+hist(iris$Petal.Length,xlab=&#39;Petal Length&#39;)
+## Plot on the right (ggplot2)
+ggplot(iris,aes(x=Petal.Length)) + geom_histogram() + xlab(&quot;Petal Length&quot;)</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(grid)
+data(iris)
+g &lt;- ggplot(iris,aes(x=Petal.Length)) + geom_histogram() +xlab(&quot;Petal Length&quot;)
+par(mfrow=c(1,2))
+vp &lt;- viewport(height=unit(1,&quot;npc&quot;),width=unit(0.5,&quot;npc&quot;),
+               just=c(&quot;left&quot;,&quot;top&quot;),y=1,x=0.5)
+hist(iris$Petal.Length,xlab=&#39;Petal Length&#39;)
+print(g,vp=vp)</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(iris)
+## Plot on the left (standard)
+boxplot(iris$Sepal.Width, ylab=&#39;Sepal Width&#39;)
+## Plot on the right (ggplot2)
+ggplot(iris, aes(x=factor(0), y=Sepal.Width)) + geom_boxplot() +
+    xlab(&quot;&quot;) + ylab(&quot;Sepal Width&quot;) + theme(axis.text.x=element_blank())</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(grid)
+data(iris)
+g &lt;- ggplot(iris,aes(x=factor(0),y=Sepal.Width)) + geom_boxplot() +
+    xlab(&quot;&quot;) + ylab(&quot;Sepal Width&quot;) + theme(axis.text.x=element_blank())
+par(mfrow=c(1,2))
+vp &lt;- viewport(height=unit(1,&quot;npc&quot;),width=unit(0.5,&quot;npc&quot;),
+               just=c(&quot;left&quot;,&quot;top&quot;),y=1,x=0.5)
+boxplot(iris$Sepal.Width,ylab=&#39;Sepal Width&#39;)
+print(g,vp=vp)</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(iris)
+## Plot on the left (standard)
+boxplot(Sepal.Length ~ Species, iris, ylab=&quot;Sepal.Length&quot;)
+## Plot on the right (ggplot2)
+ggplot(iris,aes(x=Species,y=Sepal.Length)) + geom_boxplot()</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(grid)
+data(iris)
+g &lt;- ggplot(iris,aes(x=Species,y=Sepal.Length)) + geom_boxplot()
+par(mfrow=c(1,2))
+vp &lt;- viewport(height=unit(1,&quot;npc&quot;),width=unit(0.5,&quot;npc&quot;),
+               just=c(&quot;left&quot;,&quot;top&quot;),y=1,x=0.5)
+boxplot(Sepal.Length ~ Species, iris, ylab=&quot;Sepal.Length&quot;)
+print(g,vp=vp)</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(algae, package=&quot;DMwR2&quot;)
+ggplot(algae,aes(x=a1)) + geom_histogram() + facet_grid(size ~ speed)</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(algae, package=&quot;DMwR2&quot;)
+ggplot(algae,aes(x=a1)) + geom_histogram() + facet_grid(size ~ speed)</code></pre>
+<pre class="r"><code>library(ggplot2)
+data(iris)
+## Plot on the left (standard)
+plot(iris$Sepal.Length,iris$Sepal.Width,
+     main=&quot;Relationship between Sepal Length and Width&quot;, 
+     xlab=&quot;Sepal Length&quot;, ylab=&quot;Sepal Width&quot;)
+## Plot on the right (ggplot2)
+ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width)) + geom_point() +
+    xlab(&quot;Sepal Length&quot;) + ylab(&quot;Sepal Width&quot;) + 
+    ggtitle(&quot;Relationship between Sepal Length and Width&quot;)</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(grid)
+data(iris)
+g &lt;- ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width)) + geom_point() +
+    xlab(&quot;Sepal Length&quot;) + ylab(&quot;Sepal Width&quot;) + 
+    ggtitle(&quot;Relationship between Sepal Length and Width&quot;)
+par(mfrow=c(1,2))
+vp &lt;- viewport(height=unit(1,&quot;npc&quot;),width=unit(0.5,&quot;npc&quot;),
+               just=c(&quot;left&quot;,&quot;top&quot;),y=1,x=0.5)
+plot(iris$Sepal.Length,iris$Sepal.Width,
+     main=&quot;Relationship between Sepal Length and Width&quot;, 
+     xlab=&quot;Sepal Length&quot;, ylab=&quot;Sepal Width&quot;)
+print(g,vp=vp)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+## Plot on the left (standard)
+plot(algae$a1, algae$a2, col=algae$season,
+     main=&quot;Relationship between A1 and A2 by Season&quot;, 
+     xlab=&quot;A1&quot;, ylab=&quot;A2&quot;)
+legend(&quot;topright&quot;,legend=levels(algae$season),
+       col=palette()[1:nlevels(algae$season)],pch=1)
+## Plot on the right (ggplot2)
+plot(algae$a4, algae$a7, pch=as.integer(algae$speed), 
+     main=&quot;Relationship between A4 and A7 by River Speed&quot;, 
+     xlab=&quot;A4&quot;, ylab=&quot;A7&quot;)
+legend(&quot;topright&quot;,legend=levels(algae$speed),
+      pch=1:nlevels(algae$season))</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2))
+data(algae, package=&quot;DMwR2&quot;)
+## Plot on the left (standard)
+plot(algae$a1, algae$a2, col=algae$season,
+     main=&quot;Relationship between A1 and A2 by Season&quot;, 
+     xlab=&quot;A1&quot;, ylab=&quot;A2&quot;)
+legend(&quot;topright&quot;,legend=levels(algae$season),
+       col=palette()[1:nlevels(algae$season)],pch=1)
+## Plot on the right (ggplot2)
+plot(algae$a4, algae$a7, pch=as.integer(algae$speed), 
+     main=&quot;Relationship between A4 and A7 by River Speed&quot;, 
+     xlab=&quot;A4&quot;, ylab=&quot;A7&quot;)
+legend(&quot;topright&quot;,legend=levels(algae$speed),
+      pch=1:nlevels(algae$season))</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+ggplot(algae, aes(x=a1,y=a2,color=season)) + geom_point() + facet_wrap(~ season)</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+pairs(algae[,12:16])</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+pairs(algae[,12:16])</code></pre>
+<pre class="r"><code>library(GGally)
+ggpairs(algae,columns=12:16)</code></pre>
+<pre class="r"><code>library(GGally)
+ggpairs(algae,columns=12:16)</code></pre>
+<pre class="r"><code>library(GGally)
+ggpairs(algae,columns=2:5)</code></pre>
+<pre class="r"><code>library(GGally)
+ggpairs(algae,columns=2:5)</code></pre>
+<pre class="r"><code>library(GGally)
+ggparcoord(algae,columns=12:18,groupColumn=&quot;season&quot;)</code></pre>
+<pre class="r"><code>library(GGally)
+library(dplyr)
+data(algae, package=&quot;DMwR2&quot;)
+ggparcoord(algae,columns=12:18,groupColumn=&quot;season&quot;)</code></pre>
+<pre class="r"><code>library(arules)
+library(dplyr)
+data(Boston,package=&quot;MASS&quot;)
+b &lt;- Boston
+b$chas &lt;- factor(b$chas,labels=c(&quot;river&quot;,&quot;noriver&quot;))
+b$rad &lt;- factor(b$rad)
+b$black &lt;- cut(b$black,breaks=4,labels=c(&quot;&gt;31.5%&quot;,&quot;18.5-31.5%&quot;,&quot;8-18.5%&quot;,&quot;&lt;8%&quot;))
+discr &lt;- function(x) cut(x,breaks=4, labels=c(&quot;low&quot;,&quot;medLow&quot;,&quot;medHigh&quot;,&quot;high&quot;))
+b &lt;- select(b,-one_of(c(&quot;chas&quot;,&quot;rad&quot;,&quot;black&quot;))) %&gt;% 
+     mutate_each(funs(discr)) %&gt;% 
+     bind_cols(select(b,one_of(c(&quot;chas&quot;,&quot;rad&quot;,&quot;black&quot;))))
+b &lt;- as(b,&quot;transactions&quot;)
+b</code></pre>
+<pre class="r"><code>summary(b)</code></pre>
+<pre class="r"><code>itemFrequencyPlot(b, support=0.3,cex.names=0.8)</code></pre>
+<pre class="r"><code>itemFrequencyPlot(b, support=0.3,cex.names=0.8)</code></pre>
+<pre class="r"><code>ars &lt;- apriori(b, parameter=list(support=0.025, confidence=0.75))
+ars</code></pre>
+<pre class="r"><code>table(discr(Boston$medv))</code></pre>
+<pre class="r"><code>inspect(head(subset(ars, subset=rhs %in% &quot;medv=high&quot;),5,by=&quot;confidence&quot;))</code></pre>
+<pre class="r"><code>inspect(head(subset(ars, subset=rhs %in% &quot;medv=low&quot;),5,by=&quot;confidence&quot;))</code></pre>
+<pre class="r"><code>inspect(head(subset(ars, subset=lhs %in% &quot;nox=high&quot; | rhs %in% &quot;nox=high&quot;),
+             5,by=&quot;confidence&quot;))</code></pre>
+<pre class="r"><code>library(arulesViz)
+plot(ars)</code></pre>
+<pre class="r"><code>library(arulesViz)
+plot(ars)</code></pre>
+<pre class="r"><code>somerules &lt;- subset(ars,
+               subset=rhs %in% c(&quot;medv=high&quot;,&quot;medv=medHigh&quot;) &amp; confidence&gt;0.75)
+plot(somerules, method=&quot;matrix&quot;, measure=&quot;lift&quot;)</code></pre>
+<pre class="r"><code>somerules &lt;- subset(ars,subset=rhs %in% c(&quot;medv=high&quot;,&quot;medv=medHigh&quot;) &amp; confidence&gt;0.75)
+plot(somerules, method=&quot;matrix&quot;, measure=&quot;lift&quot;)</code></pre>
+<pre class="r"><code>somerules &lt;- subset(ars, subset=rhs %in% &quot;medv=high&quot; &amp; confidence &gt; 0.95)
+plot(somerules, method=&quot;graph&quot;, control=list(type=&quot;itemsets&quot;))</code></pre>
+<pre class="r"><code>set.seed(1234)
+randDat &lt;- matrix(rnorm(50), nrow=5)
+dist(randDat) # Euclidean distance (default)
+dist(randDat, method=&quot;manhattan&quot;)
+dist(randDat, method=&quot;minkowski&quot;, p=4)</code></pre>
+<pre class="r"><code>set.seed(1234) # setting a seed for the random number generator
+data(iris)
+ir3 &lt;- kmeans(iris[,-5], centers=3, iter.max=200) # not using Species info.
+ir3</code></pre>
+<pre class="r"><code>table(ir3$cluster, iris$Species)
+cm &lt;- table(ir3$cluster, iris$Species)
+1-sum(diag(cm))/sum(cm)</code></pre>
+<pre class="r"><code>library(cluster)
+s &lt;- silhouette(ir3$cluster, dist(iris[,-5]))</code></pre>
+<pre class="r"><code>plot(s)</code></pre>
+<pre class="r"><code>plot(s)</code></pre>
+<pre class="r"><code>set.seed(1234)
+d &lt;- dist(iris[,-5])
+avgS &lt;- c()
+for(k in 2:6) {
+   cl &lt;- kmeans(iris[,-5],centers=k,iter.max=200)
+   s &lt;- silhouette(cl$cluster,d)
+   avgS &lt;- c(avgS,mean(s[,3]))
+}
+data.frame(nClus=2:6,Silh=avgS)</code></pre>
+<pre class="r"><code>library(cluster)
+set.seed(1234)
+pc &lt;- pam(iris[,-5],k=3)
+(cm &lt;- table(pc$clustering, iris$Species))
+100*(1-sum(diag(cm))/sum(cm))
+pc$silinfo$avg.width</code></pre>
+<pre class="r"><code>library(fpc)
+data(iris)
+sol &lt;- pamk(iris[,-5], krange=2:10, criterion=&quot;asw&quot;, usepam=TRUE)
+sol</code></pre>
+<pre class="r"><code>d &lt;- dist(scale(iris[,-5]))
+h &lt;- hclust(d)</code></pre>
+<pre class="r"><code>plot(h,hang=-0.1,labels=iris[[&quot;Species&quot;]],cex=0.5)</code></pre>
+<pre class="r"><code>plot(h,hang=-0.1,labels=iris[[&quot;Species&quot;]],cex=0.4)</code></pre>
+<pre class="r"><code>clus3 &lt;- cutree(h, 3)
+(cm &lt;- table(clus3, iris$Species))
+100*(1-sum(diag(cm))/sum(cm))</code></pre>
+<pre class="r"><code>plot(h,hang=-0.1,labels=iris[[&quot;Species&quot;]],cex=0.5)
+rect.hclust(h,k=3)</code></pre>
+<pre class="r"><code>plot(h,hang=-0.1,labels=iris[[&quot;Species&quot;]],cex=0.4)
+rect.hclust(h,k=3)</code></pre>
+<pre class="r"><code>set.seed(1234)
+d &lt;- dist(scale(iris[,-5]))
+methds &lt;- c(&#39;complete&#39;,&#39;single&#39;,&#39;average&#39;)
+avgS &lt;- matrix(NA,ncol=3,nrow=5,
+               dimnames=list(2:6,methds))
+for(k in 2:6) 
+  for(m in seq_along(methds)) {
+    h &lt;- hclust(d,meth=methds[m])
+    c &lt;- cutree(h,k)
+    s &lt;- silhouette(c,d)
+    avgS[k-1,m] &lt;- mean(s[,3])
+  }
+avgS</code></pre>
+<pre class="r"><code>di &lt;- diana(iris[,-5], metric=&#39;euclidean&#39;, stand=TRUE)
+di3 &lt;- cutree(di, 3)
+(cm &lt;- table(di3, iris$Species))
+100*(1-sum(diag(cm))/sum(cm))</code></pre>
+<pre class="r"><code>cm &lt;- cm[c(1,3,2),]
+100*(1-sum(diag(cm))/sum(cm))</code></pre>
+<pre class="r"><code>library(fpc)
+d &lt;- scale(iris[,-5])
+db &lt;- dbscan(d, eps=0.9, MinPts=5)
+db
+table(db$cluster,iris$Species)</code></pre>
+<pre class="r"><code>grubbs.outliers &lt;- function(x, p.thresh=0.05) {
+    require(outliers, quietly=TRUE)
+    x &lt;- x[!is.na(x)]
+    n &lt;- length(x)
+    zs &lt;- abs(x - mean(x)) / sd(x)
+    outs &lt;- 1 - sapply(zs, function(z) pgrubbs(z, n, type=10))
+    posOuts &lt;- which(outs &lt;= p.thresh)
+    return(list(zs=zs, 
+                pvals=outs, 
+                outliers=x[posOuts],
+                positions=posOuts))
+}
+data(algae, package=&quot;DMwR2&quot;)
+grubbs.outliers(algae$a2)$outliers</code></pre>
+<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
+table(algae$season)/length(algae$season)</code></pre>
+<pre class="r"><code>dbscan.outliers &lt;- function(data, ...) {
+    require(fpc, quietly=TRUE)
+    cl &lt;- dbscan(data, ...)
+    posOuts &lt;- which(cl$cluster == 0)
+    list(positions = posOuts,
+         outliers = data[posOuts,], 
+         dbscanResults = cl)
+}</code></pre>
+<pre class="r"><code>library(dplyr)
+library(forcats)
+data(Glass, package=&quot;mlbench&quot;)
+count(Glass,Type)  # a dplyr  alternative to &quot;table(Glass$Type)&quot;
+g &lt;- mutate(Glass,
+            Type=fct_collapse(Type,
+                              rare   = as.character(c(3,5,6)),
+                              normal = as.character(c(1,2,7))
+                              )
+            )
+g %&gt;% count(Type) %&gt;% mutate(prop=100*n/nrow(g))</code></pre>
+<pre class="r"><code>outs &lt;- dbscan.outliers(g[,-10], eps=1, scale=TRUE)
+head(outs$outliers)
+nrow(outs$outliers)
+slice(g, outs$positions) %&gt;%  count(Type)
+count(g, Type)</code></pre>
+<pre class="r"><code>library(DMwR2)
+library(dplyr)
+og &lt;- outliers.ranking(select(g, -Type))
+slice(g, og$rank.outliers[1:40]) %&gt;%  count(Type)</code></pre>
+<pre class="r"><code>library(DMwR2)
+library(dplyr)
+lof.scores &lt;- lofactor(select(g, -Type),10)
+slice(g, order(lof.scores,decreasing=TRUE)[1:40]) %&gt;%  count(Type)</code></pre>
+<pre class="r"><code>library(UBL)
+library(dplyr)
+count(g,Type)
+## Undersampling the largest class
+newg &lt;- RandUnderClassif(Type ~ ., g)
+count(newg,Type)
+## Now specifying the degree of undersampling by hand
+newg2 &lt;- RandUnderClassif(Type ~ ., g, list(normal=0.4, rare=1))
+count(newg2,Type)
+## Oversampling the minority class
+newg3 &lt;- RandOverClassif(Type ~ .,g)
+count(newg3,Type)</code></pre>
+<pre class="r"><code>library(e1071)
+trainD &lt;- filter(g, Type == &quot;normal&quot;) %&gt;% select(-Type) 
+s &lt;- svm(trainD, y=NULL, type=&quot;one-classification&quot;, nu=0.5)
+(cm &lt;- table(g$Type, predict(s,select(g, -Type))))</code></pre>
+<pre class="r"><code>library(DMwR2)
+set.seed(1234)
+data(iris)
+ct1 &lt;- rpartXse(Species ~ ., iris)
+ct2 &lt;- rpartXse(Species ~ ., iris, se=0)</code></pre>
+<pre class="r"><code>library(rpart.plot)
+prp(ct1, type=0, extra=101)  # left tree
+prp(ct2, type=0, extra=101)  # right tree</code></pre>
+<pre class="r"><code>library(rpart.plot)
+par( mfrow=c(1,2) )
+prp(ct1,type=0,extra=101) 
+prp(ct2,type=0,extra=101)
+par(mfrow = c(1,1))</code></pre>
+<pre class="r"><code>set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris),100)
+tr &lt;- iris[rndSample, ]
+ts &lt;- iris[-rndSample, ]
+ct &lt;- rpartXse(Species ~ ., tr, se=0.5)
+ps1 &lt;- predict(ct, ts)
+head(ps1)
+ps2 &lt;- predict(ct, ts, type=&quot;class&quot;)
+head(ps2)
+(cm &lt;- table(ps2, ts$Species))
+100*(1-sum(diag(cm))/sum(cm))  # the error rate</code></pre>
+<pre class="r"><code>library(e1071)
+data(iris)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris), 100)
+tr &lt;- iris[rndSample, ]
+ts &lt;- iris[-rndSample, ]
+s &lt;- svm(Species ~ ., tr)
+ps &lt;- predict(s, ts)
+(cm &lt;- table(ps, ts$Species))
+100*(1-sum(diag(cm))/sum(cm))  # the error rate</code></pre>
+<pre class="r"><code>s2 &lt;- svm(Species ~ ., tr, cost=10, kernel=&quot;polynomial&quot;, degree=3)
+ps2 &lt;- predict(s2, ts)
+(cm2 &lt;- table(ps2, ts$Species))
+100*(1-sum(diag(cm2))/sum(cm2))  # the error rate</code></pre>
+<pre class="r"><code>data(Boston,package=&#39;MASS&#39;)
+set.seed(1234)
+sp &lt;- sample(1:nrow(Boston),354)
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+s1 &lt;- svm(medv ~ ., tr)
+ps1 &lt;- predict(s1, ts)
+mean(abs(ps1-ts$medv))
+s2 &lt;- svm(medv ~ ., tr, kernel=&quot;radial&quot;, cost=10, epsilon=0.02, gamma=0.01)
+ps2 &lt;- predict(s2, ts)
+mean(abs(ps2-ts$medv))</code></pre>
+<pre class="r"><code>library(nnet)
+data(iris)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris), 100)
+tr &lt;- iris[rndSample, ]
+ts &lt;- iris[-rndSample, ]
+n &lt;- nnet(Species ~ ., tr, size=6 ,trace=FALSE, maxit=1000)
+ps &lt;- predict(n, ts, type=&quot;class&quot;)
+(cm &lt;- table(ps, ts$Species))
+100*(1-sum(diag(cm))/sum(cm))  # the error rate</code></pre>
+<pre class="r"><code>data(Boston,package=&#39;MASS&#39;)
+set.seed(1234)
+sp &lt;- sample(1:nrow(Boston),354)
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+nr &lt;- nnet(medv ~ ., tr, linout=TRUE, trace=FALSE, size=6, decay=0.01, maxit=2000)
+psnr &lt;- predict(nr, ts)
+mean(abs(psnr-ts$medv))</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(NeuralNetTools)
+## Feature importance (left graph)
+garson(nr) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+## Network diagram (rigth graph)
+plotnet(nr)    </code></pre>
+<pre class="r"><code>library(h2o)
+h2oInstance &lt;- h2o.init(ip=&quot;localhost&quot;)  # start H2O instance locally</code></pre>
+<pre class="r"><code>data(iris)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris), 100)
+trH  &lt;- as.h2o(iris[rndSample, ],&quot;trH&quot;)
+tsH &lt;- as.h2o(iris[-rndSample, ],&quot;tsH&quot;)
+mdl &lt;- h2o.deeplearning(x=1:4, y=5, training_frame=trH)
+preds &lt;- h2o.predict(mdl,tsH)[,&quot;predict&quot;]</code></pre>
+<pre class="r"><code>(cm &lt;- table(as.vector(preds), as.vector(tsH$Species)))
+100*(1-sum(diag(cm))/sum(cm))</code></pre>
+<pre class="r"><code>library(h2o)
+h2oInstance &lt;- h2o.init(ip=&quot;localhost&quot;) # start H2O instance locally
+data(Boston,package=&quot;MASS&quot;)
+rndSample &lt;- sample(1:nrow(Boston), 354)
+trH &lt;- as.h2o(Boston[rndSample, ],&quot;trH&quot;)
+tsH &lt;- as.h2o(Boston[-rndSample, ],&quot;tsH&quot;)
+mdl &lt;- h2o.deeplearning(x=1:13, y=14, training_frame=trH, 
+                        hidden=c(100,100,100, 100), epochs=500)
+preds &lt;- as.vector(h2o.predict(mdl,tsH))</code></pre>
+<pre class="r"><code>mean(abs(preds-as.vector(tsH$medv)))</code></pre>
+<pre class="r"><code>library(adabag)
+data(iris)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris), 100)
+tr &lt;- iris[rndSample, ]
+ts &lt;- iris[-rndSample, ]
+ m &lt;- bagging(Species ~ ., tr, mfinal=500)
+ps &lt;- predict(m,ts)
+names(ps)
+ps$confusion
+ps$error*100 # percentage of errors</code></pre>
+<pre class="r"><code>library(ipred)
+data(Boston,package=&#39;MASS&#39;)
+set.seed(1234)
+sp &lt;- sample(1:nrow(Boston),354)
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+m &lt;- bagging(medv ~ ., tr, nbagg=500)
+ps &lt;- predict(m, ts)
+mean(abs(ps-ts$medv))</code></pre>
+<pre class="r"><code>library(randomForest)
+library(DMwR2)
+data(BreastCancer, package=&quot;mlbench&quot;)
+bc &lt;- cbind(knnImputation(BreastCancer[,-c(1,11)]), # column 1 is an ID
+            Class=BreastCancer$Class)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(bc), 500)
+tr &lt;- bc[rndSample, ] 
+ts &lt;- bc[-rndSample, ]
+m &lt;- randomForest(Class ~ ., tr, ntree=750)
+ps &lt;- predict(m, ts)
+(cm &lt;- table(ps, ts$Class))
+100*(1-sum(diag(cm))/sum(cm))  # the error rate</code></pre>
+<pre class="r"><code>library(adabag)
+data(iris)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris), 100)
+tr &lt;- iris[rndSample, ]
+ts &lt;- iris[-rndSample, ]
+m1 &lt;- boosting(Species ~ ., tr,  mfinal=500) # AdaBoost.M1
+ps1 &lt;- predict(m1,ts)
+ps1$confusion
+ps1$error*100 
+m2 &lt;- boosting(Species ~ ., tr, coeflearn=&quot;Zhu&quot;, mfinal=500) # SAMME
+ps2 &lt;- predict(m2,ts)
+ps2$confusion
+ps2$error*100 </code></pre>
+<pre class="r"><code>library(gbm)
+data(Boston,package=&#39;MASS&#39;)
+set.seed(1234)
+sp &lt;- sample(1:nrow(Boston),354)
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+m &lt;- gbm(medv ~ ., data=tr, n.trees=5000)
+ps &lt;- predict(m, ts, n.trees=5000)
+mean(abs(ps-ts$medv))</code></pre>
+<pre class="r"><code>data(iris)
+set.seed(1234)
+rndSample &lt;- sample(1:nrow(iris), 100)
+tr &lt;- iris[rndSample, ]
+ts &lt;- iris[-rndSample, ]
+
+m &lt;- gbm(Species ~ ., data=tr, n.trees=10000, 
+         cv.folds=5, n.cores=4)
+(best &lt;- gbm.perf(m, plot.it=FALSE, method=&quot;cv&quot;))
+ps &lt;- predict(m, ts, n.trees=best, type=&quot;response&quot;)[,,1]
+ps &lt;- as.factor(colnames(ps)[max.col(ps)])
+(cm &lt;- table(ps, ts$Species))
+100*(1-sum(diag(cm))/sum(cm))  # the error rate</code></pre>
+<pre class="r"><code>summary(m, plotit=FALSE)</code></pre>
+<pre class="r"><code>plot(m, i.var=3, type=&quot;response&quot;)
+legend(&quot;topleft&quot;,c(&quot;setosa&quot;,&quot;versicolor&quot;,&quot;virginica&quot;),
+       col=1:3,lty=1)</code></pre>
+<pre class="r"><code>plot(m, i.var=3, type=&quot;response&quot;)
+legend(&quot;topleft&quot;,c(&quot;setosa&quot;,&quot;versicolor&quot;,&quot;virginica&quot;),
+       col=1:3,lty=1)</code></pre>
+<!-- evaluation.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  showFig3=list(fig.width=8,fig.height=8,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))</code></pre>
+</div>
+<div id="evaluation" class="section level3">
+<h3>Evaluation</h3>
+<pre class="r"><code>library(performanceEstimation)
+library(e1071)
+data(iris)
+r &lt;- performanceEstimation(PredTask(Species ~ ., iris),
+                           Workflow(learner=&quot;svm&quot;),
+                           EstimationTask(metrics=&quot;err&quot;,method=Holdout(hldSz=0.3))
+                           )
+summary(r)</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+library(randomForest)
+data(Boston, package=&quot;MASS&quot;)
+r &lt;- performanceEstimation(PredTask(medv ~ ., Boston),
+                           Workflow(learner=&quot;randomForest&quot;),
+                           EstimationTask(metrics=&quot;mse&quot;,
+                                          method=Holdout(nReps=3,hldSz=0.3))
+                           )
+summary(r)</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+library(DMwR2)
+data(Boston, package=&quot;MASS&quot;)
+r &lt;- performanceEstimation(
+         PredTask(medv ~ ., Boston),
+         workflowVariants(learner=&quot;rpartXse&quot;,
+                          learner.pars=list(se=c(0,0.25,0.5,1,2))),
+         EstimationTask(metrics=c(&quot;mse&quot;,&quot;mae&quot;),
+                        method=CV(nReps=3,nFolds=10))
+     )
+rankWorkflows(r, top=3)</code></pre>
+<pre class="r"><code>getWorkflow(&quot;rpartXse.v1&quot;, r)</code></pre>
+<pre class="r"><code>plot(r)</code></pre>
+<pre class="r"><code>plot(r)</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+library(DMwR2)
+library(e1071)
+data(iris)
+data(BreastCancer, package=&quot;mlbench&quot;)
+bc &lt;- cbind(knnImputation(BreastCancer[,-c(1,11)]), 
+            Class=BreastCancer$Class)
+r &lt;- performanceEstimation(
+         c(PredTask(Species ~ ., iris), 
+           PredTask(Class ~ ., bc)),
+         workflowVariants(learner=&quot;svm&quot;,
+                          learner.pars=list(cost=c(1,5,10),
+                                            gamma=c(0.01,0.001))),
+         EstimationTask(metrics=&quot;acc&quot;,
+                        method=Bootstrap(nReps=200,type=&quot;.632&quot;))
+    )</code></pre>
+<pre class="r"><code>topPerformers(r , maxs=TRUE)</code></pre>
+<!-- DeployAndReport.Rnw -->
+</div>
+<div id="reporting-and-deployment" class="section level3">
+<h3>Reporting and Deployment</h3>
+<pre class="r"><code>library(rmarkdown)
+render(&quot;myreport.Rmd&quot;)</code></pre>
+<pre class="r"><code>render(&quot;myreport.Rmd&quot;, output_format=&quot;word_document&quot;)</code></pre>
+<pre class="r"><code>library(shiny)
+runApp(&quot;myAppFolderName&quot;)</code></pre>
+<pre class="r"><code>library(shiny)
+data(iris)
+
+shinyUI(fluidPage(
+  titlePanel(&quot;Exploring the Iris dataset&quot;),
+  sidebarLayout(
+      sidebarPanel(
+          selectInput(&quot;var&quot;,
+                      &quot;Select a Predictor Variable:&quot;,
+                      choices=colnames(iris)[1:4])
+      ),
+      mainPanel(
+          plotOutput(&quot;condBP&quot;)
+      )
+  )
+))</code></pre>
+<pre class="r"><code>library(shiny)
+data(iris)
+
+shinyServer(
+    function(input, output) 
+        {
+            output$condBP &lt;- renderPlot(
+                {
+                    form &lt;- as.formula(paste(input$var,&quot;~ Species&quot;))
+                    boxplot(form,iris,ylab=input$var,
+                            main=paste(&quot;Distribution of&quot;,input$var,
+                                &quot;for the different Species&quot;))
+                }
+            )  
+        }
+)</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+---
+title: Classifying Micro Array Samples
+output: html_document
+---
+
+
+This chapter contains the following main sections:
+
+
+<!-- availData.Rnw --> 
+- The Available Data
+<!-- ExploratoryAnal.Rnw --> 
+<!-- FeatureSel.Rnw --> 
+- Gene (Feature) Selection
+<!-- PredTasks.Rnw --> 
+- Predicting Cytogenetic Abnormalities

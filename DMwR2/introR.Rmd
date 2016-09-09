@@ -1,20 +1,36 @@
 ---
-title: "Introduction to R"
+title: Introduction to R
 output: html_document
 ---
 
-- Starting with R 
-- Basic Interaction with the R Console 
-- R Objects and Variables
-- R Functions
-- Vectors
-- Vectorization
-- Factors
-- Generating Sequences
-- Sub-Setting
-- Matrices and Arrays
-- Lists
-- DataFrames 
-- Useful Extensions to Data Frames
-- Objects, Classes, and Methods
+
+This chapter contains the following main sections:
+
+
+<!-- intro2R.Rnw --> 
+- Starting with \R
 - Managing Your Sessions
+<!-- basicInter.Rnw --> 
+- Basic Interaction with the \R Console
+<!-- objs.Rnw --> 
+- \R Objects and Variables
+<!-- funcs.Rnw --> 
+- \R Functions
+<!-- vectors.Rnw --> 
+- Vectors
+<!-- vectorization.Rnw --> 
+- Vectorization
+<!-- factors.Rnw --> 
+- Factors
+<!-- seqs.Rnw --> 
+- Generating Sequences
+<!-- indexing.Rnw --> 
+- Sub-Setting
+<!-- ma.Rnw --> 
+- Matrices and Arrays
+<!-- lists.Rnw --> 
+- Lists
+<!-- df.Rnw --> 
+- Data Frames
+<!-- dft.Rnw --> 
+- Useful Extensions to Data Frames

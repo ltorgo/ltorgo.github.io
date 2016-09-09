@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Predicting Stock Market Returns</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">DMwR 2nd Edition</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-indent"></span>
+     
+    Contents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="introR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="introDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="algae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="stocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="fraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="bio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    R Code
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Part I - R and Data Mining</li>
+    <li>
+      <a href="RintroR.html">Introduction to R</a>
+    </li>
+    <li>
+      <a href="RintroDM.html">Introduction to Data Mining</a>
+    </li>
+    <li class="dropdown-header">Part II - Case Studies</li>
+    <li>
+      <a href="Ralgae.html">Predicting Algae Blooms</a>
+    </li>
+    <li>
+      <a href="Rstocks.html">Predicting Stock Market Returns</a>
+    </li>
+    <li>
+      <a href="Rfraud.html">Detecting Fraudulent Transactions</a>
+    </li>
+    <li>
+      <a href="Rbio.html">Classifying Micro Array Samples</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="datasets.html">
+    <span class="fa fa-database"></span>
+     
+    Datasets
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Predicting Stock Market Returns</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/Rstocks.R">script file</a> containing all R code of all sections in this chapter.</p>
+<!-- availData.Rnw -->
+<div id="the-available-data" class="section level3">
+<h3>The Available Data</h3>
+<pre class="r"><code>library(xts)
+data(GSPC, package=&quot;DMwR2&quot;)
+first(GSPC)
+last(GSPC)</code></pre>
+<pre class="r"><code>library(xts)
+GSPC &lt;- as.xts(read.zoo(&quot;sp500.csv&quot;, header = TRUE))</code></pre>
+<pre class="r"><code>library(quantmod)
+GSPC &lt;- getSymbols(&quot;^GSPC&quot;,auto.assign=FALSE)</code></pre>
+<pre class="r"><code>GSPC &lt;- getSymbols(&quot;^GSPC&quot;,from=&quot;1970-01-02&quot;,to=&quot;2016-01-25&quot;,auto.assign=FALSE)</code></pre>
+<!-- predTask.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(xts)
+library(quantmod)
+data(GSPC, package=&quot;DMwR2&quot;)</code></pre>
+</div>
+<div id="defining-the-prediction-tasks" class="section level3">
+<h3>Defining the Prediction Tasks</h3>
+<pre class="r"><code>T.ind &lt;- function(quotes, tgt.margin = 0.025, n.days = 10) {
+    v &lt;- apply(HLC(quotes), 1, mean)
+    v[1] &lt;- Cl(quotes)[1]
+    
+    r &lt;- matrix(NA, ncol = n.days, nrow = NROW(quotes))
+    for (x in 1:n.days) r[, x] &lt;- Next(Delt(v, k = x), x)
+    
+    x &lt;- apply(r, 1, function(x) sum(x[x &gt; tgt.margin | x &lt; -tgt.margin]))
+    
+    if (is.xts(quotes)) xts(x, time(quotes)) else x
+}</code></pre>
+<pre class="r"><code>candleChart(last(GSPC,&#39;3 months&#39;),theme=&#39;white&#39;, TA=NULL)
+avgPrice &lt;- function(p) apply(HLC(p),1,mean)
+addAvgPrice &lt;- newTA(FUN=avgPrice,col=1,legend=&#39;AvgPrice&#39;)
+addT.ind &lt;- newTA(FUN=T.ind,col=&#39;red&#39;, legend=&#39;tgtRet&#39;)
+addAvgPrice(on=1) 
+addT.ind()</code></pre>
+<pre class="r"><code>avgPrice &lt;- function(p) apply(HLC(p), 1, mean) 
+addAvgPrice &lt;- newTA(FUN=avgPrice, col=1, legend=&#39;AvgPrice&#39;)
+addT.ind &lt;- newTA(FUN=T.ind, col=&#39;red&#39;, legend=&#39;tgtRet&#39;)
+candleChart(last(GSPC,&#39;3 months&#39;), theme=&#39;white&#39;, TA=c(addAvgPrice(on=1), addT.ind()))</code></pre>
+<pre class="r"><code>library(TTR)
+myATR        &lt;- function(x) ATR(HLC(x))[,&#39;atr&#39;]
+mySMI        &lt;- function(x) SMI(HLC(x))[, &quot;SMI&quot;]
+myADX        &lt;- function(x) ADX(HLC(x))[,&#39;ADX&#39;]
+myAroon      &lt;- function(x) aroon(cbind(Hi(x),Lo(x)))$oscillator
+myBB         &lt;- function(x) BBands(HLC(x))[, &quot;pctB&quot;]
+myChaikinVol &lt;- function(x) Delt(chaikinVolatility(cbind(Hi(x),Lo(x))))[, 1]
+myCLV        &lt;- function(x) EMA(CLV(HLC(x)))[, 1]
+myEMV        &lt;- function(x) EMV(cbind(Hi(x),Lo(x)),Vo(x))[,2]
+myMACD       &lt;- function(x) MACD(Cl(x))[,2]
+myMFI        &lt;- function(x) MFI(HLC(x),  Vo(x))
+mySAR        &lt;- function(x) SAR(cbind(Hi(x),Cl(x))) [,1]
+myVolat      &lt;- function(x) volatility(OHLC(x),calc=&quot;garman&quot;)[,1]</code></pre>
+<pre class="r"><code>library(randomForest)
+data.model &lt;- specifyModel(T.ind(GSPC) ~ Delt(Cl(GSPC),k=1:10) + 
+        myATR(GSPC) + mySMI(GSPC) + myADX(GSPC) + myAroon(GSPC) + 
+        myBB(GSPC)  + myChaikinVol(GSPC) + myCLV(GSPC) + 
+        CMO(Cl(GSPC)) + EMA(Delt(Cl(GSPC))) + myEMV(GSPC) + 
+        myVolat(GSPC)  + myMACD(GSPC) + myMFI(GSPC) + RSI(Cl(GSPC)) +
+        mySAR(GSPC) + runMean(Cl(GSPC)) + runSD(Cl(GSPC)))
+set.seed(1234)
+rf &lt;- buildModel(data.model,method=&#39;randomForest&#39;,
+                 training.per=c(&quot;1995-01-01&quot;,&quot;2005-12-30&quot;),
+                 ntree=1000, importance=TRUE)</code></pre>
+<pre class="r"><code>ex.model &lt;- specifyModel(T.ind(IBM) ~ Delt(Cl(IBM), k = 1:3))
+data &lt;- modelData(ex.model, data.window = c(&quot;2009-01-01&quot;,  &quot;2009-08-10&quot;))</code></pre>
+<pre class="r"><code>m &lt;- myFavouriteModellingTool(ex.model@model.formula, as.data.frame(data))</code></pre>
+<pre class="r"><code>varImpPlot(rf@fitted.model, type = 1)</code></pre>
+<pre class="r"><code>varImpPlot(rf@fitted.model, type = 1)</code></pre>
+<pre class="r"><code>imp &lt;- importance(rf@fitted.model, type = 1)
+rownames(imp)[which(imp &gt; 30)]</code></pre>
+<pre class="r"><code>data.model &lt;- specifyModel(T.ind(GSPC) ~ myATR(GSPC) + mySMI(GSPC) +  myADX(GSPC) + 
+                           myAroon(GSPC) + myEMV(GSPC) + myVolat(GSPC) + 
+                           myMACD(GSPC) + myMFI(GSPC) + mySAR(GSPC) + 
+                           runMean(Cl(GSPC)) + runSD(Cl(GSPC)))</code></pre>
+<pre class="r"><code>## The regression task
+Tdata.train &lt;- as.data.frame(modelData(data.model,
+                                data.window=c(&#39;1970-01-02&#39;,&#39;2005-12-30&#39;)))
+Tdata.eval &lt;- na.omit(as.data.frame(modelData(data.model,
+                                data.window=c(&#39;2006-01-01&#39;,&#39;2016-01-25&#39;))))
+Tform &lt;- as.formula(&#39;T.ind.GSPC ~ .&#39;)
+## The classification task
+buy.thr &lt;- 0.1
+sell.thr &lt;- -0.1
+Tdata.trainC &lt;- cbind(Signal=trading.signals(Tdata.train[[&quot;T.ind.GSPC&quot;]],
+                                             buy.thr,sell.thr),
+                      Tdata.train[,-1])
+Tdata.evalC &lt;-  cbind(Signal=trading.signals(Tdata.eval[[&quot;T.ind.GSPC&quot;]],
+                                             buy.thr,sell.thr),
+                      Tdata.eval[,-1])
+TformC &lt;- as.formula(&quot;Signal ~ .&quot;)</code></pre>
+<!-- PredModels.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(xts)
+library(quantmod)
+data(GSPC,package=&quot;DMwR2&quot;)
+load(&quot;GSPCdata.Rdata&quot;)</code></pre>
+</div>
+<div id="the-prediction-models" class="section level3">
+<h3>The Prediction Models</h3>
+<pre class="r"><code>set.seed(1234)
+library(nnet)
+## The first column is the target variable
+norm.data &lt;- data.frame(T.ind.GSPC=Tdata.train[[1]],scale(Tdata.train[,-1]))
+nn &lt;- nnet(Tform, norm.data[1:1000, ], size = 5, decay = 0.01, 
+           maxit = 1000, linout = TRUE, trace = FALSE)
+preds &lt;- predict(nn, norm.data[1001:2000, ])</code></pre>
+<pre class="r"><code>sigs.nn &lt;- trading.signals(preds,0.1,-0.1)
+true.sigs &lt;- trading.signals(Tdata.train[1001:2000, &quot;T.ind.GSPC&quot;], 0.1, -0.1)
+sigs.PR(sigs.nn,true.sigs)</code></pre>
+<pre class="r"><code>set.seed(1234)
+library(nnet)
+norm.data &lt;- data.frame(Signal=Tdata.trainC$Signal,scale(Tdata.trainC[,-1]))
+nn &lt;- nnet(Signal ~ ., norm.data[1:1000, ], size = 10, decay = 0.01, 
+           maxit = 1000, trace = FALSE)
+preds &lt;- predict(nn, norm.data[1001:2000, ], type = &quot;class&quot;)</code></pre>
+<pre class="r"><code>sigs.PR(preds, norm.data[1001:2000, 1])</code></pre>
+<pre class="r"><code>set.seed(1234)
+library(e1071)
+sv &lt;- svm(Tform, Tdata.train[1:1000, ], gamma = 0.001, cost = 100)
+s.preds &lt;- predict(sv, Tdata.train[1001:2000, ])
+sigs.svm &lt;- trading.signals(s.preds, 0.1, -0.1)
+true.sigs &lt;- trading.signals(Tdata.train[1001:2000, &quot;T.ind.GSPC&quot;], 0.1, -0.1)
+sigs.PR(sigs.svm, true.sigs)</code></pre>
+<pre class="r"><code>library(kernlab)
+ksv &lt;- ksvm(Signal ~ ., Tdata.trainC[1:1000, ], C = 10)
+ks.preds &lt;- predict(ksv, Tdata.trainC[1001:2000, ])
+sigs.PR(ks.preds, Tdata.trainC[1001:2000, 1])</code></pre>
+<pre class="r"><code>library(earth)
+e &lt;- earth(Tform, Tdata.train[1:1000, ])
+e.preds &lt;- predict(e, Tdata.train[1001:2000, ])
+sigs.e &lt;- trading.signals(e.preds, 0.1, -0.1)
+true.sigs &lt;- trading.signals(Tdata.train[1001:2000, &quot;T.ind.GSPC&quot;],  0.1, -0.1)
+sigs.PR(sigs.e, true.sigs)</code></pre>
+<pre class="r"><code>summary(e)</code></pre>
+<pre class="r"><code>evimp(e, trim=FALSE)</code></pre>
+<!-- Trading.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(xts)
+library(quantmod)
+data(GSPC)
+load(&quot;GSPCdata.Rdata&quot;)</code></pre>
+</div>
+<div id="from-predictions-into-actions" class="section level3">
+<h3>From Predictions into Actions</h3>
+<pre class="r"><code>policy.1 &lt;- function(signals,market,opened.pos,money,
+                     bet=0.2,hold.time=10,
+                     exp.prof=0.025, max.loss= 0.05
+                     )
+  {
+    d &lt;- NROW(market) # this is the ID of today
+    orders &lt;- NULL
+    nOs &lt;- NROW(opened.pos)
+    # nothing to do!
+    if (!nOs &amp;&amp; signals[d] == &#39;h&#39;) return(orders)
+
+    # First lets check if we can open new positions
+    # i) long positions
+    if (signals[d] == &#39;b&#39; &amp;&amp; !nOs) {
+      quant &lt;- round(bet*money/Cl(market)[d],0)
+      if (quant &gt; 0) 
+        orders &lt;- rbind(orders,
+              data.frame(order=c(1,-1,-1),order.type=c(1,2,3), 
+                         val = c(quant,
+                                 Cl(market)[d]*(1+exp.prof),
+                                 Cl(market)[d]*(1-max.loss)
+                                ),
+                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
+                         posID = c(NA,NA,NA)
+                        )
+                       )
+
+    # ii) short positions  
+    } else if (signals[d] == &#39;s&#39; &amp;&amp; !nOs) {
+      # this is the nr of stocks we already need to buy 
+      # because of currently opened short positions
+      need2buy &lt;- sum(opened.pos[opened.pos[,&#39;pos.type&#39;]==-1,
+                                 &quot;N.stocks&quot;])*Cl(market)[d]
+      quant &lt;- round(bet*(money-need2buy)/Cl(market)[d],0)
+      if (quant &gt; 0)
+        orders &lt;- rbind(orders,
+              data.frame(order=c(-1,1,1),order.type=c(1,2,3), 
+                         val = c(quant,
+                                 Cl(market)[d]*(1-exp.prof),
+                                 Cl(market)[d]*(1+max.loss)
+                                ),
+                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
+                         posID = c(NA,NA,NA)
+                        )
+                       )
+    }
+    
+    # Now lets check if we need to close positions
+    # because their holding time is over
+    if (nOs) 
+      for(i in 1:nOs) {
+        if (d - opened.pos[i,&#39;Odate&#39;] &gt;= hold.time)
+          orders &lt;- rbind(orders,
+                data.frame(order=-opened.pos[i,&#39;pos.type&#39;],
+                           order.type=1,
+                           val = NA,
+                           action = &#39;close&#39;,
+                           posID = rownames(opened.pos)[i]
+                          )
+                         )
+      }
+
+    orders
+  }</code></pre>
+<pre class="r"><code>policy.2 &lt;- function(signals,market,opened.pos,money,
+                     bet=0.2,exp.prof=0.025, max.loss= 0.05
+                    )
+  {
+    d &lt;- NROW(market) # this is the ID of today
+    orders &lt;- NULL
+    nOs &lt;- NROW(opened.pos)
+    # nothing to do!
+    if (!nOs &amp;&amp; signals[d] == &#39;h&#39;) return(orders)
+
+    # First lets check if we can open new positions
+    # i) long positions
+    if (signals[d] == &#39;b&#39;) {
+      quant &lt;- round(bet*money/Cl(market)[d],0)
+      if (quant &gt; 0) 
+        orders &lt;- rbind(orders,
+              data.frame(order=c(1,-1,-1),order.type=c(1,2,3), 
+                         val = c(quant,
+                                 Cl(market)[d]*(1+exp.prof),
+                                 Cl(market)[d]*(1-max.loss)
+                                ),
+                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
+                         posID = c(NA,NA,NA)
+                        )
+                       )
+
+    # ii) short positions  
+    } else if (signals[d] == &#39;s&#39;) {
+      # this is the money already committed to buy stocks
+      # because of currently opened short positions
+      need2buy &lt;- sum(opened.pos[opened.pos[,&#39;pos.type&#39;]==-1,
+                                 &quot;N.stocks&quot;])*Cl(market)[d]
+      quant &lt;- round(bet*(money-need2buy)/Cl(market)[d],0)
+      if (quant &gt; 0)
+        orders &lt;- rbind(orders,
+              data.frame(order=c(-1,1,1),order.type=c(1,2,3), 
+                         val = c(quant,
+                                 Cl(market)[d]*(1-exp.prof),
+                                 Cl(market)[d]*(1+max.loss)
+                                ),
+                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
+                         posID = c(NA,NA,NA)
+                        )
+                       )
+    }
+
+    orders
+  }</code></pre>
+<pre class="r"><code>## Train and test periods
+start &lt;- 1
+len.tr &lt;- 1000
+len.ts &lt;- 500
+tr &lt;- start:(start+len.tr-1)
+ts &lt;- (start+len.tr):(start+len.tr+len.ts-1)
+## getting the quotes for the testing period
+data(GSPC)
+date &lt;- rownames(Tdata.train[start+len.tr,])
+marketTP &lt;- GSPC[paste(date,&#39;/&#39;,sep=&#39;&#39;)][1:len.ts]
+## learning the model and obtaining its signal predictions for the test period
+library(e1071)
+s &lt;- svm(Tform, Tdata.train[tr,], cost=10,gamma=0.01)
+p &lt;- predict(s, Tdata.train[ts,])
+sig &lt;- trading.signals(p, 0.1, -0.1)
+## now using the simulated trader during the testing period
+t1 &lt;- trading.simulator(marketTP, signals=sig, policy.func=&#39;policy.1&#39;,
+                        policy.pars=list(exp.prof=0.05,bet=0.2,hold.time=30))</code></pre>
+<pre class="r"><code>t1 
+summary(t1)</code></pre>
+<pre class="r"><code>tradingEvaluation(t1)  </code></pre>
+<pre class="r"><code>plot(t1,marketTP, theme = &quot;white&quot;,  name = &quot;SP500&quot;)</code></pre>
+<pre class="r"><code>plot(t1, marketTP,  theme = &quot;white&quot;,  name = &quot;SP500&quot;)</code></pre>
+<pre class="r"><code>t2 &lt;- trading.simulator(marketTP, sig, &quot;policy.2&quot;, list(exp.prof = 0.05, bet = 0.3))
+summary(t2)
+tradingEvaluation(t2)</code></pre>
+<pre class="r"><code>start &lt;- 2000
+len.tr &lt;- 1000
+len.ts &lt;- 500
+tr &lt;- start:(start + len.tr - 1)
+ts &lt;- (start + len.tr):(start + len.tr + len.ts - 1)
+data(GSPC)
+date &lt;- rownames(Tdata.train[start+len.tr,])
+marketTP &lt;- GSPC[paste(date,&#39;/&#39;,sep=&#39;&#39;)][1:len.ts]
+s &lt;- svm(Tform, Tdata.train[tr, ], cost = 10, gamma = 0.01)
+p &lt;- predict(s, Tdata.train[ts, ])
+sig &lt;- trading.signals(p, 0.1, -0.1)
+t2 &lt;-  trading.simulator(marketTP, sig, 
+                         &quot;policy.2&quot;, list(exp.prof = 0.05, bet = 0.3))
+summary(t2) 
+tradingEvaluation(t2)</code></pre>
+<!-- EvalAndSel.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(xts)
+library(quantmod)
+data(GSPC)
+load(&quot;GSPCdata.Rdata&quot;)
+source(&quot;codigoExps.R&quot;)
+library(performanceEstimation)
+load(&quot;analysis.Rdata&quot;)</code></pre>
+</div>
+<div id="model-evaluation-and-selection" class="section level3">
+<h3>Model Evaluation and Selection</h3>
+<pre class="r"><code>tradingWF &lt;- function(form, train, test, 
+                      quotes, pred.target=&quot;signals&quot;,
+                      learner, learner.pars=NULL,
+                      predictor.pars=NULL,
+                      learn.test.type=&#39;fixed&#39;, relearn.step=30,
+                      b.t, s.t,
+                      policy, policy.pars,
+                      trans.cost=5, init.cap=1e+06)
+{
+    ## obtain the model(s) and respective predictions for the test set
+    if (learn.test.type == &#39;fixed&#39;) {  # a single fixed model
+        m &lt;- do.call(learner,c(list(form,train),learner.pars))
+        preds &lt;- do.call(&quot;predict&quot;,c(list(m,test),predictor.pars))
+    } else {  # either slide or growing window strategies
+        data &lt;- rbind(train,test)
+        n &lt;- NROW(data)
+        train.size &lt;- NROW(train)
+        sts &lt;- seq(train.size+1,n,by=relearn.step)
+        preds &lt;- vector()
+        for(s in sts) {  # loop over each relearn step
+            tr &lt;- if (learn.test.type==&#39;slide&#39;) data[(s-train.size):(s-1),] 
+                  else data[1:(s-1),]
+            ts &lt;- data[s:min((s+relearn.step-1),n),]
+            
+            m &lt;- do.call(learner,c(list(form,tr),learner.pars))
+            preds &lt;- c(preds,do.call(&quot;predict&quot;,c(list(m,ts),predictor.pars)))
+        }    
+    } 
+    
+    ## Getting the trading signals
+    if (pred.target != &quot;signals&quot;) {  # the model predicts the T indicator
+        predSigs &lt;- trading.signals(preds,b.t,s.t)
+        tgtName &lt;- all.vars(form)[1]
+        trueSigs &lt;- trading.signals(test[[tgtName]],b.t,s.t)
+    } else {  # the model predicts the signals directly
+        tgtName &lt;- all.vars(form)[1]
+        if (is.factor(preds))
+            predSigs &lt;- preds
+        else {
+            if (preds[1] %in% levels(train[[tgtName]]))
+                predSigs &lt;- factor(preds,labels=levels(train[[tgtName]]),
+                                   levels=levels(train[[tgtName]]))
+            else 
+                predSigs &lt;- factor(preds,labels=levels(train[[tgtName]]),
+                                   levels=1:3)
+        }
+        trueSigs &lt;- test[[tgtName]]
+    }
+
+    ## obtaining the trading record from trading with the signals
+    date &lt;- rownames(test)[1]
+    market &lt;- get(quotes)[paste(date,&quot;/&quot;,sep=&#39;&#39;)][1:length(preds),]
+    tradeRec &lt;- trading.simulator(market,predSigs,
+                                  policy.func=policy,policy.pars=policy.pars,
+                                  trans.cost=trans.cost,init.cap=init.cap)
+    
+    return(list(trueSigs=trueSigs,predSigs=predSigs,tradeRec=tradeRec))
+}</code></pre>
+<pre class="r"><code>tradingEval &lt;- function(trueSigs,predSigs,tradeRec,...) 
+{
+    ## Signals evaluation
+    st &lt;- sigs.PR(predSigs,trueSigs)
+    dim(st) &lt;- NULL
+    names(st) &lt;- paste(rep(c(&#39;prec&#39;,&#39;rec&#39;),each=3),c(&#39;s&#39;,&#39;b&#39;,&#39;sb&#39;),sep=&#39;.&#39;)
+    
+    ## Trading record evaluation
+    tradRes &lt;- tradingEvaluation(tradeRec)
+    return(c(st,tradRes))
+}</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+library(e1071)
+library(earth)
+library(nnet)
+LEARNERS &lt;- c(&#39;svm&#39;,&#39;earth&#39;,&#39;nnet&#39;)
+EST.TASK &lt;- EstimationTask(method=MonteCarlo(nReps=20,
+                                             szTrain=2540,szTest=1270,
+                                             seed=1234),
+                           evaluator=&quot;tradingEval&quot;)
+VARS &lt;- list()
+
+VARS$svm &lt;- list(learner.pars=list(cost=c(10,50,150),
+                                   gamma=c(0.01,0.05)))
+VARS$earth &lt;- list(learner.pars=list(nk=c(10,17),
+                                     degree=c(1,2),
+                                     thresh=c(0.01,0.001)))
+VARS$nnet &lt;-  list(learner.pars=list(linout=TRUE, trace=FALSE,
+                                     maxit=750,
+                                     size=c(5,10),
+                                     decay=c(0.001,0.01,0.1)))
+
+VARS$learning &lt;- list(learn.test.type=c(&quot;fixed&quot;,&quot;slide&quot;,&quot;grow&quot;), relearn.step=120)
+VARS$trading  &lt;- list(policy=c(&quot;policy.1&quot;,&quot;policy.2&quot;),
+                     policy.pars=list(bet=c(0.2,0.5),exp.prof=0.05,max.loss=0.05),
+                     b.t=c(0.01,0.05),s.t=c(-0.01,-0.05))
+
+## Regression (forecast T indicator) Workflows
+for(lrn in LEARNERS) {
+    objName &lt;- paste(lrn,&quot;res&quot;,&quot;regr&quot;,sep=&quot;_&quot;)
+    assign(objName,
+           performanceEstimation(PredTask(Tform,Tdata.train,&quot;SP500&quot;),
+                                 do.call(&quot;workflowVariants&quot;,
+                                         c(list(&quot;tradingWF&quot;,
+                                                varsRootName=paste0(lrn,&quot;Regr&quot;),
+                                                quotes=&quot;GSPC&quot;,
+                                                learner=lrn,
+                                                pred.target=&quot;indicator&quot;),
+                                           VARS[[lrn]],
+                                           VARS$learning,
+                                           VARS$trading)
+                                         ),
+                                 EST.TASK,
+                                 cluster=TRUE) # for parallel computation
+           )
+    save(list=objName,file=paste(objName,&#39;Rdata&#39;,sep=&#39;.&#39;))
+}
+
+## Specific settings to make nnet work as a classifier
+VARS$nnet$learner.pars$linout &lt;-  FALSE
+VARS$nnet$predictor.pars &lt;-  list(type=&quot;class&quot;)
+
+## Classification (forecast signal) workflows
+for(lrn in c(&quot;svm&quot;,&quot;nnet&quot;)) { # only these because MARS is only for regression
+    objName &lt;- paste(lrn,&quot;res&quot;,&quot;class&quot;,sep=&quot;_&quot;)
+    assign(objName,
+           performanceEstimation(PredTask(TformC,Tdata.trainC,&quot;SP500&quot;),
+                                 do.call(&quot;workflowVariants&quot;,
+                                         c(list(&quot;tradingWF&quot;,
+                                                varsRootName=paste0(lrn,&quot;Class&quot;),
+                                                quotes=&quot;GSPC&quot;,
+                                                learner=lrn,
+                                                pred.target=&quot;signals&quot;),
+                                           VARS[[lrn]],
+                                           VARS$learning,
+                                           VARS$trading)
+                                         ),
+                                 EST.TASK,
+                                 cluster=TRUE) # for parallel computation
+           )
+    save(list=objName,file=paste(objName,&#39;Rdata&#39;,sep=&#39;.&#39;))
+}</code></pre>
+<pre class="r"><code>load(&quot;svm_res_regr.Rdata&quot;)
+load(&quot;nnet_res_regr.Rdata&quot;)
+load(&quot;earth_res_regr.Rdata&quot;)
+load(&quot;svm_res_class.Rdata&quot;)
+load(&quot;nnet_res_class.Rdata&quot;)
+allResults &lt;- mergeEstimationRes(svm_res_regr, earth_res_regr, nnet_res_regr, 
+                                 svm_res_class, nnet_res_class,
+                                 by=&quot;workflows&quot;)
+rm(svm_res_regr, earth_res_regr, nnet_res_regr, svm_res_class, nnet_res_class)</code></pre>
+<pre class="r"><code>tgtStats &lt;- c(&#39;NTrades&#39;,&#39;prec.sb&#39;,&#39;Ret&#39;,&#39;RetOverBH&#39;,&#39;PercProf&#39;,
+              &#39;MaxDD&#39;,&#39;SharpeRatio&#39;)
+toMax &lt;- c(rep(TRUE,5),FALSE,TRUE)
+rankWorkflows(subset(allResults,
+                     metrics=tgtStats,
+                     partial=FALSE),
+              top=3,
+              maxs=toMax)</code></pre>
+<pre class="r"><code>getWorkflow(&quot;svmRegr.v138&quot;,analysisSet)</code></pre>
+<pre class="r"><code>best &lt;- rankWorkflows(subset(allResults,
+                     metrics=tgtStats,
+                     partial=FALSE),
+              top=100,
+              maxs=toMax)
+bestWFs &lt;- unique(as.vector(sapply(best$SP500,function(x) x$Workflow)))
+analysisSet &lt;- subset(allResults, workflows=bestWFs, partial=FALSE)
+rm(allResults)</code></pre>
+<pre class="r"><code>(tps &lt;- topPerformers(subset(analysisSet,metrics=tgtStats,partial=FALSE),
+                      maxs=toMax))</code></pre>
+<pre class="r"><code>summary(subset(analysisSet,
+               workflows=tps$SP500[c(&quot;prec.sb&quot;,&quot;Ret&quot;,&quot;PercProf&quot;,&quot;MaxDD&quot;),
+                   &quot;Workflow&quot;],
+               metrics=tgtStats[-c(1,4,7)],
+               partial=FALSE))</code></pre>
+<pre class="r"><code>ms &lt;- metricsSummary(subset(analysisSet,
+                            metrics=c(&quot;NTrades&quot;,&quot;Ret&quot;,&quot;PercProf&quot;),
+                            partial=FALSE),
+                     summary=&quot;median&quot;)[[&quot;SP500&quot;]]
+candidates &lt;- subset(analysisSet,
+                     workflows=colnames(ms)[which(ms[&quot;NTrades&quot;,] &gt; 120)],
+                     partial=FALSE)
+ms &lt;- metricsSummary(subset(candidates,
+                            metrics=c(&quot;Ret&quot;,&quot;PercProf&quot;),
+                            partial=FALSE),
+                     summary=&quot;median&quot;)[[&quot;SP500&quot;]]
+(sms &lt;- apply(ms,1,function(x) names(x[order(x,decreasing=TRUE)][1:15])))
+(winners &lt;- unique(c(intersect(sms[,1],sms[,2]),sms[1:3,1],sms[1:3,2])))
+winnersResults &lt;- subset(analysisSet,
+                         metrics=tgtStats,workflows=winners,
+                         partial=FALSE)</code></pre>
+<pre class="r"><code>p &lt;- pairedComparisons(winnersResults,baseline=&quot;nnetRegr.v200&quot;,maxs=toMax)
+p$Ret$WilcoxonSignedRank.test</code></pre>
+<pre class="r"><code>p &lt;- pairedComparisons(winnersResults,&quot;nnetRegr.v175&quot;,maxs=toMax)
+p$MaxDD$WilcoxonSignedRank.test</code></pre>
+<pre class="r"><code>sds &lt;- signifDiffs(p,p.limit=0.05,metrics=&quot;MaxDD&quot;)
+sds$MaxDD$WilcoxonSignedRank.test$SP500</code></pre>
+<pre class="r"><code>getWorkflow(&quot;nnetRegr.v200&quot;, winnersResults)
+getWorkflow(&quot;nnetRegr.v175&quot;, winnersResults)</code></pre>
+<!-- TradSys.Rnw -->
+<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
+                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
+                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
+                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
+                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
+library(ggplot2)
+library(grid)
+library(DMwR2)
+library(xts)
+library(quantmod)
+library(performanceEstimation)
+data(GSPC)
+load(&quot;GSPCdata.Rdata&quot;)
+source(&quot;codigoExps.R&quot;)
+load(&quot;analysis.Rdata&quot;)
+library(e1071)
+library(nnet)
+library(earth)</code></pre>
+</div>
+<div id="the-trading-system" class="section level3">
+<h3>The Trading System</h3>
+<pre class="r"><code>set.seed(1234)
+data &lt;- tail(Tdata.train, 2540) # the last 10 years of the training dataset
+results &lt;- list()
+wfsOut &lt;- list()
+for (name in winners) {
+    sys &lt;- getWorkflow(name, analysisSet)
+    wfsOut[[name]] &lt;- runWorkflow(sys, Tform, data, Tdata.eval)
+    results[[name]] &lt;- do.call(&quot;tradingEval&quot;,wfsOut[[name]])
+}
+results &lt;- t(as.data.frame(results))</code></pre>
+<pre class="r"><code>results[, c(&quot;NTrades&quot;,&quot;Ret&quot;,&quot;RetOverBH&quot;,&quot;PercProf&quot;,&quot;MaxDD&quot;)]</code></pre>
+<pre class="r"><code>getWorkflow(&quot;nnetRegr.v203&quot;, analysisSet)</code></pre>
+<pre class="r"><code>date &lt;- rownames(Tdata.eval)[1]
+market &lt;- GSPC[paste(date, &quot;/&quot;, sep = &quot;&quot;)][1:nrow(Tdata.eval), ]
+plot(wfsOut[[&quot;nnetRegr.v203&quot;]]$tradeRec, market, 
+     theme = &quot;white&quot;, name = &quot;SP500 - final test&quot;)</code></pre>
+<pre class="r"><code>library(PerformanceAnalytics)
+equityWF &lt;- as.xts(wfsOut[[&quot;nnetRegr.v203&quot;]]$tradeRec@trading$Equity)
+rets &lt;- Return.calculate(equityWF)</code></pre>
+<pre class="r"><code>chart.CumReturns(rets, main=&quot;Cumulative returns of the workflow&quot;, ylab = &quot;returns&quot;)</code></pre>
+<pre class="r"><code>chart.CumReturns(rets, main=&quot;Cumulative returns of the strategy&quot;, ylab=&quot;returns&quot;)</code></pre>
+<pre class="r"><code>yearlyReturn(equityWF)</code></pre>
+<pre class="r"><code>plot(100*yearlyReturn(equityWF), 
+     main=&#39;Yearly percentage returns of the trading system&#39;)</code></pre>
+<pre class="r"><code>plot(100*yearlyReturn(equityWF), main=&#39;Yearly percentage returns of the trading system&#39;)</code></pre>
+<pre class="r"><code>table.DownsideRisk(rets)</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
