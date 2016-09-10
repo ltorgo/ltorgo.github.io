@@ -24,24 +24,50 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/textmate.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
 
 
 <style type="text/css">
@@ -392,369 +418,369 @@ div.tocify {
 <!-- loadData.Rnw -->
 <div id="loading-the-data-into-r" class="section level3">
 <h3>Loading the Data into R</h3>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-algae</code></pre>
-<pre class="r"><code>algae &lt;- read.table(&#39;Analysis.txt&#39;,
-           header=FALSE,
-           dec=&#39;.&#39;,
-           col.names=c(&#39;season&#39;,&#39;size&#39;,&#39;speed&#39;,&#39;mxPH&#39;,&#39;mnO2&#39;,&#39;Cl&#39;,
-           &#39;NO3&#39;,&#39;NH4&#39;,&#39;oPO4&#39;,&#39;PO4&#39;,&#39;Chla&#39;,&#39;a1&#39;,&#39;a2&#39;,&#39;a3&#39;,&#39;a4&#39;,
-           &#39;a5&#39;,&#39;a6&#39;,&#39;a7&#39;),
-           na.strings=c(&#39;XXXXXXX&#39;))</code></pre>
-<pre class="r"><code>tibble::as_tibble(algae)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;Analysis.txt&#39;</span>,
+           <span class="dt">header=</span><span class="ot">FALSE</span>,
+           <span class="dt">dec=</span><span class="st">&#39;.&#39;</span>,
+           <span class="dt">col.names=</span><span class="kw">c</span>(<span class="st">&#39;season&#39;</span>,<span class="st">&#39;size&#39;</span>,<span class="st">&#39;speed&#39;</span>,<span class="st">&#39;mxPH&#39;</span>,<span class="st">&#39;mnO2&#39;</span>,<span class="st">&#39;Cl&#39;</span>,
+           <span class="st">&#39;NO3&#39;</span>,<span class="st">&#39;NH4&#39;</span>,<span class="st">&#39;oPO4&#39;</span>,<span class="st">&#39;PO4&#39;</span>,<span class="st">&#39;Chla&#39;</span>,<span class="st">&#39;a1&#39;</span>,<span class="st">&#39;a2&#39;</span>,<span class="st">&#39;a3&#39;</span>,<span class="st">&#39;a4&#39;</span>,
+           <span class="st">&#39;a5&#39;</span>,<span class="st">&#39;a6&#39;</span>,<span class="st">&#39;a7&#39;</span>),
+           <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&#39;XXXXXXX&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble::<span class="kw">as_tibble</span>(algae)</code></pre></div>
 <!-- vizSum.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(dplyr)
-data(algae)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">data</span>(algae)</code></pre></div>
 </div>
 <div id="data-visualization-and-summarization" class="section level3">
 <h3>Data Visualization and Summarization</h3>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-summary(algae)</code></pre>
-<pre class="r"><code>library(ggplot2)
-ggplot(algae,aes(x=mxPH)) + geom_histogram(aes(y=..density..))</code></pre>
-<pre class="r"><code>library(ggplot2)
-ggplot(algae,aes(x=mxPH)) + geom_histogram(aes(y=..density..))</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=mxPH)) + 
-    geom_histogram(aes(y=..density..)) + 
-    geom_density(color=&quot;red&quot;) + geom_rug() + 
-    ggtitle(&quot;The Histogram of mxPH (maximum pH)&quot;) + 
-    xlab(&quot;&quot;) + ylab(&quot;&quot;)
-library(car)
-qqPlot(algae$mxPH,main=&#39;Normal QQ plot of maximum pH&#39;,ylab=&quot;&quot;)</code></pre>
-<pre class="r"><code>library(car)
-gh &lt;- ggplot(algae,aes(x=mxPH)) + geom_histogram(aes(y=..density..)) + geom_density(color=&quot;red&quot;) + geom_rug() + ggtitle(&quot;The Histogram of mxPH (maximum pH)&quot;) + xlab(&quot;&quot;) + ylab(&quot;&quot;)
-par(mfrow=c(1,2))
-vpL &lt;- viewport(height=unit(1, &quot;npc&quot;), width=unit(0.5, &quot;npc&quot;), 
-                           just=&quot;left&quot;, 
-                           y=0.5, x=0)
-qqPlot(algae$mxPH,main=&#39;Normal QQ plot of maximum pH&#39;)
-print(gh,vp=vpL)
-qqPlot(algae$mxPH,main=&#39;Normal QQ plot of maximum pH&#39;,ylab=&quot;&quot;)</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=factor(0),y=oPO4)) + 
-    geom_boxplot() + geom_rug() + 
-    geom_hline(aes(yintercept=mean(algae$oPO4, na.rm = TRUE)),
-               linetype=2,colour=&quot;red&quot;) +
-    ylab(&quot;Orthophosphate (oPO4)&quot;) + xlab(&quot;&quot;) + scale_x_discrete(breaks=NULL)</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=factor(0),y=oPO4)) + 
-    geom_boxplot() + geom_rug() + 
-    geom_hline(aes(yintercept=mean(algae$oPO4, na.rm = TRUE)),linetype=2,colour=&quot;red&quot;) +
-    ylab(&quot;Orthophosphate (oPO4)&quot;) + xlab(&quot;&quot;) + scale_x_discrete(breaks=NULL)</code></pre>
-<pre class="r"><code>plot(algae$NH4, xlab = &quot;&quot;)
-abline(h = mean(algae$NH4, na.rm = T), lty = 1)
-abline(h = mean(algae$NH4, na.rm = T) + sd(algae$NH4, na.rm = T), lty = 2)
-abline(h = median(algae$NH4, na.rm = T), lty = 3)
-identify(algae$NH4)</code></pre>
-<pre class="r"><code>plot(algae$NH4, xlab = &quot;&quot;)
-clickedRows &lt;- identify(algae$NH4)
-algae[clickedRows, ]</code></pre>
-<pre class="r"><code>library(dplyr)
-filter(algae, NH4 &gt; 19000)</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + geom_boxplot() +
-    xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
-<pre class="r"><code>library(forcats)
-algae &lt;- mutate(algae,
-                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
-                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
-                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + geom_boxplot() +
-    xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + 
-    geom_violin() + geom_jitter() + xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
-<pre class="r"><code>ggplot(algae,aes(x=size,y=a1)) + geom_violin() + geom_jitter() + xlab(&quot;River Size&quot;) + ylab(&quot;Algal A1&quot;)</code></pre>
-<pre class="r"><code>data2graph &lt;- filter(algae,!is.na(mnO2)) %&gt;%
-    mutate(minO2=cut(mnO2, quantile(mnO2,c(0,0.25,.5,.75,1)), include.lowest=TRUE))
-ggplot(data2graph,aes(x=a3,y=season, color=season)) + geom_point() + 
-    facet_wrap(~ minO2) + 
-    guides(color=FALSE)</code></pre>
-<pre class="r"><code>data2graph &lt;- filter(algae,!is.na(mnO2)) %&gt;%
-    mutate(minO2=cut(mnO2, 
-                     quantile(mnO2,c(0,0.25,0.5,0.75,1)), 
-                     include.lowest=TRUE))
-#data2graph &lt;- algae[!is.na(algae$mnO2),]
-#data2graph &lt;- cbind(data2graph,
-#                    minO2=cut(data2graph$mnO2,
-#                              quantile(data2graph$mnO2,c(0,0.25,.5,.75,1)),
-#                              include.lowest=TRUE))
-ggplot(data2graph,aes(x=a3,y=season,col=season)) + geom_point() + facet_wrap(~ minO2) + guides(color=FALSE)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+<span class="kw">summary</span>(algae)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
+<span class="kw">library</span>(car)
+<span class="kw">qqPlot</span>(algae$mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
+gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+vpL &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;npc&quot;</span>), <span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;npc&quot;</span>), 
+                           <span class="dt">just=</span><span class="st">&quot;left&quot;</span>, 
+                           <span class="dt">y=</span><span class="fl">0.5</span>, <span class="dt">x=</span><span class="dv">0</span>)
+<span class="kw">qqPlot</span>(algae$mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>)
+<span class="kw">print</span>(gh,<span class="dt">vp=</span>vpL)
+<span class="kw">qqPlot</span>(algae$mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae$oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),
+               <span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) +
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae$oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),<span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) +
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae$NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae$NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">1</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae$NH4, <span class="dt">na.rm =</span> T) +<span class="st"> </span><span class="kw">sd</span>(algae$NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">median</span>(algae$NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">3</span>)
+<span class="kw">identify</span>(algae$NH4)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae$NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
+clickedRows &lt;-<span class="st"> </span><span class="kw">identify</span>(algae$NH4)
+algae[clickedRows, ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">filter</span>(algae, NH4 &gt;<span class="st"> </span><span class="dv">19000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats)
+algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
+                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
+                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
+                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_violin</span>() +<span class="st"> </span><span class="kw">geom_jitter</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span><span class="kw">geom_violin</span>() +<span class="st"> </span><span class="kw">geom_jitter</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,!<span class="kw">is.na</span>(mnO2)) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,<span class="dv">1</span>)), <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))
+<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season, <span class="dt">color=</span>season)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>minO2) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,!<span class="kw">is.na</span>(mnO2)) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, 
+                     <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="dv">1</span>)), 
+                     <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))
+<span class="co">#data2graph &lt;- algae[!is.na(algae$mnO2),]</span>
+<span class="co">#data2graph &lt;- cbind(data2graph,</span>
+<span class="co">#                    minO2=cut(data2graph$mnO2,</span>
+<span class="co">#                              quantile(data2graph$mnO2,c(0,0.25,.5,.75,1)),</span>
+<span class="co">#                              include.lowest=TRUE))</span>
+<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season,<span class="dt">col=</span>season)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>minO2) +<span class="st"> </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
 <!-- Unknown.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(dplyr) 
-library(forcats)
-data(algae)
-algae &lt;- mutate(algae,
-                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
-                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
-                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr) 
+<span class="kw">library</span>(forcats)
+<span class="kw">data</span>(algae)
+algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
+                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
+                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
+                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</code></pre></div>
 </div>
 <div id="unknown-values" class="section level3">
 <h3>Unknown Values</h3>
-<pre class="r"><code>library(DMwR2)
-library(dplyr)  
-data(algae)  </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)  
+<span class="kw">data</span>(algae)  </code></pre></div>
 <div id="removing-the-observations-with-unknown-values" class="section level4">
 <h4>Removing the Observations with Unknown Values</h4>
-<pre class="r"><code>filter(algae, !complete.cases(algae) )</code></pre>
-<pre class="r"><code>algae &lt;- na.omit(algae)</code></pre>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;) # only necessary if you executed the above na.omit()
-algae &lt;- algae[-c(62, 199), ]</code></pre>
-<pre class="r"><code>apply(algae, 1, function(x) sum(is.na(x)))</code></pre>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-manyNAs(algae, 0.2)</code></pre>
-<pre class="r"><code>algae &lt;- algae[-manyNAs(algae), ]</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(algae, !<span class="kw">complete.cases</span>(algae) )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">na.omit</span>(algae)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) <span class="co"># only necessary if you executed the above na.omit()</span>
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">c</span>(<span class="dv">62</span>, <span class="dv">199</span>), ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(algae, <span class="dv">1</span>, function(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+<span class="kw">manyNAs</span>(algae, <span class="fl">0.2</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]</code></pre></div>
 </div>
 <div id="filling-in-the-unknowns-with-the-most-frequent-values" class="section level4">
 <h4>Filling in the Unknowns with the Most Frequent Values</h4>
-<pre class="r"><code>algae[48, &quot;mxPH&quot;] &lt;- mean(algae$mxPH, na.rm = TRUE)</code></pre>
-<pre class="r"><code>algae[is.na(algae$Chla), &quot;Chla&quot;] &lt;- median(algae$Chla, na.rm = TRUE)</code></pre>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-algae &lt;- algae[-manyNAs(algae), ]
-algae &lt;- centralImputation(algae)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">48</span>, <span class="st">&quot;mxPH&quot;</span>] &lt;-<span class="st"> </span><span class="kw">mean</span>(algae$mxPH, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="kw">is.na</span>(algae$Chla), <span class="st">&quot;Chla&quot;</span>] &lt;-<span class="st"> </span><span class="kw">median</span>(algae$Chla, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+algae &lt;-<span class="st"> </span><span class="kw">centralImputation</span>(algae)</code></pre></div>
 </div>
 <div id="filling-in-the-unknown-values-by-exploring-correlations" class="section level4">
 <h4>Filling in the Unknown Values by Exploring Correlations</h4>
-<pre class="r"><code>cor(algae[, 4:18], use = &quot;complete.obs&quot;)</code></pre>
-<pre class="r"><code>symnum(cor(algae[,4:18],use=&quot;complete.obs&quot;))</code></pre>
-<pre class="r"><code>library(corrplot)
-cm &lt;- cor(algae[,4:18], use=&quot;complete.obs&quot;)
-corrplot(cm, type=&quot;upper&quot;, tl.pos=&quot;d&quot;)
-corrplot(cm, add=TRUE, type=&quot;lower&quot;, method=&quot;number&quot;, 
-         diag=FALSE, tl.pos=&quot;n&quot;, cl.pos=&quot;n&quot;)</code></pre>
-<pre class="r"><code>library(corrplot)
-cm &lt;- cor(algae[,4:18],use=&quot;complete.obs&quot;)
-corrplot(cm,type=&quot;upper&quot;,tl.pos=&quot;d&quot;,tl.cex=0.75)
-corrplot(cm,add=TRUE, type=&quot;lower&quot;, method=&quot;number&quot;,tl.cex=0.75, diag=FALSE,tl.pos=&quot;n&quot;, cl.pos=&quot;n&quot;)</code></pre>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-algae &lt;- algae[-manyNAs(algae), ]
-lm(PO4 ~ oPO4, data = algae)</code></pre>
-<pre class="r"><code>algae[28, &quot;PO4&quot;] &lt;- 42.897 + 1.293 * algae[28, &quot;oPO4&quot;]</code></pre>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-algae &lt;- algae[-manyNAs(algae), ]
-fillPO4 &lt;- function(oP) ifelse(is.na(oP),NA,42.897 + 1.293 * oP)
-algae[is.na(algae$PO4), &quot;PO4&quot;] &lt;- sapply(algae[is.na(algae$PO4), &quot;oPO4&quot;], fillPO4)</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(forcats)
-algae &lt;- mutate(algae,
-                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
-                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
-                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))
-ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + facet_wrap(~ season)</code></pre>
-<pre class="r"><code>library(ggplot2) 
-algae &lt;- mutate(algae,
-                size=fct_relevel(size,c(&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;)),
-                speed=fct_relevel(speed,c(&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;)),
-                season=fct_relevel(season,c(&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;,&quot;winter&quot;)))
-ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + facet_wrap(~ season)</code></pre>
-<pre class="r"><code>ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + 
-    facet_wrap(size ~ speed)</code></pre>
-<pre class="r"><code>ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + 
-    facet_wrap(~speed) + geom_jitter(height = 0.4)</code></pre>
-<pre class="r"><code>ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + facet_wrap(~speed) + geom_jitter(height = 0.4)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(algae[, <span class="dv">4</span>:<span class="dv">18</span>], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">symnum</span>(<span class="kw">cor</span>(algae[,<span class="dv">4</span>:<span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(corrplot)
+cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span>:<span class="dv">18</span>], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
+<span class="kw">corrplot</span>(cm, <span class="dt">type=</span><span class="st">&quot;upper&quot;</span>, <span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>)
+<span class="kw">corrplot</span>(cm, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>, 
+         <span class="dt">diag=</span><span class="ot">FALSE</span>, <span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(corrplot)
+cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span>:<span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
+<span class="kw">corrplot</span>(cm,<span class="dt">type=</span><span class="st">&quot;upper&quot;</span>,<span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>)
+<span class="kw">corrplot</span>(cm,<span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>, <span class="dt">diag=</span><span class="ot">FALSE</span>,<span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+<span class="kw">lm</span>(PO4 ~<span class="st"> </span>oPO4, <span class="dt">data =</span> algae)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">28</span>, <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="fl">42.897</span> +<span class="st"> </span><span class="fl">1.293</span> *<span class="st"> </span>algae[<span class="dv">28</span>, <span class="st">&quot;oPO4&quot;</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+fillPO4 &lt;-<span class="st"> </span>function(oP) <span class="kw">ifelse</span>(<span class="kw">is.na</span>(oP),<span class="ot">NA</span>,<span class="fl">42.897</span> +<span class="st"> </span><span class="fl">1.293</span> *<span class="st"> </span>oP)
+algae[<span class="kw">is.na</span>(algae$PO4), <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="kw">sapply</span>(algae[<span class="kw">is.na</span>(algae$PO4), <span class="st">&quot;oPO4&quot;</span>], fillPO4)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(forcats)
+algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
+                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
+                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
+                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))
+<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>season)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2) 
+algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
+                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
+                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
+                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))
+<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>season)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(size ~<span class="st"> </span>speed)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(~speed) +<span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~speed) +<span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
 </div>
 <div id="filling-in-the-unknown-values-by-exploring-similarities-between-cases" class="section level4">
 <h4>Filling in the Unknown Values by Exploring Similarities between Cases</h4>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-algae &lt;- algae[-manyNAs(algae), ]</code></pre>
-<pre class="r"><code>algae &lt;- knnImputation(algae, k = 10)</code></pre>
-<pre class="r"><code>algae &lt;- knnImputation(algae, k = 10, meth = &quot;median&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">meth =</span> <span class="st">&quot;median&quot;</span>)</code></pre></div>
 <!-- LinRegr.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(DMwR2)
-library(dplyr)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)</code></pre></div>
 </div>
 <div id="multiple-linear-regression" class="section level4">
 <h4>Multiple Linear Regression</h4>
-<pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
-algae &lt;-  algae[-manyNAs(algae), ]
-clean.algae &lt;- knnImputation(algae, k = 10)</code></pre>
-<pre class="r"><code>lm.a1 &lt;- lm(a1 ~ ., data = clean.algae[, 1:12])</code></pre>
-<pre class="r"><code>summary(lm.a1)</code></pre>
-<pre class="r"><code>anova(lm.a1)</code></pre>
-<pre class="r"><code>lm2.a1 &lt;- update(lm.a1, . ~ . - season)</code></pre>
-<pre class="r"><code>summary(lm2.a1)</code></pre>
-<pre class="r"><code>anova(lm.a1,lm2.a1)</code></pre>
-<pre class="r"><code>final.lm &lt;- step(lm.a1)</code></pre>
-<pre class="r"><code>summary(final.lm)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae &lt;-<span class="st">  </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lm.a1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm.a1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm2.a1 &lt;-<span class="st"> </span><span class="kw">update</span>(lm.a1, . ~<span class="st"> </span>. -<span class="st"> </span>season)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lm2.a1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm.a1,lm2.a1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(final.lm)</code></pre></div>
 <!-- RTs.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(DMwR2)
-library(dplyr)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)</code></pre></div>
 </div>
 <div id="regression-trees" class="section level4">
 <h4>Regression Trees</h4>
-<pre class="r"><code>library(rpart)
-data(algae, package=&quot;DMwR2&quot;) 
-algae &lt;- algae[-manyNAs(algae), ]
-rt.a1 &lt;- rpart(a1 ~ ., data = algae[, 1:12])</code></pre>
-<pre class="r"><code>rt.a1</code></pre>
-<pre class="r"><code>library(rpart.plot)
-prp(rt.a1,extra=101,box.col=&quot;orange&quot;,split.box.col=&quot;grey&quot;)</code></pre>
-<pre class="r"><code>library(rpart.plot)
-prp(rt.a1,extra=101,box.col=&quot;orange&quot;,split.box.col=&quot;grey&quot;)</code></pre>
-<pre class="r"><code>printcp(rt.a1)</code></pre>
-<pre class="r"><code>rt2.a1 &lt;- prune(rt.a1, cp = 0.08)
-rt2.a1</code></pre>
-<pre class="r"><code>(rt.a1 &lt;- rpartXse(a1 ~ ., data = algae[, 1:12]))</code></pre>
-<pre class="r"><code>first.tree &lt;- rpart(a1 ~ ., data = algae[, 1:12])
-snip.rpart(first.tree, c(4, 7))</code></pre>
-<pre class="r"><code>plot(first.tree)
-text(first.tree)
-snip.rpart(first.tree)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart)
+<span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) 
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rt.a1</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
+<span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
+<span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">printcp</span>(rt.a1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rt2.a1 &lt;-<span class="st"> </span><span class="kw">prune</span>(rt.a1, <span class="dt">cp =</span> <span class="fl">0.08</span>)
+rt2.a1</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(rt.a1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>]))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first.tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>])
+<span class="kw">snip.rpart</span>(first.tree, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(first.tree)
+<span class="kw">text</span>(first.tree)
+<span class="kw">snip.rpart</span>(first.tree)</code></pre></div>
 <!-- EvalAndSel.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(rpart)
-data(algae)
-algae &lt;- algae[-manyNAs(algae), ]
-clean.algae &lt;- knnImputation(algae, k = 10)
-lm.a1 &lt;- lm(a1 ~ ., data = clean.algae[, 1:12])
-final.lm &lt;- step(lm.a1)
-rt.a1 &lt;- rpart(a1 ~ ., data = algae[, 1:12])</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(rpart)
+<span class="kw">data</span>(algae)
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)
+lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span>:<span class="dv">12</span>])
+final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)
+rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
 </div>
 </div>
 <div id="model-evaluation-and-selection" class="section level3">
 <h3>Model Evaluation and Selection</h3>
-<pre class="r"><code>lm.predictions.a1 &lt;- predict(final.lm, clean.algae)
-rt.predictions.a1 &lt;- predict(rt.a1, algae)</code></pre>
-<pre class="r"><code>(mae.a1.lm &lt;- mean(abs(lm.predictions.a1 - algae[[&quot;a1&quot;]])))
-(mae.a1.rt &lt;- mean(abs(rt.predictions.a1 - algae[[&quot;a1&quot;]])))</code></pre>
-<pre class="r"><code>(mse.a1.lm &lt;- mean((lm.predictions.a1 - algae[[&quot;a1&quot;]])^2))
-(mse.a1.rt &lt;- mean((rt.predictions.a1 - algae[[&quot;a1&quot;]])^2))</code></pre>
-<pre class="r"><code>(nmse.a1.lm &lt;- mean((lm.predictions.a1-algae[[&#39;a1&#39;]])^2)/
-               mean((mean(algae[[&#39;a1&#39;]])-algae[[&#39;a1&#39;]])^2))
-(nmse.a1.rt &lt;- mean((rt.predictions.a1-algae[[&#39;a1&#39;]])^2)/
-               mean((mean(algae[[&#39;a1&#39;]])-algae[[&#39;a1&#39;]])^2))</code></pre>
-<pre class="r"><code>library(ggplot2)
-dg &lt;- data.frame(lm.a1=lm.predictions.a1,
-                 rt.a1=rt.predictions.a1,
-                 true.a1=algae[[&quot;a1&quot;]])
-ggplot(dg,aes(x=lm.a1,y=true.a1)) +
-    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
-    ggtitle(&quot;Linear Model&quot;)
-ggplot(dg,aes(x=rt.a1,y=true.a1)) +
-    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
-    ggtitle(&quot;Regression Tree&quot;)</code></pre>
-<pre class="r"><code>library(grid)
-dg &lt;- data.frame(lm.a1=lm.predictions.a1,rt.a1=rt.predictions.a1,true.a1=algae[[&quot;a1&quot;]])
-g1 &lt;- ggplot(dg,aes(x=lm.a1,y=true.a1)) +
-    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
-    ggtitle(&quot;Linear Model&quot;)
-g2 &lt;- ggplot(dg,aes(x=rt.a1,y=true.a1)) +
-    geom_point() + geom_abline(slope=1,intercept=0,color=&quot;red&quot;) +
-    ggtitle(&quot;Regression Tree&quot;)
-grid.newpage()
-pushViewport(viewport(layout=grid.layout(1,2)))
-print(g1,vp=viewport(layout.pos.row=1,layout.pos.col=1))
-print(g2,vp=viewport(layout.pos.row=1,layout.pos.col=2))</code></pre>
-<pre class="r"><code>plot(lm.predictions.a1,algae[[&#39;a1&#39;]],main=&quot;Linear Model&quot;,
-     xlab=&quot;Predictions&quot;,ylab=&quot;True Values&quot;)
-abline(0,1,col=&quot;red&quot;)
-algae[identify(lm.predictions.a1,algae[[&#39;a1&#39;]]),]</code></pre>
-<pre class="r"><code>sensible.lm.predictions.a1 &lt;- ifelse(lm.predictions.a1 &lt; 0, 0, lm.predictions.a1)
-(mae.a1.lm &lt;- mean(abs(lm.predictions.a1 - algae[[&quot;a1&quot;]])))
-(smae.a1.lm &lt;- mean(abs(sensible.lm.predictions.a1 - algae[[&quot;a1&quot;]])))</code></pre>
-<pre class="r"><code>library(performanceEstimation)
-res &lt;- performanceEstimation(
-    PredTask(a1 ~ ., algae[, 1:12], &quot;a1&quot;),
-    c(Workflow(learner=&quot;lm&quot;,pre=&quot;knnImp&quot;,post=&quot;onlyPos&quot;),
-      workflowVariants(learner=&quot;rpartXse&quot;,learner.pars=list(se=c(0,0.5,1)))),
-    EstimationTask(metrics=&quot;nmse&quot;,method=CV(nReps=5,nFolds=10))
-)</code></pre>
-<pre class="r"><code>summary(res) </code></pre>
-<pre class="r"><code>plot(res)</code></pre>
-<pre class="r"><code>plot( res ) </code></pre>
-<pre class="r"><code>getWorkflow(&quot;rpartXse.v1&quot;, res)</code></pre>
-<pre class="r"><code>DSs &lt;- sapply(names(algae)[12:18],
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(final.lm, clean.algae)
+rt.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(rt.a1, algae)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
+(mae.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(rt.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])^<span class="dv">2</span>))
+(mse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])^<span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(nmse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>)/
+<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>))
+(nmse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>)/
+<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lm.a1=</span>lm.predictions.a1,
+                 <span class="dt">rt.a1=</span>rt.predictions.a1,
+                 <span class="dt">true.a1=</span>algae[[<span class="st">&quot;a1&quot;</span>]])
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Linear Model&quot;</span>)
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(grid)
+dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lm.a1=</span>lm.predictions.a1,<span class="dt">rt.a1=</span>rt.predictions.a1,<span class="dt">true.a1=</span>algae[[<span class="st">&quot;a1&quot;</span>]])
+g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Linear Model&quot;</span>)
+g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)
+<span class="kw">grid.newpage</span>()
+<span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">layout=</span><span class="kw">grid.layout</span>(<span class="dv">1</span>,<span class="dv">2</span>)))
+<span class="kw">print</span>(g1,<span class="dt">vp=</span><span class="kw">viewport</span>(<span class="dt">layout.pos.row=</span><span class="dv">1</span>,<span class="dt">layout.pos.col=</span><span class="dv">1</span>))
+<span class="kw">print</span>(g2,<span class="dt">vp=</span><span class="kw">viewport</span>(<span class="dt">layout.pos.row=</span><span class="dv">1</span>,<span class="dt">layout.pos.col=</span><span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]],<span class="dt">main=</span><span class="st">&quot;Linear Model&quot;</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;Predictions&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;True Values&quot;</span>)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+algae[<span class="kw">identify</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]]),]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensible.lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(lm.predictions.a1 &lt;<span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, lm.predictions.a1)
+(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
+(smae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(sensible.lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
+res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(a1 ~<span class="st"> </span>., algae[, <span class="dv">1</span>:<span class="dv">12</span>], <span class="st">&quot;a1&quot;</span>),
+    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>,<span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
+      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>))
+)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(res) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>( res ) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;rpartXse.v1&quot;</span>, res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DSs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(algae)[<span class="dv">12</span>:<span class="dv">18</span>],
           function(x,names.attrs) { 
-            f &lt;- as.formula(paste(x, &quot;~ .&quot;))
-            PredTask(f, algae[,c(names.attrs,x)], x, copy=TRUE) 
+            f &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(x, <span class="st">&quot;~ .&quot;</span>))
+            <span class="kw">PredTask</span>(f, algae[,<span class="kw">c</span>(names.attrs,x)], x, <span class="dt">copy=</span><span class="ot">TRUE</span>) 
           },
-          names(algae)[1:11])
-res.all &lt;- performanceEstimation(
+          <span class="kw">names</span>(algae)[<span class="dv">1</span>:<span class="dv">11</span>])
+res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
     DSs,
-    c(Workflow(learner=&quot;lm&quot;, pre=&quot;knnImp&quot;, post=&quot;onlyPos&quot;),
-      workflowVariants(learner=&quot;rpartXse&quot;, learner.pars=list(se=c(0,0.5,1)))),
-    EstimationTask(metrics=&quot;nmse&quot; ,method=CV(nReps=5, nFolds=10)))</code></pre>
-<pre class="r"><code>plot(res.all)</code></pre>
-<pre class="r"><code>plot(res.all)</code></pre>
-<pre class="r"><code>topPerformers(res.all)</code></pre>
-<pre class="r"><code>library(randomForest)
-res.all &lt;- performanceEstimation(
+    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>, <span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
+      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>, <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span> ,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>, <span class="dt">nFolds=</span><span class="dv">10</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res.all)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res.all)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topPerformers</span>(res.all)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
+res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
     DSs,
-    c(Workflow(learner=&quot;lm&quot;, pre=&quot;knnImp&quot;,post=&quot;onlyPos&quot;),
-      workflowVariants(learner=&quot;rpartXse&quot;,
-                       learner.pars=list(se=c(0,0.5,1))),
-      workflowVariants(learner=&quot;randomForest&quot;, pre=&quot;knnImp&quot;,
-                       learner.pars=list(ntree=c(200,500,700)))),
-    EstimationTask(metrics=&quot;nmse&quot;,method=CV(nReps=5,nFolds=10)))</code></pre>
-<pre class="r"><code>rankWorkflows(res.all, top=3)</code></pre>
-<pre class="r"><code>p &lt;- pairedComparisons(res.all,baseline=&quot;randomForest.v3&quot;)
+    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
+      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,
+                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>))),
+      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;randomForest&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,
+                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">ntree=</span><span class="kw">c</span>(<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">700</span>)))),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(res.all, <span class="dt">top=</span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(res.all,<span class="dt">baseline=</span><span class="st">&quot;randomForest.v3&quot;</span>)
 p$nmse$F.test
-p$nmse$BonferroniDunn.test</code></pre>
-<pre class="r"><code>CDdiagram.BD(p)</code></pre>
+p$nmse$BonferroniDunn.test</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CDdiagram.BD</span>(p)</code></pre></div>
 <!-- Preds.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(performanceEstimation)
-library(randomForest)
-data(algae, package=&quot;DMwR2&quot;)
-algae &lt;- algae[-manyNAs(algae), ]
-load(&quot;algResAll.Rdata&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">library</span>(randomForest)
+<span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+<span class="kw">load</span>(<span class="st">&quot;algResAll.Rdata&quot;</span>)</code></pre></div>
 </div>
 <div id="predictions-for-the-seven-algae" class="section level3">
 <h3>Predictions for the Seven Algae</h3>
-<pre class="r"><code>wfs &lt;- sapply(taskNames(res.all),
-              function(t) topPerformer(res.all,metric=&quot;nmse&quot;,task=t))
-wfs[[&quot;a1&quot;]]
-wfs[[&quot;a7&quot;]]</code></pre>
-<pre class="r"><code>full.test.algae &lt;- cbind(test.algae, algae.sols)
-pts &lt;- array(dim = c(140,7,2),
-             dimnames = list(1:140, paste0(&quot;a&quot;,1:7), c(&quot;trues&quot;,&quot;preds&quot;)))
-for(i in 1:7) {
-    res &lt;- runWorkflow(wfs[[i]],
-                       as.formula(paste(names(wfs)[i],&quot;~.&quot;)),
-                       algae[,c(1:11,11+i)],
-                       full.test.algae[,c(1:11,11+i)])
-    pts[,i,&quot;trues&quot;] &lt;- res$trues
-    pts[,i,&quot;preds&quot;] &lt;- res$preds
-}</code></pre>
-<pre class="r"><code>pts[1:3,c(&quot;a1&quot;,&quot;a3&quot;),]</code></pre>
-<pre class="r"><code>avg.preds &lt;- apply(algae[,12:18], 2, mean)
-apply((pts[,,&quot;trues&quot;] - pts[,,&quot;preds&quot;])^2, 2 ,sum) /
-    apply( (scale(pts[,,&quot;trues&quot;], avg.preds, FALSE))^2, 2, sum)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wfs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">taskNames</span>(res.all),
+              function(t) <span class="kw">topPerformer</span>(res.all,<span class="dt">metric=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">task=</span>t))
+wfs[[<span class="st">&quot;a1&quot;</span>]]
+wfs[[<span class="st">&quot;a7&quot;</span>]]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.test.algae &lt;-<span class="st"> </span><span class="kw">cbind</span>(test.algae, algae.sols)
+pts &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">140</span>,<span class="dv">7</span>,<span class="dv">2</span>),
+             <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="dv">1</span>:<span class="dv">140</span>, <span class="kw">paste0</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">1</span>:<span class="dv">7</span>), <span class="kw">c</span>(<span class="st">&quot;trues&quot;</span>,<span class="st">&quot;preds&quot;</span>)))
+for(i in <span class="dv">1</span>:<span class="dv">7</span>) {
+    res &lt;-<span class="st"> </span><span class="kw">runWorkflow</span>(wfs[[i]],
+                       <span class="kw">as.formula</span>(<span class="kw">paste</span>(<span class="kw">names</span>(wfs)[i],<span class="st">&quot;~.&quot;</span>)),
+                       algae[,<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">11</span>,<span class="dv">11</span>+i)],
+                       full.test.algae[,<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">11</span>,<span class="dv">11</span>+i)])
+    pts[,i,<span class="st">&quot;trues&quot;</span>] &lt;-<span class="st"> </span>res$trues
+    pts[,i,<span class="st">&quot;preds&quot;</span>] &lt;-<span class="st"> </span>res$preds
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pts[<span class="dv">1</span>:<span class="dv">3</span>,<span class="kw">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a3&quot;</span>),]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg.preds &lt;-<span class="st"> </span><span class="kw">apply</span>(algae[,<span class="dv">12</span>:<span class="dv">18</span>], <span class="dv">2</span>, mean)
+<span class="kw">apply</span>((pts[,,<span class="st">&quot;trues&quot;</span>] -<span class="st"> </span>pts[,,<span class="st">&quot;preds&quot;</span>])^<span class="dv">2</span>, <span class="dv">2</span> ,sum) /
+<span class="st">    </span><span class="kw">apply</span>( (<span class="kw">scale</span>(pts[,,<span class="st">&quot;trues&quot;</span>], avg.preds, <span class="ot">FALSE</span>))^<span class="dv">2</span>, <span class="dv">2</span>, sum)</code></pre></div>
 </div>
 
 

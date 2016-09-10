@@ -24,24 +24,50 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/textmate.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
 
 
 <style type="text/css">
@@ -392,207 +418,207 @@ div.tocify {
 <!-- availData.Rnw -->
 <div id="the-available-data" class="section level3">
 <h3>The Available Data</h3>
-<pre class="r"><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite()
-biocLite(&quot;ALL&quot;)</code></pre>
-<pre class="r"><code>library(Biobase)
-library(ALL)
-data(ALL)</code></pre>
-<pre class="r"><code>ALL</code></pre>
-<pre class="r"><code>pD &lt;- phenoData(ALL)
-varMetadata(pD)
-table(ALL$BT)
-table(ALL$mol.biol)
-table(ALL$BT, ALL$mol.bio)</code></pre>
-<pre class="r"><code>featureNames(ALL)[1:10]
-sampleNames(ALL)[1:5]</code></pre>
-<pre class="r"><code>tgt.cases &lt;- which(ALL$BT %in% levels(ALL$BT)[1:5] &amp; 
-                   ALL$mol.bio %in% levels(ALL$mol.bio)[1:4])
-ALLb &lt;- ALL[,tgt.cases]
-ALLb</code></pre>
-<pre class="r"><code>ALLb$BT &lt;- factor(ALLb$BT)
-ALLb$mol.bio &lt;- factor(ALLb$mol.bio)</code></pre>
-<pre class="r"><code>save(ALLb, file = &quot;myALL.Rdata&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)
+<span class="kw">biocLite</span>()
+<span class="kw">biocLite</span>(<span class="st">&quot;ALL&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(ALL)
+<span class="kw">data</span>(ALL)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALL</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pD &lt;-<span class="st"> </span><span class="kw">phenoData</span>(ALL)
+<span class="kw">varMetadata</span>(pD)
+<span class="kw">table</span>(ALL$BT)
+<span class="kw">table</span>(ALL$mol.biol)
+<span class="kw">table</span>(ALL$BT, ALL$mol.bio)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">featureNames</span>(ALL)[<span class="dv">1</span>:<span class="dv">10</span>]
+<span class="kw">sampleNames</span>(ALL)[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tgt.cases &lt;-<span class="st"> </span><span class="kw">which</span>(ALL$BT %in%<span class="st"> </span><span class="kw">levels</span>(ALL$BT)[<span class="dv">1</span>:<span class="dv">5</span>] &amp;<span class="st"> </span>
+<span class="st">                   </span>ALL$mol.bio %in%<span class="st"> </span><span class="kw">levels</span>(ALL$mol.bio)[<span class="dv">1</span>:<span class="dv">4</span>])
+ALLb &lt;-<span class="st"> </span>ALL[,tgt.cases]
+ALLb</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb$BT &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb$BT)
+ALLb$mol.bio &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb$mol.bio)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(ALLb, <span class="dt">file =</span> <span class="st">&quot;myALL.Rdata&quot;</span>)</code></pre></div>
 <div id="exploring-the-dataset" class="section level4">
 <h4>Exploring the Dataset</h4>
 <!-- ExploratoryAnal.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(Biobase)
-library(ALL)
-data(ALL)
-load(&quot;myALL.Rdata&quot;)</code></pre>
-<pre class="r"><code>es &lt;- exprs(ALLb)
-dim(es)</code></pre>
-<pre class="r"><code>summary(as.vector(es))</code></pre>
-<pre class="r"><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;genefilter&quot;)</code></pre>
-<pre class="r"><code>library(genefilter)
-library(ggplot2)
-exprVs &lt;- data.frame(exprVal=as.vector(es))
-ds &lt;- data.frame(Stat=c(&quot;1stQ&quot;,&quot;Median&quot;,&quot;3rdQ&quot;,&quot;Shorth&quot;),
-                 Value=c(quantile(exprVs$exprVal, 
-                         probs=c(0.25, 0.5, 0.75)),
-                         shorth(exprVs$exprVal)),
-                 Color=c(&quot;red&quot;,&quot;green&quot;,&quot;red&quot;,&quot;yellow&quot;))
-ggplot(exprVs,aes(x=exprVal)) + geom_histogram(fill=&quot;lightgrey&quot;) + 
-    geom_vline(data=ds,aes(xintercept=Value,color=Color)) + 
-    geom_text(data=ds,aes(x=Value-0.2,y=0,label=Stat,colour=Color),
-              angle=90,hjust=&quot;left&quot;) +
-    xlab(&quot;Expression Levels&quot;) + guides(colour=&quot;none&quot;, fill=&quot;none&quot;) </code></pre>
-<pre class="r"><code>library(genefilter)
-library(ggplot2)
-exprVs &lt;- data.frame(exprVal=as.vector(es))
-ds &lt;- data.frame(Stat=c(&quot;1stQ&quot;,&quot;Median&quot;,&quot;3rdQ&quot;,&quot;Shorth&quot;),
-                 Value=c(quantile(exprVs$exprVal, probs=c(0.25, 0.5, 0.75)),
-                     shorth(exprVs$exprVal)),
-                 Color=c(&quot;red&quot;,&quot;green&quot;,&quot;red&quot;,&quot;yellow&quot;))
-ggplot(exprVs,aes(x=exprVal)) + geom_histogram(fill=&quot;lightgrey&quot;) + 
-    geom_vline(data=ds,aes(xintercept=Value,color=Color)) + 
-    geom_text(data=ds,aes(x=Value-0.2,y=0,label=Stat,colour=Color),angle=90,hjust=&quot;left&quot;) +
-    xlab(&quot;Expression Levels&quot;) + guides(colour=&quot;none&quot;, fill=&quot;none&quot;)    </code></pre>
-<pre class="r"><code>sapply(levels(ALLb$mol.bio), 
-       function(x) summary(as.vector(es[, which(ALLb$mol.bio == x)])))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(ALL)
+<span class="kw">data</span>(ALL)
+<span class="kw">load</span>(<span class="st">&quot;myALL.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
+<span class="kw">dim</span>(es)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">as.vector</span>(es))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;genefilter&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
+<span class="kw">library</span>(ggplot2)
+exprVs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">exprVal=</span><span class="kw">as.vector</span>(es))
+ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Stat=</span><span class="kw">c</span>(<span class="st">&quot;1stQ&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;3rdQ&quot;</span>,<span class="st">&quot;Shorth&quot;</span>),
+                 <span class="dt">Value=</span><span class="kw">c</span>(<span class="kw">quantile</span>(exprVs$exprVal, 
+                         <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)),
+                         <span class="kw">shorth</span>(exprVs$exprVal)),
+                 <span class="dt">Color=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>))
+<span class="kw">ggplot</span>(exprVs,<span class="kw">aes</span>(<span class="dt">x=</span>exprVal)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;lightgrey&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">xintercept=</span>Value,<span class="dt">color=</span>Color)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">x=</span>Value<span class="fl">-0.2</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">label=</span>Stat,<span class="dt">colour=</span>Color),
+              <span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="st">&quot;left&quot;</span>) +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Expression Levels&quot;</span>) +<span class="st"> </span><span class="kw">guides</span>(<span class="dt">colour=</span><span class="st">&quot;none&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;none&quot;</span>) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
+<span class="kw">library</span>(ggplot2)
+exprVs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">exprVal=</span><span class="kw">as.vector</span>(es))
+ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Stat=</span><span class="kw">c</span>(<span class="st">&quot;1stQ&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;3rdQ&quot;</span>,<span class="st">&quot;Shorth&quot;</span>),
+                 <span class="dt">Value=</span><span class="kw">c</span>(<span class="kw">quantile</span>(exprVs$exprVal, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)),
+                     <span class="kw">shorth</span>(exprVs$exprVal)),
+                 <span class="dt">Color=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>))
+<span class="kw">ggplot</span>(exprVs,<span class="kw">aes</span>(<span class="dt">x=</span>exprVal)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;lightgrey&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">xintercept=</span>Value,<span class="dt">color=</span>Color)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">x=</span>Value<span class="fl">-0.2</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">label=</span>Stat,<span class="dt">colour=</span>Color),<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="st">&quot;left&quot;</span>) +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Expression Levels&quot;</span>) +<span class="st"> </span><span class="kw">guides</span>(<span class="dt">colour=</span><span class="st">&quot;none&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;none&quot;</span>)    </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(<span class="kw">levels</span>(ALLb$mol.bio), 
+       function(x) <span class="kw">summary</span>(<span class="kw">as.vector</span>(es[, <span class="kw">which</span>(ALLb$mol.bio ==<span class="st"> </span>x)])))</code></pre></div>
 <!-- FeatureSel.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(Biobase)
-library(ALL)
-data(ALL)
-load(&quot;myALL.Rdata&quot;)
-es &lt;- exprs(ALLb)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(ALL)
+<span class="kw">data</span>(ALL)
+<span class="kw">load</span>(<span class="st">&quot;myALL.Rdata&quot;</span>)
+es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)</code></pre></div>
 </div>
 </div>
 <div id="gene-feature-selection" class="section level3">
 <h3>Gene (Feature) Selection</h3>
 <div id="simple-filters-based-on-distribution-properties" class="section level4">
 <h4>Simple Filters Based on Distribution Properties</h4>
-<pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;hgu95av2.db&quot;)</code></pre>
-<pre class="r"><code>rowIQRs &lt;- function(em) 
-    rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
-library(ggplot2)
-dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
-ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
-    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
-    ggtitle(&quot;Main Characteristics of Genes Expression Levels&quot;)</code></pre>
-<pre class="r"><code>rowIQRs &lt;- function(em) rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
-library(ggplot2)
-dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
-ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
-    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
-    ggtitle(&quot;Main Characteristics of Genes Expression Levels&quot;)</code></pre>
-<pre class="r"><code>library(genefilter)
-resFilter &lt;- nsFilter(ALLb,
-                 var.func=IQR,
-                 var.cutoff=IQR(as.vector(es))/5, 
-                 feature.exclude=&quot;^AFFX&quot;)
-resFilter</code></pre>
-<pre class="r"><code>ALLb &lt;- resFilter$eset
-es &lt;- exprs(ALLb)
-dim(es)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;hgu95av2.db&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowIQRs &lt;-<span class="st"> </span>function(em) 
+    <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span>*<span class="kw">ncol</span>(em))) -<span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span>*<span class="kw">ncol</span>(em)))
+<span class="kw">library</span>(ggplot2)
+dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) +<span class="st"> </span><span class="kw">geom_point</span>() +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Main Characteristics of Genes Expression Levels&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowIQRs &lt;-<span class="st"> </span>function(em) <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span>*<span class="kw">ncol</span>(em))) -<span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span>*<span class="kw">ncol</span>(em)))
+<span class="kw">library</span>(ggplot2)
+dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) +<span class="st"> </span><span class="kw">geom_point</span>() +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Main Characteristics of Genes Expression Levels&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
+resFilter &lt;-<span class="st"> </span><span class="kw">nsFilter</span>(ALLb,
+                 <span class="dt">var.func=</span>IQR,
+                 <span class="dt">var.cutoff=</span><span class="kw">IQR</span>(<span class="kw">as.vector</span>(es))/<span class="dv">5</span>, 
+                 <span class="dt">feature.exclude=</span><span class="st">&quot;^AFFX&quot;</span>)
+resFilter</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb &lt;-<span class="st"> </span>resFilter$eset
+es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
+<span class="kw">dim</span>(es)</code></pre></div>
 </div>
 <div id="anova-filters" class="section level4">
 <h4>ANOVA Filters</h4>
-<pre class="r"><code>f &lt;- Anova(ALLb$mol.bio, p = 0.01)
-ff &lt;- filterfun(f)
-selGenes &lt;- genefilter(exprs(ALLb), ff)
-sum(selGenes)</code></pre>
-<pre class="r"><code>ALLb &lt;- ALLb[selGenes, ]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">Anova</span>(ALLb$mol.bio, <span class="dt">p =</span> <span class="fl">0.01</span>)
+ff &lt;-<span class="st"> </span><span class="kw">filterfun</span>(f)
+selGenes &lt;-<span class="st"> </span><span class="kw">genefilter</span>(<span class="kw">exprs</span>(ALLb), ff)
+<span class="kw">sum</span>(selGenes)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb &lt;-<span class="st"> </span>ALLb[selGenes, ]
 ALLb
-es &lt;- exprs(ALLb)
-dim(es)</code></pre>
-<pre class="r"><code>dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
-ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
-    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
-    ggtitle(&quot;Distribution Properties of the Selected Genes&quot;)</code></pre>
-<pre class="r"><code>dg &lt;- data.frame(rowMed=rowMedians(es), rowIQR=rowIQRs(es))
-ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
-    xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
-    ggtitle(&quot;Distribution Properties of the Selected Genes&quot;)</code></pre>
+es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
+<span class="kw">dim</span>(es)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) +<span class="st"> </span><span class="kw">geom_point</span>() +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution Properties of the Selected Genes&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) +<span class="st"> </span><span class="kw">geom_point</span>() +
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution Properties of the Selected Genes&quot;</span>)</code></pre></div>
 </div>
 <div id="filtering-using-random-forests" class="section level4">
 <h4>Filtering Using Random Forests</h4>
-<pre class="r"><code>library(randomForest)
-dt &lt;- data.frame(t(es), Mut = ALLb$mol.bio)
-dt$Mut &lt;- droplevels(dt$Mut)
-set.seed(1234)
-rf &lt;- randomForest(Mut ~ ., dt, importance = TRUE)
-imp &lt;- importance(rf)
-rf.genes &lt;- rownames(imp)[order(imp[,&quot;MeanDecreaseAccuracy&quot;], 
-                                decreasing = TRUE)[1:30]]</code></pre>
-<pre class="r"><code>sapply(rf.genes, function(g) tapply(dt[, g], dt$Mut, median))</code></pre>
-<pre class="r"><code>library(tidyr)
-library(dplyr)
-d &lt;- gather(dt[,c(rf.genes,&quot;Mut&quot;)],Gene,ExprValue,1:length(rf.genes))
-dat &lt;- group_by(d,Mut,Gene) %&gt;% 
-    summarise(med=median(ExprValue), iqr=IQR(ExprValue))
-ggplot(dat, aes(x=med,y=iqr,color=Mut)) +  
-    geom_point(size=6) + facet_wrap(~ Gene) + 
-    labs(x=&quot;MEDIAN expression level&quot;,y=&quot;IQR expression level&quot;,color=&quot;Mutation&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
+dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(es), <span class="dt">Mut =</span> ALLb$mol.bio)
+dt$Mut &lt;-<span class="st"> </span><span class="kw">droplevels</span>(dt$Mut)
+<span class="kw">set.seed</span>(<span class="dv">1234</span>)
+rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(Mut ~<span class="st"> </span>., dt, <span class="dt">importance =</span> <span class="ot">TRUE</span>)
+imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf)
+rf.genes &lt;-<span class="st"> </span><span class="kw">rownames</span>(imp)[<span class="kw">order</span>(imp[,<span class="st">&quot;MeanDecreaseAccuracy&quot;</span>], 
+                                <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>:<span class="dv">30</span>]]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(rf.genes, function(g) <span class="kw">tapply</span>(dt[, g], dt$Mut, median))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(dplyr)
+d &lt;-<span class="st"> </span><span class="kw">gather</span>(dt[,<span class="kw">c</span>(rf.genes,<span class="st">&quot;Mut&quot;</span>)],Gene,ExprValue,<span class="dv">1</span>:<span class="kw">length</span>(rf.genes))
+dat &lt;-<span class="st"> </span><span class="kw">group_by</span>(d,Mut,Gene) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">med=</span><span class="kw">median</span>(ExprValue), <span class="dt">iqr=</span><span class="kw">IQR</span>(ExprValue))
+<span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>med,<span class="dt">y=</span>iqr,<span class="dt">color=</span>Mut)) +<span class="st">  </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">6</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>Gene) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;MEDIAN expression level&quot;</span>,<span class="dt">y=</span><span class="st">&quot;IQR expression level&quot;</span>,<span class="dt">color=</span><span class="st">&quot;Mutation&quot;</span>)</code></pre></div>
 </div>
 <div id="filtering-using-feature-clustering-ensembles" class="section level4">
 <h4>Filtering Using Feature Clustering Ensembles</h4>
-<pre class="r"><code>library(Hmisc)
-vc &lt;- varclus(t(es))
-clus30 &lt;- cutree(vc$hclust, 30)
-table(clus30)</code></pre>
-<pre class="r"><code>getVarsSet &lt;- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
-    if (!is.null(seed)) set.seed(seed)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)
+vc &lt;-<span class="st"> </span><span class="kw">varclus</span>(<span class="kw">t</span>(es))
+clus30 &lt;-<span class="st"> </span><span class="kw">cutree</span>(vc$hclust, <span class="dv">30</span>)
+<span class="kw">table</span>(clus30)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">getVarsSet &lt;-<span class="st"> </span>function(cluster,<span class="dt">nvars=</span><span class="dv">30</span>,<span class="dt">seed=</span><span class="ot">NULL</span>,<span class="dt">verb=</span><span class="ot">FALSE</span>) {
+    if (!<span class="kw">is.null</span>(seed)) <span class="kw">set.seed</span>(seed)
     
-    cls &lt;- cutree(cluster,nvars)
-    tots &lt;- table(cls)
-    vars &lt;- c()
-    vars &lt;- sapply(1:nvars,function(clID)
+    cls &lt;-<span class="st"> </span><span class="kw">cutree</span>(cluster,nvars)
+    tots &lt;-<span class="st"> </span><span class="kw">table</span>(cls)
+    vars &lt;-<span class="st"> </span><span class="kw">c</span>()
+    vars &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span>:nvars,function(clID)
     {
-        if (!length(tots[clID])) stop(&#39;Empty cluster! (&#39;,clID,&#39;)&#39;)
-        x &lt;- sample(1:tots[clID],1)
-        names(cls[cls==clID])[x]
+        if (!<span class="kw">length</span>(tots[clID])) <span class="kw">stop</span>(<span class="st">&#39;Empty cluster! (&#39;</span>,clID,<span class="st">&#39;)&#39;</span>)
+        x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:tots[clID],<span class="dv">1</span>)
+        <span class="kw">names</span>(cls[cls==clID])[x]
     })
-    if (verb)  structure(vars,clusMemb=cls,clusTots=tots)
+    if (verb)  <span class="kw">structure</span>(vars,<span class="dt">clusMemb=</span>cls,<span class="dt">clusTots=</span>tots)
     else       vars
 }
-getVarsSet(vc$hclust)
-getVarsSet(vc$hclust)</code></pre>
+<span class="kw">getVarsSet</span>(vc$hclust)
+<span class="kw">getVarsSet</span>(vc$hclust)</code></pre></div>
 <!-- PredTasks.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(Biobase)
-library(ALL)
-data(ALL)
-load(&quot;myALL.Rdata&quot;)
-es &lt;- exprs(ALLb)
-rowIQRs &lt;- function(em)  rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
-getVarsSet &lt;- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
-    if (!is.null(seed)) set.seed(seed)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(ALL)
+<span class="kw">data</span>(ALL)
+<span class="kw">load</span>(<span class="st">&quot;myALL.Rdata&quot;</span>)
+es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
+rowIQRs &lt;-<span class="st"> </span>function(em)  <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span>*<span class="kw">ncol</span>(em))) -<span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span>*<span class="kw">ncol</span>(em)))
+getVarsSet &lt;-<span class="st"> </span>function(cluster,<span class="dt">nvars=</span><span class="dv">30</span>,<span class="dt">seed=</span><span class="ot">NULL</span>,<span class="dt">verb=</span><span class="ot">FALSE</span>) {
+    if (!<span class="kw">is.null</span>(seed)) <span class="kw">set.seed</span>(seed)
     
-    cls &lt;- cutree(cluster,nvars)
-    tots &lt;- table(cls)
-    vars &lt;- c()
-    vars &lt;- sapply(1:nvars,function(clID)
+    cls &lt;-<span class="st"> </span><span class="kw">cutree</span>(cluster,nvars)
+    tots &lt;-<span class="st"> </span><span class="kw">table</span>(cls)
+    vars &lt;-<span class="st"> </span><span class="kw">c</span>()
+    vars &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span>:nvars,function(clID)
     {
-        if (!length(tots[clID])) stop(&#39;Empty cluster! (&#39;,clID,&#39;)&#39;)
-        x &lt;- sample(1:tots[clID],1)
-        names(cls[cls==clID])[x]
+        if (!<span class="kw">length</span>(tots[clID])) <span class="kw">stop</span>(<span class="st">&#39;Empty cluster! (&#39;</span>,clID,<span class="st">&#39;)&#39;</span>)
+        x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:tots[clID],<span class="dv">1</span>)
+        <span class="kw">names</span>(cls[cls==clID])[x]
     })
-    if (verb)  structure(vars,clusMemb=cls,clusTots=tots)
+    if (verb)  <span class="kw">structure</span>(vars,<span class="dt">clusMemb=</span>cls,<span class="dt">clusTots=</span>tots)
     else       vars
-}</code></pre>
+}</code></pre></div>
 </div>
 </div>
 <div id="predicting-cytogenetic-abnormalities" class="section level3">
@@ -605,213 +631,213 @@ getVarsSet &lt;- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
 </div>
 <div id="the-experimental-procedure" class="section level4">
 <h4>The Experimental Procedure</h4>
-<pre class="r"><code>library(performanceEstimation)
-library(DMwR2)
-data(iris)
-exp &lt;- performanceEstimation(
-    PredTask(Species ~ ., iris), 
-    Workflow(learner=&quot;rpartXse&quot;, predictor.pars=list(type=&quot;class&quot;)),
-    EstimationTask(metrics=&quot;acc&quot;,method=Bootstrap(nReps=100)))</code></pre>
-<pre class="r"><code>summary(exp)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">data</span>(iris)
+exp &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Species ~<span class="st"> </span>., iris), 
+    <span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>, <span class="dt">predictor.pars=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;class&quot;</span>)),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;acc&quot;</span>,<span class="dt">method=</span><span class="kw">Bootstrap</span>(<span class="dt">nReps=</span><span class="dv">100</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(exp)</code></pre></div>
 </div>
 <div id="the-modeling-techniques" class="section level4">
 <h4>The Modeling Techniques</h4>
-<pre class="r"><code>library(class)
-data(iris)
-idx &lt;- sample(1:nrow(iris), as.integer(0.7 * nrow(iris)))
-tr &lt;- iris[idx, ]
-ts &lt;- iris[-idx, ]
-preds &lt;- knn(tr[, -5], ts[, -5], tr[, 5], k = 3)
-table(preds, ts[, 5])</code></pre>
-<pre class="r"><code>kNN &lt;- function(form, train, test, stand = TRUE, stand.stats = NULL, ...) {
-    require(class, quietly = TRUE)
-    tgtCol &lt;- which(colnames(train) == as.character(form[[2]]))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(class)
+<span class="kw">data</span>(iris)
+idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(<span class="fl">0.7</span> *<span class="st"> </span><span class="kw">nrow</span>(iris)))
+tr &lt;-<span class="st"> </span>iris[idx, ]
+ts &lt;-<span class="st"> </span>iris[-idx, ]
+preds &lt;-<span class="st"> </span><span class="kw">knn</span>(tr[, -<span class="dv">5</span>], ts[, -<span class="dv">5</span>], tr[, <span class="dv">5</span>], <span class="dt">k =</span> <span class="dv">3</span>)
+<span class="kw">table</span>(preds, ts[, <span class="dv">5</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kNN &lt;-<span class="st"> </span>function(form, train, test, <span class="dt">stand =</span> <span class="ot">TRUE</span>, <span class="dt">stand.stats =</span> <span class="ot">NULL</span>, ...) {
+    <span class="kw">require</span>(class, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
+    tgtCol &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(train) ==<span class="st"> </span><span class="kw">as.character</span>(form[[<span class="dv">2</span>]]))
     if (stand) {
-        if (is.null(stand.stats)) 
-            tmp &lt;- scale(train[, -tgtCol], center = TRUE, scale = TRUE)
-        else tmp &lt;- scale(train[, -tgtCol], center = stand.stats[[1]], 
-                          scale = stand.stats[[2]])
-        train[, -tgtCol] &lt;- tmp
-        ms &lt;- attr(tmp, &quot;scaled:center&quot;)
-        ss &lt;- attr(tmp, &quot;scaled:scale&quot;)
-        test[, -tgtCol] &lt;- scale(test[, -tgtCol], center = ms, scale = ss)
+        if (<span class="kw">is.null</span>(stand.stats)) 
+            tmp &lt;-<span class="st"> </span><span class="kw">scale</span>(train[, -tgtCol], <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)
+        else tmp &lt;-<span class="st"> </span><span class="kw">scale</span>(train[, -tgtCol], <span class="dt">center =</span> stand.stats[[<span class="dv">1</span>]], 
+                          <span class="dt">scale =</span> stand.stats[[<span class="dv">2</span>]])
+        train[, -tgtCol] &lt;-<span class="st"> </span>tmp
+        ms &lt;-<span class="st"> </span><span class="kw">attr</span>(tmp, <span class="st">&quot;scaled:center&quot;</span>)
+        ss &lt;-<span class="st"> </span><span class="kw">attr</span>(tmp, <span class="st">&quot;scaled:scale&quot;</span>)
+        test[, -tgtCol] &lt;-<span class="st"> </span><span class="kw">scale</span>(test[, -tgtCol], <span class="dt">center =</span> ms, <span class="dt">scale =</span> ss)
     }
-    knn(train[, -tgtCol], test[, -tgtCol], train[, tgtCol], ...)
-}</code></pre>
-<pre class="r"><code>preds.stand &lt;- kNN(Species ~ ., tr, ts, k = 3)
-table(preds.stand,ts[, 5])
-preds.notStand &lt;- kNN(Species ~ ., tr, ts, stand = FALSE, k = 3)
-table(preds.notStand, ts[, 5]) </code></pre>
+    <span class="kw">knn</span>(train[, -tgtCol], test[, -tgtCol], train[, tgtCol], ...)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">preds.stand &lt;-<span class="st"> </span><span class="kw">kNN</span>(Species ~<span class="st"> </span>., tr, ts, <span class="dt">k =</span> <span class="dv">3</span>)
+<span class="kw">table</span>(preds.stand,ts[, <span class="dv">5</span>])
+preds.notStand &lt;-<span class="st"> </span><span class="kw">kNN</span>(Species ~<span class="st"> </span>., tr, ts, <span class="dt">stand =</span> <span class="ot">FALSE</span>, <span class="dt">k =</span> <span class="dv">3</span>)
+<span class="kw">table</span>(preds.notStand, ts[, <span class="dv">5</span>]) </code></pre></div>
 </div>
 <div id="comparing-the-models" class="section level4">
 <h4>Comparing the Models</h4>
-<pre class="r"><code>varsEnsemble &lt;- function(tgt,train,test,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">varsEnsemble &lt;-<span class="st"> </span>function(tgt,train,test,
                          fs.meth,
                          baseLearner,blPars,
                          predictor,predPars,
-                         verb=FALSE)
+                         <span class="dt">verb=</span><span class="ot">FALSE</span>)
 {
-    require(Hmisc,quietly=TRUE)
-    v &lt;- varclus(as.matrix(train[,-which(colnames(train)==tgt)]))
-    varsSets &lt;- lapply(1:fs.meth[[3]],function(x)
-        getVarsSet(v$hclust,nvars=fs.meth[[2]]))
+    <span class="kw">require</span>(Hmisc,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    v &lt;-<span class="st"> </span><span class="kw">varclus</span>(<span class="kw">as.matrix</span>(train[,-<span class="kw">which</span>(<span class="kw">colnames</span>(train)==tgt)]))
+    varsSets &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span>:fs.meth[[<span class="dv">3</span>]],function(x)
+        <span class="kw">getVarsSet</span>(v$hclust,<span class="dt">nvars=</span>fs.meth[[<span class="dv">2</span>]]))
     
-    preds &lt;- matrix(NA,ncol=length(varsSets),nrow=NROW(test))
-    for(v in seq(along=varsSets)) {
-        if (baseLearner==&#39;knn&#39;)
-            preds[,v] &lt;- do.call(&quot;kNN&quot;,
-                                 c(list(as.formula(paste(tgt,
-                                                 paste(varsSets[[v]],
-                                                       collapse=&#39;+&#39;),
-                                                 sep=&#39;~&#39;)),
-                                        train[,c(tgt,varsSets[[v]])],
-                                        test[,c(tgt,varsSets[[v]])]),
+    preds &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dt">ncol=</span><span class="kw">length</span>(varsSets),<span class="dt">nrow=</span><span class="kw">NROW</span>(test))
+    for(v in <span class="kw">seq</span>(<span class="dt">along=</span>varsSets)) {
+        if (baseLearner==<span class="st">&#39;knn&#39;</span>)
+            preds[,v] &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;kNN&quot;</span>,
+                                 <span class="kw">c</span>(<span class="kw">list</span>(<span class="kw">as.formula</span>(<span class="kw">paste</span>(tgt,
+                                                 <span class="kw">paste</span>(varsSets[[v]],
+                                                       <span class="dt">collapse=</span><span class="st">&#39;+&#39;</span>),
+                                                 <span class="dt">sep=</span><span class="st">&#39;~&#39;</span>)),
+                                        train[,<span class="kw">c</span>(tgt,varsSets[[v]])],
+                                        test[,<span class="kw">c</span>(tgt,varsSets[[v]])]),
                                    blPars)
                                  )
         else {
-            m &lt;- do.call(baseLearner,
-                         c(list(as.formula(paste(tgt,
-                                                 paste(varsSets[[v]],
-                                                       collapse=&#39;+&#39;),
-                                                 sep=&#39;~&#39;)),
-                                train[,c(tgt,varsSets[[v]])]),
+            m &lt;-<span class="st"> </span><span class="kw">do.call</span>(baseLearner,
+                         <span class="kw">c</span>(<span class="kw">list</span>(<span class="kw">as.formula</span>(<span class="kw">paste</span>(tgt,
+                                                 <span class="kw">paste</span>(varsSets[[v]],
+                                                       <span class="dt">collapse=</span><span class="st">&#39;+&#39;</span>),
+                                                 <span class="dt">sep=</span><span class="st">&#39;~&#39;</span>)),
+                                train[,<span class="kw">c</span>(tgt,varsSets[[v]])]),
                            blPars)
                          )
-            preds[,v] &lt;- do.call(predictor,
-                                 c(list(m,test[,c(tgt,varsSets[[v]])]),
+            preds[,v] &lt;-<span class="st"> </span><span class="kw">do.call</span>(predictor,
+                                 <span class="kw">c</span>(<span class="kw">list</span>(m,test[,<span class="kw">c</span>(tgt,varsSets[[v]])]),
                                    predPars))
         }
     }
 
-    ps &lt;- apply(preds,1,function(x)
-        levels(factor(x))[which.max(table(factor(x)))])
-    factor(ps,
-           levels=1:nlevels(train[,tgt]),
-           labels=levels(train[,tgt]))
-}</code></pre>
-<pre class="r"><code>ALLb.wf &lt;- function(form, train, test,
-                    learner, learner.pars=NULL,
-                    predictor=&quot;predict&quot;,predictor.pars=NULL,
-                    featSel.meth = &quot;s2&quot;, 
-                    available.fsMethods=list(s1=list(&quot;all&quot;),s2=list(&#39;rf&#39;,30),
-                                             s3=list(&#39;varclus&#39;,30,50)),
-                    .model=FALSE,
+    ps &lt;-<span class="st"> </span><span class="kw">apply</span>(preds,<span class="dv">1</span>,function(x)
+        <span class="kw">levels</span>(<span class="kw">factor</span>(x))[<span class="kw">which.max</span>(<span class="kw">table</span>(<span class="kw">factor</span>(x)))])
+    <span class="kw">factor</span>(ps,
+           <span class="dt">levels=</span><span class="dv">1</span>:<span class="kw">nlevels</span>(train[,tgt]),
+           <span class="dt">labels=</span><span class="kw">levels</span>(train[,tgt]))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb.wf &lt;-<span class="st"> </span>function(form, train, test,
+                    learner, <span class="dt">learner.pars=</span><span class="ot">NULL</span>,
+                    <span class="dt">predictor=</span><span class="st">&quot;predict&quot;</span>,<span class="dt">predictor.pars=</span><span class="ot">NULL</span>,
+                    <span class="dt">featSel.meth =</span> <span class="st">&quot;s2&quot;</span>, 
+                    <span class="dt">available.fsMethods=</span><span class="kw">list</span>(<span class="dt">s1=</span><span class="kw">list</span>(<span class="st">&quot;all&quot;</span>),<span class="dt">s2=</span><span class="kw">list</span>(<span class="st">&#39;rf&#39;</span>,<span class="dv">30</span>),
+                                             <span class="dt">s3=</span><span class="kw">list</span>(<span class="st">&#39;varclus&#39;</span>,<span class="dv">30</span>,<span class="dv">50</span>)),
+                    <span class="dt">.model=</span><span class="ot">FALSE</span>,
                     ...)
 {
     ## The characteristics of the selected feature selection method
-    fs.meth &lt;- available.fsMethods[[featSel.meth]] 
+    fs.meth &lt;-<span class="st"> </span>available.fsMethods[[featSel.meth]] 
     
     ## The target variable
-    tgt &lt;- as.character(form[[2]])
-    tgtCol &lt;- which(colnames(train)==tgt)
+    tgt &lt;-<span class="st"> </span><span class="kw">as.character</span>(form[[<span class="dv">2</span>]])
+    tgtCol &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(train)==tgt)
 
     ## Anova filtering  
-    f &lt;- Anova(train[,tgt],p=0.01)
-    ff &lt;- filterfun(f)
-    genes &lt;- genefilter(t(train[,-tgtCol]),ff)
-    genes &lt;- names(genes)[genes]
-    train &lt;- train[,c(tgt,genes)]
-    test &lt;- test[,c(tgt,genes)]
-    tgtCol &lt;- 1
+    f &lt;-<span class="st"> </span><span class="kw">Anova</span>(train[,tgt],<span class="dt">p=</span><span class="fl">0.01</span>)
+    ff &lt;-<span class="st"> </span><span class="kw">filterfun</span>(f)
+    genes &lt;-<span class="st"> </span><span class="kw">genefilter</span>(<span class="kw">t</span>(train[,-tgtCol]),ff)
+    genes &lt;-<span class="st"> </span><span class="kw">names</span>(genes)[genes]
+    train &lt;-<span class="st"> </span>train[,<span class="kw">c</span>(tgt,genes)]
+    test &lt;-<span class="st"> </span>test[,<span class="kw">c</span>(tgt,genes)]
+    tgtCol &lt;-<span class="st"> </span><span class="dv">1</span>
 
     ## Specific filtering 
-    if (fs.meth[[1]]==&#39;varclus&#39;) {
-      pred &lt;- varsEnsemble(tgt,train,test,fs.meth,
+    if (fs.meth[[<span class="dv">1</span>]]==<span class="st">&#39;varclus&#39;</span>) {
+      pred &lt;-<span class="st"> </span><span class="kw">varsEnsemble</span>(tgt,train,test,fs.meth,
                             learner,learner.pars,
                             predictor,predictor.pars,
-                            list(...))
+                            <span class="kw">list</span>(...))
 
     } else {
-      if (fs.meth[[1]]==&#39;rf&#39;) {
-        require(randomForest,quietly=TRUE)
-        rf &lt;- randomForest(form,train,importance=TRUE)
-        imp &lt;- importance(rf)
-        rf.genes &lt;- rownames(imp)[order(imp[,&quot;MeanDecreaseAccuracy&quot;], 
-                                        decreasing = TRUE)[1:fs.meth[[2]]]]
-        train &lt;- train[,c(tgt,rf.genes)]
-        test &lt;- test[,c(tgt,rf.genes)]
+      if (fs.meth[[<span class="dv">1</span>]]==<span class="st">&#39;rf&#39;</span>) {
+        <span class="kw">require</span>(randomForest,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+        rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(form,train,<span class="dt">importance=</span><span class="ot">TRUE</span>)
+        imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf)
+        rf.genes &lt;-<span class="st"> </span><span class="kw">rownames</span>(imp)[<span class="kw">order</span>(imp[,<span class="st">&quot;MeanDecreaseAccuracy&quot;</span>], 
+                                        <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>:fs.meth[[<span class="dv">2</span>]]]]
+        train &lt;-<span class="st"> </span>train[,<span class="kw">c</span>(tgt,rf.genes)]
+        test &lt;-<span class="st"> </span>test[,<span class="kw">c</span>(tgt,rf.genes)]
       }
 
-      if (learner == &#39;knn&#39;) 
-        pred &lt;- kNN(form,train,test,
-                    stand.stats=list(rowMedians(t(as.matrix(train[,-tgtCol]))),
-                        rowIQRs(t(as.matrix(train[,-tgtCol])))),
+      if (learner ==<span class="st"> &#39;knn&#39;</span>) 
+        pred &lt;-<span class="st"> </span><span class="kw">kNN</span>(form,train,test,
+                    <span class="dt">stand.stats=</span><span class="kw">list</span>(<span class="kw">rowMedians</span>(<span class="kw">t</span>(<span class="kw">as.matrix</span>(train[,-tgtCol]))),
+                        <span class="kw">rowIQRs</span>(<span class="kw">t</span>(<span class="kw">as.matrix</span>(train[,-tgtCol])))),
                     ...)
       else {
-        model &lt;- do.call(learner,c(list(form,train),learner.pars))
-        pred &lt;- do.call(predictor,c(list(model,test),predictor.pars))
+        model &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,train),learner.pars))
+        pred &lt;-<span class="st"> </span><span class="kw">do.call</span>(predictor,<span class="kw">c</span>(<span class="kw">list</span>(model,test),predictor.pars))
       }
 
     }
 
-    return(list(trues=responseValues(form,test), preds=pred, 
-                model=if (.model &amp;&amp; learner!=&quot;knn&quot;) model else NULL))
+    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">trues=</span><span class="kw">responseValues</span>(form,test), <span class="dt">preds=</span>pred, 
+                <span class="dt">model=</span>if (.model &amp;&amp;<span class="st"> </span>learner!=<span class="st">&quot;knn&quot;</span>) model else <span class="ot">NULL</span>))
 
-}</code></pre>
-<pre class="r"><code>vars &lt;- list()
-vars$randomForest &lt;- list(learner.pars=list(ntree=c(500,750,1000),
-                                            mtry=c(5,15)),
-                          preditor.pars=list(type=&quot;response&quot;))
-vars$svm &lt;- list(learner.pars=list(cost=c(1,100),
-                                   gamma=c(0.01,0.001,0.0001)))
-vars$knn &lt;- list(learner.pars=list(k=c(3,5,7),
-                                   stand=c(TRUE,FALSE)))
-vars$featureSel &lt;- list(featSel.meth=c(&quot;s1&quot;, &quot;s2&quot;, &quot;s3&quot;))</code></pre>
-<pre class="r"><code>library(performanceEstimation)
-library(class)
-library(randomForest)
-library(e1071)
-library(genefilter)
-load(&#39;myALL.Rdata&#39;)  # loading the previously saved object with the data
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">list</span>()
+vars$randomForest &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">ntree=</span><span class="kw">c</span>(<span class="dv">500</span>,<span class="dv">750</span>,<span class="dv">1000</span>),
+                                            <span class="dt">mtry=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>)),
+                          <span class="dt">preditor.pars=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;response&quot;</span>))
+vars$svm &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">100</span>),
+                                   <span class="dt">gamma=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.001</span>,<span class="fl">0.0001</span>)))
+vars$knn &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">k=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>),
+                                   <span class="dt">stand=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)))
+vars$featureSel &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">featSel.meth=</span><span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>, <span class="st">&quot;s3&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
+<span class="kw">library</span>(class)
+<span class="kw">library</span>(randomForest)
+<span class="kw">library</span>(e1071)
+<span class="kw">library</span>(genefilter)
+<span class="kw">load</span>(<span class="st">&#39;myALL.Rdata&#39;</span>)  <span class="co"># loading the previously saved object with the data</span>
 
-es &lt;- exprs(ALLb)
+es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
 
 ## simple filtering
-ALLb &lt;- nsFilter(ALLb,
-                 var.func=IQR,var.cutoff=IQR(as.vector(es))/5, 
-                 feature.exclude=&quot;^AFFX&quot;)
-ALLb &lt;- ALLb$eset
+ALLb &lt;-<span class="st"> </span><span class="kw">nsFilter</span>(ALLb,
+                 <span class="dt">var.func=</span>IQR,<span class="dt">var.cutoff=</span><span class="kw">IQR</span>(<span class="kw">as.vector</span>(es))/<span class="dv">5</span>, 
+                 <span class="dt">feature.exclude=</span><span class="st">&quot;^AFFX&quot;</span>)
+ALLb &lt;-<span class="st"> </span>ALLb$eset
 
 ## the source dataset after the basic filtering
-dt &lt;- data.frame(t(exprs(ALLb)),Mut=ALLb$mol.bio)
+dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(<span class="kw">exprs</span>(ALLb)),<span class="dt">Mut=</span>ALLb$mol.bio)
 
-set.seed(1234)
+<span class="kw">set.seed</span>(<span class="dv">1234</span>)
 ## The learners to evaluate
-TODO &lt;- c(&#39;knn&#39;,&#39;svm&#39;,&#39;randomForest&#39;)
+TODO &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;knn&#39;</span>,<span class="st">&#39;svm&#39;</span>,<span class="st">&#39;randomForest&#39;</span>)
 for(td in TODO) {
-    assign(td,
-         performanceEstimation(
-             PredTask(Mut ~ .,dt,&#39;ALL&#39;),
-             do.call(&#39;workflowVariants&#39;,
-                     c(list(&#39;ALLb.wf&#39;,learner=td,varsRootName=td),
+    <span class="kw">assign</span>(td,
+         <span class="kw">performanceEstimation</span>(
+             <span class="kw">PredTask</span>(Mut ~<span class="st"> </span>.,dt,<span class="st">&#39;ALL&#39;</span>),
+             <span class="kw">do.call</span>(<span class="st">&#39;workflowVariants&#39;</span>,
+                     <span class="kw">c</span>(<span class="kw">list</span>(<span class="st">&#39;ALLb.wf&#39;</span>,<span class="dt">learner=</span>td,<span class="dt">varsRootName=</span>td),
                        vars[[td]],
                        vars$featureSel
                        )
                      ),
-             EstimationTask(metrics=&quot;acc&quot;,method=Bootstrap(nReps=100)),
-             cluster=TRUE
+             <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;acc&quot;</span>,<span class="dt">method=</span><span class="kw">Bootstrap</span>(<span class="dt">nReps=</span><span class="dv">100</span>)),
+             <span class="dt">cluster=</span><span class="ot">TRUE</span>
          )
          )
-    save(list=td,file=paste(td,&#39;Rdata&#39;,sep=&#39;.&#39;))
-}</code></pre>
-<pre class="r"><code>## load results of the exps
-load(&quot;knn.Rdata&quot;)
-load(&quot;svm.Rdata&quot;)
-load(&quot;randomForest.Rdata&quot;)</code></pre>
-<pre class="r"><code>rankWorkflows(svm, maxs = TRUE)</code></pre>
-<pre class="r"><code>all.trials &lt;- mergeEstimationRes(svm, knn, randomForest, by =&quot;workflows&quot;)</code></pre>
-<pre class="r"><code>rankWorkflows(all.trials, top=10, maxs = TRUE)</code></pre>
-<pre class="r"><code>getWorkflow(&quot;svm.v8&quot;, all.trials)</code></pre>
-<pre class="r"><code>top10WFnames &lt;- rankWorkflows(all.trials, top=10, 
-                              maxs = TRUE)[[&quot;ALL&quot;]][[&quot;acc&quot;]][,&quot;Workflow&quot;]
-sapply(top10WFnames, function(WFid) getWorkflow(WFid,all.trials)@pars$featSel.meth)</code></pre>
-<pre class="r"><code>plot(subset(all.trials,workflows=top10WFnames))</code></pre>
-<pre class="r"><code>plot(subset(all.trials,workflows=top10WFnames))</code></pre>
-<pre class="r"><code>ps &lt;- pairedComparisons(subset(all.trials,workflows=top10WFnames),baseline=&quot;svm.v8&quot;)
-ps$acc$WilcoxonSignedRank.test</code></pre>
-<pre class="r"><code>iteration &lt;- 1  # any number between 1 and 100 in this case
-itInfo &lt;- getIterationsInfo(all.trials,workflow=&quot;svm.v8&quot;,it=iteration)
-table(itInfo$trues, itInfo$preds)</code></pre>
+    <span class="kw">save</span>(<span class="dt">list=</span>td,<span class="dt">file=</span><span class="kw">paste</span>(td,<span class="st">&#39;Rdata&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;.&#39;</span>))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## load results of the exps
+<span class="kw">load</span>(<span class="st">&quot;knn.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;svm.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;randomForest.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(svm, <span class="dt">maxs =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all.trials &lt;-<span class="st"> </span><span class="kw">mergeEstimationRes</span>(svm, knn, randomForest, <span class="dt">by =</span><span class="st">&quot;workflows&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(all.trials, <span class="dt">top=</span><span class="dv">10</span>, <span class="dt">maxs =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;svm.v8&quot;</span>, all.trials)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top10WFnames &lt;-<span class="st"> </span><span class="kw">rankWorkflows</span>(all.trials, <span class="dt">top=</span><span class="dv">10</span>, 
+                              <span class="dt">maxs =</span> <span class="ot">TRUE</span>)[[<span class="st">&quot;ALL&quot;</span>]][[<span class="st">&quot;acc&quot;</span>]][,<span class="st">&quot;Workflow&quot;</span>]
+<span class="kw">sapply</span>(top10WFnames, function(WFid) <span class="kw">getWorkflow</span>(WFid,all.trials)@pars$featSel.meth)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames),<span class="dt">baseline=</span><span class="st">&quot;svm.v8&quot;</span>)
+ps$acc$WilcoxonSignedRank.test</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iteration &lt;-<span class="st"> </span><span class="dv">1</span>  <span class="co"># any number between 1 and 100 in this case</span>
+itInfo &lt;-<span class="st"> </span><span class="kw">getIterationsInfo</span>(all.trials,<span class="dt">workflow=</span><span class="st">&quot;svm.v8&quot;</span>,<span class="dt">it=</span>iteration)
+<span class="kw">table</span>(itInfo$trues, itInfo$preds)</code></pre></div>
 </div>
 </div>
 

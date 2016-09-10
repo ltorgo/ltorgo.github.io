@@ -24,24 +24,50 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/textmate.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
 
 
 <style type="text/css">
@@ -390,164 +416,164 @@ div.tocify {
 
 <p>The following is a <a href="RCode/Rfraud.R">script file</a> containing all R code of all sections in this chapter.</p>
 <!-- availData.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)</code></pre></div>
 <div id="the-available-data" class="section level3">
 <h3>The Available Data</h3>
 <div id="loading-the-data-into-r" class="section level4">
 <h4>Loading the Data into R</h4>
-<pre class="r"><code>library(dplyr)
-data(sales, package=&quot;DMwR2&quot;)</code></pre>
-<pre class="r"><code>sales</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">data</span>(sales, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sales</code></pre></div>
 </div>
 <div id="exploring-the-dataset" class="section level4">
 <h4>Exploring the Dataset</h4>
-<pre class="r"><code>summary(sales)</code></pre>
-<pre class="r"><code>nlevels(sales$ID)
-nlevels(sales$Prod)</code></pre>
-<pre class="r"><code>filter(sales,is.na(Quant),is.na(Val))</code></pre>
-<pre class="r"><code>table(sales$Insp)/nrow(sales) * 100</code></pre>
-<pre class="r"><code>library(ggplot2)
-ggplot(group_by(sales,ID) %&gt;% summarize(nTrans=n()),aes(x=ID,y=nTrans)) +
-    geom_bar(stat=&quot;identity&quot;) + 
-    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
-    xlab(&quot;Salesmen&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
-    ggtitle(&quot;Nr. of Transactions per Salesman&quot;)
-ggplot(group_by(sales,Prod) %&gt;% summarize(nTrans=n()),aes(x=Prod,y=nTrans)) +
-    geom_bar(stat=&quot;identity&quot;) + 
-    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
-    xlab(&quot;Product&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
-    ggtitle(&quot;Nr. of Transactions per Product&quot;)</code></pre>
-<pre class="r"><code>ggplot(group_by(sales,ID) %&gt;% summarize(nTrans=n()),aes(x=ID,y=nTrans)) +
-    geom_bar(stat=&quot;identity&quot;) + 
-    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
-    xlab(&quot;Product&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
-    ggtitle(&quot;Nr. of Transactions per Salesman&quot;)</code></pre>
-<pre class="r"><code>ggplot(group_by(sales,Prod) %&gt;% summarize(nTrans=n()),aes(x=Prod,y=nTrans)) +
-    geom_bar(stat=&quot;identity&quot;) + 
-    theme(axis.text.x = element_blank(), axis.ticks.x=element_blank()) + 
-    xlab(&quot;Salesmen&quot;) + ylab(&quot;Nr. of Transactions&quot;) +
-    ggtitle(&quot;Nr. of Transactions per Product&quot;)</code></pre>
-<pre class="r"><code>sales &lt;- mutate(sales,Uprice=Val/Quant)</code></pre>
-<pre class="r"><code>summary(sales$Uprice)</code></pre>
-<pre class="r"><code>prods &lt;- group_by(sales,Prod)
-mpProds &lt;- summarize(prods,medianPrice=median(Uprice,na.rm=TRUE))
-bind_cols(mpProds %&gt;% arrange(medianPrice) %&gt;% slice(1:5),
-          mpProds %&gt;% arrange(desc(medianPrice)) %&gt;% slice(1:5))</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(forcats)
-ggplot(filter(sales,Prod %in% c(&quot;p3689&quot;,&quot;p560&quot;)),aes(x=fct_drop(Prod),y=Uprice)) +
-    geom_boxplot() + scale_y_log10() + 
-    xlab(&quot;&quot;) + ylab(&quot;log10(UnitPrice)&quot;)</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(forcats)
-ggplot(filter(sales,Prod %in% c(&quot;p3689&quot;,&quot;p560&quot;)),aes(x=fct_drop(Prod),y=Uprice)) +
-    geom_boxplot() + scale_y_log10() + 
-    xlab(&quot;&quot;) + ylab(&quot;log10(UnitPrice)&quot;)</code></pre>
-<pre class="r"><code>ids &lt;- group_by(sales,ID)
-tvIDs &lt;- summarize(ids,totalVal=sum(Val,na.rm=TRUE))
-bind_cols(tvIDs %&gt;% arrange(totalVal) %&gt;% slice(1:5),
-          tvIDs %&gt;% arrange(desc(totalVal)) %&gt;% slice(1:5))</code></pre>
-<pre class="r"><code>arrange(tvIDs,desc(totalVal)) %&gt;% slice(1:100) %&gt;% 
-    summarize(t100=sum(totalVal)) / 
-    (summarize(tvIDs,sum(totalVal))) * 100
-arrange(tvIDs,totalVal) %&gt;% slice(1:2000) %&gt;% 
-    summarize(b2000=sum(totalVal)) / 
-    (summarize(tvIDs,sum(totalVal))) * 100</code></pre>
-<pre class="r"><code>prods &lt;- group_by(sales,Prod)
-qtProds &lt;- summarize(prods,totalQty=sum(Quant,na.rm=TRUE))
-bind_cols(qtProds %&gt;% arrange(desc(totalQty)) %&gt;% slice(1:5),
-          qtProds %&gt;% arrange(totalQty) %&gt;% slice(1:5))</code></pre>
-<pre class="r"><code>arrange(qtProds,desc(totalQty)) %&gt;% slice(1:100) %&gt;% 
-    summarize(t100=sum(as.numeric(totalQty))) / 
-    (summarize(qtProds,sum(as.numeric(totalQty)))) * 100
-arrange(qtProds,totalQty) %&gt;% slice(1:4000) %&gt;% 
-    summarize(b4000=sum(as.numeric(totalQty))) / 
-    (summarize(qtProds,sum(as.numeric(totalQty)))) * 100</code></pre>
-<pre class="r"><code>nouts &lt;- function(x) length(boxplot.stats(x)$out)
-noutsProds &lt;- summarise(prods,nOut=nouts(Uprice))</code></pre>
-<pre class="r"><code>arrange(noutsProds,desc(nOut))</code></pre>
-<pre class="r"><code>summarize(noutsProds,totalOuts=sum(nOut))
-summarize(noutsProds,totalOuts=sum(nOut))/nrow(sales)*100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(sales)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nlevels</span>(sales$ID)
+<span class="kw">nlevels</span>(sales$Prod)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(sales,<span class="kw">is.na</span>(Quant),<span class="kw">is.na</span>(Val))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(sales$Insp)/<span class="kw">nrow</span>(sales) *<span class="st"> </span><span class="dv">100</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="kw">group_by</span>(sales,ID) %&gt;%<span class="st"> </span><span class="kw">summarize</span>(<span class="dt">nTrans=</span><span class="kw">n</span>()),<span class="kw">aes</span>(<span class="dt">x=</span>ID,<span class="dt">y=</span>nTrans)) +
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>()) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Salesmen&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Nr. of Transactions&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Nr. of Transactions per Salesman&quot;</span>)
+<span class="kw">ggplot</span>(<span class="kw">group_by</span>(sales,Prod) %&gt;%<span class="st"> </span><span class="kw">summarize</span>(<span class="dt">nTrans=</span><span class="kw">n</span>()),<span class="kw">aes</span>(<span class="dt">x=</span>Prod,<span class="dt">y=</span>nTrans)) +
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>()) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Product&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Nr. of Transactions&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Nr. of Transactions per Product&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">group_by</span>(sales,ID) %&gt;%<span class="st"> </span><span class="kw">summarize</span>(<span class="dt">nTrans=</span><span class="kw">n</span>()),<span class="kw">aes</span>(<span class="dt">x=</span>ID,<span class="dt">y=</span>nTrans)) +
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>()) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Product&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Nr. of Transactions&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Nr. of Transactions per Salesman&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">group_by</span>(sales,Prod) %&gt;%<span class="st"> </span><span class="kw">summarize</span>(<span class="dt">nTrans=</span><span class="kw">n</span>()),<span class="kw">aes</span>(<span class="dt">x=</span>Prod,<span class="dt">y=</span>nTrans)) +
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x=</span><span class="kw">element_blank</span>()) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Salesmen&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Nr. of Transactions&quot;</span>) +
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Nr. of Transactions per Product&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sales &lt;-<span class="st"> </span><span class="kw">mutate</span>(sales,<span class="dt">Uprice=</span>Val/Quant)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(sales$Uprice)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prods &lt;-<span class="st"> </span><span class="kw">group_by</span>(sales,Prod)
+mpProds &lt;-<span class="st"> </span><span class="kw">summarize</span>(prods,<span class="dt">medianPrice=</span><span class="kw">median</span>(Uprice,<span class="dt">na.rm=</span><span class="ot">TRUE</span>))
+<span class="kw">bind_cols</span>(mpProds %&gt;%<span class="st"> </span><span class="kw">arrange</span>(medianPrice) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>),
+          mpProds %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(medianPrice)) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(forcats)
+<span class="kw">ggplot</span>(<span class="kw">filter</span>(sales,Prod %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;p3689&quot;</span>,<span class="st">&quot;p560&quot;</span>)),<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_drop</span>(Prod),<span class="dt">y=</span>Uprice)) +
+<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;log10(UnitPrice)&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(forcats)
+<span class="kw">ggplot</span>(<span class="kw">filter</span>(sales,Prod %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;p3689&quot;</span>,<span class="st">&quot;p560&quot;</span>)),<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_drop</span>(Prod),<span class="dt">y=</span>Uprice)) +
+<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;log10(UnitPrice)&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ids &lt;-<span class="st"> </span><span class="kw">group_by</span>(sales,ID)
+tvIDs &lt;-<span class="st"> </span><span class="kw">summarize</span>(ids,<span class="dt">totalVal=</span><span class="kw">sum</span>(Val,<span class="dt">na.rm=</span><span class="ot">TRUE</span>))
+<span class="kw">bind_cols</span>(tvIDs %&gt;%<span class="st"> </span><span class="kw">arrange</span>(totalVal) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>),
+          tvIDs %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(totalVal)) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(tvIDs,<span class="kw">desc</span>(totalVal)) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">100</span>) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">t100=</span><span class="kw">sum</span>(totalVal)) /<span class="st"> </span>
+<span class="st">    </span>(<span class="kw">summarize</span>(tvIDs,<span class="kw">sum</span>(totalVal))) *<span class="st"> </span><span class="dv">100</span>
+<span class="kw">arrange</span>(tvIDs,totalVal) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">2000</span>) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">b2000=</span><span class="kw">sum</span>(totalVal)) /<span class="st"> </span>
+<span class="st">    </span>(<span class="kw">summarize</span>(tvIDs,<span class="kw">sum</span>(totalVal))) *<span class="st"> </span><span class="dv">100</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prods &lt;-<span class="st"> </span><span class="kw">group_by</span>(sales,Prod)
+qtProds &lt;-<span class="st"> </span><span class="kw">summarize</span>(prods,<span class="dt">totalQty=</span><span class="kw">sum</span>(Quant,<span class="dt">na.rm=</span><span class="ot">TRUE</span>))
+<span class="kw">bind_cols</span>(qtProds %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(totalQty)) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>),
+          qtProds %&gt;%<span class="st"> </span><span class="kw">arrange</span>(totalQty) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(qtProds,<span class="kw">desc</span>(totalQty)) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">100</span>) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">t100=</span><span class="kw">sum</span>(<span class="kw">as.numeric</span>(totalQty))) /<span class="st"> </span>
+<span class="st">    </span>(<span class="kw">summarize</span>(qtProds,<span class="kw">sum</span>(<span class="kw">as.numeric</span>(totalQty)))) *<span class="st"> </span><span class="dv">100</span>
+<span class="kw">arrange</span>(qtProds,totalQty) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">4000</span>) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">b4000=</span><span class="kw">sum</span>(<span class="kw">as.numeric</span>(totalQty))) /<span class="st"> </span>
+<span class="st">    </span>(<span class="kw">summarize</span>(qtProds,<span class="kw">sum</span>(<span class="kw">as.numeric</span>(totalQty)))) *<span class="st"> </span><span class="dv">100</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nouts &lt;-<span class="st"> </span>function(x) <span class="kw">length</span>(<span class="kw">boxplot.stats</span>(x)$out)
+noutsProds &lt;-<span class="st"> </span><span class="kw">summarise</span>(prods,<span class="dt">nOut=</span><span class="kw">nouts</span>(Uprice))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(noutsProds,<span class="kw">desc</span>(nOut))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(noutsProds,<span class="dt">totalOuts=</span><span class="kw">sum</span>(nOut))
+<span class="kw">summarize</span>(noutsProds,<span class="dt">totalOuts=</span><span class="kw">sum</span>(nOut))/<span class="kw">nrow</span>(sales)*<span class="dv">100</span></code></pre></div>
 </div>
 <div id="data-problems" class="section level4">
 <h4>Data Problems</h4>
-<pre class="r"><code>prop.naQandV &lt;- function(q,v) 100*sum(is.na(q) &amp; is.na(v))/length(q)
-summarise(ids,nProbs=prop.naQandV(Quant,Val)) %&gt;% arrange(desc(nProbs))</code></pre>
-<pre class="r"><code>summarise(prods,nProbs=prop.naQandV(Quant,Val)) %&gt;% arrange(desc(nProbs))</code></pre>
-<pre class="r"><code>sales &lt;- filter(sales,!(is.na(Quant) &amp; is.na(Val)))</code></pre>
-<pre class="r"><code>prop.nas &lt;- function(x) 100*sum(is.na(x))/length(x)
-summarise(prods,propNA.Q=prop.nas(Quant)) %&gt;% arrange(desc(propNA.Q))</code></pre>
-<pre class="r"><code>filter(sales, Prod %in% c(&quot;p2442&quot;,&quot;p2443&quot;)) %&gt;% 
-    group_by(Insp) %&gt;% count()</code></pre>
-<pre class="r"><code>sales &lt;- droplevels(filter(sales,!(Prod %in% c(&quot;p2442&quot;, &quot;p2443&quot;))))</code></pre>
-<pre class="r"><code>summarise(ids,propNA.Q=prop.nas(Quant)) %&gt;% arrange(desc(propNA.Q))</code></pre>
-<pre class="r"><code>summarise(prods,propNA.V=prop.nas(Val)) %&gt;% arrange(desc(propNA.V))</code></pre>
-<pre class="r"><code>summarise(ids,propNA.V=prop.nas(Val)) %&gt;% arrange(desc(propNA.V))</code></pre>
-<pre class="r"><code>tPrice &lt;- filter(sales, Insp != &quot;fraud&quot;) %&gt;% 
-          group_by(Prod) %&gt;% 
-          summarise(medianPrice = median(Uprice,na.rm=TRUE))</code></pre>
-<pre class="r"><code>noQuantMedPrices &lt;- filter(sales, is.na(Quant)) %&gt;% 
-    inner_join(tPrice) %&gt;% 
-    select(medianPrice)
-noValMedPrices &lt;- filter(sales, is.na(Val)) %&gt;% 
-    inner_join(tPrice) %&gt;% 
-    select(medianPrice)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop.naQandV &lt;-<span class="st"> </span>function(q,v) <span class="dv">100</span>*<span class="kw">sum</span>(<span class="kw">is.na</span>(q) &amp;<span class="st"> </span><span class="kw">is.na</span>(v))/<span class="kw">length</span>(q)
+<span class="kw">summarise</span>(ids,<span class="dt">nProbs=</span><span class="kw">prop.naQandV</span>(Quant,Val)) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(nProbs))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(prods,<span class="dt">nProbs=</span><span class="kw">prop.naQandV</span>(Quant,Val)) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(nProbs))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sales &lt;-<span class="st"> </span><span class="kw">filter</span>(sales,!(<span class="kw">is.na</span>(Quant) &amp;<span class="st"> </span><span class="kw">is.na</span>(Val)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prop.nas &lt;-<span class="st"> </span>function(x) <span class="dv">100</span>*<span class="kw">sum</span>(<span class="kw">is.na</span>(x))/<span class="kw">length</span>(x)
+<span class="kw">summarise</span>(prods,<span class="dt">propNA.Q=</span><span class="kw">prop.nas</span>(Quant)) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(propNA.Q))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(sales, Prod %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;p2442&quot;</span>,<span class="st">&quot;p2443&quot;</span>)) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(Insp) %&gt;%<span class="st"> </span><span class="kw">count</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sales &lt;-<span class="st"> </span><span class="kw">droplevels</span>(<span class="kw">filter</span>(sales,!(Prod %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;p2442&quot;</span>, <span class="st">&quot;p2443&quot;</span>))))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(ids,<span class="dt">propNA.Q=</span><span class="kw">prop.nas</span>(Quant)) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(propNA.Q))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(prods,<span class="dt">propNA.V=</span><span class="kw">prop.nas</span>(Val)) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(propNA.V))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(ids,<span class="dt">propNA.V=</span><span class="kw">prop.nas</span>(Val)) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(propNA.V))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tPrice &lt;-<span class="st"> </span><span class="kw">filter</span>(sales, Insp !=<span class="st"> &quot;fraud&quot;</span>) %&gt;%<span class="st"> </span>
+<span class="st">          </span><span class="kw">group_by</span>(Prod) %&gt;%<span class="st"> </span>
+<span class="st">          </span><span class="kw">summarise</span>(<span class="dt">medianPrice =</span> <span class="kw">median</span>(Uprice,<span class="dt">na.rm=</span><span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">noQuantMedPrices &lt;-<span class="st"> </span><span class="kw">filter</span>(sales, <span class="kw">is.na</span>(Quant)) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">inner_join</span>(tPrice) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(medianPrice)
+noValMedPrices &lt;-<span class="st"> </span><span class="kw">filter</span>(sales, <span class="kw">is.na</span>(Val)) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">inner_join</span>(tPrice) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(medianPrice)
 
-noQuant &lt;- which(is.na(sales$Quant))
-noVal &lt;- which(is.na(sales$Val))
-sales[noQuant,&#39;Quant&#39;] &lt;- ceiling(sales[noQuant,&#39;Val&#39;] /noQuantMedPrices)
-sales[noVal,&#39;Val&#39;] &lt;- sales[noVal,&#39;Quant&#39;] * noValMedPrices</code></pre>
-<pre class="r"><code>sales$Uprice &lt;- sales$Val/sales$Quant</code></pre>
-<pre class="r"><code>save(sales, file = &quot;salesClean.Rdata&quot;)</code></pre>
-<pre class="r"><code>ms &lt;- filter(sales,Insp != &quot;fraud&quot;) %&gt;% 
-    group_by(Prod) %&gt;% 
-    summarize(median=median(Uprice,na.rm=TRUE),
-              iqr=IQR(Uprice,na.rm=TRUE),
-              nTrans=n(),
-              fewTrans=ifelse(nTrans&gt;20,FALSE,TRUE))
-ms</code></pre>
-<pre class="r"><code>ggplot(ms,aes(x=median,y=iqr,color=fewTrans)) + 
-    geom_point() + 
-    xlab(&quot;Median&quot;) + ylab(&quot;IQR&quot;)
-ggplot(ms,aes(x=median,y=iqr,color=fewTrans)) + 
-    geom_point() + 
-    scale_y_log10() + scale_x_log10() + 
-    xlab(&quot;log(Median)&quot;) + ylab(&quot;log(IQR)&quot;)</code></pre>
-<pre class="r"><code>ms &lt;- mutate(ms,smedian=scale(median),siqr=scale(iqr))
-smalls &lt;- which(ms$fewTrans)
-nsmalls &lt;- as.character(ms$Prod[smalls])
-similar &lt;- matrix(NA,length(smalls),7,
-    dimnames=list(nsmalls,
-      c(&quot;RowSimProd&quot;, &quot;ks.stat&quot;, &quot;ks.p&quot;, &quot;medP&quot;, &quot;iqrP&quot;, &quot;medS&quot;,&quot;iqrS&quot;)))
-xprods &lt;- tapply(sales$Uprice, sales$Prod, list)
-for(i in seq_along(smalls)) {
-    d &lt;- scale(ms[,c(&quot;smedian&quot;,&quot;siqr&quot;)],
-               c(ms$smedian[smalls[i]],ms$siqr[smalls[i]]),
-               FALSE)
-    d &lt;- sqrt(drop(d^2 %*% rep(1, ncol(d))))
-    stat &lt;- ks.test(xprods[[nsmalls[i]]], xprods[[order(d)[2]]])
-    similar[i, ] &lt;- c(order(d)[2], stat$statistic, stat$p.value,
+noQuant &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(sales$Quant))
+noVal &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(sales$Val))
+sales[noQuant,<span class="st">&#39;Quant&#39;</span>] &lt;-<span class="st"> </span><span class="kw">ceiling</span>(sales[noQuant,<span class="st">&#39;Val&#39;</span>] /noQuantMedPrices)
+sales[noVal,<span class="st">&#39;Val&#39;</span>] &lt;-<span class="st"> </span>sales[noVal,<span class="st">&#39;Quant&#39;</span>] *<span class="st"> </span>noValMedPrices</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sales$Uprice &lt;-<span class="st"> </span>sales$Val/sales$Quant</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(sales, <span class="dt">file =</span> <span class="st">&quot;salesClean.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ms &lt;-<span class="st"> </span><span class="kw">filter</span>(sales,Insp !=<span class="st"> &quot;fraud&quot;</span>) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(Prod) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median=</span><span class="kw">median</span>(Uprice,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+              <span class="dt">iqr=</span><span class="kw">IQR</span>(Uprice,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+              <span class="dt">nTrans=</span><span class="kw">n</span>(),
+              <span class="dt">fewTrans=</span><span class="kw">ifelse</span>(nTrans&gt;<span class="dv">20</span>,<span class="ot">FALSE</span>,<span class="ot">TRUE</span>))
+ms</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ms,<span class="kw">aes</span>(<span class="dt">x=</span>median,<span class="dt">y=</span>iqr,<span class="dt">color=</span>fewTrans)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR&quot;</span>)
+<span class="kw">ggplot</span>(ms,<span class="kw">aes</span>(<span class="dt">x=</span>median,<span class="dt">y=</span>iqr,<span class="dt">color=</span>fewTrans)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">scale_y_log10</span>() +<span class="st"> </span><span class="kw">scale_x_log10</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;log(Median)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;log(IQR)&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ms &lt;-<span class="st"> </span><span class="kw">mutate</span>(ms,<span class="dt">smedian=</span><span class="kw">scale</span>(median),<span class="dt">siqr=</span><span class="kw">scale</span>(iqr))
+smalls &lt;-<span class="st"> </span><span class="kw">which</span>(ms$fewTrans)
+nsmalls &lt;-<span class="st"> </span><span class="kw">as.character</span>(ms$Prod[smalls])
+similar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="kw">length</span>(smalls),<span class="dv">7</span>,
+    <span class="dt">dimnames=</span><span class="kw">list</span>(nsmalls,
+      <span class="kw">c</span>(<span class="st">&quot;RowSimProd&quot;</span>, <span class="st">&quot;ks.stat&quot;</span>, <span class="st">&quot;ks.p&quot;</span>, <span class="st">&quot;medP&quot;</span>, <span class="st">&quot;iqrP&quot;</span>, <span class="st">&quot;medS&quot;</span>,<span class="st">&quot;iqrS&quot;</span>)))
+xprods &lt;-<span class="st"> </span><span class="kw">tapply</span>(sales$Uprice, sales$Prod, list)
+for(i in <span class="kw">seq_along</span>(smalls)) {
+    d &lt;-<span class="st"> </span><span class="kw">scale</span>(ms[,<span class="kw">c</span>(<span class="st">&quot;smedian&quot;</span>,<span class="st">&quot;siqr&quot;</span>)],
+               <span class="kw">c</span>(ms$smedian[smalls[i]],ms$siqr[smalls[i]]),
+               <span class="ot">FALSE</span>)
+    d &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">drop</span>(d^<span class="dv">2</span> %*%<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">ncol</span>(d))))
+    stat &lt;-<span class="st"> </span><span class="kw">ks.test</span>(xprods[[nsmalls[i]]], xprods[[<span class="kw">order</span>(d)[<span class="dv">2</span>]]])
+    similar[i, ] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">order</span>(d)[<span class="dv">2</span>], stat$statistic, stat$p.value,
                       ms$median[smalls[i]],ms$iqr[smalls[i]],
-                      ms$median[order(d)[2]],ms$iqr[order(d)[2]])
-}</code></pre>
-<pre class="r"><code>head(similar)</code></pre>
-<pre class="r"><code>bind_rows(filter(ms,Prod==rownames(similar)[1]),
-          ms[similar[1,1],])</code></pre>
-<pre class="r"><code>nrow(similar[similar[, &quot;ks.p&quot;] &gt;= 0.9, ])</code></pre>
-<pre class="r"><code>sum(similar[, &quot;ks.p&quot;] &gt;= 0.9)</code></pre>
-<pre class="r"><code>save(similar, file = &quot;similarProducts.Rdata&quot;)</code></pre>
+                      ms$median[<span class="kw">order</span>(d)[<span class="dv">2</span>]],ms$iqr[<span class="kw">order</span>(d)[<span class="dv">2</span>]])
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(similar)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bind_rows</span>(<span class="kw">filter</span>(ms,Prod==<span class="kw">rownames</span>(similar)[<span class="dv">1</span>]),
+          ms[similar[<span class="dv">1</span>,<span class="dv">1</span>],])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(similar[similar[, <span class="st">&quot;ks.p&quot;</span>] &gt;=<span class="st"> </span><span class="fl">0.9</span>, ])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(similar[, <span class="st">&quot;ks.p&quot;</span>] &gt;=<span class="st"> </span><span class="fl">0.9</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(similar, <span class="dt">file =</span> <span class="st">&quot;similarProducts.Rdata&quot;</span>)</code></pre></div>
 <!-- defTasks.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)</code></pre></div>
 </div>
 </div>
 <div id="defining-the-data-mining-tasks" class="section level3">
@@ -557,67 +583,67 @@ library(ggplot2)</code></pre>
 </div>
 <div id="evaluation-criteria" class="section level4">
 <h4>Evaluation Criteria</h4>
-<pre class="r"><code>library(ROCR)
-data(ROCR.simple)
-pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
-perf &lt;- performance(pred, &quot;prec&quot;, &quot;rec&quot;)
-plot(perf)</code></pre>
-<pre class="r"><code>PRcurve &lt;- function(preds, trues, ...) {
-    require(ROCR, quietly = TRUE)
-    pd &lt;- prediction(preds, trues)
-    pf &lt;- performance(pd, &quot;prec&quot;, &quot;rec&quot;)
-    pf@y.values &lt;- lapply(pf@y.values, function(x) rev(cummax(rev(x))))
-    plot(pf, ...)
-}</code></pre>
-<pre class="r"><code>PRcurve(ROCR.simple$predictions, ROCR.simple$labels)</code></pre>
-<pre class="r"><code>library(ROCR)
-data(ROCR.simple)
-pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
-perf &lt;- performance(pred, &quot;prec&quot;, &quot;rec&quot;)
-par( mfrow=c(1,2) )
-plot(perf)
-PRcurve(ROCR.simple$predictions, ROCR.simple$labels)
-par( mfrow=c(1,1) )</code></pre>
-<pre class="r"><code>pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
-perf &lt;- performance(pred, &quot;lift&quot;, &quot;rpp&quot;)
-plot(perf, main = &quot;Lift Chart&quot;)</code></pre>
-<pre class="r"><code>CRchart &lt;- function(preds, trues, ...) {
-    require(ROCR, quietly = T)
-    pd &lt;- prediction(preds, trues)
-    pf &lt;- performance(pd, &quot;rec&quot;, &quot;rpp&quot;)
-    plot(pf, ...)
-}</code></pre>
-<pre class="r"><code>CRchart(ROCR.simple$predictions, ROCR.simple$labels, 
-        main=&#39;Cumulative Recall Chart&#39;)</code></pre>
-<pre class="r"><code>avgNDTP &lt;- function(toInsp,train,stats) {
-  if (missing(train) &amp;&amp; missing(stats)) 
-      stop(&#39;Provide either the training data or the product stats&#39;)
-  if (missing(stats)) {
-      stats &lt;- as.matrix(filter(train,Insp != &#39;fraud&#39;) %&gt;%
-                         group_by(Prod) %&gt;%
-                         summarise(median=median(Uprice),iqr=IQR(Uprice)) %&gt;%
-                         select(median,iqr))
-      rownames(stats) &lt;- levels(train$Prod)
-      stats[which(stats[,&#39;iqr&#39;]==0),&#39;iqr&#39;] &lt;- stats[which(stats[,&#39;iqr&#39;]==0),&#39;median&#39;]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ROCR)
+<span class="kw">data</span>(ROCR.simple)
+pred &lt;-<span class="st"> </span><span class="kw">prediction</span>(ROCR.simple$predictions, ROCR.simple$labels)
+perf &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;prec&quot;</span>, <span class="st">&quot;rec&quot;</span>)
+<span class="kw">plot</span>(perf)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PRcurve &lt;-<span class="st"> </span>function(preds, trues, ...) {
+    <span class="kw">require</span>(ROCR, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
+    pd &lt;-<span class="st"> </span><span class="kw">prediction</span>(preds, trues)
+    pf &lt;-<span class="st"> </span><span class="kw">performance</span>(pd, <span class="st">&quot;prec&quot;</span>, <span class="st">&quot;rec&quot;</span>)
+    pf@y.values &lt;-<span class="st"> </span><span class="kw">lapply</span>(pf@y.values, function(x) <span class="kw">rev</span>(<span class="kw">cummax</span>(<span class="kw">rev</span>(x))))
+    <span class="kw">plot</span>(pf, ...)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">PRcurve</span>(ROCR.simple$predictions, ROCR.simple$labels)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ROCR)
+<span class="kw">data</span>(ROCR.simple)
+pred &lt;-<span class="st"> </span><span class="kw">prediction</span>(ROCR.simple$predictions, ROCR.simple$labels)
+perf &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;prec&quot;</span>, <span class="st">&quot;rec&quot;</span>)
+<span class="kw">par</span>( <span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) )
+<span class="kw">plot</span>(perf)
+<span class="kw">PRcurve</span>(ROCR.simple$predictions, ROCR.simple$labels)
+<span class="kw">par</span>( <span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>) )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">prediction</span>(ROCR.simple$predictions, ROCR.simple$labels)
+perf &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;lift&quot;</span>, <span class="st">&quot;rpp&quot;</span>)
+<span class="kw">plot</span>(perf, <span class="dt">main =</span> <span class="st">&quot;Lift Chart&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRchart &lt;-<span class="st"> </span>function(preds, trues, ...) {
+    <span class="kw">require</span>(ROCR, <span class="dt">quietly =</span> T)
+    pd &lt;-<span class="st"> </span><span class="kw">prediction</span>(preds, trues)
+    pf &lt;-<span class="st"> </span><span class="kw">performance</span>(pd, <span class="st">&quot;rec&quot;</span>, <span class="st">&quot;rpp&quot;</span>)
+    <span class="kw">plot</span>(pf, ...)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CRchart</span>(ROCR.simple$predictions, ROCR.simple$labels, 
+        <span class="dt">main=</span><span class="st">&#39;Cumulative Recall Chart&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avgNDTP &lt;-<span class="st"> </span>function(toInsp,train,stats) {
+  if (<span class="kw">missing</span>(train) &amp;&amp;<span class="st"> </span><span class="kw">missing</span>(stats)) 
+      <span class="kw">stop</span>(<span class="st">&#39;Provide either the training data or the product stats&#39;</span>)
+  if (<span class="kw">missing</span>(stats)) {
+      stats &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">filter</span>(train,Insp !=<span class="st"> &#39;fraud&#39;</span>) %&gt;%
+<span class="st">                         </span><span class="kw">group_by</span>(Prod) %&gt;%
+<span class="st">                         </span><span class="kw">summarise</span>(<span class="dt">median=</span><span class="kw">median</span>(Uprice),<span class="dt">iqr=</span><span class="kw">IQR</span>(Uprice)) %&gt;%
+<span class="st">                         </span><span class="kw">select</span>(median,iqr))
+      <span class="kw">rownames</span>(stats) &lt;-<span class="st"> </span><span class="kw">levels</span>(train$Prod)
+      stats[<span class="kw">which</span>(stats[,<span class="st">&#39;iqr&#39;</span>]==<span class="dv">0</span>),<span class="st">&#39;iqr&#39;</span>] &lt;-<span class="st"> </span>stats[<span class="kw">which</span>(stats[,<span class="st">&#39;iqr&#39;</span>]==<span class="dv">0</span>),<span class="st">&#39;median&#39;</span>]
   }
   
-  return(mean(abs(toInsp$Uprice-stats[toInsp$Prod,&#39;median&#39;]) /
-                 stats[toInsp$Prod,&#39;iqr&#39;]))
-}</code></pre>
+  <span class="kw">return</span>(<span class="kw">mean</span>(<span class="kw">abs</span>(toInsp$Uprice-stats[toInsp$Prod,<span class="st">&#39;median&#39;</span>]) /
+<span class="st">                 </span>stats[toInsp$Prod,<span class="st">&#39;iqr&#39;</span>]))
+}</code></pre></div>
 </div>
 <div id="experimental-methodology" class="section level4">
 <h4>Experimental Methodology</h4>
-<pre class="r"><code>evalOutlierRanking &lt;- function(testSet,rankOrder,Threshold,statsProds,...) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">evalOutlierRanking &lt;-<span class="st"> </span>function(testSet,rankOrder,Threshold,statsProds,...) 
 {
-   ordTS &lt;- testSet[rankOrder,]
-   N &lt;- nrow(testSet)
-   nF &lt;- if (Threshold &lt; 1) as.integer(Threshold*N) else Threshold
-   cm &lt;- table(c(rep(&#39;fraud&#39;,nF),rep(&#39;ok&#39;,N-nF)),ordTS$Insp)
-   prec &lt;- cm[&#39;fraud&#39;,&#39;fraud&#39;]/sum(cm[&#39;fraud&#39;,])
-   rec &lt;- cm[&#39;fraud&#39;,&#39;fraud&#39;]/sum(cm[,&#39;fraud&#39;])
-   AVGndtp &lt;- avgNDTP(ordTS[1:nF,],stats=statsProds)
-   return(c(Precision=prec,Recall=rec,avgNDTP=AVGndtp))
-}</code></pre>
+   ordTS &lt;-<span class="st"> </span>testSet[rankOrder,]
+   N &lt;-<span class="st"> </span><span class="kw">nrow</span>(testSet)
+   nF &lt;-<span class="st"> </span>if (Threshold &lt;<span class="st"> </span><span class="dv">1</span>) <span class="kw">as.integer</span>(Threshold*N) else Threshold
+   cm &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;fraud&#39;</span>,nF),<span class="kw">rep</span>(<span class="st">&#39;ok&#39;</span>,N-nF)),ordTS$Insp)
+   prec &lt;-<span class="st"> </span>cm[<span class="st">&#39;fraud&#39;</span>,<span class="st">&#39;fraud&#39;</span>]/<span class="kw">sum</span>(cm[<span class="st">&#39;fraud&#39;</span>,])
+   rec &lt;-<span class="st"> </span>cm[<span class="st">&#39;fraud&#39;</span>,<span class="st">&#39;fraud&#39;</span>]/<span class="kw">sum</span>(cm[,<span class="st">&#39;fraud&#39;</span>])
+   AVGndtp &lt;-<span class="st"> </span><span class="kw">avgNDTP</span>(ordTS[<span class="dv">1</span>:nF,],<span class="dt">stats=</span>statsProds)
+   <span class="kw">return</span>(<span class="kw">c</span>(<span class="dt">Precision=</span>prec,<span class="dt">Recall=</span>rec,<span class="dt">avgNDTP=</span>AVGndtp))
+}</code></pre></div>
 <!-- obtainingRanks.Rnw -->
 </div>
 </div>
@@ -632,620 +658,620 @@ plot(perf, main = &quot;Lift Chart&quot;)</code></pre>
 <div id="semi-supervised-approaches" class="section level4">
 <h4>Semi-Supervised Approaches</h4>
 <!-- BPrule.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(dplyr)
-load( &quot;salesClean.Rdata&quot; ) 
-source( &quot;evaluationCode.R&quot; ) </code></pre>
-<pre class="r"><code>BPrule.wf &lt;- function(form,train,test,...) {
-    require(dplyr, quietly=TRUE)
-    ms &lt;- as.matrix(filter(train,Insp != &#39;fraud&#39;) %&gt;%
-                    group_by(Prod) %&gt;%
-                    summarise(median=median(Uprice),iqr=IQR(Uprice)) %&gt;%
-                    select(median,iqr))
-    rownames(ms) &lt;- levels(train$Prod)
-    ms[which(ms[,&#39;iqr&#39;]==0),&#39;iqr&#39;] &lt;- ms[which(ms[,&#39;iqr&#39;]==0),&#39;median&#39;]
-    ORscore &lt;- abs(test$Uprice-ms[test$Prod,&#39;median&#39;]) /
-               ms[test$Prod,&#39;iqr&#39;]
-    rankOrder &lt;- order(ORscore,decreasing=TRUE)
-    res &lt;- list(testSet=test,rankOrder=rankOrder,
-                probs=matrix(c(ORscore,ifelse(test$Insp==&#39;fraud&#39;,1,0)),
-                             ncol=2))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">load</span>( <span class="st">&quot;salesClean.Rdata&quot;</span> ) 
+<span class="kw">source</span>( <span class="st">&quot;evaluationCode.R&quot;</span> ) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BPrule.wf &lt;-<span class="st"> </span>function(form,train,test,...) {
+    <span class="kw">require</span>(dplyr, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    ms &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">filter</span>(train,Insp !=<span class="st"> &#39;fraud&#39;</span>) %&gt;%
+<span class="st">                    </span><span class="kw">group_by</span>(Prod) %&gt;%
+<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">median=</span><span class="kw">median</span>(Uprice),<span class="dt">iqr=</span><span class="kw">IQR</span>(Uprice)) %&gt;%
+<span class="st">                    </span><span class="kw">select</span>(median,iqr))
+    <span class="kw">rownames</span>(ms) &lt;-<span class="st"> </span><span class="kw">levels</span>(train$Prod)
+    ms[<span class="kw">which</span>(ms[,<span class="st">&#39;iqr&#39;</span>]==<span class="dv">0</span>),<span class="st">&#39;iqr&#39;</span>] &lt;-<span class="st"> </span>ms[<span class="kw">which</span>(ms[,<span class="st">&#39;iqr&#39;</span>]==<span class="dv">0</span>),<span class="st">&#39;median&#39;</span>]
+    ORscore &lt;-<span class="st"> </span><span class="kw">abs</span>(test$Uprice-ms[test$Prod,<span class="st">&#39;median&#39;</span>]) /
+<span class="st">               </span>ms[test$Prod,<span class="st">&#39;iqr&#39;</span>]
+    rankOrder &lt;-<span class="st"> </span><span class="kw">order</span>(ORscore,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,<span class="dt">rankOrder=</span>rankOrder,
+                <span class="dt">probs=</span><span class="kw">matrix</span>(<span class="kw">c</span>(ORscore,<span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>)),
+                             <span class="dt">ncol=</span><span class="dv">2</span>))
     res
-}</code></pre>
-<pre class="r"><code>library(dplyr)
-globalStats &lt;- as.matrix(filter(sales,Insp != &#39;fraud&#39;) %&gt;%
-                         group_by(Prod) %&gt;%
-                         summarise(median=median(Uprice),iqr=IQR(Uprice)) %&gt;%
-                         select(median,iqr))
-rownames(globalStats) &lt;- levels(sales$Prod)
-globalStats[which(globalStats[,&#39;iqr&#39;]==0),&#39;iqr&#39;] &lt;- 
-    globalStats[which(globalStats[,&#39;iqr&#39;]==0),&#39;median&#39;]
-head(globalStats,3)</code></pre>
-<pre class="r"><code>library(performanceEstimation)
-bp.res &lt;- performanceEstimation(
-    PredTask(Insp ~ ., sales),
-    Workflow(&quot;BPrule.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3, hldSz=0.3, strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1, statsProds=globalStats))
-)</code></pre>
-<pre class="r"><code>summary(bp.res)</code></pre>
-<pre class="r"><code>ps.bp &lt;- sapply(getIterationsInfo(bp.res),function(i) i$probs[,1])
-ts.bp &lt;- sapply(getIterationsInfo(bp.res),function(i) i$probs[,2])
-PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,avg=&quot;vertical&quot;)
-CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,avg=&#39;vertical&#39;)</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.bp &lt;- sapply(getIterationsInfo(bp.res), function(i) i$probs[,1])
-ts.bp &lt;- sapply(getIterationsInfo(bp.res), function(i) i$probs[,2])
-PRcurve(ps.bp, ts.bp, main=&quot;PR curve&quot;, avg=&quot;vertical&quot;)
-CRchart(ps.bp, ts.bp, main=&#39;Cumulative Recall curve&#39;, avg=&#39;vertical&#39;)</code></pre>
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+globalStats &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">filter</span>(sales,Insp !=<span class="st"> &#39;fraud&#39;</span>) %&gt;%
+<span class="st">                         </span><span class="kw">group_by</span>(Prod) %&gt;%
+<span class="st">                         </span><span class="kw">summarise</span>(<span class="dt">median=</span><span class="kw">median</span>(Uprice),<span class="dt">iqr=</span><span class="kw">IQR</span>(Uprice)) %&gt;%
+<span class="st">                         </span><span class="kw">select</span>(median,iqr))
+<span class="kw">rownames</span>(globalStats) &lt;-<span class="st"> </span><span class="kw">levels</span>(sales$Prod)
+globalStats[<span class="kw">which</span>(globalStats[,<span class="st">&#39;iqr&#39;</span>]==<span class="dv">0</span>),<span class="st">&#39;iqr&#39;</span>] &lt;-<span class="st"> </span>
+<span class="st">    </span>globalStats[<span class="kw">which</span>(globalStats[,<span class="st">&#39;iqr&#39;</span>]==<span class="dv">0</span>),<span class="st">&#39;median&#39;</span>]
+<span class="kw">head</span>(globalStats,<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
+bp.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>., sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;BPrule.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>, <span class="dt">hldSz=</span><span class="fl">0.3</span>, <span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>, <span class="dt">statsProds=</span>globalStats))
+)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(bp.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.bp &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(bp.res),function(i) i$probs[,<span class="dv">1</span>])
+ts.bp &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(bp.res),function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">CRchart</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.bp &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(bp.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.bp &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(bp.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.bp, ts.bp, <span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>, <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">CRchart</span>(ps.bp, ts.bp, <span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)</code></pre></div>
 <!-- LOF.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( &quot;salesClean.Rdata&quot; ) 
-source( &quot;evaluationCode.R&quot; ) 
-load(&quot;BPres.Rdata&quot;)</code></pre>
-<pre class="r"><code>LOF.wf &lt;- function(form, train, test, k, ...) {
-    require(DMwR2, quietly=TRUE)
-    ntr &lt;- nrow(train)
-    all &lt;- as.data.frame(rbind(train,test))
-    N &lt;- nrow(all)
-    ups &lt;- split(all$Uprice,all$Prod)
-    r &lt;- list(length=ups)
-    for(u in seq(along=ups)) 
-        r[[u]] &lt;- if (NROW(ups[[u]]) &gt; 3) 
-                      lofactor(ups[[u]],min(k,NROW(ups[[u]]) %/% 2)) 
-                  else if (NROW(ups[[u]])) rep(0,NROW(ups[[u]])) 
-                  else NULL
-    all$lof &lt;- vector(length=N)
-    split(all$lof,all$Prod) &lt;- r
-    all$lof[which(!(is.infinite(all$lof) | is.nan(all$lof)))] &lt;- 
-        SoftMax(all$lof[which(!(is.infinite(all$lof) | is.nan(all$lof)))])
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">load</span>( <span class="st">&quot;salesClean.Rdata&quot;</span> ) 
+<span class="kw">source</span>( <span class="st">&quot;evaluationCode.R&quot;</span> ) 
+<span class="kw">load</span>(<span class="st">&quot;BPres.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LOF.wf &lt;-<span class="st"> </span>function(form, train, test, k, ...) {
+    <span class="kw">require</span>(DMwR2, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    ntr &lt;-<span class="st"> </span><span class="kw">nrow</span>(train)
+    all &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">rbind</span>(train,test))
+    N &lt;-<span class="st"> </span><span class="kw">nrow</span>(all)
+    ups &lt;-<span class="st"> </span><span class="kw">split</span>(all$Uprice,all$Prod)
+    r &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">length=</span>ups)
+    for(u in <span class="kw">seq</span>(<span class="dt">along=</span>ups)) 
+        r[[u]] &lt;-<span class="st"> </span>if (<span class="kw">NROW</span>(ups[[u]]) &gt;<span class="st"> </span><span class="dv">3</span>) 
+                      <span class="kw">lofactor</span>(ups[[u]],<span class="kw">min</span>(k,<span class="kw">NROW</span>(ups[[u]]) %/%<span class="st"> </span><span class="dv">2</span>)) 
+                  else if (<span class="kw">NROW</span>(ups[[u]])) <span class="kw">rep</span>(<span class="dv">0</span>,<span class="kw">NROW</span>(ups[[u]])) 
+                  else <span class="ot">NULL</span>
+    all$lof &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length=</span>N)
+    <span class="kw">split</span>(all$lof,all$Prod) &lt;-<span class="st"> </span>r
+    all$lof[<span class="kw">which</span>(!(<span class="kw">is.infinite</span>(all$lof) |<span class="st"> </span><span class="kw">is.nan</span>(all$lof)))] &lt;-<span class="st"> </span>
+<span class="st">        </span><span class="kw">SoftMax</span>(all$lof[<span class="kw">which</span>(!(<span class="kw">is.infinite</span>(all$lof) |<span class="st"> </span><span class="kw">is.nan</span>(all$lof)))])
     
-    res &lt;- list(testSet=test,
-                rankOrder=order(all[(ntr+1):N,&#39;lof&#39;],decreasing=TRUE),
-                probs=as.matrix(cbind(all[(ntr+1):N,&#39;lof&#39;],
-                                      ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+                <span class="dt">rankOrder=</span><span class="kw">order</span>(all[(ntr<span class="dv">+1</span>):N,<span class="st">&#39;lof&#39;</span>],<span class="dt">decreasing=</span><span class="ot">TRUE</span>),
+                <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(all[(ntr<span class="dv">+1</span>):N,<span class="st">&#39;lof&#39;</span>],
+                                      <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
-}</code></pre>
-<pre class="r"><code>lof.res &lt;- performanceEstimation(
-    PredTask(Insp ~ . , sales),
-    Workflow(&quot;LOF.wf&quot;, k=7),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3, hldSz=0.3, strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1, statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(lof.res)</code></pre>
-<pre class="r"><code>ps.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,1])
-ts.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,2])
-PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lof.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>. , sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;LOF.wf&quot;</span>, <span class="dt">k=</span><span class="dv">7</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>, <span class="dt">hldSz=</span><span class="fl">0.3</span>, <span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>, <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lof.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.lof &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(lof.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.lof &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(lof.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.lof,ts.lof,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 
-CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,1])
-ts.lof &lt;- sapply(getIterationsInfo(lof.res), function(i) i$probs[,2])
-PRcurve(ps.bp, ts.bp,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.lof, ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))
-CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.lof,ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;),lty=c(1,2))</code></pre>
+<span class="kw">CRchart</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.lof,ts.lof,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.lof &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(lof.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.lof &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(lof.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.bp, ts.bp,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.lof, ts.lof,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">CRchart</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.lof,ts.lof,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
 <!-- ORh.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( &quot;salesClean.Rdata&quot; ) 
-source( &quot;evaluationCode.R&quot; ) 
-load(&quot;BPres.Rdata&quot;)
-load(&quot;LOFres.Rdata&quot;)</code></pre>
-<pre class="r"><code>ORh.wf &lt;- function(form, train, test, ...) {
-    require(DMwR2, quietly=TRUE)
-    ntr &lt;- nrow(train)
-    all &lt;- as.data.frame(rbind(train,test))
-    N &lt;- nrow(all)
-    ups &lt;- split(all$Uprice,all$Prod)
-    r &lt;- list(length=ups)
-    for(u in seq(along=ups)) 
-        r[[u]] &lt;- if (NROW(ups[[u]]) &gt; 3) 
-                      outliers.ranking(ups[[u]])$prob.outliers
-                  else if (NROW(ups[[u]])) rep(0,NROW(ups[[u]])) 
-                  else NULL
-    all$orh &lt;- vector(length=N)
-    split(all$orh,all$Prod) &lt;- r
-    all$orh[which(!(is.infinite(all$orh) | is.nan(all$orh)))] &lt;- 
-        SoftMax(all$orh[which(!(is.infinite(all$orh) | is.nan(all$orh)))])
-    res &lt;- list(testSet=test,
-                rankOrder=order(all[(ntr+1):N,&#39;orh&#39;],decreasing=TRUE),
-                probs=as.matrix(cbind(all[(ntr+1):N,&#39;orh&#39;],
-                                      ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">load</span>( <span class="st">&quot;salesClean.Rdata&quot;</span> ) 
+<span class="kw">source</span>( <span class="st">&quot;evaluationCode.R&quot;</span> ) 
+<span class="kw">load</span>(<span class="st">&quot;BPres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;LOFres.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ORh.wf &lt;-<span class="st"> </span>function(form, train, test, ...) {
+    <span class="kw">require</span>(DMwR2, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    ntr &lt;-<span class="st"> </span><span class="kw">nrow</span>(train)
+    all &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">rbind</span>(train,test))
+    N &lt;-<span class="st"> </span><span class="kw">nrow</span>(all)
+    ups &lt;-<span class="st"> </span><span class="kw">split</span>(all$Uprice,all$Prod)
+    r &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">length=</span>ups)
+    for(u in <span class="kw">seq</span>(<span class="dt">along=</span>ups)) 
+        r[[u]] &lt;-<span class="st"> </span>if (<span class="kw">NROW</span>(ups[[u]]) &gt;<span class="st"> </span><span class="dv">3</span>) 
+                      <span class="kw">outliers.ranking</span>(ups[[u]])$prob.outliers
+                  else if (<span class="kw">NROW</span>(ups[[u]])) <span class="kw">rep</span>(<span class="dv">0</span>,<span class="kw">NROW</span>(ups[[u]])) 
+                  else <span class="ot">NULL</span>
+    all$orh &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length=</span>N)
+    <span class="kw">split</span>(all$orh,all$Prod) &lt;-<span class="st"> </span>r
+    all$orh[<span class="kw">which</span>(!(<span class="kw">is.infinite</span>(all$orh) |<span class="st"> </span><span class="kw">is.nan</span>(all$orh)))] &lt;-<span class="st"> </span>
+<span class="st">        </span><span class="kw">SoftMax</span>(all$orh[<span class="kw">which</span>(!(<span class="kw">is.infinite</span>(all$orh) |<span class="st"> </span><span class="kw">is.nan</span>(all$orh)))])
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+                <span class="dt">rankOrder=</span><span class="kw">order</span>(all[(ntr<span class="dv">+1</span>):N,<span class="st">&#39;orh&#39;</span>],<span class="dt">decreasing=</span><span class="ot">TRUE</span>),
+                <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(all[(ntr<span class="dv">+1</span>):N,<span class="st">&#39;orh&#39;</span>],
+                                      <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
     
-}</code></pre>
-<pre class="r"><code>orh.res &lt;- performanceEstimation(
-    PredTask(Insp ~ . , sales),
-    Workflow(&quot;ORh.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3, hldSz=0.3, strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1, statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(orh.res)</code></pre>
-<pre class="r"><code>ps.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,1])
-ts.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,2])
-PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-PRcurve(ps.orh,ts.orh,add=TRUE,lty=1,col=&#39;grey&#39;, avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
-       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">orh.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>. , sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;ORh.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>, <span class="dt">hldSz=</span><span class="fl">0.3</span>, <span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>, <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(orh.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.orh &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(orh.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.orh &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(orh.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.lof,ts.lof,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))
 
-CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.lof,ts.lof,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=TRUE,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
-       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,1])
-ts.orh &lt;- sapply(getIterationsInfo(orh.res), function(i) i$probs[,2])
-PRcurve(ps.bp,ts.bp,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.lof,ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
-PRcurve(ps.orh,ts.orh,add=T,lty=1,col=&#39;grey&#39;, avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
-       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+<span class="kw">CRchart</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.lof,ts.lof,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.orh &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(orh.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.orh &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(orh.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.lof,ts.lof,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))
 
-CRchart(ps.bp,ts.bp,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.lof,ts.lof,add=T,lty=2,avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=T,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;BPrule&#39;,&#39;LOF&#39;,&#39;ORh&#39;),lty=c(1,2,1),
-       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<span class="kw">CRchart</span>(ps.bp,ts.bp,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.lof,ts.lof,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;BPrule&#39;</span>,<span class="st">&#39;LOF&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
 <!-- classImb.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)</code></pre>
-<pre class="r"><code>library(UBL)
-data(iris)
-data &lt;- iris[, c(1, 2, 5)]
-data$Species &lt;- factor(ifelse(data$Species == &quot;setosa&quot;, &quot;rare&quot;,&quot;common&quot;))
-table(data$Species)
-newData &lt;- SmoteClassif(Species ~ ., data, C.perc = &quot;balance&quot;)
-table(newData$Species)
-newData2 &lt;- SmoteClassif(Species ~ ., data, C.perc = list(common = 1,rare = 6))
-table(newData2$Species)</code></pre>
-<pre class="r"><code>library(ggplot2)
-ggplot(data,aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
-    geom_point() + ggtitle(&quot;Original Data&quot;)
-ggplot(newData2,aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
-    geom_point() + ggtitle(&quot;SMOTE&#39;d Data&quot;)</code></pre>
-<pre class="r"><code>library(grid)
-g1 &lt;- ggplot(data, aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
-    geom_point() + ggtitle(&quot;Original Data&quot;)
-g2 &lt;- ggplot(newData2, aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
-    geom_point() + ggtitle(&quot;SMOTE&#39;d Data&quot;)
-grid.newpage()
-pushViewport(viewport(layout= grid.layout(1,2)))
-print(g1,vp=viewport(layout.pos.row=1,layout.pos.col=1))
-print(g2,vp=viewport(layout.pos.row=1,layout.pos.col=2))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(UBL)
+<span class="kw">data</span>(iris)
+data &lt;-<span class="st"> </span>iris[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)]
+data$Species &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(data$Species ==<span class="st"> &quot;setosa&quot;</span>, <span class="st">&quot;rare&quot;</span>,<span class="st">&quot;common&quot;</span>))
+<span class="kw">table</span>(data$Species)
+newData &lt;-<span class="st"> </span><span class="kw">SmoteClassif</span>(Species ~<span class="st"> </span>., data, <span class="dt">C.perc =</span> <span class="st">&quot;balance&quot;</span>)
+<span class="kw">table</span>(newData$Species)
+newData2 &lt;-<span class="st"> </span><span class="kw">SmoteClassif</span>(Species ~<span class="st"> </span>., data, <span class="dt">C.perc =</span> <span class="kw">list</span>(<span class="dt">common =</span> <span class="dv">1</span>,<span class="dt">rare =</span> <span class="dv">6</span>))
+<span class="kw">table</span>(newData2$Species)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(data,<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width,<span class="dt">color=</span>Species)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Original Data&quot;</span>)
+<span class="kw">ggplot</span>(newData2,<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width,<span class="dt">color=</span>Species)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;SMOTE&#39;d Data&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(grid)
+g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width,<span class="dt">color=</span>Species)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Original Data&quot;</span>)
+g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(newData2, <span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width,<span class="dt">color=</span>Species)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;SMOTE&#39;d Data&quot;</span>)
+<span class="kw">grid.newpage</span>()
+<span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">layout=</span> <span class="kw">grid.layout</span>(<span class="dv">1</span>,<span class="dv">2</span>)))
+<span class="kw">print</span>(g1,<span class="dt">vp=</span><span class="kw">viewport</span>(<span class="dt">layout.pos.row=</span><span class="dv">1</span>,<span class="dt">layout.pos.col=</span><span class="dv">1</span>))
+<span class="kw">print</span>(g2,<span class="dt">vp=</span><span class="kw">viewport</span>(<span class="dt">layout.pos.row=</span><span class="dv">1</span>,<span class="dt">layout.pos.col=</span><span class="dv">2</span>))</code></pre></div>
 <!-- nb.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(UBL)
-library(performanceEstimation)
-load( &quot;salesClean.Rdata&quot; ) 
-source( &quot;evaluationCode.R&quot; ) 
-load(&quot;BPres.Rdata&quot;)
-load(&quot;LOFres.Rdata&quot;)
-load(&quot;ORHres.Rdata&quot;)</code></pre>
-<pre class="r"><code>NB.wf &lt;- function(form,train,test,...) {
-    require(e1071,quietly=TRUE)
-    sup &lt;- which(train$Insp != &#39;unkn&#39;)
-    data &lt;- as.data.frame(train[sup,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
-    data$Insp &lt;- factor(data$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
-    model &lt;- naiveBayes(Insp ~ .,data, ...)
-    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)], type=&#39;raw&#39;)
-    rankOrder &lt;- order(preds[,&#39;fraud&#39;], decreasing=TRUE)
-    rankScore &lt;- preds[,&#39;fraud&#39;]
-    res &lt;- list(testSet=test,
-                rankOrder=rankOrder,
-                probs=as.matrix(cbind(rankScore,
-                                ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(UBL)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">load</span>( <span class="st">&quot;salesClean.Rdata&quot;</span> ) 
+<span class="kw">source</span>( <span class="st">&quot;evaluationCode.R&quot;</span> ) 
+<span class="kw">load</span>(<span class="st">&quot;BPres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;LOFres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;ORHres.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NB.wf &lt;-<span class="st"> </span>function(form,train,test,...) {
+    <span class="kw">require</span>(e1071,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    sup &lt;-<span class="st"> </span><span class="kw">which</span>(train$Insp !=<span class="st"> &#39;unkn&#39;</span>)
+    data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(train[sup,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)])
+    data$Insp &lt;-<span class="st"> </span><span class="kw">factor</span>(data$Insp,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;ok&#39;</span>,<span class="st">&#39;fraud&#39;</span>))
+    model &lt;-<span class="st"> </span><span class="kw">naiveBayes</span>(Insp ~<span class="st"> </span>.,data, ...)
+    preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,test[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)], <span class="dt">type=</span><span class="st">&#39;raw&#39;</span>)
+    rankOrder &lt;-<span class="st"> </span><span class="kw">order</span>(preds[,<span class="st">&#39;fraud&#39;</span>], <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+    rankScore &lt;-<span class="st"> </span>preds[,<span class="st">&#39;fraud&#39;</span>]
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+                <span class="dt">rankOrder=</span>rankOrder,
+                <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(rankScore,
+                                <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
-}</code></pre>
-<pre class="r"><code>nb.res &lt;- performanceEstimation(
-    PredTask(Insp ~ . , sales),
-    Workflow(&quot;NB.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1,
-                                       statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(nb.res)</code></pre>
-<pre class="r"><code>ps.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,1])
-ts.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nb.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>. , sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;NB.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>,<span class="dt">hldSz=</span><span class="fl">0.3</span>,<span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>,
+                                       <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nb.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.nb &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.nb &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,1])
-ts.nb &lt;- sapply(getIterationsInfo(nb.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.nb &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.nb &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;),lty=1,col=c(&#39;black&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>NBsm.wf &lt;- function(form,train,test,C.perc=&quot;balance&quot;,dist=&quot;HEOM&quot;,...) {
-    require(e1071,quietly=TRUE)
-    require(UBL,quietly=TRUE)
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>),<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBsm.wf &lt;-<span class="st"> </span>function(form,train,test,<span class="dt">C.perc=</span><span class="st">&quot;balance&quot;</span>,<span class="dt">dist=</span><span class="st">&quot;HEOM&quot;</span>,...) {
+    <span class="kw">require</span>(e1071,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    <span class="kw">require</span>(UBL,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
 
-    sup &lt;- which(train$Insp != &#39;unkn&#39;)
-    data &lt;- as.data.frame(train[sup,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
-    data$Insp &lt;- factor(data$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
-    newData &lt;- SmoteClassif(Insp ~ .,data,C.perc=C.perc,dist=dist,...)
-    model &lt;- naiveBayes(Insp ~ .,newData)
-    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],type=&#39;raw&#39;)
-    rankOrder &lt;- order(preds[,&#39;fraud&#39;],decreasing=T)
-    rankScore &lt;- preds[,&#39;fraud&#39;]
+    sup &lt;-<span class="st"> </span><span class="kw">which</span>(train$Insp !=<span class="st"> &#39;unkn&#39;</span>)
+    data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(train[sup,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)])
+    data$Insp &lt;-<span class="st"> </span><span class="kw">factor</span>(data$Insp,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;ok&#39;</span>,<span class="st">&#39;fraud&#39;</span>))
+    newData &lt;-<span class="st"> </span><span class="kw">SmoteClassif</span>(Insp ~<span class="st"> </span>.,data,<span class="dt">C.perc=</span>C.perc,<span class="dt">dist=</span>dist,...)
+    model &lt;-<span class="st"> </span><span class="kw">naiveBayes</span>(Insp ~<span class="st"> </span>.,newData)
+    preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,test[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)],<span class="dt">type=</span><span class="st">&#39;raw&#39;</span>)
+    rankOrder &lt;-<span class="st"> </span><span class="kw">order</span>(preds[,<span class="st">&#39;fraud&#39;</span>],<span class="dt">decreasing=</span>T)
+    rankScore &lt;-<span class="st"> </span>preds[,<span class="st">&#39;fraud&#39;</span>]
     
-    res &lt;- list(testSet=test,
-              rankOrder=rankOrder,
-              probs=as.matrix(cbind(rankScore,
-                                    ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+              <span class="dt">rankOrder=</span>rankOrder,
+              <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(rankScore,
+                                    <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
-}</code></pre>
-<pre class="r"><code>nbs.res &lt;- performanceEstimation(
-    PredTask(Insp ~ ., sales),
-    Workflow(&quot;NBsm.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1,
-                                       statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(nbs.res) </code></pre>
-<pre class="r"><code>ps.nbs &lt;- sapply(getIterationsInfo(nbs.res), function(i) i$probs[,1])
-ts.nbs &lt;- sapply(getIterationsInfo(nbs.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=TRUE,lty=2, avg=&#39;vertical&#39;)
-PRcurve(ps.nbs,ts.nbs,add=TRUE,lty=1, col=&#39;grey&#39;,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),lty=c(1,2,1),
-       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nbs.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>., sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;NBsm.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>,<span class="dt">hldSz=</span><span class="fl">0.3</span>,<span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>,
+                                       <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nbs.res) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.nbs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nbs.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.nbs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nbs.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.nbs,ts.nbs,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;smoteNaiveBayes&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-CRchart(ps.nbs,ts.nbs,add=TRUE,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),lty=c(1,2,1),
-       col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.nbs &lt;- sapply(getIterationsInfo(nbs.res),  function(i) i$probs[,1])
-ts.nbs &lt;- sapply(getIterationsInfo(nbs.res),  function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
-PRcurve(ps.nbs,ts.nbs,add=T,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),
-       lty=c(1,2,1),col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.nbs,ts.nbs,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;smoteNaiveBayes&#39;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.nbs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nbs.res),  function(i) i$probs[,<span class="dv">1</span>])
+ts.nbs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nbs.res),  function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.nbs,ts.nbs,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;smoteNaiveBayes&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=T,lty=2,avg=&#39;vertical&#39;)
-CRchart(ps.nbs,ts.nbs,add=T,lty=1,col=&#39;grey&#39;,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;smoteNaiveBayes&#39;),
-       lty=c(1,2,1),col=c(&#39;black&#39;,&#39;black&#39;,&#39;grey&#39;))</code></pre>
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.nbs,ts.nbs,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;smoteNaiveBayes&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
 <!-- adaB.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( &quot;salesClean.Rdata&quot; ) 
-source( &quot;evaluationCode.R&quot; ) 
-load(&quot;BPres.Rdata&quot;)
-load(&quot;LOFres.Rdata&quot;)
-load(&quot;ORHres.Rdata&quot;)
-load(&quot;NBres.Rdata&quot;)</code></pre>
-<pre class="r"><code>library(RWeka)
-WOW(AdaBoostM1)</code></pre>
-<pre class="r"><code>data(iris)
-idx &lt;- sample(150,100)
-model &lt;- AdaBoostM1(Species ~ .,iris[idx,], control=Weka_control(I=100))
-preds &lt;- predict(model,iris[-idx,])
-head(preds)
-table(preds,iris[-idx,&#39;Species&#39;])</code></pre>
-<pre class="r"><code>ab.wf &lt;- function(form,train,test,ntrees=100,...) {
-    require(RWeka,quietly=TRUE)
-    sup &lt;- which(train$Insp != &#39;unkn&#39;)
-    data &lt;- as.data.frame(train[sup,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
-    data$Insp &lt;- factor(data$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
-    model &lt;- AdaBoostM1(Insp ~ .,data,
-                       control=Weka_control(I=ntrees))
-    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],
-                     type=&#39;probability&#39;)
-    rankOrder &lt;- order(preds[,&quot;fraud&quot;],decreasing=TRUE)
-    rankScore &lt;- preds[,&quot;fraud&quot;]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">load</span>( <span class="st">&quot;salesClean.Rdata&quot;</span> ) 
+<span class="kw">source</span>( <span class="st">&quot;evaluationCode.R&quot;</span> ) 
+<span class="kw">load</span>(<span class="st">&quot;BPres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;LOFres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;ORHres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;NBres.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RWeka)
+<span class="kw">WOW</span>(AdaBoostM1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
+idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">150</span>,<span class="dv">100</span>)
+model &lt;-<span class="st"> </span><span class="kw">AdaBoostM1</span>(Species ~<span class="st"> </span>.,iris[idx,], <span class="dt">control=</span><span class="kw">Weka_control</span>(<span class="dt">I=</span><span class="dv">100</span>))
+preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,iris[-idx,])
+<span class="kw">head</span>(preds)
+<span class="kw">table</span>(preds,iris[-idx,<span class="st">&#39;Species&#39;</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab.wf &lt;-<span class="st"> </span>function(form,train,test,<span class="dt">ntrees=</span><span class="dv">100</span>,...) {
+    <span class="kw">require</span>(RWeka,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    sup &lt;-<span class="st"> </span><span class="kw">which</span>(train$Insp !=<span class="st"> &#39;unkn&#39;</span>)
+    data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(train[sup,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)])
+    data$Insp &lt;-<span class="st"> </span><span class="kw">factor</span>(data$Insp,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;ok&#39;</span>,<span class="st">&#39;fraud&#39;</span>))
+    model &lt;-<span class="st"> </span><span class="kw">AdaBoostM1</span>(Insp ~<span class="st"> </span>.,data,
+                       <span class="dt">control=</span><span class="kw">Weka_control</span>(<span class="dt">I=</span>ntrees))
+    preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,test[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)],
+                     <span class="dt">type=</span><span class="st">&#39;probability&#39;</span>)
+    rankOrder &lt;-<span class="st"> </span><span class="kw">order</span>(preds[,<span class="st">&quot;fraud&quot;</span>],<span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+    rankScore &lt;-<span class="st"> </span>preds[,<span class="st">&quot;fraud&quot;</span>]
     
-    res &lt;- list(testSet=test,
-                rankOrder=rankOrder,
-                probs=as.matrix(cbind(rankScore,
-                                      ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+                <span class="dt">rankOrder=</span>rankOrder,
+                <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(rankScore,
+                                      <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
-}</code></pre>
-<pre class="r"><code>ab.res &lt;- performanceEstimation(
-    PredTask(Insp ~ .,sales),
-    Workflow(&quot;ab.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1,
-                                       statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(ab.res)</code></pre>
-<pre class="r"><code>ps.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,1])
-ts.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=TRUE,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
-PRcurve(ps.ab,ts.ab,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>.,sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;ab.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>,<span class="dt">hldSz=</span><span class="fl">0.3</span>,<span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>,
+                                       <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ab.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.ab &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.ab &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.ab,ts.ab,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;black&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=TRUE,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-CRchart(ps.ab,ts.ab,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,1])
-ts.ab &lt;- sapply(getIterationsInfo(ab.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1),avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-PRcurve(ps.ab,ts.ab,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.ab,ts.ab,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.ab &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.ab &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.ab,ts.ab,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;black&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-CRchart(ps.ab,ts.ab,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;AdaBoostM1&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.ab,ts.ab,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
 <!-- Semisupervised.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( &quot;salesClean.Rdata&quot; ) 
-source( &quot;evaluationCode.R&quot; ) 
-load(&quot;BPres.Rdata&quot;)
-load(&quot;LOFres.Rdata&quot;)
-load(&quot;ORHres.Rdata&quot;)
-load(&quot;NBres.Rdata&quot;)
-load(&quot;ABres.Rdata&quot;)</code></pre>
-<pre class="r"><code>library(DMwR2)
-library(e1071)
-data(iris) 
-set.seed(1234)
-idx &lt;- sample(150, 100)
-tr &lt;- iris[idx, ]
-ts &lt;- iris[-idx, ]
-nb &lt;- naiveBayes(Species ~ ., tr)
-table(predict(nb, ts), ts$Species)
-trST &lt;- tr
-nas &lt;- sample(100, 90)
-trST[nas, &quot;Species&quot;] &lt;- NA
-func &lt;- function(m, d) {
-    p &lt;- predict(m, d, type = &quot;raw&quot;)
-    data.frame(cl = colnames(p)[ apply(p, 1, which.max) ], 
-               p = apply(p, 1, max))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">load</span>( <span class="st">&quot;salesClean.Rdata&quot;</span> ) 
+<span class="kw">source</span>( <span class="st">&quot;evaluationCode.R&quot;</span> ) 
+<span class="kw">load</span>(<span class="st">&quot;BPres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;LOFres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;ORHres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;NBres.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;ABres.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(e1071)
+<span class="kw">data</span>(iris) 
+<span class="kw">set.seed</span>(<span class="dv">1234</span>)
+idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">150</span>, <span class="dv">100</span>)
+tr &lt;-<span class="st"> </span>iris[idx, ]
+ts &lt;-<span class="st"> </span>iris[-idx, ]
+nb &lt;-<span class="st"> </span><span class="kw">naiveBayes</span>(Species ~<span class="st"> </span>., tr)
+<span class="kw">table</span>(<span class="kw">predict</span>(nb, ts), ts$Species)
+trST &lt;-<span class="st"> </span>tr
+nas &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">100</span>, <span class="dv">90</span>)
+trST[nas, <span class="st">&quot;Species&quot;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
+func &lt;-<span class="st"> </span>function(m, d) {
+    p &lt;-<span class="st"> </span><span class="kw">predict</span>(m, d, <span class="dt">type =</span> <span class="st">&quot;raw&quot;</span>)
+    <span class="kw">data.frame</span>(<span class="dt">cl =</span> <span class="kw">colnames</span>(p)[ <span class="kw">apply</span>(p, <span class="dv">1</span>, which.max) ], 
+               <span class="dt">p =</span> <span class="kw">apply</span>(p, <span class="dv">1</span>, max))
 }
-nbSTbase &lt;- naiveBayes(Species ~ ., trST[-nas, ])
-table(predict(nbSTbase, ts), ts$Species)
-nbST &lt;- SelfTrain(Species ~ ., trST, 
-                  learner=&quot;naiveBayes&quot;, learner.pars=list(),
-                  pred=&quot;func&quot;)
-table(predict(nbST, ts), ts$Species)</code></pre>
-<pre class="r"><code>pred.nb &lt;- function(m,d) {
-    p &lt;- predict(m,d,type=&#39;raw&#39;)
-    data.frame(cl=colnames(p)[apply(p,1,which.max)],
-               p=apply(p,1,max)
+nbSTbase &lt;-<span class="st"> </span><span class="kw">naiveBayes</span>(Species ~<span class="st"> </span>., trST[-nas, ])
+<span class="kw">table</span>(<span class="kw">predict</span>(nbSTbase, ts), ts$Species)
+nbST &lt;-<span class="st"> </span><span class="kw">SelfTrain</span>(Species ~<span class="st"> </span>., trST, 
+                  <span class="dt">learner=</span><span class="st">&quot;naiveBayes&quot;</span>, <span class="dt">learner.pars=</span><span class="kw">list</span>(),
+                  <span class="dt">pred=</span><span class="st">&quot;func&quot;</span>)
+<span class="kw">table</span>(<span class="kw">predict</span>(nbST, ts), ts$Species)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred.nb &lt;-<span class="st"> </span>function(m,d) {
+    p &lt;-<span class="st"> </span><span class="kw">predict</span>(m,d,<span class="dt">type=</span><span class="st">&#39;raw&#39;</span>)
+    <span class="kw">data.frame</span>(<span class="dt">cl=</span><span class="kw">colnames</span>(p)[<span class="kw">apply</span>(p,<span class="dv">1</span>,which.max)],
+               <span class="dt">p=</span><span class="kw">apply</span>(p,<span class="dv">1</span>,max)
                )
 }
  
-nb.st.wf &lt;- function(form,train,test,...) {
-    require(e1071,quietly=TRUE)
-    require(DMwR2, quietly=TRUE)
-    train &lt;- as.data.frame(train[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
-    train[which(train$Insp == &#39;unkn&#39;),&#39;Insp&#39;] &lt;- NA
-    train$Insp &lt;- factor(train$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
-    model &lt;- SelfTrain(form,train,
-                       learner=&#39;naiveBayes&#39;, learner.pars=list(),
-                       pred=&#39;pred.nb&#39;)
-    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],
-                     type=&#39;raw&#39;)
+nb.st.wf &lt;-<span class="st"> </span>function(form,train,test,...) {
+    <span class="kw">require</span>(e1071,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    <span class="kw">require</span>(DMwR2, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    train &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(train[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)])
+    train[<span class="kw">which</span>(train$Insp ==<span class="st"> &#39;unkn&#39;</span>),<span class="st">&#39;Insp&#39;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
+    train$Insp &lt;-<span class="st"> </span><span class="kw">factor</span>(train$Insp,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;ok&#39;</span>,<span class="st">&#39;fraud&#39;</span>))
+    model &lt;-<span class="st"> </span><span class="kw">SelfTrain</span>(form,train,
+                       <span class="dt">learner=</span><span class="st">&#39;naiveBayes&#39;</span>, <span class="dt">learner.pars=</span><span class="kw">list</span>(),
+                       <span class="dt">pred=</span><span class="st">&#39;pred.nb&#39;</span>)
+    preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,test[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)],
+                     <span class="dt">type=</span><span class="st">&#39;raw&#39;</span>)
 
-    rankOrder &lt;- order(preds[,&#39;fraud&#39;],decreasing=TRUE)
-    rankScore &lt;- preds[,&quot;fraud&quot;]
+    rankOrder &lt;-<span class="st"> </span><span class="kw">order</span>(preds[,<span class="st">&#39;fraud&#39;</span>],<span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+    rankScore &lt;-<span class="st"> </span>preds[,<span class="st">&quot;fraud&quot;</span>]
     
-    res &lt;- list(testSet=test,
-              rankOrder=rankOrder,
-              probs=as.matrix(cbind(rankScore,
-                                    ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+              <span class="dt">rankOrder=</span>rankOrder,
+              <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(rankScore,
+                                    <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
-}</code></pre>
-<pre class="r"><code>nb.st.res &lt;- performanceEstimation(
-    PredTask(Insp ~ .,sales),
-    Workflow(&quot;nb.st.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1,
-                                       statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(nb.st.res)</code></pre>
-<pre class="r"><code>ps.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,1])
-ts.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=TRUE,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
-PRcurve(ps.nb.st,ts.nb.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nb.st.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>.,sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;nb.st.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>,<span class="dt">hldSz=</span><span class="fl">0.3</span>,<span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>,
+                                       <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nb.st.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.nb.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.st.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.nb.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.st.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.nb.st,ts.nb.st,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;NaiveBayes-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;black&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=TRUE,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-CRchart(ps.nb.st,ts.nb.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,1])
-ts.nb.st &lt;- sapply(getIterationsInfo(nb.st.res), function(i) i$probs[,2])
-PRcurve(ps.nb,ts.nb,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.orh,ts.orh,add=T,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
-PRcurve(ps.nb.st,ts.nb.st,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.nb.st,ts.nb.st,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;NaiveBayes-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.nb.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.st.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.nb.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(nb.st.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.nb.st,ts.nb.st,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;NaiveBayes-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;black&#39;</span>))
 
-CRchart(ps.nb,ts.nb,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.orh,ts.orh,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-CRchart(ps.nb.st,ts.nb.st,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;NaiveBayes&#39;,&#39;ORh&#39;,&#39;NaiveBayes-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>pred.ada &lt;- function(m,d) {
-    p &lt;- predict(m,d,type=&#39;probability&#39;)
-    data.frame(cl=colnames(p)[apply(p,1,which.max)],
-               p=apply(p,1,max)
+<span class="kw">CRchart</span>(ps.nb,ts.nb,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.nb.st,ts.nb.st,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;NaiveBayes&#39;</span>,<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;NaiveBayes-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred.ada &lt;-<span class="st"> </span>function(m,d) {
+    p &lt;-<span class="st"> </span><span class="kw">predict</span>(m,d,<span class="dt">type=</span><span class="st">&#39;probability&#39;</span>)
+    <span class="kw">data.frame</span>(<span class="dt">cl=</span><span class="kw">colnames</span>(p)[<span class="kw">apply</span>(p,<span class="dv">1</span>,which.max)],
+               <span class="dt">p=</span><span class="kw">apply</span>(p,<span class="dv">1</span>,max)
                )
 }
  
-ab.st.wf &lt;- function(form,train,test,ntrees=100,...) {
-    require(RWeka,quietly=TRUE)
-    require(DMwR2,quietly=TRUE)
-    train &lt;- as.data.frame(train[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)])
-    train[which(train$Insp == &#39;unkn&#39;),&#39;Insp&#39;] &lt;- NA
-    train$Insp &lt;- factor(train$Insp,levels=c(&#39;ok&#39;,&#39;fraud&#39;))
-    model &lt;- SelfTrain(form,train,
-                       learner=&#39;AdaBoostM1&#39;,
-                       learner.pars=list(control=Weka_control(I=ntrees)),
-                       pred=&#39;pred.ada&#39;)
-    preds &lt;- predict(model,test[,c(&#39;ID&#39;,&#39;Prod&#39;,&#39;Uprice&#39;,&#39;Insp&#39;)],
-                     type=&#39;probability&#39;)
+ab.st.wf &lt;-<span class="st"> </span>function(form,train,test,<span class="dt">ntrees=</span><span class="dv">100</span>,...) {
+    <span class="kw">require</span>(RWeka,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    <span class="kw">require</span>(DMwR2,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
+    train &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(train[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)])
+    train[<span class="kw">which</span>(train$Insp ==<span class="st"> &#39;unkn&#39;</span>),<span class="st">&#39;Insp&#39;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
+    train$Insp &lt;-<span class="st"> </span><span class="kw">factor</span>(train$Insp,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;ok&#39;</span>,<span class="st">&#39;fraud&#39;</span>))
+    model &lt;-<span class="st"> </span><span class="kw">SelfTrain</span>(form,train,
+                       <span class="dt">learner=</span><span class="st">&#39;AdaBoostM1&#39;</span>,
+                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">control=</span><span class="kw">Weka_control</span>(<span class="dt">I=</span>ntrees)),
+                       <span class="dt">pred=</span><span class="st">&#39;pred.ada&#39;</span>)
+    preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,test[,<span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>,<span class="st">&#39;Prod&#39;</span>,<span class="st">&#39;Uprice&#39;</span>,<span class="st">&#39;Insp&#39;</span>)],
+                     <span class="dt">type=</span><span class="st">&#39;probability&#39;</span>)
 
-    rankOrder &lt;- order(preds[,&#39;fraud&#39;],decreasing=T)
-    rankScore &lt;- preds[,&quot;fraud&quot;]
+    rankOrder &lt;-<span class="st"> </span><span class="kw">order</span>(preds[,<span class="st">&#39;fraud&#39;</span>],<span class="dt">decreasing=</span>T)
+    rankScore &lt;-<span class="st"> </span>preds[,<span class="st">&quot;fraud&quot;</span>]
     
-    res &lt;- list(testSet=test,
-              rankOrder=rankOrder,
-              probs=as.matrix(cbind(rankScore,
-                                    ifelse(test$Insp==&#39;fraud&#39;,1,0))))
+    res &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">testSet=</span>test,
+              <span class="dt">rankOrder=</span>rankOrder,
+              <span class="dt">probs=</span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(rankScore,
+                                    <span class="kw">ifelse</span>(test$Insp==<span class="st">&#39;fraud&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>))))
     res
-}</code></pre>
-<pre class="r"><code>ab.st.res &lt;- performanceEstimation(
-    PredTask(Insp ~ .,sales),
-    Workflow(&quot;ab.st.wf&quot;),
-    EstimationTask(metrics=c(&quot;Precision&quot;,&quot;Recall&quot;,&quot;avgNDTP&quot;),
-                   method=Holdout(nReps=3,hldSz=0.3,strat=TRUE),
-                   evaluator=&quot;evalOutlierRanking&quot;,
-                   evaluator.pars=list(Threshold=0.1,
-                                       statsProds=globalStats))
-    )</code></pre>
-<pre class="r"><code>summary(ab.st.res)</code></pre>
-<pre class="r"><code>ps.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,1])
-ts.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,2])
-PRcurve(ps.orh,ts.orh,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.ab,ts.ab,add=TRUE,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
-PRcurve(ps.ab.st,ts.ab.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab.st.res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
+    <span class="kw">PredTask</span>(Insp ~<span class="st"> </span>.,sales),
+    <span class="kw">Workflow</span>(<span class="st">&quot;ab.st.wf&quot;</span>),
+    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Precision&quot;</span>,<span class="st">&quot;Recall&quot;</span>,<span class="st">&quot;avgNDTP&quot;</span>),
+                   <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>,<span class="dt">hldSz=</span><span class="fl">0.3</span>,<span class="dt">strat=</span><span class="ot">TRUE</span>),
+                   <span class="dt">evaluator=</span><span class="st">&quot;evalOutlierRanking&quot;</span>,
+                   <span class="dt">evaluator.pars=</span><span class="kw">list</span>(<span class="dt">Threshold=</span><span class="fl">0.1</span>,
+                                       <span class="dt">statsProds=</span>globalStats))
+    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ab.st.res)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps.ab.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.st.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.ab.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.st.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.ab,ts.ab,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.ab.st,ts.ab.st,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>,<span class="st">&#39;AdaBoostM1-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;black&#39;</span>))
 
-CRchart(ps.orh,ts.orh,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.ab,ts.ab,add=TRUE,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-CRchart(ps.ab.st,ts.ab.st,add=TRUE,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2)) 
-ps.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,1])
-ts.ab.st &lt;- sapply(getIterationsInfo(ab.st.res), function(i) i$probs[,2])
-PRcurve(ps.orh,ts.orh,main=&quot;PR curve&quot;,lty=1,
-        xlim=c(0,1),ylim=c(0,1), avg=&quot;vertical&quot;)
-PRcurve(ps.ab,ts.ab,add=T,lty=1, color=&#39;grey&#39;, avg=&#39;vertical&#39;)
-PRcurve(ps.ab.st,ts.ab.st,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;topright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;black&#39;))
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.ab,ts.ab,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.ab.st,ts.ab.st,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>,<span class="st">&#39;AdaBoostM1-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) 
+ps.ab.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.st.res), function(i) i$probs[,<span class="dv">1</span>])
+ts.ab.st &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">getIterationsInfo</span>(ab.st.res), function(i) i$probs[,<span class="dv">2</span>])
+<span class="kw">PRcurve</span>(ps.orh,ts.orh,<span class="dt">main=</span><span class="st">&quot;PR curve&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>,
+        <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">avg=</span><span class="st">&quot;vertical&quot;</span>)
+<span class="kw">PRcurve</span>(ps.ab,ts.ab,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">PRcurve</span>(ps.ab.st,ts.ab.st,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>,<span class="st">&#39;AdaBoostM1-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;black&#39;</span>))
 
-CRchart(ps.orh,ts.orh,main=&#39;Cumulative Recall curve&#39;,
-        lty=1,xlim=c(0,1),ylim=c(0,1),avg=&#39;vertical&#39;)
-CRchart(ps.ab,ts.ab,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
-CRchart(ps.ab.st,ts.ab.st,add=T,lty=2,avg=&#39;vertical&#39;)
-legend(&#39;bottomright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
-       lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+<span class="kw">CRchart</span>(ps.orh,ts.orh,<span class="dt">main=</span><span class="st">&#39;Cumulative Recall curve&#39;</span>,
+        <span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.ab,ts.ab,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">CRchart</span>(ps.ab.st,ts.ab.st,<span class="dt">add=</span>T,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">avg=</span><span class="st">&#39;vertical&#39;</span>)
+<span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>,<span class="kw">c</span>(<span class="st">&#39;ORh&#39;</span>,<span class="st">&#39;AdaBoostM1&#39;</span>,<span class="st">&#39;AdaBoostM1-ST&#39;</span>),
+       <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>,<span class="st">&#39;grey&#39;</span>,<span class="st">&#39;grey&#39;</span>))</code></pre></div>
 </div>
 </div>
 

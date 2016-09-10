@@ -24,24 +24,50 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/textmate.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
 
 
 <style type="text/css">
@@ -392,132 +418,132 @@ div.tocify {
 <!-- availData.Rnw -->
 <div id="the-available-data" class="section level3">
 <h3>The Available Data</h3>
-<pre class="r"><code>library(xts)
-data(GSPC, package=&quot;DMwR2&quot;)
-first(GSPC)
-last(GSPC)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xts)
+<span class="kw">data</span>(GSPC, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+<span class="kw">first</span>(GSPC)
+<span class="kw">last</span>(GSPC)</code></pre></div>
 <div id="reading-the-data-from-the-csv-file" class="section level4">
 <h4>Reading the Data from the CSV File</h4>
-<pre class="r"><code>library(xts)
-GSPC &lt;- as.xts(read.zoo(&quot;sp500.csv&quot;, header = TRUE))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xts)
+GSPC &lt;-<span class="st"> </span><span class="kw">as.xts</span>(<span class="kw">read.zoo</span>(<span class="st">&quot;sp500.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>))</code></pre></div>
 </div>
 <div id="getting-the-data-from-the-web" class="section level4">
 <h4>Getting the Data from the Web</h4>
-<pre class="r"><code>library(quantmod)
-GSPC &lt;- getSymbols(&quot;^GSPC&quot;,auto.assign=FALSE)</code></pre>
-<pre class="r"><code>GSPC &lt;- getSymbols(&quot;^GSPC&quot;,from=&quot;1970-01-02&quot;,to=&quot;2016-01-25&quot;,auto.assign=FALSE)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(quantmod)
+GSPC &lt;-<span class="st"> </span><span class="kw">getSymbols</span>(<span class="st">&quot;^GSPC&quot;</span>,<span class="dt">auto.assign=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GSPC &lt;-<span class="st"> </span><span class="kw">getSymbols</span>(<span class="st">&quot;^GSPC&quot;</span>,<span class="dt">from=</span><span class="st">&quot;1970-01-02&quot;</span>,<span class="dt">to=</span><span class="st">&quot;2016-01-25&quot;</span>,<span class="dt">auto.assign=</span><span class="ot">FALSE</span>)</code></pre></div>
 <!-- predTask.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC, package=&quot;DMwR2&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(xts)
+<span class="kw">library</span>(quantmod)
+<span class="kw">data</span>(GSPC, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="defining-the-prediction-tasks" class="section level3">
 <h3>Defining the Prediction Tasks</h3>
 <div id="what-to-predict" class="section level4">
 <h4>What to Predict?</h4>
-<pre class="r"><code>T.ind &lt;- function(quotes, tgt.margin = 0.025, n.days = 10) {
-    v &lt;- apply(HLC(quotes), 1, mean)
-    v[1] &lt;- Cl(quotes)[1]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">T.ind &lt;-<span class="st"> </span>function(quotes, <span class="dt">tgt.margin =</span> <span class="fl">0.025</span>, <span class="dt">n.days =</span> <span class="dv">10</span>) {
+    v &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">HLC</span>(quotes), <span class="dv">1</span>, mean)
+    v[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">Cl</span>(quotes)[<span class="dv">1</span>]
     
-    r &lt;- matrix(NA, ncol = n.days, nrow = NROW(quotes))
-    for (x in 1:n.days) r[, x] &lt;- Next(Delt(v, k = x), x)
+    r &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">ncol =</span> n.days, <span class="dt">nrow =</span> <span class="kw">NROW</span>(quotes))
+    for (x in <span class="dv">1</span>:n.days) r[, x] &lt;-<span class="st"> </span><span class="kw">Next</span>(<span class="kw">Delt</span>(v, <span class="dt">k =</span> x), x)
     
-    x &lt;- apply(r, 1, function(x) sum(x[x &gt; tgt.margin | x &lt; -tgt.margin]))
+    x &lt;-<span class="st"> </span><span class="kw">apply</span>(r, <span class="dv">1</span>, function(x) <span class="kw">sum</span>(x[x &gt;<span class="st"> </span>tgt.margin |<span class="st"> </span>x &lt;<span class="st"> </span>-tgt.margin]))
     
-    if (is.xts(quotes)) xts(x, time(quotes)) else x
-}</code></pre>
-<pre class="r"><code>candleChart(last(GSPC,&#39;3 months&#39;),theme=&#39;white&#39;, TA=NULL)
-avgPrice &lt;- function(p) apply(HLC(p),1,mean)
-addAvgPrice &lt;- newTA(FUN=avgPrice,col=1,legend=&#39;AvgPrice&#39;)
-addT.ind &lt;- newTA(FUN=T.ind,col=&#39;red&#39;, legend=&#39;tgtRet&#39;)
-addAvgPrice(on=1) 
-addT.ind()</code></pre>
-<pre class="r"><code>avgPrice &lt;- function(p) apply(HLC(p), 1, mean) 
-addAvgPrice &lt;- newTA(FUN=avgPrice, col=1, legend=&#39;AvgPrice&#39;)
-addT.ind &lt;- newTA(FUN=T.ind, col=&#39;red&#39;, legend=&#39;tgtRet&#39;)
-candleChart(last(GSPC,&#39;3 months&#39;), theme=&#39;white&#39;, TA=c(addAvgPrice(on=1), addT.ind()))</code></pre>
+    if (<span class="kw">is.xts</span>(quotes)) <span class="kw">xts</span>(x, <span class="kw">time</span>(quotes)) else x
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">candleChart</span>(<span class="kw">last</span>(GSPC,<span class="st">&#39;3 months&#39;</span>),<span class="dt">theme=</span><span class="st">&#39;white&#39;</span>, <span class="dt">TA=</span><span class="ot">NULL</span>)
+avgPrice &lt;-<span class="st"> </span>function(p) <span class="kw">apply</span>(<span class="kw">HLC</span>(p),<span class="dv">1</span>,mean)
+addAvgPrice &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class="dt">FUN=</span>avgPrice,<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="st">&#39;AvgPrice&#39;</span>)
+addT.ind &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class="dt">FUN=</span>T.ind,<span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">legend=</span><span class="st">&#39;tgtRet&#39;</span>)
+<span class="kw">addAvgPrice</span>(<span class="dt">on=</span><span class="dv">1</span>) 
+<span class="kw">addT.ind</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avgPrice &lt;-<span class="st"> </span>function(p) <span class="kw">apply</span>(<span class="kw">HLC</span>(p), <span class="dv">1</span>, mean) 
+addAvgPrice &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class="dt">FUN=</span>avgPrice, <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">legend=</span><span class="st">&#39;AvgPrice&#39;</span>)
+addT.ind &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class="dt">FUN=</span>T.ind, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">legend=</span><span class="st">&#39;tgtRet&#39;</span>)
+<span class="kw">candleChart</span>(<span class="kw">last</span>(GSPC,<span class="st">&#39;3 months&#39;</span>), <span class="dt">theme=</span><span class="st">&#39;white&#39;</span>, <span class="dt">TA=</span><span class="kw">c</span>(<span class="kw">addAvgPrice</span>(<span class="dt">on=</span><span class="dv">1</span>), <span class="kw">addT.ind</span>()))</code></pre></div>
 </div>
 <div id="which-predictors" class="section level4">
 <h4>Which Predictors?</h4>
-<pre class="r"><code>library(TTR)
-myATR        &lt;- function(x) ATR(HLC(x))[,&#39;atr&#39;]
-mySMI        &lt;- function(x) SMI(HLC(x))[, &quot;SMI&quot;]
-myADX        &lt;- function(x) ADX(HLC(x))[,&#39;ADX&#39;]
-myAroon      &lt;- function(x) aroon(cbind(Hi(x),Lo(x)))$oscillator
-myBB         &lt;- function(x) BBands(HLC(x))[, &quot;pctB&quot;]
-myChaikinVol &lt;- function(x) Delt(chaikinVolatility(cbind(Hi(x),Lo(x))))[, 1]
-myCLV        &lt;- function(x) EMA(CLV(HLC(x)))[, 1]
-myEMV        &lt;- function(x) EMV(cbind(Hi(x),Lo(x)),Vo(x))[,2]
-myMACD       &lt;- function(x) MACD(Cl(x))[,2]
-myMFI        &lt;- function(x) MFI(HLC(x),  Vo(x))
-mySAR        &lt;- function(x) SAR(cbind(Hi(x),Cl(x))) [,1]
-myVolat      &lt;- function(x) volatility(OHLC(x),calc=&quot;garman&quot;)[,1]</code></pre>
-<pre class="r"><code>library(randomForest)
-data.model &lt;- specifyModel(T.ind(GSPC) ~ Delt(Cl(GSPC),k=1:10) + 
-        myATR(GSPC) + mySMI(GSPC) + myADX(GSPC) + myAroon(GSPC) + 
-        myBB(GSPC)  + myChaikinVol(GSPC) + myCLV(GSPC) + 
-        CMO(Cl(GSPC)) + EMA(Delt(Cl(GSPC))) + myEMV(GSPC) + 
-        myVolat(GSPC)  + myMACD(GSPC) + myMFI(GSPC) + RSI(Cl(GSPC)) +
-        mySAR(GSPC) + runMean(Cl(GSPC)) + runSD(Cl(GSPC)))
-set.seed(1234)
-rf &lt;- buildModel(data.model,method=&#39;randomForest&#39;,
-                 training.per=c(&quot;1995-01-01&quot;,&quot;2005-12-30&quot;),
-                 ntree=1000, importance=TRUE)</code></pre>
-<pre class="r"><code>ex.model &lt;- specifyModel(T.ind(IBM) ~ Delt(Cl(IBM), k = 1:3))
-data &lt;- modelData(ex.model, data.window = c(&quot;2009-01-01&quot;,  &quot;2009-08-10&quot;))</code></pre>
-<pre class="r"><code>m &lt;- myFavouriteModellingTool(ex.model@model.formula, as.data.frame(data))</code></pre>
-<pre class="r"><code>varImpPlot(rf@fitted.model, type = 1)</code></pre>
-<pre class="r"><code>varImpPlot(rf@fitted.model, type = 1)</code></pre>
-<pre class="r"><code>imp &lt;- importance(rf@fitted.model, type = 1)
-rownames(imp)[which(imp &gt; 30)]</code></pre>
-<pre class="r"><code>data.model &lt;- specifyModel(T.ind(GSPC) ~ myATR(GSPC) + mySMI(GSPC) +  myADX(GSPC) + 
-                           myAroon(GSPC) + myEMV(GSPC) + myVolat(GSPC) + 
-                           myMACD(GSPC) + myMFI(GSPC) + mySAR(GSPC) + 
-                           runMean(Cl(GSPC)) + runSD(Cl(GSPC)))</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(TTR)
+myATR        &lt;-<span class="st"> </span>function(x) <span class="kw">ATR</span>(<span class="kw">HLC</span>(x))[,<span class="st">&#39;atr&#39;</span>]
+mySMI        &lt;-<span class="st"> </span>function(x) <span class="kw">SMI</span>(<span class="kw">HLC</span>(x))[, <span class="st">&quot;SMI&quot;</span>]
+myADX        &lt;-<span class="st"> </span>function(x) <span class="kw">ADX</span>(<span class="kw">HLC</span>(x))[,<span class="st">&#39;ADX&#39;</span>]
+myAroon      &lt;-<span class="st"> </span>function(x) <span class="kw">aroon</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x)))$oscillator
+myBB         &lt;-<span class="st"> </span>function(x) <span class="kw">BBands</span>(<span class="kw">HLC</span>(x))[, <span class="st">&quot;pctB&quot;</span>]
+myChaikinVol &lt;-<span class="st"> </span>function(x) <span class="kw">Delt</span>(<span class="kw">chaikinVolatility</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x))))[, <span class="dv">1</span>]
+myCLV        &lt;-<span class="st"> </span>function(x) <span class="kw">EMA</span>(<span class="kw">CLV</span>(<span class="kw">HLC</span>(x)))[, <span class="dv">1</span>]
+myEMV        &lt;-<span class="st"> </span>function(x) <span class="kw">EMV</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x)),<span class="kw">Vo</span>(x))[,<span class="dv">2</span>]
+myMACD       &lt;-<span class="st"> </span>function(x) <span class="kw">MACD</span>(<span class="kw">Cl</span>(x))[,<span class="dv">2</span>]
+myMFI        &lt;-<span class="st"> </span>function(x) <span class="kw">MFI</span>(<span class="kw">HLC</span>(x),  <span class="kw">Vo</span>(x))
+mySAR        &lt;-<span class="st"> </span>function(x) <span class="kw">SAR</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Cl</span>(x))) [,<span class="dv">1</span>]
+myVolat      &lt;-<span class="st"> </span>function(x) <span class="kw">volatility</span>(<span class="kw">OHLC</span>(x),<span class="dt">calc=</span><span class="st">&quot;garman&quot;</span>)[,<span class="dv">1</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
+data.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(GSPC) ~<span class="st"> </span><span class="kw">Delt</span>(<span class="kw">Cl</span>(GSPC),<span class="dt">k=</span><span class="dv">1</span>:<span class="dv">10</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">myATR</span>(GSPC) +<span class="st"> </span><span class="kw">mySMI</span>(GSPC) +<span class="st"> </span><span class="kw">myADX</span>(GSPC) +<span class="st"> </span><span class="kw">myAroon</span>(GSPC) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">myBB</span>(GSPC)  +<span class="st"> </span><span class="kw">myChaikinVol</span>(GSPC) +<span class="st"> </span><span class="kw">myCLV</span>(GSPC) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">CMO</span>(<span class="kw">Cl</span>(GSPC)) +<span class="st"> </span><span class="kw">EMA</span>(<span class="kw">Delt</span>(<span class="kw">Cl</span>(GSPC))) +<span class="st"> </span><span class="kw">myEMV</span>(GSPC) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">myVolat</span>(GSPC)  +<span class="st"> </span><span class="kw">myMACD</span>(GSPC) +<span class="st"> </span><span class="kw">myMFI</span>(GSPC) +<span class="st"> </span><span class="kw">RSI</span>(<span class="kw">Cl</span>(GSPC)) +
+<span class="st">        </span><span class="kw">mySAR</span>(GSPC) +<span class="st"> </span><span class="kw">runMean</span>(<span class="kw">Cl</span>(GSPC)) +<span class="st"> </span><span class="kw">runSD</span>(<span class="kw">Cl</span>(GSPC)))
+<span class="kw">set.seed</span>(<span class="dv">1234</span>)
+rf &lt;-<span class="st"> </span><span class="kw">buildModel</span>(data.model,<span class="dt">method=</span><span class="st">&#39;randomForest&#39;</span>,
+                 <span class="dt">training.per=</span><span class="kw">c</span>(<span class="st">&quot;1995-01-01&quot;</span>,<span class="st">&quot;2005-12-30&quot;</span>),
+                 <span class="dt">ntree=</span><span class="dv">1000</span>, <span class="dt">importance=</span><span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ex.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(IBM) ~<span class="st"> </span><span class="kw">Delt</span>(<span class="kw">Cl</span>(IBM), <span class="dt">k =</span> <span class="dv">1</span>:<span class="dv">3</span>))
+data &lt;-<span class="st"> </span><span class="kw">modelData</span>(ex.model, <span class="dt">data.window =</span> <span class="kw">c</span>(<span class="st">&quot;2009-01-01&quot;</span>,  <span class="st">&quot;2009-08-10&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">myFavouriteModellingTool</span>(ex.model@model.formula, <span class="kw">as.data.frame</span>(data))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImpPlot</span>(rf@fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImpPlot</span>(rf@fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf@fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)
+<span class="kw">rownames</span>(imp)[<span class="kw">which</span>(imp &gt;<span class="st"> </span><span class="dv">30</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(GSPC) ~<span class="st"> </span><span class="kw">myATR</span>(GSPC) +<span class="st"> </span><span class="kw">mySMI</span>(GSPC) +<span class="st">  </span><span class="kw">myADX</span>(GSPC) +<span class="st"> </span>
+<span class="st">                           </span><span class="kw">myAroon</span>(GSPC) +<span class="st"> </span><span class="kw">myEMV</span>(GSPC) +<span class="st"> </span><span class="kw">myVolat</span>(GSPC) +<span class="st"> </span>
+<span class="st">                           </span><span class="kw">myMACD</span>(GSPC) +<span class="st"> </span><span class="kw">myMFI</span>(GSPC) +<span class="st"> </span><span class="kw">mySAR</span>(GSPC) +<span class="st"> </span>
+<span class="st">                           </span><span class="kw">runMean</span>(<span class="kw">Cl</span>(GSPC)) +<span class="st"> </span><span class="kw">runSD</span>(<span class="kw">Cl</span>(GSPC)))</code></pre></div>
 </div>
 <div id="the-prediction-tasks" class="section level4">
 <h4>The Prediction Tasks</h4>
-<pre class="r"><code>## The regression task
-Tdata.train &lt;- as.data.frame(modelData(data.model,
-                                data.window=c(&#39;1970-01-02&#39;,&#39;2005-12-30&#39;)))
-Tdata.eval &lt;- na.omit(as.data.frame(modelData(data.model,
-                                data.window=c(&#39;2006-01-01&#39;,&#39;2016-01-25&#39;))))
-Tform &lt;- as.formula(&#39;T.ind.GSPC ~ .&#39;)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## The regression task
+Tdata.train &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">modelData</span>(data.model,
+                                <span class="dt">data.window=</span><span class="kw">c</span>(<span class="st">&#39;1970-01-02&#39;</span>,<span class="st">&#39;2005-12-30&#39;</span>)))
+Tdata.eval &lt;-<span class="st"> </span><span class="kw">na.omit</span>(<span class="kw">as.data.frame</span>(<span class="kw">modelData</span>(data.model,
+                                <span class="dt">data.window=</span><span class="kw">c</span>(<span class="st">&#39;2006-01-01&#39;</span>,<span class="st">&#39;2016-01-25&#39;</span>))))
+Tform &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&#39;T.ind.GSPC ~ .&#39;</span>)
 ## The classification task
-buy.thr &lt;- 0.1
-sell.thr &lt;- -0.1
-Tdata.trainC &lt;- cbind(Signal=trading.signals(Tdata.train[[&quot;T.ind.GSPC&quot;]],
+buy.thr &lt;-<span class="st"> </span><span class="fl">0.1</span>
+sell.thr &lt;-<span class="st"> </span>-<span class="fl">0.1</span>
+Tdata.trainC &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">Signal=</span><span class="kw">trading.signals</span>(Tdata.train[[<span class="st">&quot;T.ind.GSPC&quot;</span>]],
                                              buy.thr,sell.thr),
-                      Tdata.train[,-1])
-Tdata.evalC &lt;-  cbind(Signal=trading.signals(Tdata.eval[[&quot;T.ind.GSPC&quot;]],
+                      Tdata.train[,-<span class="dv">1</span>])
+Tdata.evalC &lt;-<span class="st">  </span><span class="kw">cbind</span>(<span class="dt">Signal=</span><span class="kw">trading.signals</span>(Tdata.eval[[<span class="st">&quot;T.ind.GSPC&quot;</span>]],
                                              buy.thr,sell.thr),
-                      Tdata.eval[,-1])
-TformC &lt;- as.formula(&quot;Signal ~ .&quot;)</code></pre>
+                      Tdata.eval[,-<span class="dv">1</span>])
+TformC &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;Signal ~ .&quot;</span>)</code></pre></div>
 </div>
 <div id="evaluation-criteria" class="section level4">
 <h4>Evaluation Criteria</h4>
 <!-- PredModels.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC,package=&quot;DMwR2&quot;)
-load(&quot;GSPCdata.Rdata&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(xts)
+<span class="kw">library</span>(quantmod)
+<span class="kw">data</span>(GSPC,<span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;GSPCdata.Rdata&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="the-prediction-models" class="section level3">
@@ -527,55 +553,55 @@ load(&quot;GSPCdata.Rdata&quot;)</code></pre>
 </div>
 <div id="the-modeling-tools" class="section level4">
 <h4>The Modeling Tools</h4>
-<pre class="r"><code>set.seed(1234)
-library(nnet)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
+<span class="kw">library</span>(nnet)
 ## The first column is the target variable
-norm.data &lt;- data.frame(T.ind.GSPC=Tdata.train[[1]],scale(Tdata.train[,-1]))
-nn &lt;- nnet(Tform, norm.data[1:1000, ], size = 5, decay = 0.01, 
-           maxit = 1000, linout = TRUE, trace = FALSE)
-preds &lt;- predict(nn, norm.data[1001:2000, ])</code></pre>
-<pre class="r"><code>sigs.nn &lt;- trading.signals(preds,0.1,-0.1)
-true.sigs &lt;- trading.signals(Tdata.train[1001:2000, &quot;T.ind.GSPC&quot;], 0.1, -0.1)
-sigs.PR(sigs.nn,true.sigs)</code></pre>
-<pre class="r"><code>set.seed(1234)
-library(nnet)
-norm.data &lt;- data.frame(Signal=Tdata.trainC$Signal,scale(Tdata.trainC[,-1]))
-nn &lt;- nnet(Signal ~ ., norm.data[1:1000, ], size = 10, decay = 0.01, 
-           maxit = 1000, trace = FALSE)
-preds &lt;- predict(nn, norm.data[1001:2000, ], type = &quot;class&quot;)</code></pre>
-<pre class="r"><code>sigs.PR(preds, norm.data[1001:2000, 1])</code></pre>
-<pre class="r"><code>set.seed(1234)
-library(e1071)
-sv &lt;- svm(Tform, Tdata.train[1:1000, ], gamma = 0.001, cost = 100)
-s.preds &lt;- predict(sv, Tdata.train[1001:2000, ])
-sigs.svm &lt;- trading.signals(s.preds, 0.1, -0.1)
-true.sigs &lt;- trading.signals(Tdata.train[1001:2000, &quot;T.ind.GSPC&quot;], 0.1, -0.1)
-sigs.PR(sigs.svm, true.sigs)</code></pre>
-<pre class="r"><code>library(kernlab)
-ksv &lt;- ksvm(Signal ~ ., Tdata.trainC[1:1000, ], C = 10)
-ks.preds &lt;- predict(ksv, Tdata.trainC[1001:2000, ])
-sigs.PR(ks.preds, Tdata.trainC[1001:2000, 1])</code></pre>
-<pre class="r"><code>library(earth)
-e &lt;- earth(Tform, Tdata.train[1:1000, ])
-e.preds &lt;- predict(e, Tdata.train[1001:2000, ])
-sigs.e &lt;- trading.signals(e.preds, 0.1, -0.1)
-true.sigs &lt;- trading.signals(Tdata.train[1001:2000, &quot;T.ind.GSPC&quot;],  0.1, -0.1)
-sigs.PR(sigs.e, true.sigs)</code></pre>
-<pre class="r"><code>summary(e)</code></pre>
-<pre class="r"><code>evimp(e, trim=FALSE)</code></pre>
+norm.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">T.ind.GSPC=</span>Tdata.train[[<span class="dv">1</span>]],<span class="kw">scale</span>(Tdata.train[,-<span class="dv">1</span>]))
+nn &lt;-<span class="st"> </span><span class="kw">nnet</span>(Tform, norm.data[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">decay =</span> <span class="fl">0.01</span>, 
+           <span class="dt">maxit =</span> <span class="dv">1000</span>, <span class="dt">linout =</span> <span class="ot">TRUE</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>)
+preds &lt;-<span class="st"> </span><span class="kw">predict</span>(nn, norm.data[<span class="dv">1001</span>:<span class="dv">2000</span>, ])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sigs.nn &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(preds,<span class="fl">0.1</span>,-<span class="fl">0.1</span>)
+true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>], <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+<span class="kw">sigs.PR</span>(sigs.nn,true.sigs)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
+<span class="kw">library</span>(nnet)
+norm.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Signal=</span>Tdata.trainC$Signal,<span class="kw">scale</span>(Tdata.trainC[,-<span class="dv">1</span>]))
+nn &lt;-<span class="st"> </span><span class="kw">nnet</span>(Signal ~<span class="st"> </span>., norm.data[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">decay =</span> <span class="fl">0.01</span>, 
+           <span class="dt">maxit =</span> <span class="dv">1000</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>)
+preds &lt;-<span class="st"> </span><span class="kw">predict</span>(nn, norm.data[<span class="dv">1001</span>:<span class="dv">2000</span>, ], <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sigs.PR</span>(preds, norm.data[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="dv">1</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
+<span class="kw">library</span>(e1071)
+sv &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">gamma =</span> <span class="fl">0.001</span>, <span class="dt">cost =</span> <span class="dv">100</span>)
+s.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(sv, Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, ])
+sigs.svm &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(s.preds, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>], <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+<span class="kw">sigs.PR</span>(sigs.svm, true.sigs)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kernlab)
+ksv &lt;-<span class="st"> </span><span class="kw">ksvm</span>(Signal ~<span class="st"> </span>., Tdata.trainC[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">C =</span> <span class="dv">10</span>)
+ks.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(ksv, Tdata.trainC[<span class="dv">1001</span>:<span class="dv">2000</span>, ])
+<span class="kw">sigs.PR</span>(ks.preds, Tdata.trainC[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="dv">1</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(earth)
+e &lt;-<span class="st"> </span><span class="kw">earth</span>(Tform, Tdata.train[<span class="dv">1</span>:<span class="dv">1000</span>, ])
+e.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(e, Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, ])
+sigs.e &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(e.preds, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>],  <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+<span class="kw">sigs.PR</span>(sigs.e, true.sigs)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(e)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">evimp</span>(e, <span class="dt">trim=</span><span class="ot">FALSE</span>)</code></pre></div>
 <!-- Trading.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC)
-load(&quot;GSPCdata.Rdata&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(xts)
+<span class="kw">library</span>(quantmod)
+<span class="kw">data</span>(GSPC)
+<span class="kw">load</span>(<span class="st">&quot;GSPCdata.Rdata&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="from-predictions-into-actions" class="section level3">
@@ -588,175 +614,175 @@ load(&quot;GSPCdata.Rdata&quot;)</code></pre>
 </div>
 <div id="putting-everything-together-a-simulated-trader" class="section level4">
 <h4>Putting Everything Together: A Simulated Trader</h4>
-<pre class="r"><code>policy.1 &lt;- function(signals,market,opened.pos,money,
-                     bet=0.2,hold.time=10,
-                     exp.prof=0.025, max.loss= 0.05
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">policy<span class="fl">.1</span> &lt;-<span class="st"> </span>function(signals,market,opened.pos,money,
+                     <span class="dt">bet=</span><span class="fl">0.2</span>,<span class="dt">hold.time=</span><span class="dv">10</span>,
+                     <span class="dt">exp.prof=</span><span class="fl">0.025</span>, <span class="dt">max.loss=</span> <span class="fl">0.05</span>
                      )
   {
-    d &lt;- NROW(market) # this is the ID of today
-    orders &lt;- NULL
-    nOs &lt;- NROW(opened.pos)
-    # nothing to do!
-    if (!nOs &amp;&amp; signals[d] == &#39;h&#39;) return(orders)
+    d &lt;-<span class="st"> </span><span class="kw">NROW</span>(market) <span class="co"># this is the ID of today</span>
+    orders &lt;-<span class="st"> </span><span class="ot">NULL</span>
+    nOs &lt;-<span class="st"> </span><span class="kw">NROW</span>(opened.pos)
+    <span class="co"># nothing to do!</span>
+    if (!nOs &amp;&amp;<span class="st"> </span>signals[d] ==<span class="st"> &#39;h&#39;</span>) <span class="kw">return</span>(orders)
 
-    # First lets check if we can open new positions
-    # i) long positions
-    if (signals[d] == &#39;b&#39; &amp;&amp; !nOs) {
-      quant &lt;- round(bet*money/Cl(market)[d],0)
-      if (quant &gt; 0) 
-        orders &lt;- rbind(orders,
-              data.frame(order=c(1,-1,-1),order.type=c(1,2,3), 
-                         val = c(quant,
-                                 Cl(market)[d]*(1+exp.prof),
-                                 Cl(market)[d]*(1-max.loss)
+    <span class="co"># First lets check if we can open new positions</span>
+    <span class="co"># i) long positions</span>
+    if (signals[d] ==<span class="st"> &#39;b&#39;</span> &amp;&amp;<span class="st"> </span>!nOs) {
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*money/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      if (quant &gt;<span class="st"> </span><span class="dv">0</span>) 
+        orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,-<span class="dv">1</span>,-<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+                         <span class="dt">val =</span> <span class="kw">c</span>(quant,
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-max.loss)
                                 ),
-                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
-                         posID = c(NA,NA,NA)
+                         <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
+                         <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
                         )
                        )
 
-    # ii) short positions  
-    } else if (signals[d] == &#39;s&#39; &amp;&amp; !nOs) {
-      # this is the nr of stocks we already need to buy 
-      # because of currently opened short positions
-      need2buy &lt;- sum(opened.pos[opened.pos[,&#39;pos.type&#39;]==-1,
-                                 &quot;N.stocks&quot;])*Cl(market)[d]
-      quant &lt;- round(bet*(money-need2buy)/Cl(market)[d],0)
-      if (quant &gt; 0)
-        orders &lt;- rbind(orders,
-              data.frame(order=c(-1,1,1),order.type=c(1,2,3), 
-                         val = c(quant,
-                                 Cl(market)[d]*(1-exp.prof),
-                                 Cl(market)[d]*(1+max.loss)
+    <span class="co"># ii) short positions  </span>
+    } else if (signals[d] ==<span class="st"> &#39;s&#39;</span> &amp;&amp;<span class="st"> </span>!nOs) {
+      <span class="co"># this is the nr of stocks we already need to buy </span>
+      <span class="co"># because of currently opened short positions</span>
+      need2buy &lt;-<span class="st"> </span><span class="kw">sum</span>(opened.pos[opened.pos[,<span class="st">&#39;pos.type&#39;</span>]==-<span class="dv">1</span>,
+                                 <span class="st">&quot;N.stocks&quot;</span>])*<span class="kw">Cl</span>(market)[d]
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*(money-need2buy)/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      if (quant &gt;<span class="st"> </span><span class="dv">0</span>)
+        orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(-<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+                         <span class="dt">val =</span> <span class="kw">c</span>(quant,
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+max.loss)
                                 ),
-                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
-                         posID = c(NA,NA,NA)
+                         <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
+                         <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
                         )
                        )
     }
     
-    # Now lets check if we need to close positions
-    # because their holding time is over
+    <span class="co"># Now lets check if we need to close positions</span>
+    <span class="co"># because their holding time is over</span>
     if (nOs) 
-      for(i in 1:nOs) {
-        if (d - opened.pos[i,&#39;Odate&#39;] &gt;= hold.time)
-          orders &lt;- rbind(orders,
-                data.frame(order=-opened.pos[i,&#39;pos.type&#39;],
-                           order.type=1,
-                           val = NA,
-                           action = &#39;close&#39;,
-                           posID = rownames(opened.pos)[i]
+      for(i in <span class="dv">1</span>:nOs) {
+        if (d -<span class="st"> </span>opened.pos[i,<span class="st">&#39;Odate&#39;</span>] &gt;=<span class="st"> </span>hold.time)
+          orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
+                <span class="kw">data.frame</span>(<span class="dt">order=</span>-opened.pos[i,<span class="st">&#39;pos.type&#39;</span>],
+                           <span class="dt">order.type=</span><span class="dv">1</span>,
+                           <span class="dt">val =</span> <span class="ot">NA</span>,
+                           <span class="dt">action =</span> <span class="st">&#39;close&#39;</span>,
+                           <span class="dt">posID =</span> <span class="kw">rownames</span>(opened.pos)[i]
                           )
                          )
       }
 
     orders
-  }</code></pre>
-<pre class="r"><code>policy.2 &lt;- function(signals,market,opened.pos,money,
-                     bet=0.2,exp.prof=0.025, max.loss= 0.05
+  }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">policy<span class="fl">.2</span> &lt;-<span class="st"> </span>function(signals,market,opened.pos,money,
+                     <span class="dt">bet=</span><span class="fl">0.2</span>,<span class="dt">exp.prof=</span><span class="fl">0.025</span>, <span class="dt">max.loss=</span> <span class="fl">0.05</span>
                     )
   {
-    d &lt;- NROW(market) # this is the ID of today
-    orders &lt;- NULL
-    nOs &lt;- NROW(opened.pos)
-    # nothing to do!
-    if (!nOs &amp;&amp; signals[d] == &#39;h&#39;) return(orders)
+    d &lt;-<span class="st"> </span><span class="kw">NROW</span>(market) <span class="co"># this is the ID of today</span>
+    orders &lt;-<span class="st"> </span><span class="ot">NULL</span>
+    nOs &lt;-<span class="st"> </span><span class="kw">NROW</span>(opened.pos)
+    <span class="co"># nothing to do!</span>
+    if (!nOs &amp;&amp;<span class="st"> </span>signals[d] ==<span class="st"> &#39;h&#39;</span>) <span class="kw">return</span>(orders)
 
-    # First lets check if we can open new positions
-    # i) long positions
-    if (signals[d] == &#39;b&#39;) {
-      quant &lt;- round(bet*money/Cl(market)[d],0)
-      if (quant &gt; 0) 
-        orders &lt;- rbind(orders,
-              data.frame(order=c(1,-1,-1),order.type=c(1,2,3), 
-                         val = c(quant,
-                                 Cl(market)[d]*(1+exp.prof),
-                                 Cl(market)[d]*(1-max.loss)
+    <span class="co"># First lets check if we can open new positions</span>
+    <span class="co"># i) long positions</span>
+    if (signals[d] ==<span class="st"> &#39;b&#39;</span>) {
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*money/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      if (quant &gt;<span class="st"> </span><span class="dv">0</span>) 
+        orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,-<span class="dv">1</span>,-<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+                         <span class="dt">val =</span> <span class="kw">c</span>(quant,
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-max.loss)
                                 ),
-                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
-                         posID = c(NA,NA,NA)
+                         <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
+                         <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
                         )
                        )
 
-    # ii) short positions  
-    } else if (signals[d] == &#39;s&#39;) {
-      # this is the money already committed to buy stocks
-      # because of currently opened short positions
-      need2buy &lt;- sum(opened.pos[opened.pos[,&#39;pos.type&#39;]==-1,
-                                 &quot;N.stocks&quot;])*Cl(market)[d]
-      quant &lt;- round(bet*(money-need2buy)/Cl(market)[d],0)
-      if (quant &gt; 0)
-        orders &lt;- rbind(orders,
-              data.frame(order=c(-1,1,1),order.type=c(1,2,3), 
-                         val = c(quant,
-                                 Cl(market)[d]*(1-exp.prof),
-                                 Cl(market)[d]*(1+max.loss)
+    <span class="co"># ii) short positions  </span>
+    } else if (signals[d] ==<span class="st"> &#39;s&#39;</span>) {
+      <span class="co"># this is the money already committed to buy stocks</span>
+      <span class="co"># because of currently opened short positions</span>
+      need2buy &lt;-<span class="st"> </span><span class="kw">sum</span>(opened.pos[opened.pos[,<span class="st">&#39;pos.type&#39;</span>]==-<span class="dv">1</span>,
+                                 <span class="st">&quot;N.stocks&quot;</span>])*<span class="kw">Cl</span>(market)[d]
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*(money-need2buy)/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      if (quant &gt;<span class="st"> </span><span class="dv">0</span>)
+        orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(-<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+                         <span class="dt">val =</span> <span class="kw">c</span>(quant,
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+max.loss)
                                 ),
-                         action = c(&#39;open&#39;,&#39;close&#39;,&#39;close&#39;),
-                         posID = c(NA,NA,NA)
+                         <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
+                         <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
                         )
                        )
     }
 
     orders
-  }</code></pre>
-<pre class="r"><code>## Train and test periods
-start &lt;- 1
-len.tr &lt;- 1000
-len.ts &lt;- 500
-tr &lt;- start:(start+len.tr-1)
-ts &lt;- (start+len.tr):(start+len.tr+len.ts-1)
+  }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Train and test periods
+start &lt;-<span class="st"> </span><span class="dv">1</span>
+len.tr &lt;-<span class="st"> </span><span class="dv">1000</span>
+len.ts &lt;-<span class="st"> </span><span class="dv">500</span>
+tr &lt;-<span class="st"> </span>start:(start+len.tr<span class="dv">-1</span>)
+ts &lt;-<span class="st"> </span>(start+len.tr):(start+len.tr+len.ts<span class="dv">-1</span>)
 ## getting the quotes for the testing period
-data(GSPC)
-date &lt;- rownames(Tdata.train[start+len.tr,])
-marketTP &lt;- GSPC[paste(date,&#39;/&#39;,sep=&#39;&#39;)][1:len.ts]
+<span class="kw">data</span>(GSPC)
+date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.train[start+len.tr,])
+marketTP &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date,<span class="st">&#39;/&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span>:len.ts]
 ## learning the model and obtaining its signal predictions for the test period
-library(e1071)
-s &lt;- svm(Tform, Tdata.train[tr,], cost=10,gamma=0.01)
-p &lt;- predict(s, Tdata.train[ts,])
-sig &lt;- trading.signals(p, 0.1, -0.1)
+<span class="kw">library</span>(e1071)
+s &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[tr,], <span class="dt">cost=</span><span class="dv">10</span>,<span class="dt">gamma=</span><span class="fl">0.01</span>)
+p &lt;-<span class="st"> </span><span class="kw">predict</span>(s, Tdata.train[ts,])
+sig &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(p, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
 ## now using the simulated trader during the testing period
-t1 &lt;- trading.simulator(marketTP, signals=sig, policy.func=&#39;policy.1&#39;,
-                        policy.pars=list(exp.prof=0.05,bet=0.2,hold.time=30))</code></pre>
-<pre class="r"><code>t1 
-summary(t1)</code></pre>
-<pre class="r"><code>tradingEvaluation(t1)  </code></pre>
-<pre class="r"><code>plot(t1,marketTP, theme = &quot;white&quot;,  name = &quot;SP500&quot;)</code></pre>
-<pre class="r"><code>plot(t1, marketTP,  theme = &quot;white&quot;,  name = &quot;SP500&quot;)</code></pre>
-<pre class="r"><code>t2 &lt;- trading.simulator(marketTP, sig, &quot;policy.2&quot;, list(exp.prof = 0.05, bet = 0.3))
-summary(t2)
-tradingEvaluation(t2)</code></pre>
-<pre class="r"><code>start &lt;- 2000
-len.tr &lt;- 1000
-len.ts &lt;- 500
-tr &lt;- start:(start + len.tr - 1)
-ts &lt;- (start + len.tr):(start + len.tr + len.ts - 1)
-data(GSPC)
-date &lt;- rownames(Tdata.train[start+len.tr,])
-marketTP &lt;- GSPC[paste(date,&#39;/&#39;,sep=&#39;&#39;)][1:len.ts]
-s &lt;- svm(Tform, Tdata.train[tr, ], cost = 10, gamma = 0.01)
-p &lt;- predict(s, Tdata.train[ts, ])
-sig &lt;- trading.signals(p, 0.1, -0.1)
-t2 &lt;-  trading.simulator(marketTP, sig, 
-                         &quot;policy.2&quot;, list(exp.prof = 0.05, bet = 0.3))
-summary(t2) 
-tradingEvaluation(t2)</code></pre>
+t1 &lt;-<span class="st"> </span><span class="kw">trading.simulator</span>(marketTP, <span class="dt">signals=</span>sig, <span class="dt">policy.func=</span><span class="st">&#39;policy.1&#39;</span>,
+                        <span class="dt">policy.pars=</span><span class="kw">list</span>(<span class="dt">exp.prof=</span><span class="fl">0.05</span>,<span class="dt">bet=</span><span class="fl">0.2</span>,<span class="dt">hold.time=</span><span class="dv">30</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t1 
+<span class="kw">summary</span>(t1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tradingEvaluation</span>(t1)  </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(t1,marketTP, <span class="dt">theme =</span> <span class="st">&quot;white&quot;</span>,  <span class="dt">name =</span> <span class="st">&quot;SP500&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(t1, marketTP,  <span class="dt">theme =</span> <span class="st">&quot;white&quot;</span>,  <span class="dt">name =</span> <span class="st">&quot;SP500&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t2 &lt;-<span class="st"> </span><span class="kw">trading.simulator</span>(marketTP, sig, <span class="st">&quot;policy.2&quot;</span>, <span class="kw">list</span>(<span class="dt">exp.prof =</span> <span class="fl">0.05</span>, <span class="dt">bet =</span> <span class="fl">0.3</span>))
+<span class="kw">summary</span>(t2)
+<span class="kw">tradingEvaluation</span>(t2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">start &lt;-<span class="st"> </span><span class="dv">2000</span>
+len.tr &lt;-<span class="st"> </span><span class="dv">1000</span>
+len.ts &lt;-<span class="st"> </span><span class="dv">500</span>
+tr &lt;-<span class="st"> </span>start:(start +<span class="st"> </span>len.tr -<span class="st"> </span><span class="dv">1</span>)
+ts &lt;-<span class="st"> </span>(start +<span class="st"> </span>len.tr):(start +<span class="st"> </span>len.tr +<span class="st"> </span>len.ts -<span class="st"> </span><span class="dv">1</span>)
+<span class="kw">data</span>(GSPC)
+date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.train[start+len.tr,])
+marketTP &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date,<span class="st">&#39;/&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span>:len.ts]
+s &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[tr, ], <span class="dt">cost =</span> <span class="dv">10</span>, <span class="dt">gamma =</span> <span class="fl">0.01</span>)
+p &lt;-<span class="st"> </span><span class="kw">predict</span>(s, Tdata.train[ts, ])
+sig &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(p, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+t2 &lt;-<span class="st">  </span><span class="kw">trading.simulator</span>(marketTP, sig, 
+                         <span class="st">&quot;policy.2&quot;</span>, <span class="kw">list</span>(<span class="dt">exp.prof =</span> <span class="fl">0.05</span>, <span class="dt">bet =</span> <span class="fl">0.3</span>))
+<span class="kw">summary</span>(t2) 
+<span class="kw">tradingEvaluation</span>(t2)</code></pre></div>
 <!-- EvalAndSel.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC)
-load(&quot;GSPCdata.Rdata&quot;)
-source(&quot;codigoExps.R&quot;)
-library(performanceEstimation)
-load(&quot;analysis.Rdata&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(xts)
+<span class="kw">library</span>(quantmod)
+<span class="kw">data</span>(GSPC)
+<span class="kw">load</span>(<span class="st">&quot;GSPCdata.Rdata&quot;</span>)
+<span class="kw">source</span>(<span class="st">&quot;codigoExps.R&quot;</span>)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">load</span>(<span class="st">&quot;analysis.Rdata&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="model-evaluation-and-selection" class="section level3">
@@ -766,257 +792,257 @@ load(&quot;analysis.Rdata&quot;)</code></pre>
 </div>
 <div id="experimental-comparisons" class="section level4">
 <h4>Experimental Comparisons</h4>
-<pre class="r"><code>tradingWF &lt;- function(form, train, test, 
-                      quotes, pred.target=&quot;signals&quot;,
-                      learner, learner.pars=NULL,
-                      predictor.pars=NULL,
-                      learn.test.type=&#39;fixed&#39;, relearn.step=30,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tradingWF &lt;-<span class="st"> </span>function(form, train, test, 
+                      quotes, <span class="dt">pred.target=</span><span class="st">&quot;signals&quot;</span>,
+                      learner, <span class="dt">learner.pars=</span><span class="ot">NULL</span>,
+                      <span class="dt">predictor.pars=</span><span class="ot">NULL</span>,
+                      <span class="dt">learn.test.type=</span><span class="st">&#39;fixed&#39;</span>, <span class="dt">relearn.step=</span><span class="dv">30</span>,
                       b.t, s.t,
                       policy, policy.pars,
-                      trans.cost=5, init.cap=1e+06)
+                      <span class="dt">trans.cost=</span><span class="dv">5</span>, <span class="dt">init.cap=</span><span class="fl">1e+06</span>)
 {
     ## obtain the model(s) and respective predictions for the test set
-    if (learn.test.type == &#39;fixed&#39;) {  # a single fixed model
-        m &lt;- do.call(learner,c(list(form,train),learner.pars))
-        preds &lt;- do.call(&quot;predict&quot;,c(list(m,test),predictor.pars))
-    } else {  # either slide or growing window strategies
-        data &lt;- rbind(train,test)
-        n &lt;- NROW(data)
-        train.size &lt;- NROW(train)
-        sts &lt;- seq(train.size+1,n,by=relearn.step)
-        preds &lt;- vector()
-        for(s in sts) {  # loop over each relearn step
-            tr &lt;- if (learn.test.type==&#39;slide&#39;) data[(s-train.size):(s-1),] 
-                  else data[1:(s-1),]
-            ts &lt;- data[s:min((s+relearn.step-1),n),]
+    if (learn.test.type ==<span class="st"> &#39;fixed&#39;</span>) {  <span class="co"># a single fixed model</span>
+        m &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,train),learner.pars))
+        preds &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;predict&quot;</span>,<span class="kw">c</span>(<span class="kw">list</span>(m,test),predictor.pars))
+    } else {  <span class="co"># either slide or growing window strategies</span>
+        data &lt;-<span class="st"> </span><span class="kw">rbind</span>(train,test)
+        n &lt;-<span class="st"> </span><span class="kw">NROW</span>(data)
+        train.size &lt;-<span class="st"> </span><span class="kw">NROW</span>(train)
+        sts &lt;-<span class="st"> </span><span class="kw">seq</span>(train.size<span class="dv">+1</span>,n,<span class="dt">by=</span>relearn.step)
+        preds &lt;-<span class="st"> </span><span class="kw">vector</span>()
+        for(s in sts) {  <span class="co"># loop over each relearn step</span>
+            tr &lt;-<span class="st"> </span>if (learn.test.type==<span class="st">&#39;slide&#39;</span>) data[(s-train.size):(s<span class="dv">-1</span>),] 
+                  else data[<span class="dv">1</span>:(s<span class="dv">-1</span>),]
+            ts &lt;-<span class="st"> </span>data[s:<span class="kw">min</span>((s+relearn.step<span class="dv">-1</span>),n),]
             
-            m &lt;- do.call(learner,c(list(form,tr),learner.pars))
-            preds &lt;- c(preds,do.call(&quot;predict&quot;,c(list(m,ts),predictor.pars)))
+            m &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,tr),learner.pars))
+            preds &lt;-<span class="st"> </span><span class="kw">c</span>(preds,<span class="kw">do.call</span>(<span class="st">&quot;predict&quot;</span>,<span class="kw">c</span>(<span class="kw">list</span>(m,ts),predictor.pars)))
         }    
     } 
     
     ## Getting the trading signals
-    if (pred.target != &quot;signals&quot;) {  # the model predicts the T indicator
-        predSigs &lt;- trading.signals(preds,b.t,s.t)
-        tgtName &lt;- all.vars(form)[1]
-        trueSigs &lt;- trading.signals(test[[tgtName]],b.t,s.t)
-    } else {  # the model predicts the signals directly
-        tgtName &lt;- all.vars(form)[1]
-        if (is.factor(preds))
-            predSigs &lt;- preds
+    if (pred.target !=<span class="st"> &quot;signals&quot;</span>) {  <span class="co"># the model predicts the T indicator</span>
+        predSigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(preds,b.t,s.t)
+        tgtName &lt;-<span class="st"> </span><span class="kw">all.vars</span>(form)[<span class="dv">1</span>]
+        trueSigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(test[[tgtName]],b.t,s.t)
+    } else {  <span class="co"># the model predicts the signals directly</span>
+        tgtName &lt;-<span class="st"> </span><span class="kw">all.vars</span>(form)[<span class="dv">1</span>]
+        if (<span class="kw">is.factor</span>(preds))
+            predSigs &lt;-<span class="st"> </span>preds
         else {
-            if (preds[1] %in% levels(train[[tgtName]]))
-                predSigs &lt;- factor(preds,labels=levels(train[[tgtName]]),
-                                   levels=levels(train[[tgtName]]))
+            if (preds[<span class="dv">1</span>] %in%<span class="st"> </span><span class="kw">levels</span>(train[[tgtName]]))
+                predSigs &lt;-<span class="st"> </span><span class="kw">factor</span>(preds,<span class="dt">labels=</span><span class="kw">levels</span>(train[[tgtName]]),
+                                   <span class="dt">levels=</span><span class="kw">levels</span>(train[[tgtName]]))
             else 
-                predSigs &lt;- factor(preds,labels=levels(train[[tgtName]]),
-                                   levels=1:3)
+                predSigs &lt;-<span class="st"> </span><span class="kw">factor</span>(preds,<span class="dt">labels=</span><span class="kw">levels</span>(train[[tgtName]]),
+                                   <span class="dt">levels=</span><span class="dv">1</span>:<span class="dv">3</span>)
         }
-        trueSigs &lt;- test[[tgtName]]
+        trueSigs &lt;-<span class="st"> </span>test[[tgtName]]
     }
 
     ## obtaining the trading record from trading with the signals
-    date &lt;- rownames(test)[1]
-    market &lt;- get(quotes)[paste(date,&quot;/&quot;,sep=&#39;&#39;)][1:length(preds),]
-    tradeRec &lt;- trading.simulator(market,predSigs,
-                                  policy.func=policy,policy.pars=policy.pars,
-                                  trans.cost=trans.cost,init.cap=init.cap)
+    date &lt;-<span class="st"> </span><span class="kw">rownames</span>(test)[<span class="dv">1</span>]
+    market &lt;-<span class="st"> </span><span class="kw">get</span>(quotes)[<span class="kw">paste</span>(date,<span class="st">&quot;/&quot;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span>:<span class="kw">length</span>(preds),]
+    tradeRec &lt;-<span class="st"> </span><span class="kw">trading.simulator</span>(market,predSigs,
+                                  <span class="dt">policy.func=</span>policy,<span class="dt">policy.pars=</span>policy.pars,
+                                  <span class="dt">trans.cost=</span>trans.cost,<span class="dt">init.cap=</span>init.cap)
     
-    return(list(trueSigs=trueSigs,predSigs=predSigs,tradeRec=tradeRec))
-}</code></pre>
-<pre class="r"><code>tradingEval &lt;- function(trueSigs,predSigs,tradeRec,...) 
+    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">trueSigs=</span>trueSigs,<span class="dt">predSigs=</span>predSigs,<span class="dt">tradeRec=</span>tradeRec))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tradingEval &lt;-<span class="st"> </span>function(trueSigs,predSigs,tradeRec,...) 
 {
     ## Signals evaluation
-    st &lt;- sigs.PR(predSigs,trueSigs)
-    dim(st) &lt;- NULL
-    names(st) &lt;- paste(rep(c(&#39;prec&#39;,&#39;rec&#39;),each=3),c(&#39;s&#39;,&#39;b&#39;,&#39;sb&#39;),sep=&#39;.&#39;)
+    st &lt;-<span class="st"> </span><span class="kw">sigs.PR</span>(predSigs,trueSigs)
+    <span class="kw">dim</span>(st) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+    <span class="kw">names</span>(st) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;prec&#39;</span>,<span class="st">&#39;rec&#39;</span>),<span class="dt">each=</span><span class="dv">3</span>),<span class="kw">c</span>(<span class="st">&#39;s&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;sb&#39;</span>),<span class="dt">sep=</span><span class="st">&#39;.&#39;</span>)
     
     ## Trading record evaluation
-    tradRes &lt;- tradingEvaluation(tradeRec)
-    return(c(st,tradRes))
-}</code></pre>
-<pre class="r"><code>library(performanceEstimation)
-library(e1071)
-library(earth)
-library(nnet)
-LEARNERS &lt;- c(&#39;svm&#39;,&#39;earth&#39;,&#39;nnet&#39;)
-EST.TASK &lt;- EstimationTask(method=MonteCarlo(nReps=20,
-                                             szTrain=2540,szTest=1270,
-                                             seed=1234),
-                           evaluator=&quot;tradingEval&quot;)
-VARS &lt;- list()
+    tradRes &lt;-<span class="st"> </span><span class="kw">tradingEvaluation</span>(tradeRec)
+    <span class="kw">return</span>(<span class="kw">c</span>(st,tradRes))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
+<span class="kw">library</span>(e1071)
+<span class="kw">library</span>(earth)
+<span class="kw">library</span>(nnet)
+LEARNERS &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;svm&#39;</span>,<span class="st">&#39;earth&#39;</span>,<span class="st">&#39;nnet&#39;</span>)
+EST.TASK &lt;-<span class="st"> </span><span class="kw">EstimationTask</span>(<span class="dt">method=</span><span class="kw">MonteCarlo</span>(<span class="dt">nReps=</span><span class="dv">20</span>,
+                                             <span class="dt">szTrain=</span><span class="dv">2540</span>,<span class="dt">szTest=</span><span class="dv">1270</span>,
+                                             <span class="dt">seed=</span><span class="dv">1234</span>),
+                           <span class="dt">evaluator=</span><span class="st">&quot;tradingEval&quot;</span>)
+VARS &lt;-<span class="st"> </span><span class="kw">list</span>()
 
-VARS$svm &lt;- list(learner.pars=list(cost=c(10,50,150),
-                                   gamma=c(0.01,0.05)))
-VARS$earth &lt;- list(learner.pars=list(nk=c(10,17),
-                                     degree=c(1,2),
-                                     thresh=c(0.01,0.001)))
-VARS$nnet &lt;-  list(learner.pars=list(linout=TRUE, trace=FALSE,
-                                     maxit=750,
-                                     size=c(5,10),
-                                     decay=c(0.001,0.01,0.1)))
+VARS$svm &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">150</span>),
+                                   <span class="dt">gamma=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.05</span>)))
+VARS$earth &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">nk=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">17</span>),
+                                     <span class="dt">degree=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),
+                                     <span class="dt">thresh=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.001</span>)))
+VARS$nnet &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">linout=</span><span class="ot">TRUE</span>, <span class="dt">trace=</span><span class="ot">FALSE</span>,
+                                     <span class="dt">maxit=</span><span class="dv">750</span>,
+                                     <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>),
+                                     <span class="dt">decay=</span><span class="kw">c</span>(<span class="fl">0.001</span>,<span class="fl">0.01</span>,<span class="fl">0.1</span>)))
 
-VARS$learning &lt;- list(learn.test.type=c(&quot;fixed&quot;,&quot;slide&quot;,&quot;grow&quot;), relearn.step=120)
-VARS$trading  &lt;- list(policy=c(&quot;policy.1&quot;,&quot;policy.2&quot;),
-                     policy.pars=list(bet=c(0.2,0.5),exp.prof=0.05,max.loss=0.05),
-                     b.t=c(0.01,0.05),s.t=c(-0.01,-0.05))
+VARS$learning &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learn.test.type=</span><span class="kw">c</span>(<span class="st">&quot;fixed&quot;</span>,<span class="st">&quot;slide&quot;</span>,<span class="st">&quot;grow&quot;</span>), <span class="dt">relearn.step=</span><span class="dv">120</span>)
+VARS$trading  &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">policy=</span><span class="kw">c</span>(<span class="st">&quot;policy.1&quot;</span>,<span class="st">&quot;policy.2&quot;</span>),
+                     <span class="dt">policy.pars=</span><span class="kw">list</span>(<span class="dt">bet=</span><span class="kw">c</span>(<span class="fl">0.2</span>,<span class="fl">0.5</span>),<span class="dt">exp.prof=</span><span class="fl">0.05</span>,<span class="dt">max.loss=</span><span class="fl">0.05</span>),
+                     <span class="dt">b.t=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.05</span>),<span class="dt">s.t=</span><span class="kw">c</span>(-<span class="fl">0.01</span>,-<span class="fl">0.05</span>))
 
 ## Regression (forecast T indicator) Workflows
 for(lrn in LEARNERS) {
-    objName &lt;- paste(lrn,&quot;res&quot;,&quot;regr&quot;,sep=&quot;_&quot;)
-    assign(objName,
-           performanceEstimation(PredTask(Tform,Tdata.train,&quot;SP500&quot;),
-                                 do.call(&quot;workflowVariants&quot;,
-                                         c(list(&quot;tradingWF&quot;,
-                                                varsRootName=paste0(lrn,&quot;Regr&quot;),
-                                                quotes=&quot;GSPC&quot;,
-                                                learner=lrn,
-                                                pred.target=&quot;indicator&quot;),
+    objName &lt;-<span class="st"> </span><span class="kw">paste</span>(lrn,<span class="st">&quot;res&quot;</span>,<span class="st">&quot;regr&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)
+    <span class="kw">assign</span>(objName,
+           <span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(Tform,Tdata.train,<span class="st">&quot;SP500&quot;</span>),
+                                 <span class="kw">do.call</span>(<span class="st">&quot;workflowVariants&quot;</span>,
+                                         <span class="kw">c</span>(<span class="kw">list</span>(<span class="st">&quot;tradingWF&quot;</span>,
+                                                <span class="dt">varsRootName=</span><span class="kw">paste0</span>(lrn,<span class="st">&quot;Regr&quot;</span>),
+                                                <span class="dt">quotes=</span><span class="st">&quot;GSPC&quot;</span>,
+                                                <span class="dt">learner=</span>lrn,
+                                                <span class="dt">pred.target=</span><span class="st">&quot;indicator&quot;</span>),
                                            VARS[[lrn]],
                                            VARS$learning,
                                            VARS$trading)
                                          ),
                                  EST.TASK,
-                                 cluster=TRUE) # for parallel computation
+                                 <span class="dt">cluster=</span><span class="ot">TRUE</span>) <span class="co"># for parallel computation</span>
            )
-    save(list=objName,file=paste(objName,&#39;Rdata&#39;,sep=&#39;.&#39;))
+    <span class="kw">save</span>(<span class="dt">list=</span>objName,<span class="dt">file=</span><span class="kw">paste</span>(objName,<span class="st">&#39;Rdata&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;.&#39;</span>))
 }
 
 ## Specific settings to make nnet work as a classifier
-VARS$nnet$learner.pars$linout &lt;-  FALSE
-VARS$nnet$predictor.pars &lt;-  list(type=&quot;class&quot;)
+VARS$nnet$learner.pars$linout &lt;-<span class="st">  </span><span class="ot">FALSE</span>
+VARS$nnet$predictor.pars &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;class&quot;</span>)
 
 ## Classification (forecast signal) workflows
-for(lrn in c(&quot;svm&quot;,&quot;nnet&quot;)) { # only these because MARS is only for regression
-    objName &lt;- paste(lrn,&quot;res&quot;,&quot;class&quot;,sep=&quot;_&quot;)
-    assign(objName,
-           performanceEstimation(PredTask(TformC,Tdata.trainC,&quot;SP500&quot;),
-                                 do.call(&quot;workflowVariants&quot;,
-                                         c(list(&quot;tradingWF&quot;,
-                                                varsRootName=paste0(lrn,&quot;Class&quot;),
-                                                quotes=&quot;GSPC&quot;,
-                                                learner=lrn,
-                                                pred.target=&quot;signals&quot;),
+for(lrn in <span class="kw">c</span>(<span class="st">&quot;svm&quot;</span>,<span class="st">&quot;nnet&quot;</span>)) { <span class="co"># only these because MARS is only for regression</span>
+    objName &lt;-<span class="st"> </span><span class="kw">paste</span>(lrn,<span class="st">&quot;res&quot;</span>,<span class="st">&quot;class&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)
+    <span class="kw">assign</span>(objName,
+           <span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(TformC,Tdata.trainC,<span class="st">&quot;SP500&quot;</span>),
+                                 <span class="kw">do.call</span>(<span class="st">&quot;workflowVariants&quot;</span>,
+                                         <span class="kw">c</span>(<span class="kw">list</span>(<span class="st">&quot;tradingWF&quot;</span>,
+                                                <span class="dt">varsRootName=</span><span class="kw">paste0</span>(lrn,<span class="st">&quot;Class&quot;</span>),
+                                                <span class="dt">quotes=</span><span class="st">&quot;GSPC&quot;</span>,
+                                                <span class="dt">learner=</span>lrn,
+                                                <span class="dt">pred.target=</span><span class="st">&quot;signals&quot;</span>),
                                            VARS[[lrn]],
                                            VARS$learning,
                                            VARS$trading)
                                          ),
                                  EST.TASK,
-                                 cluster=TRUE) # for parallel computation
+                                 <span class="dt">cluster=</span><span class="ot">TRUE</span>) <span class="co"># for parallel computation</span>
            )
-    save(list=objName,file=paste(objName,&#39;Rdata&#39;,sep=&#39;.&#39;))
-}</code></pre>
+    <span class="kw">save</span>(<span class="dt">list=</span>objName,<span class="dt">file=</span><span class="kw">paste</span>(objName,<span class="st">&#39;Rdata&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;.&#39;</span>))
+}</code></pre></div>
 </div>
 <div id="results-analysis" class="section level4">
 <h4>Results Analysis</h4>
-<pre class="r"><code>load(&quot;svm_res_regr.Rdata&quot;)
-load(&quot;nnet_res_regr.Rdata&quot;)
-load(&quot;earth_res_regr.Rdata&quot;)
-load(&quot;svm_res_class.Rdata&quot;)
-load(&quot;nnet_res_class.Rdata&quot;)
-allResults &lt;- mergeEstimationRes(svm_res_regr, earth_res_regr, nnet_res_regr, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;svm_res_regr.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;nnet_res_regr.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;earth_res_regr.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;svm_res_class.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;nnet_res_class.Rdata&quot;</span>)
+allResults &lt;-<span class="st"> </span><span class="kw">mergeEstimationRes</span>(svm_res_regr, earth_res_regr, nnet_res_regr, 
                                  svm_res_class, nnet_res_class,
-                                 by=&quot;workflows&quot;)
-rm(svm_res_regr, earth_res_regr, nnet_res_regr, svm_res_class, nnet_res_class)</code></pre>
-<pre class="r"><code>tgtStats &lt;- c(&#39;NTrades&#39;,&#39;prec.sb&#39;,&#39;Ret&#39;,&#39;RetOverBH&#39;,&#39;PercProf&#39;,
-              &#39;MaxDD&#39;,&#39;SharpeRatio&#39;)
-toMax &lt;- c(rep(TRUE,5),FALSE,TRUE)
-rankWorkflows(subset(allResults,
-                     metrics=tgtStats,
-                     partial=FALSE),
-              top=3,
-              maxs=toMax)</code></pre>
-<pre class="r"><code>getWorkflow(&quot;svmRegr.v138&quot;,analysisSet)</code></pre>
-<pre class="r"><code>best &lt;- rankWorkflows(subset(allResults,
-                     metrics=tgtStats,
-                     partial=FALSE),
-              top=100,
-              maxs=toMax)
-bestWFs &lt;- unique(as.vector(sapply(best$SP500,function(x) x$Workflow)))
-analysisSet &lt;- subset(allResults, workflows=bestWFs, partial=FALSE)
-rm(allResults)</code></pre>
-<pre class="r"><code>(tps &lt;- topPerformers(subset(analysisSet,metrics=tgtStats,partial=FALSE),
-                      maxs=toMax))</code></pre>
-<pre class="r"><code>summary(subset(analysisSet,
-               workflows=tps$SP500[c(&quot;prec.sb&quot;,&quot;Ret&quot;,&quot;PercProf&quot;,&quot;MaxDD&quot;),
-                   &quot;Workflow&quot;],
-               metrics=tgtStats[-c(1,4,7)],
-               partial=FALSE))</code></pre>
-<pre class="r"><code>ms &lt;- metricsSummary(subset(analysisSet,
-                            metrics=c(&quot;NTrades&quot;,&quot;Ret&quot;,&quot;PercProf&quot;),
-                            partial=FALSE),
-                     summary=&quot;median&quot;)[[&quot;SP500&quot;]]
-candidates &lt;- subset(analysisSet,
-                     workflows=colnames(ms)[which(ms[&quot;NTrades&quot;,] &gt; 120)],
-                     partial=FALSE)
-ms &lt;- metricsSummary(subset(candidates,
-                            metrics=c(&quot;Ret&quot;,&quot;PercProf&quot;),
-                            partial=FALSE),
-                     summary=&quot;median&quot;)[[&quot;SP500&quot;]]
-(sms &lt;- apply(ms,1,function(x) names(x[order(x,decreasing=TRUE)][1:15])))
-(winners &lt;- unique(c(intersect(sms[,1],sms[,2]),sms[1:3,1],sms[1:3,2])))
-winnersResults &lt;- subset(analysisSet,
-                         metrics=tgtStats,workflows=winners,
-                         partial=FALSE)</code></pre>
-<pre class="r"><code>p &lt;- pairedComparisons(winnersResults,baseline=&quot;nnetRegr.v200&quot;,maxs=toMax)
-p$Ret$WilcoxonSignedRank.test</code></pre>
-<pre class="r"><code>p &lt;- pairedComparisons(winnersResults,&quot;nnetRegr.v175&quot;,maxs=toMax)
-p$MaxDD$WilcoxonSignedRank.test</code></pre>
-<pre class="r"><code>sds &lt;- signifDiffs(p,p.limit=0.05,metrics=&quot;MaxDD&quot;)
-sds$MaxDD$WilcoxonSignedRank.test$SP500</code></pre>
-<pre class="r"><code>getWorkflow(&quot;nnetRegr.v200&quot;, winnersResults)
-getWorkflow(&quot;nnetRegr.v175&quot;, winnersResults)</code></pre>
+                                 <span class="dt">by=</span><span class="st">&quot;workflows&quot;</span>)
+<span class="kw">rm</span>(svm_res_regr, earth_res_regr, nnet_res_regr, svm_res_class, nnet_res_class)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tgtStats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;NTrades&#39;</span>,<span class="st">&#39;prec.sb&#39;</span>,<span class="st">&#39;Ret&#39;</span>,<span class="st">&#39;RetOverBH&#39;</span>,<span class="st">&#39;PercProf&#39;</span>,
+              <span class="st">&#39;MaxDD&#39;</span>,<span class="st">&#39;SharpeRatio&#39;</span>)
+toMax &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">TRUE</span>,<span class="dv">5</span>),<span class="ot">FALSE</span>,<span class="ot">TRUE</span>)
+<span class="kw">rankWorkflows</span>(<span class="kw">subset</span>(allResults,
+                     <span class="dt">metrics=</span>tgtStats,
+                     <span class="dt">partial=</span><span class="ot">FALSE</span>),
+              <span class="dt">top=</span><span class="dv">3</span>,
+              <span class="dt">maxs=</span>toMax)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;svmRegr.v138&quot;</span>,analysisSet)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">best &lt;-<span class="st"> </span><span class="kw">rankWorkflows</span>(<span class="kw">subset</span>(allResults,
+                     <span class="dt">metrics=</span>tgtStats,
+                     <span class="dt">partial=</span><span class="ot">FALSE</span>),
+              <span class="dt">top=</span><span class="dv">100</span>,
+              <span class="dt">maxs=</span>toMax)
+bestWFs &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">as.vector</span>(<span class="kw">sapply</span>(best$SP500,function(x) x$Workflow)))
+analysisSet &lt;-<span class="st"> </span><span class="kw">subset</span>(allResults, <span class="dt">workflows=</span>bestWFs, <span class="dt">partial=</span><span class="ot">FALSE</span>)
+<span class="kw">rm</span>(allResults)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(tps &lt;-<span class="st"> </span><span class="kw">topPerformers</span>(<span class="kw">subset</span>(analysisSet,<span class="dt">metrics=</span>tgtStats,<span class="dt">partial=</span><span class="ot">FALSE</span>),
+                      <span class="dt">maxs=</span>toMax))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">subset</span>(analysisSet,
+               <span class="dt">workflows=</span>tps$SP500[<span class="kw">c</span>(<span class="st">&quot;prec.sb&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>,<span class="st">&quot;MaxDD&quot;</span>),
+                   <span class="st">&quot;Workflow&quot;</span>],
+               <span class="dt">metrics=</span>tgtStats[-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>)],
+               <span class="dt">partial=</span><span class="ot">FALSE</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ms &lt;-<span class="st"> </span><span class="kw">metricsSummary</span>(<span class="kw">subset</span>(analysisSet,
+                            <span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;NTrades&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>),
+                            <span class="dt">partial=</span><span class="ot">FALSE</span>),
+                     <span class="dt">summary=</span><span class="st">&quot;median&quot;</span>)[[<span class="st">&quot;SP500&quot;</span>]]
+candidates &lt;-<span class="st"> </span><span class="kw">subset</span>(analysisSet,
+                     <span class="dt">workflows=</span><span class="kw">colnames</span>(ms)[<span class="kw">which</span>(ms[<span class="st">&quot;NTrades&quot;</span>,] &gt;<span class="st"> </span><span class="dv">120</span>)],
+                     <span class="dt">partial=</span><span class="ot">FALSE</span>)
+ms &lt;-<span class="st"> </span><span class="kw">metricsSummary</span>(<span class="kw">subset</span>(candidates,
+                            <span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>),
+                            <span class="dt">partial=</span><span class="ot">FALSE</span>),
+                     <span class="dt">summary=</span><span class="st">&quot;median&quot;</span>)[[<span class="st">&quot;SP500&quot;</span>]]
+(sms &lt;-<span class="st"> </span><span class="kw">apply</span>(ms,<span class="dv">1</span>,function(x) <span class="kw">names</span>(x[<span class="kw">order</span>(x,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)][<span class="dv">1</span>:<span class="dv">15</span>])))
+(winners &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">intersect</span>(sms[,<span class="dv">1</span>],sms[,<span class="dv">2</span>]),sms[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>],sms[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">2</span>])))
+winnersResults &lt;-<span class="st"> </span><span class="kw">subset</span>(analysisSet,
+                         <span class="dt">metrics=</span>tgtStats,<span class="dt">workflows=</span>winners,
+                         <span class="dt">partial=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(winnersResults,<span class="dt">baseline=</span><span class="st">&quot;nnetRegr.v200&quot;</span>,<span class="dt">maxs=</span>toMax)
+p$Ret$WilcoxonSignedRank.test</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(winnersResults,<span class="st">&quot;nnetRegr.v175&quot;</span>,<span class="dt">maxs=</span>toMax)
+p$MaxDD$WilcoxonSignedRank.test</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sds &lt;-<span class="st"> </span><span class="kw">signifDiffs</span>(p,<span class="dt">p.limit=</span><span class="fl">0.05</span>,<span class="dt">metrics=</span><span class="st">&quot;MaxDD&quot;</span>)
+sds$MaxDD$WilcoxonSignedRank.test$SP500</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;nnetRegr.v200&quot;</span>, winnersResults)
+<span class="kw">getWorkflow</span>(<span class="st">&quot;nnetRegr.v175&quot;</span>, winnersResults)</code></pre></div>
 <!-- TradSys.Rnw -->
-<pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.7\\textwidth&quot;),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-library(performanceEstimation)
-data(GSPC)
-load(&quot;GSPCdata.Rdata&quot;)
-source(&quot;codigoExps.R&quot;)
-load(&quot;analysis.Rdata&quot;)
-library(e1071)
-library(nnet)
-library(earth)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
+                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
+                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
+                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(grid)
+<span class="kw">library</span>(DMwR2)
+<span class="kw">library</span>(xts)
+<span class="kw">library</span>(quantmod)
+<span class="kw">library</span>(performanceEstimation)
+<span class="kw">data</span>(GSPC)
+<span class="kw">load</span>(<span class="st">&quot;GSPCdata.Rdata&quot;</span>)
+<span class="kw">source</span>(<span class="st">&quot;codigoExps.R&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;analysis.Rdata&quot;</span>)
+<span class="kw">library</span>(e1071)
+<span class="kw">library</span>(nnet)
+<span class="kw">library</span>(earth)</code></pre></div>
 </div>
 </div>
 <div id="the-trading-system" class="section level3">
 <h3>The Trading System</h3>
 <div id="evaluation-of-the-final-test-data" class="section level4">
 <h4>Evaluation of the Final Test Data</h4>
-<pre class="r"><code>set.seed(1234)
-data &lt;- tail(Tdata.train, 2540) # the last 10 years of the training dataset
-results &lt;- list()
-wfsOut &lt;- list()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
+data &lt;-<span class="st"> </span><span class="kw">tail</span>(Tdata.train, <span class="dv">2540</span>) <span class="co"># the last 10 years of the training dataset</span>
+results &lt;-<span class="st"> </span><span class="kw">list</span>()
+wfsOut &lt;-<span class="st"> </span><span class="kw">list</span>()
 for (name in winners) {
-    sys &lt;- getWorkflow(name, analysisSet)
-    wfsOut[[name]] &lt;- runWorkflow(sys, Tform, data, Tdata.eval)
-    results[[name]] &lt;- do.call(&quot;tradingEval&quot;,wfsOut[[name]])
+    sys &lt;-<span class="st"> </span><span class="kw">getWorkflow</span>(name, analysisSet)
+    wfsOut[[name]] &lt;-<span class="st"> </span><span class="kw">runWorkflow</span>(sys, Tform, data, Tdata.eval)
+    results[[name]] &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;tradingEval&quot;</span>,wfsOut[[name]])
 }
-results &lt;- t(as.data.frame(results))</code></pre>
-<pre class="r"><code>results[, c(&quot;NTrades&quot;,&quot;Ret&quot;,&quot;RetOverBH&quot;,&quot;PercProf&quot;,&quot;MaxDD&quot;)]</code></pre>
-<pre class="r"><code>getWorkflow(&quot;nnetRegr.v203&quot;, analysisSet)</code></pre>
-<pre class="r"><code>date &lt;- rownames(Tdata.eval)[1]
-market &lt;- GSPC[paste(date, &quot;/&quot;, sep = &quot;&quot;)][1:nrow(Tdata.eval), ]
-plot(wfsOut[[&quot;nnetRegr.v203&quot;]]$tradeRec, market, 
-     theme = &quot;white&quot;, name = &quot;SP500 - final test&quot;)</code></pre>
-<pre class="r"><code>library(PerformanceAnalytics)
-equityWF &lt;- as.xts(wfsOut[[&quot;nnetRegr.v203&quot;]]$tradeRec@trading$Equity)
-rets &lt;- Return.calculate(equityWF)</code></pre>
-<pre class="r"><code>chart.CumReturns(rets, main=&quot;Cumulative returns of the workflow&quot;, ylab = &quot;returns&quot;)</code></pre>
-<pre class="r"><code>chart.CumReturns(rets, main=&quot;Cumulative returns of the strategy&quot;, ylab=&quot;returns&quot;)</code></pre>
-<pre class="r"><code>yearlyReturn(equityWF)</code></pre>
-<pre class="r"><code>plot(100*yearlyReturn(equityWF), 
-     main=&#39;Yearly percentage returns of the trading system&#39;)</code></pre>
-<pre class="r"><code>plot(100*yearlyReturn(equityWF), main=&#39;Yearly percentage returns of the trading system&#39;)</code></pre>
-<pre class="r"><code>table.DownsideRisk(rets)</code></pre>
+results &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">as.data.frame</span>(results))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results[, <span class="kw">c</span>(<span class="st">&quot;NTrades&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;RetOverBH&quot;</span>,<span class="st">&quot;PercProf&quot;</span>,<span class="st">&quot;MaxDD&quot;</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;nnetRegr.v203&quot;</span>, analysisSet)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.eval)[<span class="dv">1</span>]
+market &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date, <span class="st">&quot;/&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)][<span class="dv">1</span>:<span class="kw">nrow</span>(Tdata.eval), ]
+<span class="kw">plot</span>(wfsOut[[<span class="st">&quot;nnetRegr.v203&quot;</span>]]$tradeRec, market, 
+     <span class="dt">theme =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">name =</span> <span class="st">&quot;SP500 - final test&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(PerformanceAnalytics)
+equityWF &lt;-<span class="st"> </span><span class="kw">as.xts</span>(wfsOut[[<span class="st">&quot;nnetRegr.v203&quot;</span>]]$tradeRec@trading$Equity)
+rets &lt;-<span class="st"> </span><span class="kw">Return.calculate</span>(equityWF)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chart.CumReturns</span>(rets, <span class="dt">main=</span><span class="st">&quot;Cumulative returns of the workflow&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;returns&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chart.CumReturns</span>(rets, <span class="dt">main=</span><span class="st">&quot;Cumulative returns of the strategy&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;returns&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">yearlyReturn</span>(equityWF)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">100</span>*<span class="kw">yearlyReturn</span>(equityWF), 
+     <span class="dt">main=</span><span class="st">&#39;Yearly percentage returns of the trading system&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">100</span>*<span class="kw">yearlyReturn</span>(equityWF), <span class="dt">main=</span><span class="st">&#39;Yearly percentage returns of the trading system&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table.DownsideRisk</span>(rets)</code></pre></div>
 </div>
 <div id="an-online-trading-system" class="section level4">
 <h4>An Online Trading System</h4>
