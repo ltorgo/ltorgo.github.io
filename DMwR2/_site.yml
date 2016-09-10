@@ -43,7 +43,17 @@ navbar:
     - text: "Datasets"
       icon: fa-database
       href: datasets.html
+    - text: "Errata"
+      icon: fa-exclamation-triangle
+      href: Errata.html
   right:
+    - text: "News"
+      icon: fa-newspaper-o
+      href: News.html
     - text: "Contact"
       icon: fa-info-circle
       href: about.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate

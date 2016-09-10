@@ -1,0 +1,6 @@
+---
+title: News
+output: html_document
+---
+
+- [2016-09-10] - Final PDF sent to publisher!

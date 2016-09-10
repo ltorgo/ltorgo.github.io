@@ -1,6 +1,9 @@
 ---
 title: Predicting Algae Blooms
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 

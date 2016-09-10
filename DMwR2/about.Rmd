@@ -1,0 +1,7 @@
+---
+title: Contacts
+output: html_document
+---
+
+- Home page: [http://www.dcc.fc.up.pt/~ltorgo](http://www.dcc.fc.up.pt/~ltorgo) 
+- Email: ltorgo (at) dcc (dot) fc (dot) up (dot) pt
