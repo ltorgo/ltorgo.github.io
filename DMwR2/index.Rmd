@@ -19,7 +19,7 @@ output: html_document
 
 ## **Data Mining with R, learning with case studies** {style="padding-top: 0px;"}
 ### *(2nd edtition)* {style="padding-top: 0px;"}
-#### a book by CRC Press {style="padding-top: 0px;"}
+#### a book by [CRC Press](https://www.crcpress.com/) {style="padding-top: 0px;"}
 
 This book uses practical examples to illustrate the power of R and data mining. Providing an extensive update to the best-selling  first edition, this new edition is divided into two parts. The first part will feature introductory material, including a new chapter that provides an introduction to data mining, to complement the already existing introduction to R. The second part includes case studies, and the new edition strongly revises the R code of the case studies making it more up to-date with recent packages that have emerged in R.
 
@@ -31,8 +31,18 @@ Designed for users of data analysis tools, as well as researchers and developers
 
 ### About the Author
 
-[Luís Torgo](http://www.dcc.fc.up.pt/~ltorgo) is an associate professor in the Department of Computer Science at the [Faculty of Sciences](https://sigarra.up.pt/fcup/en/WEB_PAGE.INICIAL) of the [University of Porto](https://sigarra.up.pt/up/en/WEB_BASE.GERA_PAGINA?p_pagina=home) in Portugal. He teaches Data Mining in R in the [NYU Stern School of Business](http://www.stern.nyu.edu/)’ [MS in Business Analytics](http://www.stern.nyu.edu/programs-admissions/global-degrees/business-analytics/program-overview) program. An active researcher in machine learning and data mining for more than 20 years, Dr. Torgo is also a researcher in the [Laboratory of Articial Intelligence and Data Analysis (LIAAD)](http://www.liaad.up.pt) of [INESC Tec LA](https://www.inesctec.pt/).
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-3">
 
+![](images/ltorgo.jpg)
+</div>
+<div class="col-sm-9">
+[Luís Torgo](http://www.dcc.fc.up.pt/~ltorgo) is an associate professor in the Department of Computer Science at the [Faculty of Sciences](https://sigarra.up.pt/fcup/en/WEB_PAGE.INICIAL) of the [University of Porto](https://sigarra.up.pt/up/en/WEB_BASE.GERA_PAGINA?p_pagina=home) in Portugal. He teaches Data Mining in R in the [NYU Stern School of Business](http://www.stern.nyu.edu/)’ [MS in Business Analytics](http://www.stern.nyu.edu/programs-admissions/global-degrees/business-analytics/program-overview) program. An active researcher in machine learning and data mining for more than 20 years, Dr. Torgo is also a researcher in the [Laboratory of Articial Intelligence and Data Analysis (LIAAD)](http://www.liaad.up.pt) of [INESC Tec LA](https://www.inesctec.pt/).
+</div>
+
+</div>
+
+<br>
 <p>Copyright &copy; 2016 Luis Torgo. All rights reserved.</p>
 
 
