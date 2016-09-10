@@ -7,6 +7,12 @@
 
 ####### Section:  Data Collection and Business Understanding
 
+
+#### sub-section:  Data and Datasets
+
+
+#### sub-section:  Importing Data into R
+
 ##
 library(readr)
 dat <- read_csv("x.csv")
@@ -78,6 +84,9 @@ dat <- read_excel(fc,sheet=1)
 
 
 ####### Section:  Data Pre-Processing
+
+
+#### sub-section:  Data Cleaning
 
 ##
 library(readr)
@@ -167,6 +176,9 @@ dat$Y <- parse_integer(dat$Y, na="?")
 dat
 class(dat$Y)
 
+
+#### sub-section:  Transforming Variables
+
 ##
 library(dplyr)
 data(iris)
@@ -200,6 +212,9 @@ table(Boston$newAge)
 Boston$newAge <- factor(cut2(Boston$age, g=5),
                         labels=c("verynew","new","normal","old","veryold"))
 table(Boston$newAge)
+
+
+#### sub-section:  Creating Variables
 
 ##
 library(lubridate)
@@ -304,6 +319,9 @@ newData
 ##
 library(tibble)
 as_tibble(as.matrix(newData))
+
+
+#### sub-section:  Dimensionality Reduction
 
 ##
 data(iris)
@@ -432,6 +450,9 @@ library(dplyr)
 
 
 ####### Section:  Modeling
+
+
+#### sub-section:  Exploratory Data Analysis
 
 ##
 data(algae,package="DMwR2")
@@ -732,6 +753,9 @@ library(dplyr)
 data(algae, package="DMwR2")
 ggparcoord(algae,columns=12:18,groupColumn="season")
 
+
+#### sub-section:  Dependency Modeling using Association Rules
+
 ##
 library(arules)
 library(dplyr)
@@ -793,6 +817,9 @@ plot(somerules, method="matrix", measure="lift")
 ##
 somerules <- subset(ars, subset=rhs %in% "medv=high" & confidence > 0.95)
 plot(somerules, method="graph", control=list(type="itemsets"))
+
+
+#### sub-section:  Clustering
 
 ##
 set.seed(1234)
@@ -902,6 +929,9 @@ db <- dbscan(d, eps=0.9, MinPts=5)
 db
 table(db$cluster,iris$Species)
 
+
+#### sub-section:  Anomaly Detection
+
 ##
 grubbs.outliers <- function(x, p.thresh=0.05) {
     require(outliers, quietly=TRUE)
@@ -983,6 +1013,9 @@ library(e1071)
 trainD <- filter(g, Type == "normal") %>% select(-Type) 
 s <- svm(trainD, y=NULL, type="one-classification", nu=0.5)
 (cm <- table(g$Type, predict(s,select(g, -Type))))
+
+
+#### sub-section:  Predictive Analytics
 
 ##
 library(DMwR2)
@@ -1213,6 +1246,9 @@ opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
 
 ####### Section:  Evaluation
 
+
+#### sub-section:  The Holdout and Random Subsampling
+
 ##
 library(performanceEstimation)
 library(e1071)
@@ -1233,6 +1269,9 @@ r <- performanceEstimation(PredTask(medv ~ ., Boston),
                                           method=Holdout(nReps=3,hldSz=0.3))
                            )
 summary(r)
+
+
+#### sub-section:  Cross Validation
 
 ##
 library(performanceEstimation)
@@ -1256,6 +1295,9 @@ plot(r)
 ##
 plot(r)
 
+
+#### sub-section:  Bootstrap Estimates
+
 ##
 library(performanceEstimation)
 library(DMwR2)
@@ -1278,7 +1320,13 @@ r <- performanceEstimation(
 topPerformers(r , maxs=TRUE)
 
 
+#### sub-section:  Recommended Procedures
+
+
 ####### Section:  Reporting  and Deployment
+
+
+#### sub-section:  Reporting Through Dynamic Documents
 
 ##
 library(rmarkdown)
@@ -1286,6 +1334,9 @@ render("myreport.Rmd")
 
 ##
 render("myreport.Rmd", output_format="word_document")
+
+
+#### sub-section:  Deployment Through Web Applications
 
 ##
 library(shiny)

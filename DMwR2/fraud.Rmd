@@ -9,10 +9,19 @@ This chapter contains the following main sections:
 
 <!-- availData.Rnw --> 
 - The Available Data
+    + Loading the Data into R
+    + Exploring the Dataset
+    + Data Problems
 <!-- defTasks.Rnw --> 
 - Defining the Data Mining Tasks
+    + Different Approaches to the Problem
+    + Evaluation Criteria
+    + Experimental Methodology
 <!-- obtainingRanks.Rnw --> 
 - Obtaining Outlier Rankings
+    + Unsupervised Approaches
+    + Supervised Approaches
+    + Semi-Supervised Approaches
 <!-- BPrule.Rnw --> 
 <!-- LOF.Rnw --> 
 <!-- ORh.Rnw --> 

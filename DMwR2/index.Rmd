@@ -17,16 +17,15 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-9">
 
-# **Data Mining with R**
-## *learning with case studies* {style="padding-top: 0px;"}
-#### (2nd edtition) {style="padding-top: 0px;"}
-##### a book by CRC Press {style="padding-top: 0px;"}
+## **Data Mining with R, learning with case studies** {style="padding-top: 0px;"}
+### *(2nd edtition)* {style="padding-top: 0px;"}
+#### a book by CRC Press {style="padding-top: 0px;"}
 
 This book uses practical examples to illustrate the power of R and data mining. Providing an extensive update to the best-selling  first edition, this new edition is divided into two parts. The first part will feature introductory material, including a new chapter that provides an introduction to data mining, to complement the already existing introduction to R. The second part includes case studies, and the new edition strongly revises the R code of the case studies making it more up to-date with recent packages that have emerged in R.
 
 The book does not assume any prior knowledge about R. Readers who are new to R and data mining should be able to follow the case studies, and they are designed to be self-contained so the reader can start anywhere in the document.
 
-This site contains a series of freely available resources that accompany the book. Namely, we provide all R code of all book in a copy-paste-friendly format, as well as several data and objects that should facilitate the replication of all analysis seen in the book.
+This site contains a series of freely available resources that accompany the book. Namely, in this Web page we provide all R code of all book in a copy-paste-friendly format, as well as several data and objects that should facilitate the replication of all analysis seen in the book.
 
 Designed for users of data analysis tools, as well as researchers and developers, the book should be useful for anyone interested in entering the “world” of R and data mining.
 

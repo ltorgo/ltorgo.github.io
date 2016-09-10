@@ -3,6 +3,7 @@ title: Introduction to Data Mining
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
@@ -19,6 +20,12 @@ The following is a [script file](RCode/RintroDM.R) containing all R code of all 
 
 
 ### Data Collection and Business Understanding
+
+
+#### Data and Datasets
+
+
+#### Importing Data into R
 ```{r}
 library(readr)
 dat <- read_csv("x.csv")
@@ -110,6 +117,9 @@ dat <- read_excel(fc,sheet=1)
 
 
 ### Data Pre-Processing
+
+
+#### Data Cleaning
 ```{r}
 library(readr)
 std <- read_delim("stud.txt", delim=" ", 
@@ -226,6 +236,9 @@ class(dat$Y)
 ```
 
 
+
+
+#### Transforming Variables
 ```{r}
 library(dplyr)
 data(iris)
@@ -272,6 +285,9 @@ table(Boston$newAge)
 ```
 
 
+
+
+#### Creating Variables
 ```{r}
 library(lubridate)
 library(xts)
@@ -410,6 +426,9 @@ as_tibble(as.matrix(newData))
 ```
 
 
+
+
+#### Dimensionality Reduction
 ```{r}
 data(iris)
 prop2sample <- 0.5
@@ -569,6 +588,9 @@ library(dplyr)
 
 
 ### Modeling
+
+
+#### Exploratory Data Analysis
 ```{r}
 data(algae,package="DMwR2")
 mean(algae$a1)
@@ -956,6 +978,9 @@ ggparcoord(algae,columns=12:18,groupColumn="season")
 ```
 
 
+
+
+#### Dependency Modeling using Association Rules
 ```{r}
 library(arules)
 library(dplyr)
@@ -1046,6 +1071,9 @@ plot(somerules, method="graph", control=list(type="itemsets"))
 ```
 
 
+
+
+#### Clustering
 ```{r}
 set.seed(1234)
 randDat <- matrix(rnorm(50), nrow=5)
@@ -1192,6 +1220,9 @@ table(db$cluster,iris$Species)
 ```
 
 
+
+
+#### Anomaly Detection
 ```{r}
 grubbs.outliers <- function(x, p.thresh=0.05) {
     require(outliers, quietly=TRUE)
@@ -1292,6 +1323,9 @@ s <- svm(trainD, y=NULL, type="one-classification", nu=0.5)
 ```
 
 
+
+
+#### Predictive Analytics
 ```{r}
 library(DMwR2)
 set.seed(1234)
@@ -1572,6 +1606,9 @@ opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
 
 
 ### Evaluation
+
+
+#### The Holdout and Random Subsampling
 ```{r}
 library(performanceEstimation)
 library(e1071)
@@ -1597,6 +1634,9 @@ summary(r)
 ```
 
 
+
+
+#### Cross Validation
 ```{r}
 library(performanceEstimation)
 library(DMwR2)
@@ -1627,6 +1667,9 @@ plot(r)
 ```
 
 
+
+
+#### Bootstrap Estimates
 ```{r}
 library(performanceEstimation)
 library(DMwR2)
@@ -1652,10 +1695,16 @@ topPerformers(r , maxs=TRUE)
 ```
 
 
+
+
+#### Recommended Procedures
 <!-- DeployAndReport.Rnw --> 
 
 
 ### Reporting  and Deployment
+
+
+#### Reporting Through Dynamic Documents
 ```{r}
 library(rmarkdown)
 render("myreport.Rmd")
@@ -1667,6 +1716,9 @@ render("myreport.Rmd", output_format="word_document")
 ```
 
 
+
+
+#### Deployment Through Web Applications
 ```{r}
 library(shiny)
 runApp("myAppFolderName")

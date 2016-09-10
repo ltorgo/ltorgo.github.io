@@ -8,14 +8,14 @@ This chapter contains the following main sections:
 
 
 <!-- intro2R.Rnw --> 
-- Starting with \R
+- Starting with R
 - Managing Your Sessions
 <!-- basicInter.Rnw --> 
-- Basic Interaction with the \R Console
+- Basic Interaction with the R Console
 <!-- objs.Rnw --> 
-- \R Objects and Variables
+- R Objects and Variables
 <!-- funcs.Rnw --> 
-- \R Functions
+- R Functions
 <!-- vectors.Rnw --> 
 - Vectors
 <!-- vectorization.Rnw --> 

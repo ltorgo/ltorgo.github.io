@@ -9,8 +9,18 @@ This chapter contains the following main sections:
 
 <!-- availData.Rnw --> 
 - The Available Data
+    + Exploring the Dataset
 <!-- ExploratoryAnal.Rnw --> 
 <!-- FeatureSel.Rnw --> 
 - Gene (Feature) Selection
+    + Simple Filters Based on Distribution Properties
+    + ANOVA Filters
+    + Filtering Using Random Forests
+    + Filtering Using Feature Clustering Ensembles
 <!-- PredTasks.Rnw --> 
 - Predicting Cytogenetic Abnormalities
+    + Defining the Prediction Task
+    + The Evaluation Metric
+    + The Experimental Procedure
+    + The Modeling Techniques
+    + Comparing the Models

@@ -177,7 +177,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -390,8 +390,8 @@ div.tocify {
 
 <p>The following is a <a href="RCode/RintroR.R">script file</a> containing all R code of all sections in this chapter.</p>
 <!-- intro2R.Rnw -->
-<div id="starting-with" class="section level3">
-<h3>Starting with </h3>
+<div id="starting-with-r" class="section level3">
+<h3>Starting with R</h3>
 <pre class="r"><code>install.packages(&quot;RMySQL&quot;)</code></pre>
 <pre class="r"><code>install.packages(&quot;DMwR2&quot;)</code></pre>
 <pre class="r"><code>library(DMwR2)</code></pre>
@@ -409,8 +409,8 @@ div.tocify {
 <pre class="r"><code>save.image()</code></pre>
 <!-- basicInter.Rnw -->
 </div>
-<div id="basic-interaction-with-the-console" class="section level3">
-<h3>Basic Interaction with the Console</h3>
+<div id="basic-interaction-with-the-r-console" class="section level3">
+<h3>Basic Interaction with the R Console</h3>
 <pre class="r"><code>4 + 3 / 5^2</code></pre>
 <pre class="r"><code>rnorm(4, mean = 10, sd = 2)
 mean(sample(1:10, 5))</code></pre>
@@ -418,8 +418,8 @@ mean(sample(1:10, 5))</code></pre>
      main=&quot;Five random points&quot;,xlab=&quot;X values&quot;,ylab=&quot;Y values&quot;)</code></pre>
 <!-- objs.Rnw -->
 </div>
-<div id="objects-and-variables" class="section level3">
-<h3>Objects and Variables</h3>
+<div id="r-objects-and-variables" class="section level3">
+<h3>R Objects and Variables</h3>
 <pre class="r"><code>vat &lt;- 0.2</code></pre>
 <pre class="r"><code>vat</code></pre>
 <pre class="r"><code>y &lt;- 39
@@ -435,8 +435,8 @@ i</code></pre>
 rm(vat,y,z,w,i)</code></pre>
 <!-- funcs.Rnw -->
 </div>
-<div id="functions" class="section level3">
-<h3>Functions</h3>
+<div id="r-functions" class="section level3">
+<h3>R Functions</h3>
 <pre class="r"><code>max(4, 5, 6, 12, -4)</code></pre>
 <pre class="r"><code>max(sample(1:100, 30))</code></pre>
 <pre class="r"><code>exists(&quot;se&quot;)</code></pre>

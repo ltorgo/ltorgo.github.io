@@ -3,6 +3,7 @@ title: Introduction to R
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
@@ -18,7 +19,7 @@ The following is a [script file](RCode/RintroR.R) containing all R code of all s
 <!-- intro2R.Rnw --> 
 
 
-### Starting with \R
+### Starting with R
 ```{r}
 install.packages("RMySQL")
 ```
@@ -85,7 +86,7 @@ save.image()
 <!-- basicInter.Rnw --> 
 
 
-### Basic Interaction with the \R Console
+### Basic Interaction with the R Console
 ```{r}
 4 + 3 / 5^2
 ```
@@ -106,7 +107,7 @@ plot(x=sample(1:10,5),y=sample(1:10,5),
 <!-- objs.Rnw --> 
 
 
-### \R Objects and Variables
+### R Objects and Variables
 ```{r}
 vat <- 0.2
 ```
@@ -143,7 +144,7 @@ rm(vat,y,z,w,i)
 <!-- funcs.Rnw --> 
 
 
-### \R Functions
+### R Functions
 ```{r}
 max(4, 5, 6, 12, -4)
 ```

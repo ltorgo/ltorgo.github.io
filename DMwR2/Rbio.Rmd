@@ -3,6 +3,7 @@ title: Classifying Micro Array Samples
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
@@ -72,6 +73,9 @@ save(ALLb, file = "myALL.Rdata")
 ```
 
 
+
+
+#### Exploring the Dataset
 <!-- ExploratoryAnal.Rnw --> 
 ```{r}
 opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
@@ -163,6 +167,9 @@ es <- exprs(ALLb)
 
 
 ### Gene (Feature) Selection
+
+
+#### Simple Filters Based on Distribution Properties
 ```{r}
 source("https://bioconductor.org/biocLite.R")
 biocLite("hgu95av2.db")
@@ -207,6 +214,9 @@ dim(es)
 ```
 
 
+
+
+#### ANOVA Filters
 ```{r}
 f <- Anova(ALLb$mol.bio, p = 0.01)
 ff <- filterfun(f)
@@ -239,6 +249,9 @@ ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
 ```
 
 
+
+
+#### Filtering Using Random Forests
 ```{r}
 library(randomForest)
 dt <- data.frame(t(es), Mut = ALLb$mol.bio)
@@ -268,6 +281,9 @@ ggplot(dat, aes(x=med,y=iqr,color=Mut)) +
 ```
 
 
+
+
+#### Filtering Using Feature Clustering Ensembles
 ```{r}
 library(Hmisc)
 vc <- varclus(t(es))
@@ -333,6 +349,15 @@ getVarsSet <- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
 
 
 ### Predicting Cytogenetic Abnormalities
+
+
+#### Defining the Prediction Task
+
+
+#### The Evaluation Metric
+
+
+#### The Experimental Procedure
 ```{r}
 library(performanceEstimation)
 library(DMwR2)
@@ -349,6 +374,9 @@ summary(exp)
 ```
 
 
+
+
+#### The Modeling Techniques
 ```{r}
 library(class)
 data(iris)
@@ -387,6 +415,9 @@ table(preds.notStand, ts[, 5])
 ```
 
 
+
+
+#### Comparing the Models
 ```{r}
 varsEnsemble <- function(tgt,train,test,
                          fs.meth,

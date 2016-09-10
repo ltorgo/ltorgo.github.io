@@ -177,7 +177,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -413,6 +413,8 @@ ALLb</code></pre>
 <pre class="r"><code>ALLb$BT &lt;- factor(ALLb$BT)
 ALLb$mol.bio &lt;- factor(ALLb$mol.bio)</code></pre>
 <pre class="r"><code>save(ALLb, file = &quot;myALL.Rdata&quot;)</code></pre>
+<div id="exploring-the-dataset" class="section level4">
+<h4>Exploring the Dataset</h4>
 <!-- ExploratoryAnal.Rnw -->
 <pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
@@ -470,8 +472,11 @@ data(ALL)
 load(&quot;myALL.Rdata&quot;)
 es &lt;- exprs(ALLb)</code></pre>
 </div>
+</div>
 <div id="gene-feature-selection" class="section level3">
 <h3>Gene (Feature) Selection</h3>
+<div id="simple-filters-based-on-distribution-properties" class="section level4">
+<h4>Simple Filters Based on Distribution Properties</h4>
 <pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
 biocLite(&quot;hgu95av2.db&quot;)</code></pre>
 <pre class="r"><code>rowIQRs &lt;- function(em) 
@@ -496,6 +501,9 @@ resFilter</code></pre>
 <pre class="r"><code>ALLb &lt;- resFilter$eset
 es &lt;- exprs(ALLb)
 dim(es)</code></pre>
+</div>
+<div id="anova-filters" class="section level4">
+<h4>ANOVA Filters</h4>
 <pre class="r"><code>f &lt;- Anova(ALLb$mol.bio, p = 0.01)
 ff &lt;- filterfun(f)
 selGenes &lt;- genefilter(exprs(ALLb), ff)
@@ -512,6 +520,9 @@ ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
 ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
     xlab(&quot;Median expression level&quot;) + ylab(&quot;IQR expression level&quot;) +
     ggtitle(&quot;Distribution Properties of the Selected Genes&quot;)</code></pre>
+</div>
+<div id="filtering-using-random-forests" class="section level4">
+<h4>Filtering Using Random Forests</h4>
 <pre class="r"><code>library(randomForest)
 dt &lt;- data.frame(t(es), Mut = ALLb$mol.bio)
 dt$Mut &lt;- droplevels(dt$Mut)
@@ -529,6 +540,9 @@ dat &lt;- group_by(d,Mut,Gene) %&gt;%
 ggplot(dat, aes(x=med,y=iqr,color=Mut)) +  
     geom_point(size=6) + facet_wrap(~ Gene) + 
     labs(x=&quot;MEDIAN expression level&quot;,y=&quot;IQR expression level&quot;,color=&quot;Mutation&quot;)</code></pre>
+</div>
+<div id="filtering-using-feature-clustering-ensembles" class="section level4">
+<h4>Filtering Using Feature Clustering Ensembles</h4>
 <pre class="r"><code>library(Hmisc)
 vc &lt;- varclus(t(es))
 clus30 &lt;- cutree(vc$hclust, 30)
@@ -580,8 +594,17 @@ getVarsSet &lt;- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
     else       vars
 }</code></pre>
 </div>
+</div>
 <div id="predicting-cytogenetic-abnormalities" class="section level3">
 <h3>Predicting Cytogenetic Abnormalities</h3>
+<div id="defining-the-prediction-task" class="section level4">
+<h4>Defining the Prediction Task</h4>
+</div>
+<div id="the-evaluation-metric" class="section level4">
+<h4>The Evaluation Metric</h4>
+</div>
+<div id="the-experimental-procedure" class="section level4">
+<h4>The Experimental Procedure</h4>
 <pre class="r"><code>library(performanceEstimation)
 library(DMwR2)
 data(iris)
@@ -590,6 +613,9 @@ exp &lt;- performanceEstimation(
     Workflow(learner=&quot;rpartXse&quot;, predictor.pars=list(type=&quot;class&quot;)),
     EstimationTask(metrics=&quot;acc&quot;,method=Bootstrap(nReps=100)))</code></pre>
 <pre class="r"><code>summary(exp)</code></pre>
+</div>
+<div id="the-modeling-techniques" class="section level4">
+<h4>The Modeling Techniques</h4>
 <pre class="r"><code>library(class)
 data(iris)
 idx &lt;- sample(1:nrow(iris), as.integer(0.7 * nrow(iris)))
@@ -616,6 +642,9 @@ table(preds, ts[, 5])</code></pre>
 table(preds.stand,ts[, 5])
 preds.notStand &lt;- kNN(Species ~ ., tr, ts, stand = FALSE, k = 3)
 table(preds.notStand, ts[, 5]) </code></pre>
+</div>
+<div id="comparing-the-models" class="section level4">
+<h4>Comparing the Models</h4>
 <pre class="r"><code>varsEnsemble &lt;- function(tgt,train,test,
                          fs.meth,
                          baseLearner,blPars,
@@ -783,6 +812,7 @@ ps$acc$WilcoxonSignedRank.test</code></pre>
 <pre class="r"><code>iteration &lt;- 1  # any number between 1 and 100 in this case
 itInfo &lt;- getIterationsInfo(all.trials,workflow=&quot;svm.v8&quot;,it=iteration)
 table(itInfo$trues, itInfo$preds)</code></pre>
+</div>
 </div>
 
 

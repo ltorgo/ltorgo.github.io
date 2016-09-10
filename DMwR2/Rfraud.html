@@ -177,7 +177,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -398,9 +398,14 @@ library(ggplot2)
 library(grid)</code></pre>
 <div id="the-available-data" class="section level3">
 <h3>The Available Data</h3>
+<div id="loading-the-data-into-r" class="section level4">
+<h4>Loading the Data into R</h4>
 <pre class="r"><code>library(dplyr)
 data(sales, package=&quot;DMwR2&quot;)</code></pre>
 <pre class="r"><code>sales</code></pre>
+</div>
+<div id="exploring-the-dataset" class="section level4">
+<h4>Exploring the Dataset</h4>
 <pre class="r"><code>summary(sales)</code></pre>
 <pre class="r"><code>nlevels(sales$ID)
 nlevels(sales$Prod)</code></pre>
@@ -468,6 +473,9 @@ noutsProds &lt;- summarise(prods,nOut=nouts(Uprice))</code></pre>
 <pre class="r"><code>arrange(noutsProds,desc(nOut))</code></pre>
 <pre class="r"><code>summarize(noutsProds,totalOuts=sum(nOut))
 summarize(noutsProds,totalOuts=sum(nOut))/nrow(sales)*100</code></pre>
+</div>
+<div id="data-problems" class="section level4">
+<h4>Data Problems</h4>
 <pre class="r"><code>prop.naQandV &lt;- function(q,v) 100*sum(is.na(q) &amp; is.na(v))/length(q)
 summarise(ids,nProbs=prop.naQandV(Quant,Val)) %&gt;% arrange(desc(nProbs))</code></pre>
 <pre class="r"><code>summarise(prods,nProbs=prop.naQandV(Quant,Val)) %&gt;% arrange(desc(nProbs))</code></pre>
@@ -541,8 +549,14 @@ for(i in seq_along(smalls)) {
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
 library(ggplot2)</code></pre>
 </div>
+</div>
 <div id="defining-the-data-mining-tasks" class="section level3">
 <h3>Defining the Data Mining Tasks</h3>
+<div id="different-approaches-to-the-problem" class="section level4">
+<h4>Different Approaches to the Problem</h4>
+</div>
+<div id="evaluation-criteria" class="section level4">
+<h4>Evaluation Criteria</h4>
 <pre class="r"><code>library(ROCR)
 data(ROCR.simple)
 pred &lt;- prediction(ROCR.simple$predictions, ROCR.simple$labels)
@@ -590,6 +604,9 @@ plot(perf, main = &quot;Lift Chart&quot;)</code></pre>
   return(mean(abs(toInsp$Uprice-stats[toInsp$Prod,&#39;median&#39;]) /
                  stats[toInsp$Prod,&#39;iqr&#39;]))
 }</code></pre>
+</div>
+<div id="experimental-methodology" class="section level4">
+<h4>Experimental Methodology</h4>
 <pre class="r"><code>evalOutlierRanking &lt;- function(testSet,rankOrder,Threshold,statsProds,...) 
 {
    ordTS &lt;- testSet[rankOrder,]
@@ -603,8 +620,17 @@ plot(perf, main = &quot;Lift Chart&quot;)</code></pre>
 }</code></pre>
 <!-- obtainingRanks.Rnw -->
 </div>
+</div>
 <div id="obtaining-outlier-rankings" class="section level3">
 <h3>Obtaining Outlier Rankings</h3>
+<div id="unsupervised-approaches" class="section level4">
+<h4>Unsupervised Approaches</h4>
+</div>
+<div id="supervised-approaches" class="section level4">
+<h4>Supervised Approaches</h4>
+</div>
+<div id="semi-supervised-approaches" class="section level4">
+<h4>Semi-Supervised Approaches</h4>
 <!-- BPrule.Rnw -->
 <pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
@@ -1220,6 +1246,7 @@ CRchart(ps.ab,ts.ab,add=T,lty=1,color=&#39;grey&#39;,avg=&#39;vertical&#39;)
 CRchart(ps.ab.st,ts.ab.st,add=T,lty=2,avg=&#39;vertical&#39;)
 legend(&#39;bottomright&#39;,c(&#39;ORh&#39;,&#39;AdaBoostM1&#39;,&#39;AdaBoostM1-ST&#39;),
        lty=c(1,1,2),col=c(&#39;black&#39;,&#39;grey&#39;,&#39;grey&#39;))</code></pre>
+</div>
 </div>
 
 

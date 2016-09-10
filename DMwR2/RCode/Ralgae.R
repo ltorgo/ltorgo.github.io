@@ -5,7 +5,7 @@
 
 
 
-####### Section:  Loading the Data into \R
+####### Section:  Loading the Data into R
 
 ##
 data(algae, package="DMwR2")
@@ -165,6 +165,9 @@ library(DMwR2)
 library(dplyr)  
 data(algae)  
 
+
+#### sub-section:  Removing the Observations with Unknown Values
+
 ##
 filter(algae, !complete.cases(algae) )
 
@@ -185,6 +188,9 @@ manyNAs(algae, 0.2)
 ##
 algae <- algae[-manyNAs(algae), ]
 
+
+#### sub-section:  Filling in the Unknowns with the Most Frequent Values
+
 ##
 algae[48, "mxPH"] <- mean(algae$mxPH, na.rm = TRUE)
 
@@ -195,6 +201,9 @@ algae[is.na(algae$Chla), "Chla"] <- median(algae$Chla, na.rm = TRUE)
 data(algae, package="DMwR2")
 algae <- algae[-manyNAs(algae), ]
 algae <- centralImputation(algae)
+
+
+#### sub-section:  Filling in the Unknown Values by Exploring Correlations
 
 ##
 cor(algae[, 4:18], use = "complete.obs")
@@ -257,6 +266,9 @@ ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() +
 ##
 ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + facet_wrap(~speed) + geom_jitter(height = 0.4)
 
+
+#### sub-section:  Filling in the Unknown Values by Exploring Similarities between Cases
+
 ##
 data(algae, package="DMwR2")
 algae <- algae[-manyNAs(algae), ]
@@ -275,6 +287,9 @@ opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
 library(DMwR2)
 library(dplyr)
+
+
+#### sub-section:  Multiple Linear Regression
 
 ##
 data(algae, package="DMwR2")
@@ -313,6 +328,9 @@ opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
 library(DMwR2)
 library(dplyr)
+
+
+#### sub-section:  Regression Trees
 
 ##
 library(rpart)

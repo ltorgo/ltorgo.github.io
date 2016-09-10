@@ -9,11 +9,28 @@ This chapter contains the following main sections:
 
 <!-- DCandBU.Rnw --> 
 - Data Collection and Business Understanding
+    + Data and Datasets
+    + Importing Data into R
 <!-- dataPP.Rnw --> 
 - Data Pre-Processing
+    + Data Cleaning
+    + Transforming Variables
+    + Creating Variables
+    + Dimensionality Reduction
 <!-- modeling.Rnw --> 
 - Modeling
+    + Exploratory Data Analysis
+    + Dependency Modeling using Association Rules
+    + Clustering
+    + Anomaly Detection
+    + Predictive Analytics
 <!-- evaluation.Rnw --> 
 - Evaluation
+    + The Holdout and Random Subsampling
+    + Cross Validation
+    + Bootstrap Estimates
+    + Recommended Procedures
 <!-- DeployAndReport.Rnw --> 
 - Reporting  and Deployment
+    + Reporting Through Dynamic Documents
+    + Deployment Through Web Applications

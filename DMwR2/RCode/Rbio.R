@@ -44,6 +44,9 @@ ALLb$mol.bio <- factor(ALLb$mol.bio)
 ##
 save(ALLb, file = "myALL.Rdata")
 
+
+#### sub-section:  Exploring the Dataset
+
 ##
 opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
@@ -117,6 +120,9 @@ es <- exprs(ALLb)
 
 ####### Section:  Gene (Feature) Selection
 
+
+#### sub-section:  Simple Filters Based on Distribution Properties
+
 ##
 source("https://bioconductor.org/biocLite.R")
 biocLite("hgu95av2.db")
@@ -151,6 +157,9 @@ ALLb <- resFilter$eset
 es <- exprs(ALLb)
 dim(es)
 
+
+#### sub-section:  ANOVA Filters
+
 ##
 f <- Anova(ALLb$mol.bio, p = 0.01)
 ff <- filterfun(f)
@@ -175,6 +184,9 @@ ggplot(dg,aes(x=rowMed, y=rowIQR)) + geom_point() +
     xlab("Median expression level") + ylab("IQR expression level") +
     ggtitle("Distribution Properties of the Selected Genes")
 
+
+#### sub-section:  Filtering Using Random Forests
+
 ##
 library(randomForest)
 dt <- data.frame(t(es), Mut = ALLb$mol.bio)
@@ -197,6 +209,9 @@ dat <- group_by(d,Mut,Gene) %>%
 ggplot(dat, aes(x=med,y=iqr,color=Mut)) +  
     geom_point(size=6) + facet_wrap(~ Gene) + 
     labs(x="MEDIAN expression level",y="IQR expression level",color="Mutation")
+
+
+#### sub-section:  Filtering Using Feature Clustering Ensembles
 
 ##
 library(Hmisc)
@@ -256,6 +271,15 @@ getVarsSet <- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
 
 ####### Section:  Predicting Cytogenetic Abnormalities
 
+
+#### sub-section:  Defining the Prediction Task
+
+
+#### sub-section:  The Evaluation Metric
+
+
+#### sub-section:  The Experimental Procedure
+
 ##
 library(performanceEstimation)
 library(DMwR2)
@@ -267,6 +291,9 @@ exp <- performanceEstimation(
 
 ##
 summary(exp)
+
+
+#### sub-section:  The Modeling Techniques
 
 ##
 library(class)
@@ -299,6 +326,9 @@ preds.stand <- kNN(Species ~ ., tr, ts, k = 3)
 table(preds.stand,ts[, 5])
 preds.notStand <- kNN(Species ~ ., tr, ts, stand = FALSE, k = 3)
 table(preds.notStand, ts[, 5]) 
+
+
+#### sub-section:  Comparing the Models
 
 ##
 varsEnsemble <- function(tgt,train,test,

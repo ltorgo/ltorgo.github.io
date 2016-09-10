@@ -3,6 +3,7 @@ title: Predicting Algae Blooms
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
@@ -18,7 +19,7 @@ The following is a [script file](RCode/Ralgae.R) containing all R code of all se
 <!-- loadData.Rnw --> 
 
 
-### Loading the Data into \R
+### Loading the Data into R
 ```{r}
 data(algae, package="DMwR2")
 algae
@@ -225,6 +226,9 @@ data(algae)
 ```
 
 
+
+
+#### Removing the Observations with Unknown Values
 ```{r}
 filter(algae, !complete.cases(algae) )
 ```
@@ -257,6 +261,9 @@ algae <- algae[-manyNAs(algae), ]
 ```
 
 
+
+
+#### Filling in the Unknowns with the Most Frequent Values
 ```{r}
 algae[48, "mxPH"] <- mean(algae$mxPH, na.rm = TRUE)
 ```
@@ -274,6 +281,9 @@ algae <- centralImputation(algae)
 ```
 
 
+
+
+#### Filling in the Unknown Values by Exploring Correlations
 ```{r}
 cor(algae[, 4:18], use = "complete.obs")
 ```
@@ -359,6 +369,9 @@ ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + facet_wrap(~spee
 ```
 
 
+
+
+#### Filling in the Unknown Values by Exploring Similarities between Cases
 ```{r}
 data(algae, package="DMwR2")
 algae <- algae[-manyNAs(algae), ]
@@ -387,6 +400,9 @@ library(dplyr)
 ```
 
 
+
+
+#### Multiple Linear Regression
 ```{r}
 data(algae, package="DMwR2")
 algae <-  algae[-manyNAs(algae), ]
@@ -446,6 +462,9 @@ library(dplyr)
 ```
 
 
+
+
+#### Regression Trees
 ```{r}
 library(rpart)
 data(algae, package="DMwR2") 

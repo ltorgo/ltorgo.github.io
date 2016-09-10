@@ -13,9 +13,15 @@ data(GSPC, package="DMwR2")
 first(GSPC)
 last(GSPC)
 
+
+#### sub-section:  Reading the Data from the CSV File
+
 ##
 library(xts)
 GSPC <- as.xts(read.zoo("sp500.csv", header = TRUE))
+
+
+#### sub-section:  Getting the Data from the Web
 
 ##
 library(quantmod)
@@ -39,6 +45,9 @@ data(GSPC, package="DMwR2")
 
 
 ####### Section:  Defining the Prediction Tasks
+
+
+#### sub-section:  What to Predict?
 
 ##
 T.ind <- function(quotes, tgt.margin = 0.025, n.days = 10) {
@@ -66,6 +75,9 @@ avgPrice <- function(p) apply(HLC(p), 1, mean)
 addAvgPrice <- newTA(FUN=avgPrice, col=1, legend='AvgPrice')
 addT.ind <- newTA(FUN=T.ind, col='red', legend='tgtRet')
 candleChart(last(GSPC,'3 months'), theme='white', TA=c(addAvgPrice(on=1), addT.ind()))
+
+
+#### sub-section:  Which Predictors?
 
 ##
 library(TTR)
@@ -118,6 +130,9 @@ data.model <- specifyModel(T.ind(GSPC) ~ myATR(GSPC) + mySMI(GSPC) +  myADX(GSPC
                            myMACD(GSPC) + myMFI(GSPC) + mySAR(GSPC) + 
                            runMean(Cl(GSPC)) + runSD(Cl(GSPC)))
 
+
+#### sub-section:  The Prediction Tasks
+
 ##
 ## The regression task
 Tdata.train <- as.data.frame(modelData(data.model,
@@ -136,6 +151,9 @@ Tdata.evalC <-  cbind(Signal=trading.signals(Tdata.eval[["T.ind.GSPC"]],
                       Tdata.eval[,-1])
 TformC <- as.formula("Signal ~ .")
 
+
+#### sub-section:  Evaluation Criteria
+
 ##
 opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
@@ -152,6 +170,12 @@ load("GSPCdata.Rdata")
 
 
 ####### Section:  The Prediction Models
+
+
+#### sub-section:  How Will the Training Data Be Used?
+
+
+#### sub-section:  The Modeling Tools
 
 ##
 set.seed(1234)
@@ -223,6 +247,15 @@ load("GSPCdata.Rdata")
 
 
 ####### Section:  From Predictions into Actions
+
+
+#### sub-section:  How Will the Predictions Be Used?
+
+
+#### sub-section:  Trading-Related Evaluation Criteria
+
+
+#### sub-section:  Putting Everything Together: A Simulated Trader
 
 ##
 policy.1 <- function(signals,market,opened.pos,money,
@@ -415,6 +448,12 @@ load("analysis.Rdata")
 
 ####### Section:  Model Evaluation and Selection
 
+
+#### sub-section:  Monte Carlo Estimates
+
+
+#### sub-section:  Experimental Comparisons
+
 ##
 tradingWF <- function(form, train, test, 
                       quotes, pred.target="signals",
@@ -561,6 +600,9 @@ for(lrn in c("svm","nnet")) { # only these because MARS is only for regression
     save(list=objName,file=paste(objName,'Rdata',sep='.'))
 }
 
+
+#### sub-section:  Results Analysis
+
 ##
 load("svm_res_regr.Rdata")
 load("nnet_res_regr.Rdata")
@@ -663,6 +705,9 @@ library(earth)
 
 ####### Section:  The Trading System
 
+
+#### sub-section:  Evaluation of the Final Test Data
+
 ##
 set.seed(1234)
 data <- tail(Tdata.train, 2540) # the last 10 years of the training dataset
@@ -710,3 +755,6 @@ plot(100*yearlyReturn(equityWF), main='Yearly percentage returns of the trading 
 
 ##
 table.DownsideRisk(rets)
+
+
+#### sub-section:  An Online Trading System

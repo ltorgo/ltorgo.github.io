@@ -177,7 +177,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -392,6 +392,11 @@ div.tocify {
 <!-- DCandBU.Rnw -->
 <div id="data-collection-and-business-understanding" class="section level3">
 <h3>Data Collection and Business Understanding</h3>
+<div id="data-and-datasets" class="section level4">
+<h4>Data and Datasets</h4>
+</div>
+<div id="importing-data-into-r" class="section level4">
+<h4>Importing Data into R</h4>
 <pre class="r"><code>library(readr)
 dat &lt;- read_csv(&quot;x.csv&quot;)
 dat
@@ -445,8 +450,11 @@ fc &lt;- &quot;c:\\Documents and Settings\\xpto\\My Documents\\calc.xls&quot;
 dat &lt;- read_excel(fc,sheet=1)</code></pre>
 <!-- dataPP.Rnw -->
 </div>
+</div>
 <div id="data-pre-processing" class="section level3">
 <h3>Data Pre-Processing</h3>
+<div id="data-cleaning" class="section level4">
+<h4>Data Cleaning</h4>
 <pre class="r"><code>library(readr)
 std &lt;- read_delim(&quot;stud.txt&quot;, delim=&quot; &quot;, 
                   skip=1, col_names=c(&quot;StudentName&quot;,&quot;Math&quot;,&quot;English&quot;))
@@ -507,6 +515,9 @@ class(dat$Y)</code></pre>
 dat$Y &lt;- parse_integer(dat$Y, na=&quot;?&quot;)
 dat
 class(dat$Y)</code></pre>
+</div>
+<div id="transforming-variables" class="section level4">
+<h4>Transforming Variables</h4>
 <pre class="r"><code>library(dplyr)
 data(iris)
 iris.stand &lt;- cbind(scale(select(iris,-Species)),select(iris,Species))
@@ -529,6 +540,9 @@ table(Boston$newAge)</code></pre>
 <pre class="r"><code>Boston$newAge &lt;- factor(cut2(Boston$age, g=5),
                         labels=c(&quot;verynew&quot;,&quot;new&quot;,&quot;normal&quot;,&quot;old&quot;,&quot;veryold&quot;))
 table(Boston$newAge)</code></pre>
+</div>
+<div id="creating-variables" class="section level4">
+<h4>Creating Variables</h4>
 <pre class="r"><code>library(lubridate)
 library(xts)
 sp500 &lt;- xts(c(1102.94,1104.49,1115.71,1118.31),
@@ -599,6 +613,9 @@ inspect(data[1:2,1:5])</code></pre>
 newData</code></pre>
 <pre class="r"><code>library(tibble)
 as_tibble(as.matrix(newData))</code></pre>
+</div>
+<div id="dimensionality-reduction" class="section level4">
+<h4>Dimensionality Reduction</h4>
 <pre class="r"><code>data(iris)
 prop2sample &lt;- 0.5
 rowIDs &lt;- sample(1:nrow(iris), as.integer(prop2sample*nrow(iris)))
@@ -696,8 +713,11 @@ head(reduced.iris)</code></pre>
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
 library(dplyr)</code></pre>
 </div>
+</div>
 <div id="modeling" class="section level3">
 <h3>Modeling</h3>
+<div id="exploratory-data-analysis" class="section level4">
+<h4>Exploratory Data Analysis</h4>
 <pre class="r"><code>data(algae,package=&quot;DMwR2&quot;)
 mean(algae$a1)
 mean(algae$NO3)
@@ -909,6 +929,9 @@ ggparcoord(algae,columns=12:18,groupColumn=&quot;season&quot;)</code></pre>
 library(dplyr)
 data(algae, package=&quot;DMwR2&quot;)
 ggparcoord(algae,columns=12:18,groupColumn=&quot;season&quot;)</code></pre>
+</div>
+<div id="dependency-modeling-using-association-rules" class="section level4">
+<h4>Dependency Modeling using Association Rules</h4>
 <pre class="r"><code>library(arules)
 library(dplyr)
 data(Boston,package=&quot;MASS&quot;)
@@ -943,6 +966,9 @@ plot(somerules, method=&quot;matrix&quot;, measure=&quot;lift&quot;)</code></pre
 plot(somerules, method=&quot;matrix&quot;, measure=&quot;lift&quot;)</code></pre>
 <pre class="r"><code>somerules &lt;- subset(ars, subset=rhs %in% &quot;medv=high&quot; &amp; confidence &gt; 0.95)
 plot(somerules, method=&quot;graph&quot;, control=list(type=&quot;itemsets&quot;))</code></pre>
+</div>
+<div id="clustering" class="section level4">
+<h4>Clustering</h4>
 <pre class="r"><code>set.seed(1234)
 randDat &lt;- matrix(rnorm(50), nrow=5)
 dist(randDat) # Euclidean distance (default)
@@ -1013,6 +1039,9 @@ d &lt;- scale(iris[,-5])
 db &lt;- dbscan(d, eps=0.9, MinPts=5)
 db
 table(db$cluster,iris$Species)</code></pre>
+</div>
+<div id="anomaly-detection" class="section level4">
+<h4>Anomaly Detection</h4>
 <pre class="r"><code>grubbs.outliers &lt;- function(x, p.thresh=0.05) {
     require(outliers, quietly=TRUE)
     x &lt;- x[!is.na(x)]
@@ -1077,6 +1106,9 @@ count(newg3,Type)</code></pre>
 trainD &lt;- filter(g, Type == &quot;normal&quot;) %&gt;% select(-Type) 
 s &lt;- svm(trainD, y=NULL, type=&quot;one-classification&quot;, nu=0.5)
 (cm &lt;- table(g$Type, predict(s,select(g, -Type))))</code></pre>
+</div>
+<div id="predictive-analytics" class="section level4">
+<h4>Predictive Analytics</h4>
 <pre class="r"><code>library(DMwR2)
 set.seed(1234)
 data(iris)
@@ -1255,8 +1287,11 @@ legend(&quot;topleft&quot;,c(&quot;setosa&quot;,&quot;versicolor&quot;,&quot;vir
                   showFig3=list(fig.width=8,fig.height=8,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width=&quot;0.9\\textwidth&quot;),
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))</code></pre>
 </div>
+</div>
 <div id="evaluation" class="section level3">
 <h3>Evaluation</h3>
+<div id="the-holdout-and-random-subsampling" class="section level4">
+<h4>The Holdout and Random Subsampling</h4>
 <pre class="r"><code>library(performanceEstimation)
 library(e1071)
 data(iris)
@@ -1274,6 +1309,9 @@ r &lt;- performanceEstimation(PredTask(medv ~ ., Boston),
                                           method=Holdout(nReps=3,hldSz=0.3))
                            )
 summary(r)</code></pre>
+</div>
+<div id="cross-validation" class="section level4">
+<h4>Cross Validation</h4>
 <pre class="r"><code>library(performanceEstimation)
 library(DMwR2)
 data(Boston, package=&quot;MASS&quot;)
@@ -1288,6 +1326,9 @@ rankWorkflows(r, top=3)</code></pre>
 <pre class="r"><code>getWorkflow(&quot;rpartXse.v1&quot;, r)</code></pre>
 <pre class="r"><code>plot(r)</code></pre>
 <pre class="r"><code>plot(r)</code></pre>
+</div>
+<div id="bootstrap-estimates" class="section level4">
+<h4>Bootstrap Estimates</h4>
 <pre class="r"><code>library(performanceEstimation)
 library(DMwR2)
 library(e1071)
@@ -1305,13 +1346,22 @@ r &lt;- performanceEstimation(
                         method=Bootstrap(nReps=200,type=&quot;.632&quot;))
     )</code></pre>
 <pre class="r"><code>topPerformers(r , maxs=TRUE)</code></pre>
+</div>
+<div id="recommended-procedures" class="section level4">
+<h4>Recommended Procedures</h4>
 <!-- DeployAndReport.Rnw -->
+</div>
 </div>
 <div id="reporting-and-deployment" class="section level3">
 <h3>Reporting and Deployment</h3>
+<div id="reporting-through-dynamic-documents" class="section level4">
+<h4>Reporting Through Dynamic Documents</h4>
 <pre class="r"><code>library(rmarkdown)
 render(&quot;myreport.Rmd&quot;)</code></pre>
 <pre class="r"><code>render(&quot;myreport.Rmd&quot;, output_format=&quot;word_document&quot;)</code></pre>
+</div>
+<div id="deployment-through-web-applications" class="section level4">
+<h4>Deployment Through Web Applications</h4>
 <pre class="r"><code>library(shiny)
 runApp(&quot;myAppFolderName&quot;)</code></pre>
 <pre class="r"><code>library(shiny)
@@ -1346,6 +1396,7 @@ shinyServer(
             )  
         }
 )</code></pre>
+</div>
 </div>
 
 

@@ -5,7 +5,7 @@
 
 
 
-####### Section:  Starting with \R
+####### Section:  Starting with R
 
 ##
 install.packages("RMySQL")
@@ -47,7 +47,7 @@ load('mysession.RData')
 save.image()
 
 
-####### Section:  Basic Interaction with the \R Console
+####### Section:  Basic Interaction with the R Console
 
 ##
 4 + 3 / 5^2
@@ -61,7 +61,7 @@ plot(x=sample(1:10,5),y=sample(1:10,5),
      main="Five random points",xlab="X values",ylab="Y values")
 
 
-####### Section:  \R Objects and Variables
+####### Section:  R Objects and Variables
 
 ##
 vat <- 0.2
@@ -87,7 +87,7 @@ ls()
 rm(vat,y,z,w,i)
 
 
-####### Section:  \R Functions
+####### Section:  R Functions
 
 ##
 max(4, 5, 6, 12, -4)

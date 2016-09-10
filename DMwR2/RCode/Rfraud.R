@@ -15,12 +15,18 @@ library(grid)
 
 ####### Section:  The Available Data
 
+
+#### sub-section:  Loading the Data into R
+
 ##
 library(dplyr)
 data(sales, package="DMwR2")
 
 ##
 sales
+
+
+#### sub-section:  Exploring the Dataset
 
 ##
 summary(sales)
@@ -126,6 +132,9 @@ arrange(noutsProds,desc(nOut))
 ##
 summarize(noutsProds,totalOuts=sum(nOut))
 summarize(noutsProds,totalOuts=sum(nOut))/nrow(sales)*100
+
+
+#### sub-section:  Data Problems
 
 ##
 prop.naQandV <- function(q,v) 100*sum(is.na(q) & is.na(v))/length(q)
@@ -245,6 +254,12 @@ library(ggplot2)
 
 ####### Section:  Defining the Data Mining Tasks
 
+
+#### sub-section:  Different Approaches to the Problem
+
+
+#### sub-section:  Evaluation Criteria
+
 ##
 library(ROCR)
 data(ROCR.simple)
@@ -308,6 +323,9 @@ avgNDTP <- function(toInsp,train,stats) {
                  stats[toInsp$Prod,'iqr']))
 }
 
+
+#### sub-section:  Experimental Methodology
+
 ##
 evalOutlierRanking <- function(testSet,rankOrder,Threshold,statsProds,...) 
 {
@@ -323,6 +341,15 @@ evalOutlierRanking <- function(testSet,rankOrder,Threshold,statsProds,...)
 
 
 ####### Section:  Obtaining Outlier Rankings
+
+
+#### sub-section:  Unsupervised Approaches
+
+
+#### sub-section:  Supervised Approaches
+
+
+#### sub-section:  Semi-Supervised Approaches
 
 ##
 opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),

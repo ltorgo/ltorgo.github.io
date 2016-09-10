@@ -3,6 +3,7 @@ title: Predicting Stock Market Returns
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
@@ -27,12 +28,18 @@ last(GSPC)
 ```
 
 
+
+
+#### Reading the Data from the CSV File
 ```{r}
 library(xts)
 GSPC <- as.xts(read.zoo("sp500.csv", header = TRUE))
 ```
 
 
+
+
+#### Getting the Data from the Web
 ```{r}
 library(quantmod)
 GSPC <- getSymbols("^GSPC",auto.assign=FALSE)
@@ -63,6 +70,9 @@ data(GSPC, package="DMwR2")
 
 
 ### Defining the Prediction Tasks
+
+
+#### What to Predict?
 ```{r}
 T.ind <- function(quotes, tgt.margin = 0.025, n.days = 10) {
     v <- apply(HLC(quotes), 1, mean)
@@ -96,6 +106,9 @@ candleChart(last(GSPC,'3 months'), theme='white', TA=c(addAvgPrice(on=1), addT.i
 ```
 
 
+
+
+#### Which Predictors?
 ```{r}
 library(TTR)
 myATR        <- function(x) ATR(HLC(x))[,'atr']
@@ -163,6 +176,9 @@ data.model <- specifyModel(T.ind(GSPC) ~ myATR(GSPC) + mySMI(GSPC) +  myADX(GSPC
 ```
 
 
+
+
+#### The Prediction Tasks
 ```{r}
 ## The regression task
 Tdata.train <- as.data.frame(modelData(data.model,
@@ -183,6 +199,9 @@ TformC <- as.formula("Signal ~ .")
 ```
 
 
+
+
+#### Evaluation Criteria
 <!-- PredModels.Rnw --> 
 ```{r}
 opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
@@ -203,6 +222,12 @@ load("GSPCdata.Rdata")
 
 
 ### The Prediction Models
+
+
+#### How Will the Training Data Be Used?
+
+
+#### The Modeling Tools
 ```{r}
 set.seed(1234)
 library(nnet)
@@ -295,6 +320,15 @@ load("GSPCdata.Rdata")
 
 
 ### From Predictions into Actions
+
+
+#### How Will the Predictions Be Used?
+
+
+#### Trading-Related Evaluation Criteria
+
+
+#### Putting Everything Together: A Simulated Trader
 ```{r}
 policy.1 <- function(signals,market,opened.pos,money,
                      bet=0.2,hold.time=10,
@@ -507,6 +541,12 @@ load("analysis.Rdata")
 
 
 ### Model Evaluation and Selection
+
+
+#### Monte Carlo Estimates
+
+
+#### Experimental Comparisons
 ```{r}
 tradingWF <- function(form, train, test, 
                       quotes, pred.target="signals",
@@ -659,6 +699,9 @@ for(lrn in c("svm","nnet")) { # only these because MARS is only for regression
 ```
 
 
+
+
+#### Results Analysis
 ```{r}
 load("svm_res_regr.Rdata")
 load("nnet_res_regr.Rdata")
@@ -786,6 +829,9 @@ library(earth)
 
 
 ### The Trading System
+
+
+#### Evaluation of the Final Test Data
 ```{r}
 set.seed(1234)
 data <- tail(Tdata.train, 2540) # the last 10 years of the training dataset
@@ -856,3 +902,6 @@ table.DownsideRisk(rets)
 ```
 
 
+
+
+#### An Online Trading System

@@ -3,6 +3,7 @@ title: Detecting Fraudulent Transactions
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
@@ -29,6 +30,9 @@ library(grid)
 
 
 ### The Available Data
+
+
+#### Loading the Data into R
 ```{r}
 library(dplyr)
 data(sales, package="DMwR2")
@@ -40,6 +44,9 @@ sales
 ```
 
 
+
+
+#### Exploring the Dataset
 ```{r}
 summary(sales)
 ```
@@ -183,6 +190,9 @@ summarize(noutsProds,totalOuts=sum(nOut))/nrow(sales)*100
 ```
 
 
+
+
+#### Data Problems
 ```{r}
 prop.naQandV <- function(q,v) 100*sum(is.na(q) & is.na(v))/length(q)
 summarise(ids,nProbs=prop.naQandV(Quant,Val)) %>% arrange(desc(nProbs))
@@ -346,6 +356,12 @@ library(ggplot2)
 
 
 ### Defining the Data Mining Tasks
+
+
+#### Different Approaches to the Problem
+
+
+#### Evaluation Criteria
 ```{r}
 library(ROCR)
 data(ROCR.simple)
@@ -425,6 +441,9 @@ avgNDTP <- function(toInsp,train,stats) {
 ```
 
 
+
+
+#### Experimental Methodology
 ```{r}
 evalOutlierRanking <- function(testSet,rankOrder,Threshold,statsProds,...) 
 {
@@ -444,6 +463,15 @@ evalOutlierRanking <- function(testSet,rankOrder,Threshold,statsProds,...)
 
 
 ### Obtaining Outlier Rankings
+
+
+#### Unsupervised Approaches
+
+
+#### Supervised Approaches
+
+
+#### Semi-Supervised Approaches
 <!-- BPrule.Rnw --> 
 ```{r}
 opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),

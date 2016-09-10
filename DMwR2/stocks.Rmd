@@ -9,13 +9,29 @@ This chapter contains the following main sections:
 
 <!-- availData.Rnw --> 
 - The Available Data
+    + Reading the Data from the CSV File
+    + Getting the Data from the Web
 <!-- predTask.Rnw --> 
 - Defining the Prediction Tasks
+    + What to Predict?
+    + Which Predictors?
+    + The Prediction Tasks
+    + Evaluation Criteria
 <!-- PredModels.Rnw --> 
 - The Prediction Models
+    + How Will the Training Data Be Used?
+    + The Modeling Tools
 <!-- Trading.Rnw --> 
 - From Predictions into Actions
+    + How Will the Predictions Be Used?
+    + Trading-Related Evaluation Criteria
+    + Putting Everything Together: A Simulated Trader
 <!-- EvalAndSel.Rnw --> 
 - Model Evaluation and Selection
+    + Monte Carlo Estimates
+    + Experimental Comparisons
+    + Results Analysis
 <!-- TradSys.Rnw --> 
 - The Trading System
+    + Evaluation of the Final Test Data
+    + An Online Trading System

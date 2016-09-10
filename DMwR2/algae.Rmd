@@ -8,13 +8,19 @@ This chapter contains the following main sections:
 
 
 <!-- loadData.Rnw --> 
-- Loading the Data into \R
+- Loading the Data into R
 <!-- vizSum.Rnw --> 
 - Data Visualization and Summarization
 <!-- Unknown.Rnw --> 
 - Unknown Values
+    + Removing the Observations with Unknown Values
+    + Filling in the Unknowns with the Most Frequent Values
+    + Filling in the Unknown Values by Exploring Correlations
+    + Filling in the Unknown Values by Exploring Similarities between Cases
 <!-- LinRegr.Rnw --> 
+    + Multiple Linear Regression
 <!-- RTs.Rnw --> 
+    + Regression Trees
 <!-- EvalAndSel.Rnw --> 
 - Model Evaluation and Selection
 <!-- Preds.Rnw --> 

@@ -177,7 +177,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -390,8 +390,8 @@ div.tocify {
 
 <p>The following is a <a href="RCode/Ralgae.R">script file</a> containing all R code of all sections in this chapter.</p>
 <!-- loadData.Rnw -->
-<div id="loading-the-data-into" class="section level3">
-<h3>Loading the Data into </h3>
+<div id="loading-the-data-into-r" class="section level3">
+<h3>Loading the Data into R</h3>
 <pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
 algae</code></pre>
 <pre class="r"><code>algae &lt;- read.table(&#39;Analysis.txt&#39;,
@@ -506,6 +506,8 @@ algae &lt;- mutate(algae,
 <pre class="r"><code>library(DMwR2)
 library(dplyr)  
 data(algae)  </code></pre>
+<div id="removing-the-observations-with-unknown-values" class="section level4">
+<h4>Removing the Observations with Unknown Values</h4>
 <pre class="r"><code>filter(algae, !complete.cases(algae) )</code></pre>
 <pre class="r"><code>algae &lt;- na.omit(algae)</code></pre>
 <pre class="r"><code>data(algae, package=&quot;DMwR2&quot;) # only necessary if you executed the above na.omit()
@@ -514,11 +516,17 @@ algae &lt;- algae[-c(62, 199), ]</code></pre>
 <pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
 manyNAs(algae, 0.2)</code></pre>
 <pre class="r"><code>algae &lt;- algae[-manyNAs(algae), ]</code></pre>
+</div>
+<div id="filling-in-the-unknowns-with-the-most-frequent-values" class="section level4">
+<h4>Filling in the Unknowns with the Most Frequent Values</h4>
 <pre class="r"><code>algae[48, &quot;mxPH&quot;] &lt;- mean(algae$mxPH, na.rm = TRUE)</code></pre>
 <pre class="r"><code>algae[is.na(algae$Chla), &quot;Chla&quot;] &lt;- median(algae$Chla, na.rm = TRUE)</code></pre>
 <pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
 algae &lt;- algae[-manyNAs(algae), ]
 algae &lt;- centralImputation(algae)</code></pre>
+</div>
+<div id="filling-in-the-unknown-values-by-exploring-correlations" class="section level4">
+<h4>Filling in the Unknown Values by Exploring Correlations</h4>
 <pre class="r"><code>cor(algae[, 4:18], use = &quot;complete.obs&quot;)</code></pre>
 <pre class="r"><code>symnum(cor(algae[,4:18],use=&quot;complete.obs&quot;))</code></pre>
 <pre class="r"><code>library(corrplot)
@@ -556,6 +564,9 @@ ggplot(algae, aes(x=mxPH)) + geom_histogram(binwidth=0.5) + facet_wrap(~ season)
 <pre class="r"><code>ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + 
     facet_wrap(~speed) + geom_jitter(height = 0.4)</code></pre>
 <pre class="r"><code>ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + facet_wrap(~speed) + geom_jitter(height = 0.4)</code></pre>
+</div>
+<div id="filling-in-the-unknown-values-by-exploring-similarities-between-cases" class="section level4">
+<h4>Filling in the Unknown Values by Exploring Similarities between Cases</h4>
 <pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
 algae &lt;- algae[-manyNAs(algae), ]</code></pre>
 <pre class="r"><code>algae &lt;- knnImputation(algae, k = 10)</code></pre>
@@ -568,6 +579,9 @@ algae &lt;- algae[-manyNAs(algae), ]</code></pre>
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
 library(DMwR2)
 library(dplyr)</code></pre>
+</div>
+<div id="multiple-linear-regression" class="section level4">
+<h4>Multiple Linear Regression</h4>
 <pre class="r"><code>data(algae, package=&quot;DMwR2&quot;)
 algae &lt;-  algae[-manyNAs(algae), ]
 clean.algae &lt;- knnImputation(algae, k = 10)</code></pre>
@@ -587,6 +601,9 @@ clean.algae &lt;- knnImputation(algae, k = 10)</code></pre>
                   runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
 library(DMwR2)
 library(dplyr)</code></pre>
+</div>
+<div id="regression-trees" class="section level4">
+<h4>Regression Trees</h4>
 <pre class="r"><code>library(rpart)
 data(algae, package=&quot;DMwR2&quot;) 
 algae &lt;- algae[-manyNAs(algae), ]
@@ -621,6 +638,7 @@ clean.algae &lt;- knnImputation(algae, k = 10)
 lm.a1 &lt;- lm(a1 ~ ., data = clean.algae[, 1:12])
 final.lm &lt;- step(lm.a1)
 rt.a1 &lt;- rpart(a1 ~ ., data = algae[, 1:12])</code></pre>
+</div>
 </div>
 <div id="model-evaluation-and-selection" class="section level3">
 <h3>Model Evaluation and Selection</h3>

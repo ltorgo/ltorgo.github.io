@@ -177,7 +177,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -396,8 +396,13 @@ div.tocify {
 data(GSPC, package=&quot;DMwR2&quot;)
 first(GSPC)
 last(GSPC)</code></pre>
+<div id="reading-the-data-from-the-csv-file" class="section level4">
+<h4>Reading the Data from the CSV File</h4>
 <pre class="r"><code>library(xts)
 GSPC &lt;- as.xts(read.zoo(&quot;sp500.csv&quot;, header = TRUE))</code></pre>
+</div>
+<div id="getting-the-data-from-the-web" class="section level4">
+<h4>Getting the Data from the Web</h4>
 <pre class="r"><code>library(quantmod)
 GSPC &lt;- getSymbols(&quot;^GSPC&quot;,auto.assign=FALSE)</code></pre>
 <pre class="r"><code>GSPC &lt;- getSymbols(&quot;^GSPC&quot;,from=&quot;1970-01-02&quot;,to=&quot;2016-01-25&quot;,auto.assign=FALSE)</code></pre>
@@ -414,8 +419,11 @@ library(xts)
 library(quantmod)
 data(GSPC, package=&quot;DMwR2&quot;)</code></pre>
 </div>
+</div>
 <div id="defining-the-prediction-tasks" class="section level3">
 <h3>Defining the Prediction Tasks</h3>
+<div id="what-to-predict" class="section level4">
+<h4>What to Predict?</h4>
 <pre class="r"><code>T.ind &lt;- function(quotes, tgt.margin = 0.025, n.days = 10) {
     v &lt;- apply(HLC(quotes), 1, mean)
     v[1] &lt;- Cl(quotes)[1]
@@ -437,6 +445,9 @@ addT.ind()</code></pre>
 addAvgPrice &lt;- newTA(FUN=avgPrice, col=1, legend=&#39;AvgPrice&#39;)
 addT.ind &lt;- newTA(FUN=T.ind, col=&#39;red&#39;, legend=&#39;tgtRet&#39;)
 candleChart(last(GSPC,&#39;3 months&#39;), theme=&#39;white&#39;, TA=c(addAvgPrice(on=1), addT.ind()))</code></pre>
+</div>
+<div id="which-predictors" class="section level4">
+<h4>Which Predictors?</h4>
 <pre class="r"><code>library(TTR)
 myATR        &lt;- function(x) ATR(HLC(x))[,&#39;atr&#39;]
 mySMI        &lt;- function(x) SMI(HLC(x))[, &quot;SMI&quot;]
@@ -472,6 +483,9 @@ rownames(imp)[which(imp &gt; 30)]</code></pre>
                            myAroon(GSPC) + myEMV(GSPC) + myVolat(GSPC) + 
                            myMACD(GSPC) + myMFI(GSPC) + mySAR(GSPC) + 
                            runMean(Cl(GSPC)) + runSD(Cl(GSPC)))</code></pre>
+</div>
+<div id="the-prediction-tasks" class="section level4">
+<h4>The Prediction Tasks</h4>
 <pre class="r"><code>## The regression task
 Tdata.train &lt;- as.data.frame(modelData(data.model,
                                 data.window=c(&#39;1970-01-02&#39;,&#39;2005-12-30&#39;)))
@@ -488,6 +502,9 @@ Tdata.evalC &lt;-  cbind(Signal=trading.signals(Tdata.eval[[&quot;T.ind.GSPC&quo
                                              buy.thr,sell.thr),
                       Tdata.eval[,-1])
 TformC &lt;- as.formula(&quot;Signal ~ .&quot;)</code></pre>
+</div>
+<div id="evaluation-criteria" class="section level4">
+<h4>Evaluation Criteria</h4>
 <!-- PredModels.Rnw -->
 <pre class="r"><code>opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
                   onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
@@ -502,8 +519,14 @@ library(quantmod)
 data(GSPC,package=&quot;DMwR2&quot;)
 load(&quot;GSPCdata.Rdata&quot;)</code></pre>
 </div>
+</div>
 <div id="the-prediction-models" class="section level3">
 <h3>The Prediction Models</h3>
+<div id="how-will-the-training-data-be-used" class="section level4">
+<h4>How Will the Training Data Be Used?</h4>
+</div>
+<div id="the-modeling-tools" class="section level4">
+<h4>The Modeling Tools</h4>
 <pre class="r"><code>set.seed(1234)
 library(nnet)
 ## The first column is the target variable
@@ -554,8 +577,17 @@ library(quantmod)
 data(GSPC)
 load(&quot;GSPCdata.Rdata&quot;)</code></pre>
 </div>
+</div>
 <div id="from-predictions-into-actions" class="section level3">
 <h3>From Predictions into Actions</h3>
+<div id="how-will-the-predictions-be-used" class="section level4">
+<h4>How Will the Predictions Be Used?</h4>
+</div>
+<div id="trading-related-evaluation-criteria" class="section level4">
+<h4>Trading-Related Evaluation Criteria</h4>
+</div>
+<div id="putting-everything-together-a-simulated-trader" class="section level4">
+<h4>Putting Everything Together: A Simulated Trader</h4>
 <pre class="r"><code>policy.1 &lt;- function(signals,market,opened.pos,money,
                      bet=0.2,hold.time=10,
                      exp.prof=0.025, max.loss= 0.05
@@ -726,8 +758,14 @@ source(&quot;codigoExps.R&quot;)
 library(performanceEstimation)
 load(&quot;analysis.Rdata&quot;)</code></pre>
 </div>
+</div>
 <div id="model-evaluation-and-selection" class="section level3">
 <h3>Model Evaluation and Selection</h3>
+<div id="monte-carlo-estimates" class="section level4">
+<h4>Monte Carlo Estimates</h4>
+</div>
+<div id="experimental-comparisons" class="section level4">
+<h4>Experimental Comparisons</h4>
 <pre class="r"><code>tradingWF &lt;- function(form, train, test, 
                       quotes, pred.target=&quot;signals&quot;,
                       learner, learner.pars=NULL,
@@ -868,6 +906,9 @@ for(lrn in c(&quot;svm&quot;,&quot;nnet&quot;)) { # only these because MARS is o
            )
     save(list=objName,file=paste(objName,&#39;Rdata&#39;,sep=&#39;.&#39;))
 }</code></pre>
+</div>
+<div id="results-analysis" class="section level4">
+<h4>Results Analysis</h4>
 <pre class="r"><code>load(&quot;svm_res_regr.Rdata&quot;)
 load(&quot;nnet_res_regr.Rdata&quot;)
 load(&quot;earth_res_regr.Rdata&quot;)
@@ -945,8 +986,11 @@ library(e1071)
 library(nnet)
 library(earth)</code></pre>
 </div>
+</div>
 <div id="the-trading-system" class="section level3">
 <h3>The Trading System</h3>
+<div id="evaluation-of-the-final-test-data" class="section level4">
+<h4>Evaluation of the Final Test Data</h4>
 <pre class="r"><code>set.seed(1234)
 data &lt;- tail(Tdata.train, 2540) # the last 10 years of the training dataset
 results &lt;- list()
@@ -973,6 +1017,10 @@ rets &lt;- Return.calculate(equityWF)</code></pre>
      main=&#39;Yearly percentage returns of the trading system&#39;)</code></pre>
 <pre class="r"><code>plot(100*yearlyReturn(equityWF), main=&#39;Yearly percentage returns of the trading system&#39;)</code></pre>
 <pre class="r"><code>table.DownsideRisk(rets)</code></pre>
+</div>
+<div id="an-online-trading-system" class="section level4">
+<h4>An Online Trading System</h4>
+</div>
 </div>
 
 
