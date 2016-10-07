@@ -1,9 +1,39 @@
 ---
-title: Book associated data
+title: Other Information
 output:
   html_document:
     toc: true
+    toc_depth: 4
     toc_float: true
 ---
 
-*Under Construction*
+### R Version
+
+The R code in the book was executed in the following version of R:
+```{r}
+R.version
+```
+
+### Packages
+
+The book uses many packages. Most of them are developed by others and it is only natural that the version numbers change as time goes by, either to introduce new features or to correct eventual bugs. If some of these future changes somehow "break" the code shown in the book we will try to maintain in this web page the eventual changes that are required to what was printed in the book. Still, for your own information these are the packages and versions that were used in the book:
+
+```{r}
+pcks <- c("DMwR2", "ggplot2", "tibble", "readr", "DBI","RMySQL", "readxl", "tidyr", "lubridate", "dplyr", "stringr", "Hmisc", "xts", "sp", "ggmap", "tm", "CORElearn", "GGally", "arules", "arulesViz", "cluster", "fpc", "forcats", "UBL", "e1071", "rpart.plot", "NeuralNetTools", "h2o", "adabag", "ipred", "randomForest", "gbm", "performanceEstimation", "rmarkdown", "shiny", "car", "corrplot", "rpart", "quantmod", "TTR", "nnet", "kernlab", "earth", "PerformanceAnalytics", "ROCR", "RWeka", "Biobase", "ALL", "genefilter", "class")
+pcks <- sort(pcks)
+knitr::kable(installed.packages()[which(rownames(installed.packages()) %in% pcks),c(1,3)],row.names = FALSE,format = "html")
+```
+
+### Datasets
+
+*To be included*
+
+### Book Package
+
+The book has an associated R package - **DMwR2**. This package includes several functions and datasets used in the book. **You should install it** to take full advantage of the code and examples shown in the book. The package can be installed as any standard R package by doing:
+
+```{r eval=FALSE}
+install.packages("DMwR2")
+```
+
+Alternatively, you may wish to install the development version that may include some eventual bug corrections that may have not been pushed yet to the R central repository (CRAN). Still, unless you have a good reason for it, we recommend that you stick to the CRAN version that is installed as shown above. For further information on the development version (including how to install it), check the [web page of the package](https://github.com/ltorgo/DMwR2)

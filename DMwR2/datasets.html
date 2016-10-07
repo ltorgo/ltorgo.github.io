@@ -11,7 +11,7 @@
 
 
 
-<title>Book associated data</title>
+<title>Other Information</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,6 +25,49 @@
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -160,7 +203,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -300,7 +343,7 @@ div.tocify {
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-code"></span>
      
-    R Code
+    R Code of Chapters
      
     <span class="caret"></span>
   </a>
@@ -331,7 +374,7 @@ div.tocify {
   <a href="datasets.html">
     <span class="fa fa-database"></span>
      
-    Datasets
+    Other Information
   </a>
 </li>
 <li>
@@ -366,12 +409,462 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Book associated data</h1>
+<h1 class="title toc-ignore">Other Information</h1>
 
 </div>
 
 
-<p><em>Under Construction</em></p>
+<div id="r-version" class="section level3">
+<h3>R Version</h3>
+<p>The R code in the book was executed in the following version of R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.version</code></pre></div>
+<pre><code>##                _                           
+## platform       x86_64-apple-darwin13.4.0   
+## arch           x86_64                      
+## os             darwin13.4.0                
+## system         x86_64, darwin13.4.0        
+## status                                     
+## major          3                           
+## minor          3.1                         
+## year           2016                        
+## month          06                          
+## day            21                          
+## svn rev        70800                       
+## language       R                           
+## version.string R version 3.3.1 (2016-06-21)
+## nickname       Bug in Your Hair</code></pre>
+</div>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<p>The book uses many packages. Most of them are developed by others and it is only natural that the version numbers change as time goes by, either to introduce new features or to correct eventual bugs. If some of these future changes somehow “break” the code shown in the book we will try to maintain in this web page the eventual changes that are required to what was printed in the book. Still, for your own information these are the packages and versions that were used in the book:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DMwR2&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;tibble&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;DBI&quot;</span>,<span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;Hmisc&quot;</span>, <span class="st">&quot;xts&quot;</span>, <span class="st">&quot;sp&quot;</span>, <span class="st">&quot;ggmap&quot;</span>, <span class="st">&quot;tm&quot;</span>, <span class="st">&quot;CORElearn&quot;</span>, <span class="st">&quot;GGally&quot;</span>, <span class="st">&quot;arules&quot;</span>, <span class="st">&quot;arulesViz&quot;</span>, <span class="st">&quot;cluster&quot;</span>, <span class="st">&quot;fpc&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;UBL&quot;</span>, <span class="st">&quot;e1071&quot;</span>, <span class="st">&quot;rpart.plot&quot;</span>, <span class="st">&quot;NeuralNetTools&quot;</span>, <span class="st">&quot;h2o&quot;</span>, <span class="st">&quot;adabag&quot;</span>, <span class="st">&quot;ipred&quot;</span>, <span class="st">&quot;randomForest&quot;</span>, <span class="st">&quot;gbm&quot;</span>, <span class="st">&quot;performanceEstimation&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;shiny&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;corrplot&quot;</span>, <span class="st">&quot;rpart&quot;</span>, <span class="st">&quot;quantmod&quot;</span>, <span class="st">&quot;TTR&quot;</span>, <span class="st">&quot;nnet&quot;</span>, <span class="st">&quot;kernlab&quot;</span>, <span class="st">&quot;earth&quot;</span>, <span class="st">&quot;PerformanceAnalytics&quot;</span>, <span class="st">&quot;ROCR&quot;</span>, <span class="st">&quot;RWeka&quot;</span>, <span class="st">&quot;Biobase&quot;</span>, <span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;genefilter&quot;</span>, <span class="st">&quot;class&quot;</span>)
+pcks &lt;-<span class="st"> </span><span class="kw">sort</span>(pcks)
+knitr::<span class="kw">kable</span>(<span class="kw">installed.packages</span>()[<span class="kw">which</span>(<span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) %in%<span class="st"> </span>pcks),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)],<span class="dt">row.names =</span> <span class="ot">FALSE</span>,<span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Package
+</th>
+<th style="text-align:left;">
+Version
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+adabag
+</td>
+<td style="text-align:left;">
+4.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ALL
+</td>
+<td style="text-align:left;">
+1.12.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+arules
+</td>
+<td style="text-align:left;">
+1.4-1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+arulesViz
+</td>
+<td style="text-align:left;">
+1.1-1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Biobase
+</td>
+<td style="text-align:left;">
+2.30.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+car
+</td>
+<td style="text-align:left;">
+2.1-2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+class
+</td>
+<td style="text-align:left;">
+7.3-14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cluster
+</td>
+<td style="text-align:left;">
+2.0.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORElearn
+</td>
+<td style="text-align:left;">
+1.48.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+corrplot
+</td>
+<td style="text-align:left;">
+0.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DBI
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DMwR2
+</td>
+<td style="text-align:left;">
+0.0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dplyr
+</td>
+<td style="text-align:left;">
+0.5.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+e1071
+</td>
+<td style="text-align:left;">
+1.6-7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+earth
+</td>
+<td style="text-align:left;">
+4.4.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+forcats
+</td>
+<td style="text-align:left;">
+0.1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fpc
+</td>
+<td style="text-align:left;">
+2.1-10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gbm
+</td>
+<td style="text-align:left;">
+2.1.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+genefilter
+</td>
+<td style="text-align:left;">
+1.52.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GGally
+</td>
+<td style="text-align:left;">
+1.2.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ggmap
+</td>
+<td style="text-align:left;">
+2.6.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ggplot2
+</td>
+<td style="text-align:left;">
+2.1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+h2o
+</td>
+<td style="text-align:left;">
+3.8.3.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hmisc
+</td>
+<td style="text-align:left;">
+3.17-4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ipred
+</td>
+<td style="text-align:left;">
+0.9-5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kernlab
+</td>
+<td style="text-align:left;">
+0.9-24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lubridate
+</td>
+<td style="text-align:left;">
+1.5.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NeuralNetTools
+</td>
+<td style="text-align:left;">
+1.4.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nnet
+</td>
+<td style="text-align:left;">
+7.3-12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PerformanceAnalytics
+</td>
+<td style="text-align:left;">
+1.4.3541
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+performanceEstimation
+</td>
+<td style="text-align:left;">
+1.1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+quantmod
+</td>
+<td style="text-align:left;">
+0.4-6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+randomForest
+</td>
+<td style="text-align:left;">
+4.6-12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+readr
+</td>
+<td style="text-align:left;">
+1.0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+readxl
+</td>
+<td style="text-align:left;">
+0.1.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rmarkdown
+</td>
+<td style="text-align:left;">
+1.0.9013
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMySQL
+</td>
+<td style="text-align:left;">
+0.10.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ROCR
+</td>
+<td style="text-align:left;">
+1.0-7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rpart
+</td>
+<td style="text-align:left;">
+4.1-10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rpart.plot
+</td>
+<td style="text-align:left;">
+2.0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RWeka
+</td>
+<td style="text-align:left;">
+0.4-27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+shiny
+</td>
+<td style="text-align:left;">
+0.13.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sp
+</td>
+<td style="text-align:left;">
+1.2-3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+stringr
+</td>
+<td style="text-align:left;">
+1.0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tibble
+</td>
+<td style="text-align:left;">
+1.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tidyr
+</td>
+<td style="text-align:left;">
+0.6.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tm
+</td>
+<td style="text-align:left;">
+0.6-2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TTR
+</td>
+<td style="text-align:left;">
+0.23-1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UBL
+</td>
+<td style="text-align:left;">
+0.0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xts
+</td>
+<td style="text-align:left;">
+0.9-7
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="datasets" class="section level3">
+<h3>Datasets</h3>
+<p><em>To be included</em></p>
+</div>
+<div id="book-package" class="section level3">
+<h3>Book Package</h3>
+<p>The book has an associated R package - <strong>DMwR2</strong>. This package includes several functions and datasets used in the book. <strong>You should install it</strong> to take full advantage of the code and examples shown in the book. The package can be installed as any standard R package by doing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;DMwR2&quot;</span>)</code></pre></div>
+<p>Alternatively, you may wish to install the development version that may include some eventual bug corrections that may have not been pushed yet to the R central repository (CRAN). Still, unless you have a good reason for it, we recommend that you stick to the CRAN version that is installed as shown above. For further information on the development version (including how to install it), check the <a href="https://github.com/ltorgo/DMwR2">web page of the package</a></p>
+</div>
 
 
 

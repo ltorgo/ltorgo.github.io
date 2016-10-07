@@ -23,7 +23,7 @@ navbar:
           href: fraud.html
         - text: "Classifying Micro Array Samples"
           href: bio.html
-    - text: "R Code"
+    - text: "R Code of Chapters"
       icon: fa-code
       menu:
         - text: "Part I - R and Data Mining"
@@ -40,7 +40,7 @@ navbar:
           href: Rfraud.html
         - text: "Classifying Micro Array Samples"
           href: Rbio.html
-    - text: "Datasets"
+    - text: "Other Information"
       icon: fa-database
       href: datasets.html
     - text: "Errata"
