@@ -9,7 +9,6 @@ This chapter contains the following main sections:
 
 <!-- intro2R.Rnw --> 
 - Starting with R
-- Managing Your Sessions
 <!-- basicInter.Rnw --> 
 - Basic Interaction with the R Console
 <!-- objs.Rnw --> 
@@ -34,3 +33,5 @@ This chapter contains the following main sections:
 - Data Frames
 <!-- dft.Rnw --> 
 - Useful Extensions to Data Frames
+- Objects, Classes, and Methods
+- Managing Your Sessions
