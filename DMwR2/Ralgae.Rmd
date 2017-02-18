@@ -43,18 +43,6 @@ tibble::as_tibble(algae)
 
 
 <!-- vizSum.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(dplyr)
-data(algae)
-```
 
 
 
@@ -197,28 +185,12 @@ ggplot(data2graph,aes(x=a3,y=season,col=season)) + geom_point() + facet_wrap(~ m
 
 
 <!-- Unknown.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(dplyr) 
-library(forcats)
-data(algae)
-algae <- mutate(algae,
-                size=fct_relevel(size,c("small","medium","large")),
-                speed=fct_relevel(speed,c("low","medium","high")),
-                season=fct_relevel(season,c("spring","summer","autumn","winter")))
-```
 
 
 
 
 ### Unknown Values
+
 ```{r}
 library(DMwR2)
 library(dplyr)  
@@ -372,6 +344,7 @@ ggplot(algae, aes(x=mxPH, y=size, color=size)) + geom_point() + facet_wrap(~spee
 
 
 #### Filling in the Unknown Values by Exploring Similarities between Cases
+
 ```{r}
 data(algae, package="DMwR2")
 algae <- algae[-manyNAs(algae), ]
@@ -389,20 +362,12 @@ algae <- knnImputation(algae, k = 10, meth = "median")
 
 
 <!-- LinRegr.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(DMwR2)
-library(dplyr)
-```
 
 
-
+### Obtaining Prediction Models
 
 #### Multiple Linear Regression
+
 ```{r}
 data(algae, package="DMwR2")
 algae <-  algae[-manyNAs(algae), ]
@@ -451,20 +416,12 @@ summary(final.lm)
 
 
 <!-- RTs.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(DMwR2)
-library(dplyr)
-```
 
 
 
 
 #### Regression Trees
+
 ```{r}
 library(rpart)
 data(algae, package="DMwR2") 
@@ -520,25 +477,6 @@ snip.rpart(first.tree)
 
 
 <!-- EvalAndSel.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(rpart)
-data(algae)
-algae <- algae[-manyNAs(algae), ]
-clean.algae <- knnImputation(algae, k = 10)
-lm.a1 <- lm(a1 ~ ., data = clean.algae[, 1:12])
-final.lm <- step(lm.a1)
-rt.a1 <- rpart(a1 ~ ., data = algae[, 1:12])
-```
-
-
 
 
 ### Model Evaluation and Selection
@@ -582,20 +520,6 @@ ggplot(dg,aes(x=rt.a1,y=true.a1)) +
 ```
 
 
-```{r}
-library(grid)
-dg <- data.frame(lm.a1=lm.predictions.a1,rt.a1=rt.predictions.a1,true.a1=algae[["a1"]])
-g1 <- ggplot(dg,aes(x=lm.a1,y=true.a1)) +
-    geom_point() + geom_abline(slope=1,intercept=0,color="red") +
-    ggtitle("Linear Model")
-g2 <- ggplot(dg,aes(x=rt.a1,y=true.a1)) +
-    geom_point() + geom_abline(slope=1,intercept=0,color="red") +
-    ggtitle("Regression Tree")
-grid.newpage()
-pushViewport(viewport(layout=grid.layout(1,2)))
-print(g1,vp=viewport(layout.pos.row=1,layout.pos.col=1))
-print(g2,vp=viewport(layout.pos.row=1,layout.pos.col=2))
-```
 
 
 ```{r}
@@ -705,22 +629,6 @@ CDdiagram.BD(p)
 
 
 <!-- Preds.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(performanceEstimation)
-library(randomForest)
-data(algae, package="DMwR2")
-algae <- algae[-manyNAs(algae), ]
-load("algResAll.Rdata")
-```
-
-
 
 
 ### Predictions for the Seven Algae

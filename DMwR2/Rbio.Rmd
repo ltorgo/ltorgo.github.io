@@ -77,19 +77,7 @@ save(ALLb, file = "myALL.Rdata")
 
 #### Exploring the Dataset
 <!-- ExploratoryAnal.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(Biobase)
-library(ALL)
-data(ALL)
-load("myALL.Rdata")
-```
+
 
 
 ```{r}
@@ -148,21 +136,6 @@ sapply(levels(ALLb$mol.bio),
 
 
 <!-- FeatureSel.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(Biobase)
-library(ALL)
-data(ALL)
-load("myALL.Rdata")
-es <- exprs(ALLb)
-```
-
 
 
 
@@ -314,37 +287,6 @@ getVarsSet(vc$hclust)
 
 
 <!-- PredTasks.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(Biobase)
-library(ALL)
-data(ALL)
-load("myALL.Rdata")
-es <- exprs(ALLb)
-rowIQRs <- function(em)  rowQ(em,ceiling(0.75*ncol(em))) - rowQ(em,floor(0.25*ncol(em)))
-getVarsSet <- function(cluster,nvars=30,seed=NULL,verb=FALSE) {
-    if (!is.null(seed)) set.seed(seed)
-    
-    cls <- cutree(cluster,nvars)
-    tots <- table(cls)
-    vars <- c()
-    vars <- sapply(1:nvars,function(clID)
-    {
-        if (!length(tots[clID])) stop('Empty cluster! (',clID,')')
-        x <- sample(1:tots[clID],1)
-        names(cls[cls==clID])[x]
-    })
-    if (verb)  structure(vars,clusMemb=cls,clusTots=tots)
-    else       vars
-}
-```
-
 
 
 
@@ -617,10 +559,6 @@ top10WFnames <- rankWorkflows(all.trials, top=10,
 sapply(top10WFnames, function(WFid) getWorkflow(WFid,all.trials)@pars$featSel.meth)
 ```
 
-
-```{r}
-plot(subset(all.trials,workflows=top10WFnames))
-```
 
 
 ```{r}

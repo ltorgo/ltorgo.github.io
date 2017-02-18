@@ -19,6 +19,7 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -135,7 +136,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -277,8 +277,7 @@ $(document).ready(function () {
 <p>This chapter contains the following main sections:</p>
 <!-- intro2R.Rnw -->
 <ul>
-<li>Starting with R</li>
-<li>Managing Your Sessions <!-- basicInter.Rnw --></li>
+<li>Starting with R <!-- basicInter.Rnw --></li>
 <li>Basic Interaction with the R Console <!-- objs.Rnw --></li>
 <li>R Objects and Variables <!-- funcs.Rnw --></li>
 <li>R Functions <!-- vectors.Rnw --></li>
@@ -291,6 +290,8 @@ $(document).ready(function () {
 <li>Lists <!-- df.Rnw --></li>
 <li>Data Frames <!-- dft.Rnw --></li>
 <li>Useful Extensions to Data Frames</li>
+<li>Objects, Classes, and Methods</li>
+<li>Managing Your Sessions</li>
 </ul>
 
 
@@ -301,8 +302,11 @@ $(document).ready(function () {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

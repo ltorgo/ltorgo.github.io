@@ -18,6 +18,7 @@ The following is a [script file](RCode/RintroDM.R) containing all R code of all 
 
 <!-- DCandBU.Rnw --> 
 
+### A Bird’s Eye View on Data Mining
 
 ### Data Collection and Business Understanding
 
@@ -574,16 +575,6 @@ head(reduced.iris)
 
 
 <!-- modeling.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  showFig3=list(fig.width=8,fig.height=8,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(dplyr)
-```
-
 
 
 
@@ -1593,17 +1584,6 @@ legend("topleft",c("setosa","versicolor","virginica"),
 
 
 <!-- evaluation.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  showFig3=list(fig.width=8,fig.height=8,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-```
-
-
-
 
 ### Evaluation
 

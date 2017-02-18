@@ -62,26 +62,6 @@ RSiteSearch('neural networks')
 
 
 
-### Managing Your Sessions
-```{r}
-source('mycode.R')
-```
-
-
-```{r}
-save(f,my.dataset,file='mysession.RData')
-```
-
-
-```{r}
-load('mysession.RData')
-```
-
-
-```{r}
-save.image()
-```
-
 
 <!-- basicInter.Rnw --> 
 
@@ -797,6 +777,28 @@ select(filter(ir,Species=="setosa"),Petal.Width,Petal.Length)
 
 ```{r}
 filter(ir,Species == "setosa") %>% select(Petal.Width,Petal.Length)
+```
+
+### Objects, Classes, and Methods
+
+### Managing Your Sessions
+```{r}
+source('mycode.R')
+```
+
+
+```{r}
+save(f,my.dataset,file='mysession.RData')
+```
+
+
+```{r}
+load('mysession.RData')
+```
+
+
+```{r}
+save.image()
 ```
 
 

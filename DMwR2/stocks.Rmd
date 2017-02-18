@@ -6,7 +6,7 @@ output: html_document
 
 This chapter contains the following main sections:
 
-
+- Problem Description and Objectives
 <!-- availData.Rnw --> 
 - The Available Data
     + Reading the Data from the CSV File
@@ -35,3 +35,4 @@ This chapter contains the following main sections:
 - The Trading System
     + Evaluation of the Final Test Data
     + An Online Trading System
+- Summary

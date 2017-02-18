@@ -7,6 +7,9 @@ output: html_document
 This chapter contains the following main sections:
 
 
+- Problem Description and Objectives
+    + Brief Background on Microarray Experiments
+    + The ALL Dataset
 <!-- availData.Rnw --> 
 - The Available Data
     + Exploring the Dataset
@@ -24,3 +27,4 @@ This chapter contains the following main sections:
     + The Experimental Procedure
     + The Modeling Techniques
     + Comparing the Models
+- Summary

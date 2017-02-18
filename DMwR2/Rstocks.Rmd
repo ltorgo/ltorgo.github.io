@@ -52,21 +52,6 @@ GSPC <- getSymbols("^GSPC",from="1970-01-02",to="2016-01-25",auto.assign=FALSE)
 
 
 <!-- predTask.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC, package="DMwR2")
-```
-
-
 
 
 ### Defining the Prediction Tasks
@@ -97,13 +82,6 @@ addAvgPrice(on=1)
 addT.ind()
 ```
 
-
-```{r}
-avgPrice <- function(p) apply(HLC(p), 1, mean) 
-addAvgPrice <- newTA(FUN=avgPrice, col=1, legend='AvgPrice')
-addT.ind <- newTA(FUN=T.ind, col='red', legend='tgtRet')
-candleChart(last(GSPC,'3 months'), theme='white', TA=c(addAvgPrice(on=1), addT.ind()))
-```
 
 
 
@@ -157,10 +135,6 @@ varImpPlot(rf@fitted.model, type = 1)
 ```
 
 
-```{r}
-varImpPlot(rf@fitted.model, type = 1)
-```
-
 
 ```{r}
 imp <- importance(rf@fitted.model, type = 1)
@@ -203,21 +177,6 @@ TformC <- as.formula("Signal ~ .")
 
 #### Evaluation Criteria
 <!-- PredModels.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC,package="DMwR2")
-load("GSPCdata.Rdata")
-```
-
 
 
 
@@ -301,22 +260,6 @@ evimp(e, trim=FALSE)
 
 
 <!-- Trading.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC)
-load("GSPCdata.Rdata")
-```
-
-
 
 
 ### From Predictions into Actions
@@ -482,10 +425,6 @@ tradingEvaluation(t1)
 ```
 
 
-```{r}
-plot(t1,marketTP, theme = "white",  name = "SP500")
-```
-
 
 ```{r}
 plot(t1, marketTP,  theme = "white",  name = "SP500")
@@ -519,24 +458,6 @@ tradingEvaluation(t2)
 
 
 <!-- EvalAndSel.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-data(GSPC)
-load("GSPCdata.Rdata")
-source("codigoExps.R")
-library(performanceEstimation)
-load("analysis.Rdata")
-```
-
 
 
 
@@ -804,28 +725,6 @@ getWorkflow("nnetRegr.v175", winnersResults)
 
 
 <!-- TradSys.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-library(DMwR2)
-library(xts)
-library(quantmod)
-library(performanceEstimation)
-data(GSPC)
-load("GSPCdata.Rdata")
-source("codigoExps.R")
-load("analysis.Rdata")
-library(e1071)
-library(nnet)
-library(earth)
-```
-
-
 
 
 ### The Trading System
@@ -872,11 +771,6 @@ rets <- Return.calculate(equityWF)
 
 
 ```{r}
-chart.CumReturns(rets, main="Cumulative returns of the workflow", ylab = "returns")
-```
-
-
-```{r}
 chart.CumReturns(rets, main="Cumulative returns of the strategy", ylab="returns")
 ```
 
@@ -891,10 +785,6 @@ plot(100*yearlyReturn(equityWF),
      main='Yearly percentage returns of the trading system')
 ```
 
-
-```{r}
-plot(100*yearlyReturn(equityWF), main='Yearly percentage returns of the trading system')
-```
 
 
 ```{r}

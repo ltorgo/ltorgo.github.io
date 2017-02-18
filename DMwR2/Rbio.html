@@ -22,6 +22,7 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -181,7 +182,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -207,7 +207,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -266,8 +266,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -442,17 +443,6 @@ ALLb$mol.bio &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb$m
 <div id="exploring-the-dataset" class="section level4">
 <h4>Exploring the Dataset</h4>
 <!-- ExploratoryAnal.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(grid)
-<span class="kw">library</span>(Biobase)
-<span class="kw">library</span>(ALL)
-<span class="kw">data</span>(ALL)
-<span class="kw">load</span>(<span class="st">&quot;myALL.Rdata&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
 <span class="kw">dim</span>(es)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">as.vector</span>(es))</code></pre></div>
@@ -485,18 +475,6 @@ ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(<span class="kw">levels</span>(ALLb$mol.bio), 
        function(x) <span class="kw">summary</span>(<span class="kw">as.vector</span>(es[, <span class="kw">which</span>(ALLb$mol.bio ==<span class="st"> </span>x)])))</code></pre></div>
 <!-- FeatureSel.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(grid)
-<span class="kw">library</span>(Biobase)
-<span class="kw">library</span>(ALL)
-<span class="kw">data</span>(ALL)
-<span class="kw">load</span>(<span class="st">&quot;myALL.Rdata&quot;</span>)
-es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)</code></pre></div>
 </div>
 </div>
 <div id="gene-feature-selection" class="section level3">
@@ -591,34 +569,6 @@ clus30 &lt;-<span class="st"> </span><span class="kw">cutree</span>(vc$hclust, <
 <span class="kw">getVarsSet</span>(vc$hclust)
 <span class="kw">getVarsSet</span>(vc$hclust)</code></pre></div>
 <!-- PredTasks.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(grid)
-<span class="kw">library</span>(Biobase)
-<span class="kw">library</span>(ALL)
-<span class="kw">data</span>(ALL)
-<span class="kw">load</span>(<span class="st">&quot;myALL.Rdata&quot;</span>)
-es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
-rowIQRs &lt;-<span class="st"> </span>function(em)  <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span>*<span class="kw">ncol</span>(em))) -<span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span>*<span class="kw">ncol</span>(em)))
-getVarsSet &lt;-<span class="st"> </span>function(cluster,<span class="dt">nvars=</span><span class="dv">30</span>,<span class="dt">seed=</span><span class="ot">NULL</span>,<span class="dt">verb=</span><span class="ot">FALSE</span>) {
-    if (!<span class="kw">is.null</span>(seed)) <span class="kw">set.seed</span>(seed)
-    
-    cls &lt;-<span class="st"> </span><span class="kw">cutree</span>(cluster,nvars)
-    tots &lt;-<span class="st"> </span><span class="kw">table</span>(cls)
-    vars &lt;-<span class="st"> </span><span class="kw">c</span>()
-    vars &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span>:nvars,function(clID)
-    {
-        if (!<span class="kw">length</span>(tots[clID])) <span class="kw">stop</span>(<span class="st">&#39;Empty cluster! (&#39;</span>,clID,<span class="st">&#39;)&#39;</span>)
-        x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:tots[clID],<span class="dv">1</span>)
-        <span class="kw">names</span>(cls[cls==clID])[x]
-    })
-    if (verb)  <span class="kw">structure</span>(vars,<span class="dt">clusMemb=</span>cls,<span class="dt">clusTots=</span>tots)
-    else       vars
-}</code></pre></div>
 </div>
 </div>
 <div id="predicting-cytogenetic-abnormalities" class="section level3">
@@ -832,7 +782,6 @@ for(td in TODO) {
                               <span class="dt">maxs =</span> <span class="ot">TRUE</span>)[[<span class="st">&quot;ALL&quot;</span>]][[<span class="st">&quot;acc&quot;</span>]][,<span class="st">&quot;Workflow&quot;</span>]
 <span class="kw">sapply</span>(top10WFnames, function(WFid) <span class="kw">getWorkflow</span>(WFid,all.trials)@pars$featSel.meth)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames),<span class="dt">baseline=</span><span class="st">&quot;svm.v8&quot;</span>)
 ps$acc$WilcoxonSignedRank.test</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iteration &lt;-<span class="st"> </span><span class="dv">1</span>  <span class="co"># any number between 1 and 100 in this case</span>
@@ -851,8 +800,11 @@ itInfo &lt;-<span class="st"> </span><span class="kw">getIterationsInfo</span>(a
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

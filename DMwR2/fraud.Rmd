@@ -7,6 +7,7 @@ output: html_document
 This chapter contains the following main sections:
 
 
+- Problem Description and Objectives
 <!-- availData.Rnw --> 
 - The Available Data
     + Loading the Data into R
@@ -22,6 +23,7 @@ This chapter contains the following main sections:
     + Unsupervised Approaches
     + Supervised Approaches
     + Semi-Supervised Approaches
+- Summary
 <!-- BPrule.Rnw --> 
 <!-- LOF.Rnw --> 
 <!-- ORh.Rnw --> 

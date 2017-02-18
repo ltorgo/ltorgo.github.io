@@ -17,15 +17,6 @@ The following is a [script file](RCode/Rfraud.R) containing all R code of all se
 
 
 <!-- availData.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(grid)
-```
-
 
 
 
@@ -127,14 +118,6 @@ ggplot(filter(sales,Prod %in% c("p3689","p560")),aes(x=fct_drop(Prod),y=Uprice))
     xlab("") + ylab("log10(UnitPrice)")
 ```
 
-
-```{r}
-library(ggplot2)
-library(forcats)
-ggplot(filter(sales,Prod %in% c("p3689","p560")),aes(x=fct_drop(Prod),y=Uprice)) +
-    geom_boxplot() + scale_y_log10() + 
-    xlab("") + ylab("log10(UnitPrice)")
-```
 
 
 ```{r}
@@ -343,15 +326,6 @@ save(similar, file = "similarProducts.Rdata")
 
 
 <!-- defTasks.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.7\\textwidth"),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,out.width="0.9\\textwidth"),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-```
-
 
 
 
@@ -467,23 +441,7 @@ evalOutlierRanking <- function(testSet,rankOrder,Threshold,statsProds,...)
 
 #### Unsupervised Approaches
 
-
-#### Supervised Approaches
-
-
-#### Semi-Supervised Approaches
 <!-- BPrule.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(dplyr)
-load( "salesClean.Rdata" ) 
-source( "evaluationCode.R" ) 
-```
 
 
 ```{r}
@@ -553,22 +511,7 @@ PRcurve(ps.bp, ts.bp, main="PR curve", avg="vertical")
 CRchart(ps.bp, ts.bp, main='Cumulative Recall curve', avg='vertical')
 ```
 
-
 <!-- LOF.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( "salesClean.Rdata" ) 
-source( "evaluationCode.R" ) 
-load("BPres.Rdata")
-```
 
 
 ```{r}
@@ -646,21 +589,6 @@ legend('bottomright',c('BPrule','LOF'),lty=c(1,2))
 
 
 <!-- ORh.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( "salesClean.Rdata" ) 
-source( "evaluationCode.R" ) 
-load("BPres.Rdata")
-load("LOFres.Rdata")
-```
 
 
 ```{r}
@@ -746,16 +674,9 @@ legend('bottomright',c('BPrule','LOF','ORh'),lty=c(1,2,1),
 ```
 
 
+#### Supervised Approaches
+
 <!-- classImb.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-```
 
 
 ```{r}
@@ -780,37 +701,8 @@ ggplot(newData2,aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
 ```
 
 
-```{r}
-library(grid)
-g1 <- ggplot(data, aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
-    geom_point() + ggtitle("Original Data")
-g2 <- ggplot(newData2, aes(x=Sepal.Length,y=Sepal.Width,color=Species)) +
-    geom_point() + ggtitle("SMOTE'd Data")
-grid.newpage()
-pushViewport(viewport(layout= grid.layout(1,2)))
-print(g1,vp=viewport(layout.pos.row=1,layout.pos.col=1))
-print(g2,vp=viewport(layout.pos.row=1,layout.pos.col=2))
-```
-
 
 <!-- nb.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(UBL)
-library(performanceEstimation)
-load( "salesClean.Rdata" ) 
-source( "evaluationCode.R" ) 
-load("BPres.Rdata")
-load("LOFres.Rdata")
-load("ORHres.Rdata")
-```
 
 
 ```{r}
@@ -962,24 +854,6 @@ legend('bottomright',c('NaiveBayes','ORh','smoteNaiveBayes'),
 
 
 <!-- adaB.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( "salesClean.Rdata" ) 
-source( "evaluationCode.R" ) 
-load("BPres.Rdata")
-load("LOFres.Rdata")
-load("ORHres.Rdata")
-load("NBres.Rdata")
-```
-
 
 ```{r}
 library(RWeka)
@@ -1076,25 +950,10 @@ legend('bottomright',c('NaiveBayes','ORh','AdaBoostM1'),
 ```
 
 
+
+#### Semi-Supervised Approaches
+
 <!-- Semisupervised.Rnw --> 
-```{r}
-opts_template$set(onlyShow=list(echo=TRUE, eval=FALSE,  tidy=FALSE),
-                  onlyRun=list(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig=list(fig.width=6,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  showFig2=list(fig.width=12,fig.height=6,echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE),
-                  runShow=list(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, tidy=FALSE))
-library(ggplot2)
-library(DMwR2)
-library(dplyr)
-library(performanceEstimation)
-load( "salesClean.Rdata" ) 
-source( "evaluationCode.R" ) 
-load("BPres.Rdata")
-load("LOFres.Rdata")
-load("ORHres.Rdata")
-load("NBres.Rdata")
-load("ABres.Rdata")
-```
 
 
 ```{r}
@@ -1301,5 +1160,8 @@ CRchart(ps.ab.st,ts.ab.st,add=T,lty=2,avg='vertical')
 legend('bottomright',c('ORh','AdaBoostM1','AdaBoostM1-ST'),
        lty=c(1,1,2),col=c('black','grey','grey'))
 ```
+
+
+
 
 

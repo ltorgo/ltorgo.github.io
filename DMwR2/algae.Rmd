@@ -6,7 +6,8 @@ output: html_document
 
 This chapter contains the following main sections:
 
-
+- Problem Description and Objectives
+- Data Description
 <!-- loadData.Rnw --> 
 - Loading the Data into R
 <!-- vizSum.Rnw --> 
@@ -17,6 +18,7 @@ This chapter contains the following main sections:
     + Filling in the Unknowns with the Most Frequent Values
     + Filling in the Unknown Values by Exploring Correlations
     + Filling in the Unknown Values by Exploring Similarities between Cases
+- Obtaining Prediction Models
 <!-- LinRegr.Rnw --> 
     + Multiple Linear Regression
 <!-- RTs.Rnw --> 
@@ -25,3 +27,4 @@ This chapter contains the following main sections:
 - Model Evaluation and Selection
 <!-- Preds.Rnw --> 
 - Predictions for the Seven Algae
+- Summary

@@ -22,6 +22,7 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -181,7 +182,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -207,7 +207,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -266,8 +266,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -429,16 +430,6 @@ algae</code></pre></div>
            <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&#39;XXXXXXX&#39;</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble::<span class="kw">as_tibble</span>(algae)</code></pre></div>
 <!-- vizSum.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(grid)
-<span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(dplyr)
-<span class="kw">data</span>(algae)</code></pre></div>
 </div>
 <div id="data-visualization-and-summarization" class="section level3">
 <h3>Data Visualization and Summarization</h3>
@@ -511,21 +502,6 @@ algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
 <span class="co">#                              include.lowest=TRUE))</span>
 <span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season,<span class="dt">col=</span>season)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>minO2) +<span class="st"> </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
 <!-- Unknown.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(grid)
-<span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(dplyr) 
-<span class="kw">library</span>(forcats)
-<span class="kw">data</span>(algae)
-algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
-                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
-                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
-                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</code></pre></div>
 </div>
 <div id="unknown-values" class="section level3">
 <h3>Unknown Values</h3>
@@ -598,14 +574,10 @@ algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">meth =</span> <span class="st">&quot;median&quot;</span>)</code></pre></div>
 <!-- LinRegr.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(dplyr)</code></pre></div>
 </div>
+</div>
+<div id="obtaining-prediction-models" class="section level3">
+<h3>Obtaining Prediction Models</h3>
 <div id="multiple-linear-regression" class="section level4">
 <h4>Multiple Linear Regression</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
@@ -620,13 +592,6 @@ clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(final.lm)</code></pre></div>
 <!-- RTs.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(dplyr)</code></pre></div>
 </div>
 <div id="regression-trees" class="section level4">
 <h4>Regression Trees</h4>
@@ -649,21 +614,6 @@ rt2.a1</code></pre></div>
 <span class="kw">text</span>(first.tree)
 <span class="kw">snip.rpart</span>(first.tree)</code></pre></div>
 <!-- EvalAndSel.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(rpart)
-<span class="kw">data</span>(algae)
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
-clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)
-lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span>:<span class="dv">12</span>])
-final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)
-rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
 </div>
 </div>
 <div id="model-evaluation-and-selection" class="section level3">
@@ -688,18 +638,6 @@ dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 <span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) +
 <span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(grid)
-dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lm.a1=</span>lm.predictions.a1,<span class="dt">rt.a1=</span>rt.predictions.a1,<span class="dt">true.a1=</span>algae[[<span class="st">&quot;a1&quot;</span>]])
-g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) +
-<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Linear Model&quot;</span>)
-g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) +
-<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)
-<span class="kw">grid.newpage</span>()
-<span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">layout=</span><span class="kw">grid.layout</span>(<span class="dv">1</span>,<span class="dv">2</span>)))
-<span class="kw">print</span>(g1,<span class="dt">vp=</span><span class="kw">viewport</span>(<span class="dt">layout.pos.row=</span><span class="dv">1</span>,<span class="dt">layout.pos.col=</span><span class="dv">1</span>))
-<span class="kw">print</span>(g2,<span class="dt">vp=</span><span class="kw">viewport</span>(<span class="dt">layout.pos.row=</span><span class="dv">1</span>,<span class="dt">layout.pos.col=</span><span class="dv">2</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]],<span class="dt">main=</span><span class="st">&quot;Linear Model&quot;</span>,
      <span class="dt">xlab=</span><span class="st">&quot;Predictions&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;True Values&quot;</span>)
 <span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
@@ -747,18 +685,6 @@ p$nmse$F.test
 p$nmse$BonferroniDunn.test</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CDdiagram.BD</span>(p)</code></pre></div>
 <!-- Preds.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_template$<span class="kw">set</span>(<span class="dt">onlyShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">FALSE</span>,  <span class="dt">tidy=</span><span class="ot">FALSE</span>),
-                  <span class="dt">onlyRun=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>),
-                  <span class="dt">showFig=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">6</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.7</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">showFig2=</span><span class="kw">list</span>(<span class="dt">fig.width=</span><span class="dv">12</span>,<span class="dt">fig.height=</span><span class="dv">6</span>,<span class="dt">echo=</span><span class="ot">FALSE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>,<span class="dt">out.width=</span><span class="st">&quot;0.9</span><span class="ch">\\</span><span class="st">textwidth&quot;</span>),
-                  <span class="dt">runShow=</span><span class="kw">list</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>, <span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">warning=</span><span class="ot">FALSE</span>, <span class="dt">tidy=</span><span class="ot">FALSE</span>))
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(performanceEstimation)
-<span class="kw">library</span>(randomForest)
-<span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
-<span class="kw">load</span>(<span class="st">&quot;algResAll.Rdata&quot;</span>)</code></pre></div>
 </div>
 <div id="predictions-for-the-seven-algae" class="section level3">
 <h3>Predictions for the Seven Algae</h3>
@@ -793,8 +719,11 @@ for(i in <span class="dv">1</span>:<span class="dv">7</span>) {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

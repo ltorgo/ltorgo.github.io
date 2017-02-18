@@ -6,7 +6,7 @@ output: html_document
 
 This chapter contains the following main sections:
 
-
+- A Bird’s Eye View on Data Mining
 <!-- DCandBU.Rnw --> 
 - Data Collection and Business Understanding
     + Data and Datasets
