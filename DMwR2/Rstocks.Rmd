@@ -623,6 +623,9 @@ for(lrn in c("svm","nnet")) { # only these because MARS is only for regression
 
 
 #### Results Analysis
+
+*Note*: The `Rdata` files mentioned below can be obtained at the section **Other Information** on the top menus of this web page.
+
 ```{r}
 load("svm_res_regr.Rdata")
 load("nnet_res_regr.Rdata")

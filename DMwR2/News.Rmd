@@ -3,6 +3,7 @@ title: News
 output: html_document
 ---
 
+- [2017-01-17] - The book is out!
 - [2016-09-10] - First version of the book Web page is now live!
 - [2016-09-09] - Package of the book (**DMwR2**) [available for installation](https://cran.r-project.org/web/packages/DMwR2/index.html) on CRAN
 - [2016-09-09] - Final PDF sent to publisher!

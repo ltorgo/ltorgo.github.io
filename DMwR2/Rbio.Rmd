@@ -483,6 +483,7 @@ vars$knn <- list(learner.pars=list(k=c(3,5,7),
 vars$featureSel <- list(featSel.meth=c("s1", "s2", "s3"))
 ```
 
+*Note*: The `myALL.Rdata` file loaded below can be obtained at the section **Other Information** on the top menus of this web page.
 
 ```{r}
 library(performanceEstimation)
