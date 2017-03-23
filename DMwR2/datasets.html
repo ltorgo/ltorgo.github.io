@@ -420,20 +420,20 @@ div.tocify {
 <p>The R code in the book was executed in the following version of R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.version</code></pre></div>
 <pre><code>##                _                           
-## platform       x86_64-pc-linux-gnu         
+## platform       x86_64-apple-darwin13.4.0   
 ## arch           x86_64                      
-## os             linux-gnu                   
-## system         x86_64, linux-gnu           
+## os             darwin13.4.0                
+## system         x86_64, darwin13.4.0        
 ## status                                     
 ## major          3                           
-## minor          3.3                         
-## year           2017                        
-## month          03                          
-## day            06                          
-## svn rev        72310                       
+## minor          3.2                         
+## year           2016                        
+## month          10                          
+## day            31                          
+## svn rev        71607                       
 ## language       R                           
-## version.string R version 3.3.3 (2017-03-06)
-## nickname       Another Canoe</code></pre>
+## version.string R version 3.3.2 (2016-10-31)
+## nickname       Sincere Pumpkin Patch</code></pre>
 </div>
 <div id="book-package" class="section level3">
 <h3>Book Package</h3>
@@ -517,6 +517,14 @@ class
 </tr>
 <tr>
 <td style="text-align:left;">
+cluster
+</td>
+<td style="text-align:left;">
+2.0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 CORElearn
 </td>
 <td style="text-align:left;">
@@ -568,7 +576,7 @@ e1071
 earth
 </td>
 <td style="text-align:left;">
-4.4.7
+4.4.6
 </td>
 </tr>
 <tr>
@@ -616,7 +624,7 @@ GGally
 ggmap
 </td>
 <td style="text-align:left;">
-2.6.1
+2.7
 </td>
 </tr>
 <tr>
@@ -624,7 +632,15 @@ ggmap
 ggplot2
 </td>
 <td style="text-align:left;">
-2.2.1
+2.2.1.9000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+h2o
+</td>
+<td style="text-align:left;">
+3.10.0.8
 </td>
 </tr>
 <tr>
@@ -632,7 +648,7 @@ ggplot2
 Hmisc
 </td>
 <td style="text-align:left;">
-4.0-0
+3.17-4
 </td>
 </tr>
 <tr>
@@ -728,7 +744,7 @@ readxl
 rmarkdown
 </td>
 <td style="text-align:left;">
-1.2
+1.3
 </td>
 </tr>
 <tr>
@@ -768,7 +784,7 @@ rpart.plot
 RWeka
 </td>
 <td style="text-align:left;">
-0.4-29
+0.4-27
 </td>
 </tr>
 <tr>
@@ -776,7 +792,7 @@ RWeka
 shiny
 </td>
 <td style="text-align:left;">
-0.14.2
+0.14.1
 </td>
 </tr>
 <tr>
@@ -843,38 +859,6 @@ xts
 0.9-7
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-class
-</td>
-<td style="text-align:left;">
-7.3-14
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-cluster
-</td>
-<td style="text-align:left;">
-2.0.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-nnet
-</td>
-<td style="text-align:left;">
-7.3-12
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-rpart
-</td>
-<td style="text-align:left;">
-4.1-10
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -883,6 +867,13 @@ rpart
 <p>The datasets containing the data of the case studies are included in the book package. Install the package, load it, and then use the <code>data()</code> function to load them, as shown in the book.</p>
 <p>There are also a few parts of the book that involve running some code that takes a considerable amount of time to be executed (depending on your hardware). In these situations, I’ve typically mention in the book the existance of some <code>Rdata</code> files containing the objects with the results of these code snipets that take too long. Below you will find these files that you can download to avoid having to run these parts of the code.</p>
 <ul>
+<li>Chapter 3 (Introduction to Data Mining)
+<ul>
+<li>Data set about forest fires loaded on page 71
+<ul>
+<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/forestFires.txt">forestFires.txt</a></li>
+</ul></li>
+</ul></li>
 <li>Chapter 5 (Stock Market case study)
 <ul>
 <li>Files containing the results of the experiments described in pages 275-276, that are loaded on page 278
