@@ -43,6 +43,9 @@ The datasets containing the data of the case studies are included in the book pa
 
 There are also a few parts of the book that involve running some code that takes a considerable amount of time to be executed (depending on your hardware). In these situations, I've typically mention in the book the existance of some `Rdata` files containing the objects with the results of these code snipets that take too long. Below you will find these files that you can download to avoid having to run these parts of the code.
 
+- Chapter 3 (Introduction to Data Mining)
+    + Data set about forest fires loaded on page 71
+        - [forestFires.txt](http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/forestFires.txt)
 - Chapter 5 (Stock Market case study)
     + Files containing the results of the experiments described in pages 275-276, that are loaded on page 278
         - [svm_res_regr.Rdata](http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/svm_res_regr.Rdata)
