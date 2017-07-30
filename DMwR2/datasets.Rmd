@@ -47,7 +47,7 @@ There are also a few parts of the book that involve running some code that takes
     + Data set about forest fires loaded on page 71
         - [forestFires.txt](http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/forestFires.txt)
 - Chapter 4 (Algae Blooms case study)
-    + Text files with the data mentioned on page 195 (please note that it is much easier to load the data directly from the book web page as mentioned in the book)
+    + Text files with the data mentioned on page 195 (please note that it is much easier to load the data directly from the book R package as mentioned in the book)
         - [Analysis.txt](http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/Analysis.txt)
         - [Eval.txt](http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/Eval.txt)
         - [Sols.txt](http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/Sols.txt)
