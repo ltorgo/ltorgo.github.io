@@ -428,7 +428,7 @@ algae</code></pre></div>
            <span class="st">&#39;NO3&#39;</span>,<span class="st">&#39;NH4&#39;</span>,<span class="st">&#39;oPO4&#39;</span>,<span class="st">&#39;PO4&#39;</span>,<span class="st">&#39;Chla&#39;</span>,<span class="st">&#39;a1&#39;</span>,<span class="st">&#39;a2&#39;</span>,<span class="st">&#39;a3&#39;</span>,<span class="st">&#39;a4&#39;</span>,
            <span class="st">&#39;a5&#39;</span>,<span class="st">&#39;a6&#39;</span>,<span class="st">&#39;a7&#39;</span>),
            <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&#39;XXXXXXX&#39;</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble::<span class="kw">as_tibble</span>(algae)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble<span class="op">::</span><span class="kw">as_tibble</span>(algae)</code></pre></div>
 <!-- vizSum.Rnw -->
 </div>
 <div id="data-visualization-and-summarization" class="section level3">
@@ -436,62 +436,62 @@ algae</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
 <span class="kw">summary</span>(algae)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
 <span class="kw">library</span>(car)
-<span class="kw">qqPlot</span>(algae$mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
-gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) +<span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
+gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 vpL &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;npc&quot;</span>), <span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;npc&quot;</span>), 
                            <span class="dt">just=</span><span class="st">&quot;left&quot;</span>, 
                            <span class="dt">y=</span><span class="fl">0.5</span>, <span class="dt">x=</span><span class="dv">0</span>)
-<span class="kw">qqPlot</span>(algae$mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>)
+<span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>)
 <span class="kw">print</span>(gh,<span class="dt">vp=</span>vpL)
-<span class="kw">qqPlot</span>(algae$mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae$oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),
-               <span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) +
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">geom_rug</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae$oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),<span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) +
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae$NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae$NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">1</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae$NH4, <span class="dt">na.rm =</span> T) +<span class="st"> </span><span class="kw">sd</span>(algae$NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">median</span>(algae$NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">3</span>)
-<span class="kw">identify</span>(algae$NH4)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae$NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
-clickedRows &lt;-<span class="st"> </span><span class="kw">identify</span>(algae$NH4)
+<span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae<span class="op">$</span>oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),
+               <span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae<span class="op">$</span>oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),<span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae<span class="op">$</span>NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">1</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">median</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">3</span>)
+<span class="kw">identify</span>(algae<span class="op">$</span>NH4)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae<span class="op">$</span>NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
+clickedRows &lt;-<span class="st"> </span><span class="kw">identify</span>(algae<span class="op">$</span>NH4)
 algae[clickedRows, ]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw">filter</span>(algae, NH4 &gt;<span class="st"> </span><span class="dv">19000</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<span class="kw">filter</span>(algae, NH4 <span class="op">&gt;</span><span class="st"> </span><span class="dv">19000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats)
 algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
                 <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
                 <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
                 <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_violin</span>() +<span class="st"> </span><span class="kw">geom_jitter</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) +<span class="st"> </span><span class="kw">geom_violin</span>() +<span class="st"> </span><span class="kw">geom_jitter</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,!<span class="kw">is.na</span>(mnO2)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,<span class="op">!</span><span class="kw">is.na</span>(mnO2)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,<span class="dv">1</span>)), <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))
-<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season, <span class="dt">color=</span>season)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>minO2) +<span class="st"> </span>
+<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season, <span class="dt">color=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>minO2) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,!<span class="kw">is.na</span>(mnO2)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,<span class="op">!</span><span class="kw">is.na</span>(mnO2)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, 
                      <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="dv">1</span>)), 
                      <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))
@@ -500,7 +500,7 @@ algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
 <span class="co">#                    minO2=cut(data2graph$mnO2,</span>
 <span class="co">#                              quantile(data2graph$mnO2,c(0,0.25,.5,.75,1)),</span>
 <span class="co">#                              include.lowest=TRUE))</span>
-<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season,<span class="dt">col=</span>season)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>minO2) +<span class="st"> </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
+<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season,<span class="dt">col=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>minO2) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
 <!-- Unknown.Rnw -->
 </div>
 <div id="unknown-values" class="section level3">
@@ -510,67 +510,67 @@ algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
 <span class="kw">data</span>(algae)  </code></pre></div>
 <div id="removing-the-observations-with-unknown-values" class="section level4">
 <h4>Removing the Observations with Unknown Values</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(algae, !<span class="kw">complete.cases</span>(algae) )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(algae, <span class="op">!</span><span class="kw">complete.cases</span>(algae) )</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">na.omit</span>(algae)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) <span class="co"># only necessary if you executed the above na.omit()</span>
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">c</span>(<span class="dv">62</span>, <span class="dv">199</span>), ]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(algae, <span class="dv">1</span>, function(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</code></pre></div>
+algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">c</span>(<span class="dv">62</span>, <span class="dv">199</span>), ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(algae, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
 <span class="kw">manyNAs</span>(algae, <span class="fl">0.2</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</code></pre></div>
 </div>
 <div id="filling-in-the-unknowns-with-the-most-frequent-values" class="section level4">
 <h4>Filling in the Unknowns with the Most Frequent Values</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">48</span>, <span class="st">&quot;mxPH&quot;</span>] &lt;-<span class="st"> </span><span class="kw">mean</span>(algae$mxPH, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="kw">is.na</span>(algae$Chla), <span class="st">&quot;Chla&quot;</span>] &lt;-<span class="st"> </span><span class="kw">median</span>(algae$Chla, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">48</span>, <span class="st">&quot;mxPH&quot;</span>] &lt;-<span class="st"> </span><span class="kw">mean</span>(algae<span class="op">$</span>mxPH, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="kw">is.na</span>(algae<span class="op">$</span>Chla), <span class="st">&quot;Chla&quot;</span>] &lt;-<span class="st"> </span><span class="kw">median</span>(algae<span class="op">$</span>Chla, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
 algae &lt;-<span class="st"> </span><span class="kw">centralImputation</span>(algae)</code></pre></div>
 </div>
 <div id="filling-in-the-unknown-values-by-exploring-correlations" class="section level4">
 <h4>Filling in the Unknown Values by Exploring Correlations</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(algae[, <span class="dv">4</span>:<span class="dv">18</span>], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">symnum</span>(<span class="kw">cor</span>(algae[,<span class="dv">4</span>:<span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(algae[, <span class="dv">4</span><span class="op">:</span><span class="dv">18</span>], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">symnum</span>(<span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(corrplot)
-cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span>:<span class="dv">18</span>], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
+cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
 <span class="kw">corrplot</span>(cm, <span class="dt">type=</span><span class="st">&quot;upper&quot;</span>, <span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>)
 <span class="kw">corrplot</span>(cm, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>, 
          <span class="dt">diag=</span><span class="ot">FALSE</span>, <span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(corrplot)
-cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span>:<span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
+cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
 <span class="kw">corrplot</span>(cm,<span class="dt">type=</span><span class="st">&quot;upper&quot;</span>,<span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>)
 <span class="kw">corrplot</span>(cm,<span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>, <span class="dt">diag=</span><span class="ot">FALSE</span>,<span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
-<span class="kw">lm</span>(PO4 ~<span class="st"> </span>oPO4, <span class="dt">data =</span> algae)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">28</span>, <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="fl">42.897</span> +<span class="st"> </span><span class="fl">1.293</span> *<span class="st"> </span>algae[<span class="dv">28</span>, <span class="st">&quot;oPO4&quot;</span>]</code></pre></div>
+algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
+<span class="kw">lm</span>(PO4 <span class="op">~</span><span class="st"> </span>oPO4, <span class="dt">data =</span> algae)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">28</span>, <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="fl">42.897</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.293</span> <span class="op">*</span><span class="st"> </span>algae[<span class="dv">28</span>, <span class="st">&quot;oPO4&quot;</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
-fillPO4 &lt;-<span class="st"> </span>function(oP) <span class="kw">ifelse</span>(<span class="kw">is.na</span>(oP),<span class="ot">NA</span>,<span class="fl">42.897</span> +<span class="st"> </span><span class="fl">1.293</span> *<span class="st"> </span>oP)
-algae[<span class="kw">is.na</span>(algae$PO4), <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="kw">sapply</span>(algae[<span class="kw">is.na</span>(algae$PO4), <span class="st">&quot;oPO4&quot;</span>], fillPO4)</code></pre></div>
+algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
+fillPO4 &lt;-<span class="st"> </span><span class="cf">function</span>(oP) <span class="kw">ifelse</span>(<span class="kw">is.na</span>(oP),<span class="ot">NA</span>,<span class="fl">42.897</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.293</span> <span class="op">*</span><span class="st"> </span>oP)
+algae[<span class="kw">is.na</span>(algae<span class="op">$</span>PO4), <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="kw">sapply</span>(algae[<span class="kw">is.na</span>(algae<span class="op">$</span>PO4), <span class="st">&quot;oPO4&quot;</span>], fillPO4)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(forcats)
 algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
                 <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
                 <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
                 <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))
-<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>season)</code></pre></div>
+<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2) 
 algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
                 <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
                 <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
                 <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))
-<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>season)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(size ~<span class="st"> </span>speed)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(~speed) +<span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~speed) +<span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
+<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(size <span class="op">~</span><span class="st"> </span>speed)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speed) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speed) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
 </div>
 <div id="filling-in-the-unknown-values-by-exploring-similarities-between-cases" class="section level4">
 <h4>Filling in the Unknown Values by Exploring Similarities between Cases</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]</code></pre></div>
+algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">meth =</span> <span class="st">&quot;median&quot;</span>)</code></pre></div>
 <!-- LinRegr.Rnw -->
@@ -581,12 +581,12 @@ algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae
 <div id="multiple-linear-regression" class="section level4">
 <h4>Multiple Linear Regression</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st">  </span>algae[-<span class="kw">manyNAs</span>(algae), ]
+algae &lt;-<span class="st">  </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
 clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lm.a1)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm2.a1 &lt;-<span class="st"> </span><span class="kw">update</span>(lm.a1, . ~<span class="st"> </span>. -<span class="st"> </span>season)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm2.a1 &lt;-<span class="st"> </span><span class="kw">update</span>(lm.a1, . <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>season)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lm2.a1)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm.a1,lm2.a1)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)</code></pre></div>
@@ -597,8 +597,8 @@ clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(
 <h4>Regression Trees</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart)
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) 
-algae &lt;-<span class="st"> </span>algae[-<span class="kw">manyNAs</span>(algae), ]
-rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
+algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
+rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rt.a1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
 <span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</code></pre></div>
@@ -607,8 +607,8 @@ rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">printcp</span>(rt.a1)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rt2.a1 &lt;-<span class="st"> </span><span class="kw">prune</span>(rt.a1, <span class="dt">cp =</span> <span class="fl">0.08</span>)
 rt2.a1</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(rt.a1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>]))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first.tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 ~<span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span>:<span class="dv">12</span>])
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(rt.a1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>]))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first.tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])
 <span class="kw">snip.rpart</span>(first.tree, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(first.tree)
 <span class="kw">text</span>(first.tree)
@@ -620,34 +620,34 @@ rt2.a1</code></pre></div>
 <h3>Model Evaluation and Selection</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(final.lm, clean.algae)
 rt.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(rt.a1, algae)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
-(mae.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(rt.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])^<span class="dv">2</span>))
-(mse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])^<span class="dv">2</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(nmse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>)/
-<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>))
-(nmse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>)/
-<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])-algae[[<span class="st">&#39;a1&#39;</span>]])^<span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
+(mae.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(rt.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])<span class="op">^</span><span class="dv">2</span>))
+(mse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(nmse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>
+<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>))
+(nmse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>
+<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lm.a1=</span>lm.predictions.a1,
                  <span class="dt">rt.a1=</span>rt.predictions.a1,
                  <span class="dt">true.a1=</span>algae[[<span class="st">&quot;a1&quot;</span>]])
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) +
-<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Linear Model&quot;</span>)
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) +
-<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) +
+<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]],<span class="dt">main=</span><span class="st">&quot;Linear Model&quot;</span>,
      <span class="dt">xlab=</span><span class="st">&quot;Predictions&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;True Values&quot;</span>)
 <span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
 algae[<span class="kw">identify</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]]),]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensible.lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(lm.predictions.a1 &lt;<span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, lm.predictions.a1)
-(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
-(smae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(sensible.lm.predictions.a1 -<span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensible.lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(lm.predictions.a1 <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, lm.predictions.a1)
+(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
+(smae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(sensible.lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
 res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-    <span class="kw">PredTask</span>(a1 ~<span class="st"> </span>., algae[, <span class="dv">1</span>:<span class="dv">12</span>], <span class="st">&quot;a1&quot;</span>),
+    <span class="kw">PredTask</span>(a1 <span class="op">~</span><span class="st"> </span>., algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>], <span class="st">&quot;a1&quot;</span>),
     <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>,<span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
       <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),
     <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>))
@@ -656,12 +656,12 @@ res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>( res ) </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;rpartXse.v1&quot;</span>, res)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DSs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(algae)[<span class="dv">12</span>:<span class="dv">18</span>],
-          function(x,names.attrs) { 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DSs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(algae)[<span class="dv">12</span><span class="op">:</span><span class="dv">18</span>],
+          <span class="cf">function</span>(x,names.attrs) { 
             f &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(x, <span class="st">&quot;~ .&quot;</span>))
             <span class="kw">PredTask</span>(f, algae[,<span class="kw">c</span>(names.attrs,x)], x, <span class="dt">copy=</span><span class="ot">TRUE</span>) 
           },
-          <span class="kw">names</span>(algae)[<span class="dv">1</span>:<span class="dv">11</span>])
+          <span class="kw">names</span>(algae)[<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>])
 res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
     DSs,
     <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>, <span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
@@ -681,32 +681,32 @@ res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</sp
     <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>)))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(res.all, <span class="dt">top=</span><span class="dv">3</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(res.all,<span class="dt">baseline=</span><span class="st">&quot;randomForest.v3&quot;</span>)
-p$nmse$F.test
-p$nmse$BonferroniDunn.test</code></pre></div>
+p<span class="op">$</span>nmse<span class="op">$</span>F.test
+p<span class="op">$</span>nmse<span class="op">$</span>BonferroniDunn.test</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CDdiagram.BD</span>(p)</code></pre></div>
 <!-- Preds.Rnw -->
 </div>
 <div id="predictions-for-the-seven-algae" class="section level3">
 <h3>Predictions for the Seven Algae</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wfs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">taskNames</span>(res.all),
-              function(t) <span class="kw">topPerformer</span>(res.all,<span class="dt">metric=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">task=</span>t))
+              <span class="cf">function</span>(t) <span class="kw">topPerformer</span>(res.all,<span class="dt">metric=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">task=</span>t))
 wfs[[<span class="st">&quot;a1&quot;</span>]]
 wfs[[<span class="st">&quot;a7&quot;</span>]]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.test.algae &lt;-<span class="st"> </span><span class="kw">cbind</span>(test.algae, algae.sols)
 pts &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">140</span>,<span class="dv">7</span>,<span class="dv">2</span>),
-             <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="dv">1</span>:<span class="dv">140</span>, <span class="kw">paste0</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">1</span>:<span class="dv">7</span>), <span class="kw">c</span>(<span class="st">&quot;trues&quot;</span>,<span class="st">&quot;preds&quot;</span>)))
-for(i in <span class="dv">1</span>:<span class="dv">7</span>) {
+             <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">140</span>, <span class="kw">paste0</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>), <span class="kw">c</span>(<span class="st">&quot;trues&quot;</span>,<span class="st">&quot;preds&quot;</span>)))
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>) {
     res &lt;-<span class="st"> </span><span class="kw">runWorkflow</span>(wfs[[i]],
                        <span class="kw">as.formula</span>(<span class="kw">paste</span>(<span class="kw">names</span>(wfs)[i],<span class="st">&quot;~.&quot;</span>)),
-                       algae[,<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">11</span>,<span class="dv">11</span>+i)],
-                       full.test.algae[,<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">11</span>,<span class="dv">11</span>+i)])
-    pts[,i,<span class="st">&quot;trues&quot;</span>] &lt;-<span class="st"> </span>res$trues
-    pts[,i,<span class="st">&quot;preds&quot;</span>] &lt;-<span class="st"> </span>res$preds
+                       algae[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>,<span class="dv">11</span><span class="op">+</span>i)],
+                       full.test.algae[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>,<span class="dv">11</span><span class="op">+</span>i)])
+    pts[,i,<span class="st">&quot;trues&quot;</span>] &lt;-<span class="st"> </span>res<span class="op">$</span>trues
+    pts[,i,<span class="st">&quot;preds&quot;</span>] &lt;-<span class="st"> </span>res<span class="op">$</span>preds
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pts[<span class="dv">1</span>:<span class="dv">3</span>,<span class="kw">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a3&quot;</span>),]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg.preds &lt;-<span class="st"> </span><span class="kw">apply</span>(algae[,<span class="dv">12</span>:<span class="dv">18</span>], <span class="dv">2</span>, mean)
-<span class="kw">apply</span>((pts[,,<span class="st">&quot;trues&quot;</span>] -<span class="st"> </span>pts[,,<span class="st">&quot;preds&quot;</span>])^<span class="dv">2</span>, <span class="dv">2</span> ,sum) /
-<span class="st">    </span><span class="kw">apply</span>( (<span class="kw">scale</span>(pts[,,<span class="st">&quot;trues&quot;</span>], avg.preds, <span class="ot">FALSE</span>))^<span class="dv">2</span>, <span class="dv">2</span>, sum)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pts[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a3&quot;</span>),]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg.preds &lt;-<span class="st"> </span><span class="kw">apply</span>(algae[,<span class="dv">12</span><span class="op">:</span><span class="dv">18</span>], <span class="dv">2</span>, mean)
+<span class="kw">apply</span>((pts[,,<span class="st">&quot;trues&quot;</span>] <span class="op">-</span><span class="st"> </span>pts[,,<span class="st">&quot;preds&quot;</span>])<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span> ,sum) <span class="op">/</span>
+<span class="st">    </span><span class="kw">apply</span>( (<span class="kw">scale</span>(pts[,,<span class="st">&quot;trues&quot;</span>], avg.preds, <span class="ot">FALSE</span>))<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, sum)</code></pre></div>
 </div>
 
 

@@ -6,4 +6,4 @@ output:
     toc_float: true
 ---
 
-No errors found yet!
+- page 280 (section 5.6): where you see `getWorkflow("svmRegr.v138",analysisSet)` it should be `getWorkflow("svmRegr.v138",allResults)`. Thank you Yee Sern Tan for spotting this error!

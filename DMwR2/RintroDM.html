@@ -456,7 +456,7 @@ con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(drv,<span cl
                  <span class="dt">host=</span><span class="st">&quot;localhost&quot;</span>)
 
 res  &lt;-<span class="st"> </span><span class="kw">dbSendQuery</span>(con,<span class="st">&quot;SELECT * FROM transactions&quot;</span>) 
-while (!<span class="kw">dbHasCompleted</span>(res)) {
+<span class="cf">while</span> (<span class="op">!</span><span class="kw">dbHasCompleted</span>(res)) {
     <span class="co"># get the next 50 records on a data frame</span>
     someData &lt;-<span class="st"> </span><span class="kw">fetch</span>(res, <span class="dt">n =</span> <span class="dv">50</span>)  
     <span class="co"># call some function that handles the current chunk</span>
@@ -471,8 +471,8 @@ while (!<span class="kw">dbHasCompleted</span>(res)) {
 dbConn &lt;-<span class="st"> </span><span class="kw">src_mysql</span>(<span class="st">&quot;sonae&quot;</span>,
                     <span class="dt">host=</span><span class="st">&quot;localhost&quot;</span>,<span class="dt">user=</span><span class="st">&quot;prodUser&quot;</span>,<span class="dt">password=</span><span class="st">&quot;myPassword&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensors &lt;-<span class="st"> </span><span class="kw">tbl</span>(dbConn,<span class="st">&quot;sensor_values&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensors %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">filter</span>(sid==<span class="dv">274</span>,value &gt;<span class="st"> </span><span class="dv">100</span>) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensors <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(sid<span class="op">==</span><span class="dv">274</span>,value <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">select</span>(time,value)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
@@ -490,13 +490,13 @@ std &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class
                   <span class="dt">skip=</span><span class="dv">1</span>, <span class="dt">col_names=</span><span class="kw">c</span>(<span class="st">&quot;StudentName&quot;</span>,<span class="st">&quot;Math&quot;</span>,<span class="st">&quot;English&quot;</span>))
 std</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
-stdL &lt;-<span class="st"> </span><span class="kw">gather</span>(std, Subject, Grade, Math:English)
+stdL &lt;-<span class="st"> </span><span class="kw">gather</span>(std, Subject, Grade, Math<span class="op">:</span>English)
 stdL</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spread</span>(stdL, Subject, Grade)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">std2 &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;stud2.txt&quot;</span>, <span class="dt">delim=</span><span class="st">&quot; &quot;</span>,
                    <span class="dt">skip=</span><span class="dv">1</span>, <span class="dt">col_names=</span><span class="kw">c</span>(<span class="st">&quot;StudentName&quot;</span>,<span class="st">&quot;Math&quot;</span>,<span class="st">&quot;English&quot;</span>,<span class="st">&quot;Degree_Year&quot;</span>))
 std2
-std2L &lt;-<span class="st"> </span><span class="kw">gather</span>(std2, Subject, Grade, Math:English)
+std2L &lt;-<span class="st"> </span><span class="kw">gather</span>(std2, Subject, Grade, Math<span class="op">:</span>English)
 std2L &lt;-<span class="st"> </span><span class="kw">separate</span>(std2L, Degree_Year, <span class="kw">c</span>(<span class="st">&quot;Degree&quot;</span>,<span class="st">&quot;Year&quot;</span>))
 std2L</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
@@ -528,48 +528,48 @@ data
 <span class="kw">dim</span>(data)
 ## Now reading the names file
 text &lt;-<span class="st"> </span><span class="kw">read_lines</span>(<span class="kw">url</span>(namesF))
-text[<span class="dv">1</span>:<span class="dv">3</span>]
+text[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
 <span class="kw">length</span>(text)
-text[<span class="dv">67</span>:<span class="dv">70</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nms &lt;-<span class="st"> </span><span class="kw">str_split_fixed</span>(text[<span class="dv">67</span>:<span class="dv">135</span>],<span class="st">&quot;:&quot;</span>,<span class="dt">n=</span><span class="dv">2</span>)[,<span class="dv">1</span>] <span class="co"># get the names</span>
-nms[<span class="dv">1</span>:<span class="dv">3</span>]
+text[<span class="dv">67</span><span class="op">:</span><span class="dv">70</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nms &lt;-<span class="st"> </span><span class="kw">str_split_fixed</span>(text[<span class="dv">67</span><span class="op">:</span><span class="dv">135</span>],<span class="st">&quot;:&quot;</span>,<span class="dt">n=</span><span class="dv">2</span>)[,<span class="dv">1</span>] <span class="co"># get the names</span>
+nms[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
 nms &lt;-<span class="st"> </span><span class="kw">str_trim</span>(nms) <span class="co"># trim white space</span>
-nms[<span class="dv">1</span>:<span class="dv">3</span>]
+nms[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
 nms &lt;-<span class="st"> </span><span class="kw">str_replace_all</span>(nms,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">(|</span><span class="ch">\\</span><span class="st">)&quot;</span>,<span class="st">&quot;&quot;</span>) <span class="co"># delete invalid chars.</span>
-nms[<span class="dv">1</span>:<span class="dv">3</span>]
-<span class="kw">colnames</span>(data)[<span class="dv">1</span>:<span class="dv">69</span>] &lt;-<span class="st"> </span>nms
-data[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
+nms[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
+<span class="kw">colnames</span>(data)[<span class="dv">1</span><span class="op">:</span><span class="dv">69</span>] &lt;-<span class="st"> </span>nms
+data[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat
-<span class="kw">class</span>(dat$Y)</code></pre></div>
+<span class="kw">class</span>(dat<span class="op">$</span>Y)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
-dat$Y &lt;-<span class="st"> </span><span class="kw">parse_integer</span>(dat$Y, <span class="dt">na=</span><span class="st">&quot;?&quot;</span>)
+dat<span class="op">$</span>Y &lt;-<span class="st"> </span><span class="kw">parse_integer</span>(dat<span class="op">$</span>Y, <span class="dt">na=</span><span class="st">&quot;?&quot;</span>)
 dat
-<span class="kw">class</span>(dat$Y)</code></pre></div>
+<span class="kw">class</span>(dat<span class="op">$</span>Y)</code></pre></div>
 </div>
 <div id="transforming-variables" class="section level4">
 <h4>Transforming Variables</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">data</span>(iris)
-iris.stand &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">scale</span>(<span class="kw">select</span>(iris,-Species)),<span class="kw">select</span>(iris,Species))
+iris.stand &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">scale</span>(<span class="kw">select</span>(iris,<span class="op">-</span>Species)),<span class="kw">select</span>(iris,Species))
 <span class="kw">summary</span>(iris.stand)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mxs &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">select</span>(iris,-Species), <span class="dv">2</span>, max, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-mns &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">select</span>(iris,-Species), <span class="dv">2</span>, min, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-iris.norm &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">scale</span>(<span class="kw">select</span>(iris,-Species), <span class="dt">center=</span>mns, <span class="dt">scale=</span>mxs-mns),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mxs &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">select</span>(iris,<span class="op">-</span>Species), <span class="dv">2</span>, max, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+mns &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">select</span>(iris,<span class="op">-</span>Species), <span class="dv">2</span>, min, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+iris.norm &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">scale</span>(<span class="kw">select</span>(iris,<span class="op">-</span>Species), <span class="dt">center=</span>mns, <span class="dt">scale=</span>mxs<span class="op">-</span>mns),
                    <span class="kw">select</span>(iris,Species))
 <span class="kw">summary</span>(iris.norm)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc) <span class="co"># for cut2()</span>
 <span class="kw">data</span>(Boston, <span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>) <span class="co"># loading the data</span>
-<span class="kw">summary</span>(Boston$age) <span class="co"># the numeric variable we are going to discretize</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Boston$newAge &lt;-<span class="st"> </span><span class="kw">cut</span>(Boston$age,<span class="dv">5</span>)
-<span class="kw">table</span>(Boston$newAge)
-Boston$newAge &lt;-<span class="st"> </span><span class="kw">cut</span>(Boston$age,<span class="dv">5</span>, <span class="co"># alternative using our own labels for the bins</span>
+<span class="kw">summary</span>(Boston<span class="op">$</span>age) <span class="co"># the numeric variable we are going to discretize</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Boston<span class="op">$</span>newAge &lt;-<span class="st"> </span><span class="kw">cut</span>(Boston<span class="op">$</span>age,<span class="dv">5</span>)
+<span class="kw">table</span>(Boston<span class="op">$</span>newAge)
+Boston<span class="op">$</span>newAge &lt;-<span class="st"> </span><span class="kw">cut</span>(Boston<span class="op">$</span>age,<span class="dv">5</span>, <span class="co"># alternative using our own labels for the bins</span>
                      <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;verynew&quot;</span>,<span class="st">&quot;new&quot;</span>,<span class="st">&quot;normal&quot;</span>,<span class="st">&quot;old&quot;</span>,<span class="st">&quot;veryold&quot;</span>))
-<span class="kw">table</span>(Boston$newAge)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Boston$newAge &lt;-<span class="st"> </span><span class="kw">cut2</span>(Boston$age, <span class="dt">g=</span><span class="dv">5</span>)
-<span class="kw">table</span>(Boston$newAge)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Boston$newAge &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut2</span>(Boston$age, <span class="dt">g=</span><span class="dv">5</span>),
+<span class="kw">table</span>(Boston<span class="op">$</span>newAge)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Boston<span class="op">$</span>newAge &lt;-<span class="st"> </span><span class="kw">cut2</span>(Boston<span class="op">$</span>age, <span class="dt">g=</span><span class="dv">5</span>)
+<span class="kw">table</span>(Boston<span class="op">$</span>newAge)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Boston<span class="op">$</span>newAge &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut2</span>(Boston<span class="op">$</span>age, <span class="dt">g=</span><span class="dv">5</span>),
                         <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;verynew&quot;</span>,<span class="st">&quot;new&quot;</span>,<span class="st">&quot;normal&quot;</span>,<span class="st">&quot;old&quot;</span>,<span class="st">&quot;veryold&quot;</span>))
-<span class="kw">table</span>(Boston$newAge)</code></pre></div>
+<span class="kw">table</span>(Boston<span class="op">$</span>newAge)</code></pre></div>
 </div>
 <div id="creating-variables" class="section level4">
 <h4>Creating Variables</h4>
@@ -587,16 +587,16 @@ sp500[<span class="st">&quot;2010-02-26/2010-03-01&quot;</span>]</code></pre></d
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xts)
 <span class="kw">data</span>(AirPassengers)
 ap &lt;-<span class="st"> </span><span class="kw">as.xts</span>(AirPassengers)
-apRel &lt;-<span class="st"> </span><span class="kw">diff</span>(ap)/ap[-<span class="kw">length</span>(ap)]</code></pre></div>
+apRel &lt;-<span class="st"> </span><span class="kw">diff</span>(ap)<span class="op">/</span>ap[<span class="op">-</span><span class="kw">length</span>(ap)]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ap)
 <span class="kw">head</span>(<span class="kw">embed</span>(ap,<span class="dv">4</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">createEmbedDS &lt;-<span class="st"> </span>function(s, <span class="dt">emb=</span><span class="dv">4</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">createEmbedDS &lt;-<span class="st"> </span><span class="cf">function</span>(s, <span class="dt">emb=</span><span class="dv">4</span>) {
     d &lt;-<span class="st"> </span><span class="kw">dim</span>(s)
-    if (!<span class="kw">is.null</span>(d) &amp;&amp;<span class="st"> </span>d[<span class="dv">2</span>] &gt;<span class="st"> </span><span class="dv">1</span>) <span class="kw">stop</span>(<span class="st">&quot;Only applicable to uni-variate time series&quot;</span>)
-    if (emb &lt;<span class="st"> </span><span class="dv">2</span> ||<span class="st"> </span>emb &gt;<span class="st"> </span><span class="kw">length</span>(s)) <span class="kw">stop</span>(<span class="st">&quot;Invalid embed size&quot;</span>)
+    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(d) <span class="op">&amp;&amp;</span><span class="st"> </span>d[<span class="dv">2</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">stop</span>(<span class="st">&quot;Only applicable to uni-variate time series&quot;</span>)
+    <span class="cf">if</span> (emb <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">||</span><span class="st"> </span>emb <span class="op">&gt;</span><span class="st"> </span><span class="kw">length</span>(s)) <span class="kw">stop</span>(<span class="st">&quot;Invalid embed size&quot;</span>)
     e &lt;-<span class="st"> </span><span class="kw">embed</span>(s,emb)
-    <span class="kw">colnames</span>(e) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>,<span class="kw">paste</span>(<span class="st">&quot;T&quot;</span>,<span class="dv">1</span>:(emb<span class="dv">-1</span>),<span class="dt">sep=</span><span class="st">&quot;_&quot;</span>))
-    if (<span class="kw">is.xts</span>(s)) <span class="kw">return</span>(<span class="kw">xts</span>(e,<span class="kw">index</span>(s)[emb:<span class="kw">length</span>(s)])) else <span class="kw">return</span>(e)
+    <span class="kw">colnames</span>(e) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>,<span class="kw">paste</span>(<span class="st">&quot;T&quot;</span>,<span class="dv">1</span><span class="op">:</span>(emb<span class="op">-</span><span class="dv">1</span>),<span class="dt">sep=</span><span class="st">&quot;_&quot;</span>))
+    <span class="cf">if</span> (<span class="kw">is.xts</span>(s)) <span class="kw">return</span>(<span class="kw">xts</span>(e,<span class="kw">index</span>(s)[emb<span class="op">:</span><span class="kw">length</span>(s)])) <span class="cf">else</span> <span class="kw">return</span>(e)
 }
 dataSet &lt;-<span class="st"> </span><span class="kw">createEmbedDS</span>(ap,<span class="dt">emb=</span><span class="dv">5</span>)
 <span class="kw">head</span>(dataSet)</code></pre></div>
@@ -611,32 +611,32 @@ coordRefSys &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span clas
 fires2000 &lt;-<span class="st"> </span><span class="kw">SpatialPointsDataFrame</span>(spatialCoords,
                                     firesData,
                                     <span class="dt">proj4string=</span>coordRefSys)
-fires2000[<span class="dv">1</span>:<span class="dv">3</span>,]</code></pre></div>
+fires2000[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bbox</span>(fires2000)
-<span class="kw">coordinates</span>(fires2000)[<span class="dv">1</span>:<span class="dv">3</span>,]
+<span class="kw">coordinates</span>(fires2000)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,]
 <span class="kw">summary</span>(fires2000)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
 <span class="kw">library</span>(tibble)
 mapPT &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="st">&quot;Portugal&quot;</span>,<span class="dt">zoom=</span><span class="dv">7</span>)
-d4plot &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">cbind</span>(<span class="kw">coordinates</span>(fires2000),<span class="dt">burnt=</span>fires2000$ano2000))
-<span class="kw">ggmap</span>(mapPT) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data=</span><span class="kw">filter</span>(d4plot, burnt==<span class="dv">1</span>),<span class="kw">aes</span>(<span class="dt">x=</span>long,<span class="dt">y=</span>lat),<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</code></pre></div>
+d4plot &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">cbind</span>(<span class="kw">coordinates</span>(fires2000),<span class="dt">burnt=</span>fires2000<span class="op">$</span>ano2000))
+<span class="kw">ggmap</span>(mapPT) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data=</span><span class="kw">filter</span>(d4plot, burnt<span class="op">==</span><span class="dv">1</span>),<span class="kw">aes</span>(<span class="dt">x=</span>long,<span class="dt">y=</span>lat),<span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tm)
 docs &lt;-<span class="st"> </span><span class="kw">Corpus</span>(<span class="kw">DirSource</span>(<span class="st">&quot;Documents&quot;</span>))
 docs</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">docs[[<span class="dv">2</span>]]
-<span class="kw">content</span>(docs[[<span class="dv">2</span>]])[<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">docs &lt;-<span class="st"> </span>docs %&gt;%
-<span class="st">        </span><span class="kw">tm_map</span>(removePunctuation) %&gt;%
-<span class="st">        </span><span class="kw">tm_map</span>(<span class="kw">content_transformer</span>(tolower)) %&gt;%
-<span class="st">        </span><span class="kw">tm_map</span>(removeNumbers) %&gt;%
-<span class="st">        </span><span class="kw">tm_map</span>(removeWords, <span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>)) %&gt;%
-<span class="st">        </span><span class="kw">tm_map</span>(stripWhitespace) %&gt;%
+<span class="kw">content</span>(docs[[<span class="dv">2</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">docs &lt;-<span class="st"> </span>docs <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">tm_map</span>(removePunctuation) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">tm_map</span>(<span class="kw">content_transformer</span>(tolower)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">tm_map</span>(removeNumbers) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">tm_map</span>(removeWords, <span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">tm_map</span>(stripWhitespace) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">tm_map</span>(stemDocument)
-<span class="kw">content</span>(docs[[<span class="dv">2</span>]])[<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
+<span class="kw">content</span>(docs[[<span class="dv">2</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">DocumentTermMatrix</span>(docs, <span class="dt">control=</span><span class="kw">list</span>(<span class="dt">weighting=</span>weightTfIdf))
 data
-<span class="kw">inspect</span>(data[<span class="dv">1</span>:<span class="dv">2</span>,<span class="dv">1</span>:<span class="dv">5</span>])</code></pre></div>
+<span class="kw">inspect</span>(data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">findFreqTerms</span>(data,<span class="fl">0.9</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">findAssocs</span>(data,<span class="st">&quot;race&quot;</span>,<span class="fl">0.5</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newData &lt;-<span class="st"> </span><span class="kw">removeSparseTerms</span>(data,<span class="fl">0.7</span>)
@@ -648,44 +648,44 @@ newData</code></pre></div>
 <h4>Dimensionality Reduction</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
 prop2sample &lt;-<span class="st"> </span><span class="fl">0.5</span>
-rowIDs &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(prop2sample*<span class="kw">nrow</span>(iris)))
+rowIDs &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(prop2sample<span class="op">*</span><span class="kw">nrow</span>(iris)))
 iris.sample &lt;-<span class="st"> </span>iris[rowIDs,]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
 prop2sample &lt;-<span class="st"> </span><span class="fl">0.5</span>
-rowIDs &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(prop2sample*<span class="kw">nrow</span>(iris)), <span class="dt">replace=</span><span class="ot">TRUE</span>)
+rowIDs &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(prop2sample<span class="op">*</span><span class="kw">nrow</span>(iris)), <span class="dt">replace=</span><span class="ot">TRUE</span>)
 iris.sample &lt;-<span class="st"> </span>iris[rowIDs,]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrLinesFile &lt;-<span class="st"> </span>function(f) {
-    if (.Platform$OS.type ==<span class="st"> &quot;unix&quot;</span>) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrLinesFile &lt;-<span class="st"> </span><span class="cf">function</span>(f) {
+    <span class="cf">if</span> (.Platform<span class="op">$</span>OS.type <span class="op">==</span><span class="st"> &quot;unix&quot;</span>) 
         <span class="kw">as.integer</span>(<span class="kw">strsplit</span>(<span class="kw">trimws</span>(<span class="kw">system</span>(<span class="kw">paste</span>(<span class="st">&quot;wc -l&quot;</span>,f),<span class="dt">intern=</span><span class="ot">TRUE</span>)),
                             <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]) 
-    else 
+    <span class="cf">else</span> 
         <span class="kw">stop</span>(<span class="st">&quot;This function requires unix-based systems&quot;</span>)
 }
 
-sampleCSV &lt;-<span class="st"> </span>function(file, percORn, nrLines, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">mxPerc=</span><span class="fl">0.5</span>) {
-    if (.Platform$OS.type !=<span class="st"> &quot;unix&quot;</span>) 
+sampleCSV &lt;-<span class="st"> </span><span class="cf">function</span>(file, percORn, nrLines, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">mxPerc=</span><span class="fl">0.5</span>) {
+    <span class="cf">if</span> (.Platform<span class="op">$</span>OS.type <span class="op">!=</span><span class="st"> &quot;unix&quot;</span>) 
         <span class="kw">stop</span>(<span class="st">&quot;This function requires unix-based systems&quot;</span>)
     <span class="kw">require</span>(readr, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
     
-    if (<span class="kw">missing</span>(nrLines)) nrLines &lt;-<span class="st"> </span><span class="kw">nrLinesFile</span>(file)
+    <span class="cf">if</span> (<span class="kw">missing</span>(nrLines)) nrLines &lt;-<span class="st"> </span><span class="kw">nrLinesFile</span>(file)
     
-    if (percORn &lt;<span class="st"> </span><span class="dv">1</span>)
-        if (percORn &gt;<span class="st"> </span>mxPerc) 
+    <span class="cf">if</span> (percORn <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)
+        <span class="cf">if</span> (percORn <span class="op">&gt;</span><span class="st"> </span>mxPerc) 
             <span class="kw">stop</span>(<span class="st">&quot;This function is not adequate for that big samples.&quot;</span>)
-        else percORn &lt;-<span class="st"> </span><span class="kw">as.integer</span>(percORn*nrLines)
-    perc &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">2</span>*percORn/nrLines, mxPerc)
+        <span class="cf">else</span> percORn &lt;-<span class="st"> </span><span class="kw">as.integer</span>(percORn<span class="op">*</span>nrLines)
+    perc &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">2</span><span class="op">*</span>percORn<span class="op">/</span>nrLines, mxPerc)
     
     <span class="kw">system</span>(<span class="kw">paste0</span>(<span class="st">&quot;perl -ne &#39;print if (rand() &lt; &quot;</span>,perc,<span class="st">&quot;)&#39; &quot;</span>,file,
                   <span class="st">&quot; &gt; &quot;</span>,file,<span class="st">&quot;.tmp.csv&quot;</span>))
     dt &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">paste0</span>(file,<span class="st">&quot;.tmp.csv&quot;</span>),<span class="dt">col_names=</span>header, <span class="dt">n_max=</span>percORn)
     <span class="kw">file.remove</span>(<span class="kw">paste0</span>(file,<span class="st">&quot;.tmp.csv&quot;</span>))
-    if (<span class="kw">nrow</span>(dt) !=<span class="st"> </span>percORn) 
+    <span class="cf">if</span> (<span class="kw">nrow</span>(dt) <span class="op">!=</span><span class="st"> </span>percORn) 
         <span class="kw">warning</span>(<span class="kw">paste</span>(<span class="st">&quot;Expecting&quot;</span>,percORn,<span class="st">&quot;rows, but got&quot;</span>,<span class="kw">nrow</span>(dt)))
     dt
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 d &lt;-<span class="st"> </span><span class="kw">sampleCSV</span>(<span class="st">&quot;allsensors.csv&quot;</span>, <span class="fl">0.01</span>)
-<span class="kw">Sys.time</span>()-t
+<span class="kw">Sys.time</span>()<span class="op">-</span>t
 <span class="kw">nrow</span>(d)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
 <span class="kw">library</span>(RMySQL)
@@ -693,45 +693,45 @@ drv &lt;-<span class="st"> </span><span class="kw">dbDriver</span>(<span class="
 con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(drv,<span class="dt">dbname=</span><span class="st">&quot;transDB&quot;</span>,  
                  <span class="dt">username=</span><span class="st">&quot;myuser&quot;</span>,<span class="dt">password=</span><span class="st">&quot;mypassword&quot;</span>,
                  <span class="dt">host=</span><span class="st">&quot;localhost&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sampleDBMS &lt;-<span class="st"> </span>function(dbConn, tbl, percORn, <span class="dt">mxPerc=</span><span class="fl">0.5</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sampleDBMS &lt;-<span class="st"> </span><span class="cf">function</span>(dbConn, tbl, percORn, <span class="dt">mxPerc=</span><span class="fl">0.5</span>) {
     nrRecords &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">dbGetQuery</span>(dbConn, <span class="kw">paste</span>(<span class="st">&quot;select count(*) from&quot;</span>,tbl)))
     
-    if (percORn &lt;<span class="st"> </span><span class="dv">1</span>)
-        if (percORn &gt;<span class="st"> </span>mxPerc) 
+    <span class="cf">if</span> (percORn <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)
+        <span class="cf">if</span> (percORn <span class="op">&gt;</span><span class="st"> </span>mxPerc) 
             <span class="kw">stop</span>(<span class="st">&quot;This function is not adequate for that big samples.&quot;</span>)
-        else percORn &lt;-<span class="st"> </span><span class="kw">as.integer</span>(percORn*nrRecords)
-    perc &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">2</span>*percORn/nrRecords, mxPerc)
+        <span class="cf">else</span> percORn &lt;-<span class="st"> </span><span class="kw">as.integer</span>(percORn<span class="op">*</span>nrRecords)
+    perc &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">2</span><span class="op">*</span>percORn<span class="op">/</span>nrRecords, mxPerc)
     
     dt &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(dbConn,<span class="kw">paste</span>(<span class="st">&quot;select * from (select * from&quot;</span>,tbl,
                                   <span class="st">&quot;where rand() &lt;= &quot;</span>,perc,<span class="st">&quot;) as t limit &quot;</span>,percORn))
-    if (<span class="kw">nrow</span>(dt) !=<span class="st"> </span>percORn) 
+    <span class="cf">if</span> (<span class="kw">nrow</span>(dt) <span class="op">!=</span><span class="st"> </span>percORn) 
         <span class="kw">warning</span>(<span class="kw">paste</span>(<span class="st">&quot;Expecting&quot;</span>,percORn,<span class="st">&quot;rows, but got&quot;</span>,<span class="kw">nrow</span>(dt)))
     dt
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t1 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 d &lt;-<span class="st"> </span><span class="kw">sampleDBMS</span>(con,<span class="st">&quot;sensor_values&quot;</span>,<span class="dv">10000</span>)
-<span class="kw">Sys.time</span>()-t1
+<span class="kw">Sys.time</span>()<span class="op">-</span>t1
 <span class="kw">nrow</span>(d)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbDisconnect</span>(con)  
 <span class="kw">dbUnloadDriver</span>(drv)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(CORElearn)
 <span class="kw">data</span>(iris)
-<span class="kw">attrEval</span>(Species ~<span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;GainRatio&quot;</span>)
-<span class="kw">attrEval</span>(Species ~<span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;InfGain&quot;</span>)
-<span class="kw">attrEval</span>(Species ~<span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;Gini&quot;</span>)
-<span class="kw">attrEval</span>(Species ~<span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;MDL&quot;</span>)</code></pre></div>
+<span class="kw">attrEval</span>(Species <span class="op">~</span><span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;GainRatio&quot;</span>)
+<span class="kw">attrEval</span>(Species <span class="op">~</span><span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;InfGain&quot;</span>)
+<span class="kw">attrEval</span>(Species <span class="op">~</span><span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;Gini&quot;</span>)
+<span class="kw">attrEval</span>(Species <span class="op">~</span><span class="st"> </span>., iris, <span class="dt">estimator=</span><span class="st">&quot;MDL&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">infoCore</span>(<span class="dt">what=</span><span class="st">&quot;attrEval&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package =</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">attrEval</span>(a1 ~<span class="st"> </span>., algae[,<span class="dv">1</span>:<span class="dv">12</span>], <span class="dt">estimator=</span><span class="st">&quot;MSEofMean&quot;</span>)
-<span class="kw">attrEval</span>(a1 ~<span class="st"> </span>., algae[,<span class="dv">1</span>:<span class="dv">12</span>], <span class="dt">estimator=</span><span class="st">&quot;RReliefFexpRank&quot;</span>)
+<span class="kw">attrEval</span>(a1 <span class="op">~</span><span class="st"> </span>., algae[,<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>], <span class="dt">estimator=</span><span class="st">&quot;MSEofMean&quot;</span>)
+<span class="kw">attrEval</span>(a1 <span class="op">~</span><span class="st"> </span>., algae[,<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>], <span class="dt">estimator=</span><span class="st">&quot;RReliefFexpRank&quot;</span>)
 <span class="kw">infoCore</span>(<span class="dt">what=</span><span class="st">&quot;attrEvalReg&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
-pca.data &lt;-<span class="st"> </span>iris[,-<span class="dv">5</span>] <span class="co"># each case is described by the first 4 variables</span>
+pca.data &lt;-<span class="st"> </span>iris[,<span class="op">-</span><span class="dv">5</span>] <span class="co"># each case is described by the first 4 variables</span>
 pca &lt;-<span class="st"> </span><span class="kw">princomp</span>(pca.data)
 <span class="kw">loadings</span>(pca)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca$scores[<span class="dv">1</span>:<span class="dv">5</span>,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca<span class="op">$</span>scores[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(iris)
-reduced.iris &lt;-<span class="st"> </span><span class="kw">data.frame</span>(pca$scores[,<span class="dv">1</span>:<span class="dv">2</span>],<span class="dt">Species=</span>iris$Species)
+reduced.iris &lt;-<span class="st"> </span><span class="kw">data.frame</span>(pca<span class="op">$</span>scores[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>],<span class="dt">Species=</span>iris<span class="op">$</span>Species)
 <span class="kw">dim</span>(reduced.iris)
 <span class="kw">head</span>(reduced.iris)</code></pre></div>
 <!-- modeling.Rnw -->
@@ -742,61 +742,61 @@ reduced.iris &lt;-<span class="st"> </span><span class="kw">data.frame</span>(pc
 <div id="exploratory-data-analysis" class="section level4">
 <h4>Exploratory Data Analysis</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae,<span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">mean</span>(algae$a1)
-<span class="kw">mean</span>(algae$NO3)
-<span class="kw">mean</span>(algae$NO3, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-<span class="kw">median</span>(algae$a3)
-<span class="kw">median</span>(algae$mxPH, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">mean</span>(algae<span class="op">$</span>a1)
+<span class="kw">mean</span>(algae<span class="op">$</span>NO3)
+<span class="kw">mean</span>(algae<span class="op">$</span>NO3, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">median</span>(algae<span class="op">$</span>a3)
+<span class="kw">median</span>(algae<span class="op">$</span>mxPH, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 alg &lt;-<span class="st"> </span><span class="kw">tbl_df</span>(algae)
 <span class="kw">summarise</span>(alg, <span class="dt">avgNO3=</span><span class="kw">mean</span>(NO3,<span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">medA1=</span><span class="kw">median</span>(a1))
-<span class="kw">select</span>(alg, mxPH:Cl) %&gt;%<span class="st">  </span>
+<span class="kw">select</span>(alg, mxPH<span class="op">:</span>Cl) <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">    </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="kw">mean</span>(.,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="kw">median</span>(.,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>(alg, season, size) %&gt;%<span class="st"> </span>
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">nObs=</span><span class="kw">n</span>(), <span class="dt">mA7=</span><span class="kw">median</span>(a7)) %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">ungroup</span>() %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mA7))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mode &lt;-<span class="st"> </span>function(x, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>) {
-  if(na.rm) x &lt;-<span class="st"> </span>x[!<span class="kw">is.na</span>(x)]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>(alg, season, size) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">nObs=</span><span class="kw">n</span>(), <span class="dt">mA7=</span><span class="kw">median</span>(a7)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mA7))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mode &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>) {
+  <span class="cf">if</span>(na.rm) x &lt;-<span class="st"> </span>x[<span class="op">!</span><span class="kw">is.na</span>(x)]
   ux &lt;-<span class="st"> </span><span class="kw">unique</span>(x)
   <span class="kw">return</span>(ux[<span class="kw">which.max</span>(<span class="kw">tabulate</span>(<span class="kw">match</span>(x, ux)))])
 }
-<span class="kw">Mode</span>(algae$mxPH, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-<span class="kw">Mode</span>(algae$season)</code></pre></div>
+<span class="kw">Mode</span>(algae<span class="op">$</span>mxPH, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">Mode</span>(algae<span class="op">$</span>season)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
-<span class="kw">centralValue</span>(algae$a1)
-<span class="kw">centralValue</span>(algae$speed)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(algae$a1)
-<span class="kw">sd</span>(algae$Cl, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-<span class="kw">IQR</span>(algae$mxPH, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-<span class="kw">quantile</span>(algae$a3)
-<span class="kw">quantile</span>(algae$a3, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>))
-<span class="kw">range</span>(algae$a1)
-<span class="kw">max</span>(algae$a5)-<span class="kw">min</span>(algae$a5)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(alg,a1:a7) %&gt;%<span class="st"> </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(var))</code></pre></div>
+<span class="kw">centralValue</span>(algae<span class="op">$</span>a1)
+<span class="kw">centralValue</span>(algae<span class="op">$</span>speed)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(algae<span class="op">$</span>a1)
+<span class="kw">sd</span>(algae<span class="op">$</span>Cl, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">IQR</span>(algae<span class="op">$</span>mxPH, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">quantile</span>(algae<span class="op">$</span>a3)
+<span class="kw">quantile</span>(algae<span class="op">$</span>a3, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>))
+<span class="kw">range</span>(algae<span class="op">$</span>a1)
+<span class="kw">max</span>(algae<span class="op">$</span>a5)<span class="op">-</span><span class="kw">min</span>(algae<span class="op">$</span>a5)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(alg,a1<span class="op">:</span>a7) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(var))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
-<span class="kw">group_by</span>(iris,Species) %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">qs=</span><span class="kw">quantile</span>(Sepal.Length))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(iris$Sepal.Length, <span class="kw">list</span>(<span class="dt">Species=</span>iris$Species), quantile)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(Sepal.Length ~<span class="st"> </span>Species, <span class="dt">data=</span>iris, quantile)</code></pre></div>
+<span class="kw">group_by</span>(iris,Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">qs=</span><span class="kw">quantile</span>(Sepal.Length))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(iris<span class="op">$</span>Sepal.Length, <span class="kw">list</span>(<span class="dt">Species=</span>iris<span class="op">$</span>Species), quantile)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data=</span>iris, quantile)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-nasRow &lt;-<span class="st"> </span><span class="kw">apply</span>(algae,<span class="dv">1</span>,function(r) <span class="kw">sum</span>(<span class="kw">is.na</span>(r)))
+nasRow &lt;-<span class="st"> </span><span class="kw">apply</span>(algae,<span class="dv">1</span>,<span class="cf">function</span>(r) <span class="kw">sum</span>(<span class="kw">is.na</span>(r)))
 <span class="kw">cat</span>(<span class="st">&quot;The Algae dataset contains &quot;</span>,<span class="kw">sum</span>(nasRow),<span class="st">&quot; NA values.</span><span class="ch">\n</span><span class="st">&quot;</span>)
-<span class="kw">cat</span>(<span class="st">&quot;There are &quot;</span>,<span class="kw">sum</span>(!<span class="kw">complete.cases</span>(algae)),
+<span class="kw">cat</span>(<span class="st">&quot;There are &quot;</span>,<span class="kw">sum</span>(<span class="op">!</span><span class="kw">complete.cases</span>(algae)),
     <span class="st">&quot; rows that have at least one NA value.</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bpRule &lt;-<span class="st"> </span>function(x, <span class="dt">const=</span><span class="fl">1.5</span>, <span class="dt">positions=</span><span class="ot">FALSE</span>) { 
-    x &lt;-<span class="st"> </span>x[!<span class="kw">is.na</span>(x)]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bpRule &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">const=</span><span class="fl">1.5</span>, <span class="dt">positions=</span><span class="ot">FALSE</span>) { 
+    x &lt;-<span class="st"> </span>x[<span class="op">!</span><span class="kw">is.na</span>(x)]
     qs &lt;-<span class="st"> </span><span class="kw">quantile</span>(x,<span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.75</span>))
-    iqr &lt;-<span class="st"> </span>qs[<span class="dv">2</span>]-qs[<span class="dv">1</span>]
-    if (!positions) x[x &lt;<span class="st"> </span>qs[<span class="dv">1</span>]-const*iqr |<span class="st"> </span>x &gt;<span class="st"> </span>qs[<span class="dv">2</span>]+const*iqr]
-    else <span class="kw">which</span>(x &lt;<span class="st"> </span>qs[<span class="dv">1</span>]-const*iqr |<span class="st"> </span>x &gt;<span class="st"> </span>qs[<span class="dv">2</span>]+const*iqr)
+    iqr &lt;-<span class="st"> </span>qs[<span class="dv">2</span>]<span class="op">-</span>qs[<span class="dv">1</span>]
+    <span class="cf">if</span> (<span class="op">!</span>positions) x[x <span class="op">&lt;</span><span class="st"> </span>qs[<span class="dv">1</span>]<span class="op">-</span>const<span class="op">*</span>iqr <span class="op">|</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span>qs[<span class="dv">2</span>]<span class="op">+</span>const<span class="op">*</span>iqr]
+    <span class="cf">else</span> <span class="kw">which</span>(x <span class="op">&lt;</span><span class="st"> </span>qs[<span class="dv">1</span>]<span class="op">-</span>const<span class="op">*</span>iqr <span class="op">|</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span>qs[<span class="dv">2</span>]<span class="op">+</span>const<span class="op">*</span>iqr)
 }
-<span class="kw">bpRule</span>(algae$a1)
-<span class="kw">bpRule</span>(algae$NO3)
-<span class="kw">bpRule</span>(algae$NO3, <span class="dt">positions=</span><span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">bpRule</span>(algae<span class="op">$</span>a1)
+<span class="kw">bpRule</span>(algae<span class="op">$</span>NO3)
+<span class="kw">bpRule</span>(algae<span class="op">$</span>NO3, <span class="dt">positions=</span><span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
 <span class="kw">summary</span>(iris)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)
 <span class="kw">describe</span>(iris)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">by</span>(algae[,<span class="dv">2</span>:<span class="dv">5</span>], algae$season,summary)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">by</span>(algae[,<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>], algae<span class="op">$</span>season,summary)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">sin</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">by=</span><span class="fl">0.1</span>)),<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">sin</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dt">by=</span><span class="fl">0.1</span>)),<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="st">&quot;myplot.pdf&quot;</span>)
@@ -807,151 +807,151 @@ nasRow &lt;-<span class="st"> </span><span class="kw">apply</span>(algae,<span c
 <span class="kw">dev.off</span>()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(iris)
-<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">y=</span>Petal.Width, <span class="dt">color=</span>Species)) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">4</span>)</code></pre></div>
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length, <span class="dt">y=</span>Petal.Width, <span class="dt">color=</span>Species)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">4</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
 ## Plot on the left (standard)
-freqOcc &lt;-<span class="st"> </span><span class="kw">table</span>(algae$season)
+freqOcc &lt;-<span class="st"> </span><span class="kw">table</span>(algae<span class="op">$</span>season)
 <span class="kw">barplot</span>(freqOcc,<span class="dt">main=</span><span class="st">&#39;Frequency of the Seasons&#39;</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>season)) +<span class="st"> </span><span class="kw">geom_bar</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Frequency of the Seasons&quot;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Frequency of the Seasons&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(grid)
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-freqOcc &lt;-<span class="st"> </span><span class="kw">table</span>(algae$season)
+freqOcc &lt;-<span class="st"> </span><span class="kw">table</span>(algae<span class="op">$</span>season)
 
-gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>season)) +<span class="st"> </span><span class="kw">geom_bar</span>() +<span class="st"> </span>
+gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Frequency of the Seasons&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>,<span class="st">&quot;npc&quot;</span>),<span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;npc&quot;</span>),
                <span class="dt">just=</span><span class="kw">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),<span class="dt">y=</span><span class="dv">1</span>,<span class="dt">x=</span><span class="fl">0.5</span>)
 <span class="kw">barplot</span>(freqOcc,<span class="dt">main=</span><span class="st">&#39;Frequency of the Seasons&#39;</span>)
 <span class="kw">print</span>(gh,<span class="dt">vp=</span>vp)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>season)) +<span class="st"> </span><span class="kw">geom_bar</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Frequency of the Seasons&quot;</span>) +<span class="st"> </span><span class="kw">coord_flip</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Frequency of the Seasons&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(iris)
 ## Plot on the left (standard)
-<span class="kw">hist</span>(iris$Petal.Length,<span class="dt">xlab=</span><span class="st">&#39;Petal Length&#39;</span>)
+<span class="kw">hist</span>(iris<span class="op">$</span>Petal.Length,<span class="dt">xlab=</span><span class="st">&#39;Petal Length&#39;</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length)) +<span class="st"> </span><span class="kw">geom_histogram</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Petal Length&quot;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Petal Length&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(grid)
 <span class="kw">data</span>(iris)
-g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length)) +<span class="st"> </span><span class="kw">geom_histogram</span>() +<span class="kw">xlab</span>(<span class="st">&quot;Petal Length&quot;</span>)
+g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="kw">xlab</span>(<span class="st">&quot;Petal Length&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>,<span class="st">&quot;npc&quot;</span>),<span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;npc&quot;</span>),
                <span class="dt">just=</span><span class="kw">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),<span class="dt">y=</span><span class="dv">1</span>,<span class="dt">x=</span><span class="fl">0.5</span>)
-<span class="kw">hist</span>(iris$Petal.Length,<span class="dt">xlab=</span><span class="st">&#39;Petal Length&#39;</span>)
+<span class="kw">hist</span>(iris<span class="op">$</span>Petal.Length,<span class="dt">xlab=</span><span class="st">&#39;Petal Length&#39;</span>)
 <span class="kw">print</span>(g,<span class="dt">vp=</span>vp)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(iris)
 ## Plot on the left (standard)
-<span class="kw">boxplot</span>(iris$Sepal.Width, <span class="dt">ylab=</span><span class="st">&#39;Sepal Width&#39;</span>)
+<span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Width, <span class="dt">ylab=</span><span class="st">&#39;Sepal Width&#39;</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>), <span class="dt">y=</span>Sepal.Width)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>())</code></pre></div>
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>), <span class="dt">y=</span>Sepal.Width)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>())</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(grid)
 <span class="kw">data</span>(iris)
-g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>Sepal.Width)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>())
+g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>Sepal.Width)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_blank</span>())
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>,<span class="st">&quot;npc&quot;</span>),<span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;npc&quot;</span>),
                <span class="dt">just=</span><span class="kw">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),<span class="dt">y=</span><span class="dv">1</span>,<span class="dt">x=</span><span class="fl">0.5</span>)
-<span class="kw">boxplot</span>(iris$Sepal.Width,<span class="dt">ylab=</span><span class="st">&#39;Sepal Width&#39;</span>)
+<span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Width,<span class="dt">ylab=</span><span class="st">&#39;Sepal Width&#39;</span>)
 <span class="kw">print</span>(g,<span class="dt">vp=</span>vp)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(iris)
 ## Plot on the left (standard)
-<span class="kw">boxplot</span>(Sepal.Length ~<span class="st"> </span>Species, iris, <span class="dt">ylab=</span><span class="st">&quot;Sepal.Length&quot;</span>)
+<span class="kw">boxplot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species, iris, <span class="dt">ylab=</span><span class="st">&quot;Sepal.Length&quot;</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Species,<span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Species,<span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(grid)
 <span class="kw">data</span>(iris)
-g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Species,<span class="dt">y=</span>Sepal.Length)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()
+g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Species,<span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>,<span class="st">&quot;npc&quot;</span>),<span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;npc&quot;</span>),
                <span class="dt">just=</span><span class="kw">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),<span class="dt">y=</span><span class="dv">1</span>,<span class="dt">x=</span><span class="fl">0.5</span>)
-<span class="kw">boxplot</span>(Sepal.Length ~<span class="st"> </span>Species, iris, <span class="dt">ylab=</span><span class="st">&quot;Sepal.Length&quot;</span>)
+<span class="kw">boxplot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species, iris, <span class="dt">ylab=</span><span class="st">&quot;Sepal.Length&quot;</span>)
 <span class="kw">print</span>(g,<span class="dt">vp=</span>vp)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>a1)) +<span class="st"> </span><span class="kw">geom_histogram</span>() +<span class="st"> </span><span class="kw">facet_grid</span>(size ~<span class="st"> </span>speed)</code></pre></div>
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(size <span class="op">~</span><span class="st"> </span>speed)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>a1)) +<span class="st"> </span><span class="kw">geom_histogram</span>() +<span class="st"> </span><span class="kw">facet_grid</span>(size ~<span class="st"> </span>speed)</code></pre></div>
+<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(size <span class="op">~</span><span class="st"> </span>speed)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(iris)
 ## Plot on the left (standard)
-<span class="kw">plot</span>(iris$Sepal.Length,iris$Sepal.Width,
+<span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length,iris<span class="op">$</span>Sepal.Width,
      <span class="dt">main=</span><span class="st">&quot;Relationship between Sepal Length and Width&quot;</span>, 
      <span class="dt">xlab=</span><span class="st">&quot;Sepal Length&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Sepal Width&quot;</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width)) +<span class="st"> </span><span class="kw">geom_point</span>() +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Sepal Length&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) +<span class="st"> </span>
+<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Sepal Length&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Relationship between Sepal Length and Width&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(grid)
 <span class="kw">data</span>(iris)
-g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width)) +<span class="st"> </span><span class="kw">geom_point</span>() +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Sepal Length&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) +<span class="st"> </span>
+g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Sepal Length&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sepal Width&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Relationship between Sepal Length and Width&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>,<span class="st">&quot;npc&quot;</span>),<span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;npc&quot;</span>),
                <span class="dt">just=</span><span class="kw">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),<span class="dt">y=</span><span class="dv">1</span>,<span class="dt">x=</span><span class="fl">0.5</span>)
-<span class="kw">plot</span>(iris$Sepal.Length,iris$Sepal.Width,
+<span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length,iris<span class="op">$</span>Sepal.Width,
      <span class="dt">main=</span><span class="st">&quot;Relationship between Sepal Length and Width&quot;</span>, 
      <span class="dt">xlab=</span><span class="st">&quot;Sepal Length&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Sepal Width&quot;</span>)
 <span class="kw">print</span>(g,<span class="dt">vp=</span>vp)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
 ## Plot on the left (standard)
-<span class="kw">plot</span>(algae$a1, algae$a2, <span class="dt">col=</span>algae$season,
+<span class="kw">plot</span>(algae<span class="op">$</span>a1, algae<span class="op">$</span>a2, <span class="dt">col=</span>algae<span class="op">$</span>season,
      <span class="dt">main=</span><span class="st">&quot;Relationship between A1 and A2 by Season&quot;</span>, 
      <span class="dt">xlab=</span><span class="st">&quot;A1&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;A2&quot;</span>)
-<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae$season),
-       <span class="dt">col=</span><span class="kw">palette</span>()[<span class="dv">1</span>:<span class="kw">nlevels</span>(algae$season)],<span class="dt">pch=</span><span class="dv">1</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae<span class="op">$</span>season),
+       <span class="dt">col=</span><span class="kw">palette</span>()[<span class="dv">1</span><span class="op">:</span><span class="kw">nlevels</span>(algae<span class="op">$</span>season)],<span class="dt">pch=</span><span class="dv">1</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">plot</span>(algae$a4, algae$a7, <span class="dt">pch=</span><span class="kw">as.integer</span>(algae$speed), 
+<span class="kw">plot</span>(algae<span class="op">$</span>a4, algae<span class="op">$</span>a7, <span class="dt">pch=</span><span class="kw">as.integer</span>(algae<span class="op">$</span>speed), 
      <span class="dt">main=</span><span class="st">&quot;Relationship between A4 and A7 by River Speed&quot;</span>, 
      <span class="dt">xlab=</span><span class="st">&quot;A4&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;A7&quot;</span>)
-<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae$speed),
-      <span class="dt">pch=</span><span class="dv">1</span>:<span class="kw">nlevels</span>(algae$season))</code></pre></div>
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae<span class="op">$</span>speed),
+      <span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="kw">nlevels</span>(algae<span class="op">$</span>season))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
 ## Plot on the left (standard)
-<span class="kw">plot</span>(algae$a1, algae$a2, <span class="dt">col=</span>algae$season,
+<span class="kw">plot</span>(algae<span class="op">$</span>a1, algae<span class="op">$</span>a2, <span class="dt">col=</span>algae<span class="op">$</span>season,
      <span class="dt">main=</span><span class="st">&quot;Relationship between A1 and A2 by Season&quot;</span>, 
      <span class="dt">xlab=</span><span class="st">&quot;A1&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;A2&quot;</span>)
-<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae$season),
-       <span class="dt">col=</span><span class="kw">palette</span>()[<span class="dv">1</span>:<span class="kw">nlevels</span>(algae$season)],<span class="dt">pch=</span><span class="dv">1</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae<span class="op">$</span>season),
+       <span class="dt">col=</span><span class="kw">palette</span>()[<span class="dv">1</span><span class="op">:</span><span class="kw">nlevels</span>(algae<span class="op">$</span>season)],<span class="dt">pch=</span><span class="dv">1</span>)
 ## Plot on the right (ggplot2)
-<span class="kw">plot</span>(algae$a4, algae$a7, <span class="dt">pch=</span><span class="kw">as.integer</span>(algae$speed), 
+<span class="kw">plot</span>(algae<span class="op">$</span>a4, algae<span class="op">$</span>a7, <span class="dt">pch=</span><span class="kw">as.integer</span>(algae<span class="op">$</span>speed), 
      <span class="dt">main=</span><span class="st">&quot;Relationship between A4 and A7 by River Speed&quot;</span>, 
      <span class="dt">xlab=</span><span class="st">&quot;A4&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;A7&quot;</span>)
-<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae$speed),
-      <span class="dt">pch=</span><span class="dv">1</span>:<span class="kw">nlevels</span>(algae$season))</code></pre></div>
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="dt">legend=</span><span class="kw">levels</span>(algae<span class="op">$</span>speed),
+      <span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="kw">nlevels</span>(algae<span class="op">$</span>season))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>a1,<span class="dt">y=</span>a2,<span class="dt">color=</span>season)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>season)</code></pre></div>
+<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>a1,<span class="dt">y=</span>a2,<span class="dt">color=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">pairs</span>(algae[,<span class="dv">12</span>:<span class="dv">16</span>])</code></pre></div>
+<span class="kw">pairs</span>(algae[,<span class="dv">12</span><span class="op">:</span><span class="dv">16</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">pairs</span>(algae[,<span class="dv">12</span>:<span class="dv">16</span>])</code></pre></div>
+<span class="kw">pairs</span>(algae[,<span class="dv">12</span><span class="op">:</span><span class="dv">16</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">12</span>:<span class="dv">16</span>)</code></pre></div>
+<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">12</span><span class="op">:</span><span class="dv">16</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">12</span>:<span class="dv">16</span>)</code></pre></div>
+<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">12</span><span class="op">:</span><span class="dv">16</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">2</span>:<span class="dv">5</span>)</code></pre></div>
+<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">2</span>:<span class="dv">5</span>)</code></pre></div>
+<span class="kw">ggpairs</span>(algae,<span class="dt">columns=</span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggparcoord</span>(algae,<span class="dt">columns=</span><span class="dv">12</span>:<span class="dv">18</span>,<span class="dt">groupColumn=</span><span class="st">&quot;season&quot;</span>)</code></pre></div>
+<span class="kw">ggparcoord</span>(algae,<span class="dt">columns=</span><span class="dv">12</span><span class="op">:</span><span class="dv">18</span>,<span class="dt">groupColumn=</span><span class="st">&quot;season&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">library</span>(dplyr)
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">ggparcoord</span>(algae,<span class="dt">columns=</span><span class="dv">12</span>:<span class="dv">18</span>,<span class="dt">groupColumn=</span><span class="st">&quot;season&quot;</span>)</code></pre></div>
+<span class="kw">ggparcoord</span>(algae,<span class="dt">columns=</span><span class="dv">12</span><span class="op">:</span><span class="dv">18</span>,<span class="dt">groupColumn=</span><span class="st">&quot;season&quot;</span>)</code></pre></div>
 </div>
 <div id="dependency-modeling-using-association-rules" class="section level4">
 <h4>Dependency Modeling using Association Rules</h4>
@@ -959,12 +959,12 @@ vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="d
 <span class="kw">library</span>(dplyr)
 <span class="kw">data</span>(Boston,<span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>)
 b &lt;-<span class="st"> </span>Boston
-b$chas &lt;-<span class="st"> </span><span class="kw">factor</span>(b$chas,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;river&quot;</span>,<span class="st">&quot;noriver&quot;</span>))
-b$rad &lt;-<span class="st"> </span><span class="kw">factor</span>(b$rad)
-b$black &lt;-<span class="st"> </span><span class="kw">cut</span>(b$black,<span class="dt">breaks=</span><span class="dv">4</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;&gt;31.5%&quot;</span>,<span class="st">&quot;18.5-31.5%&quot;</span>,<span class="st">&quot;8-18.5%&quot;</span>,<span class="st">&quot;&lt;8%&quot;</span>))
-discr &lt;-<span class="st"> </span>function(x) <span class="kw">cut</span>(x,<span class="dt">breaks=</span><span class="dv">4</span>, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medLow&quot;</span>,<span class="st">&quot;medHigh&quot;</span>,<span class="st">&quot;high&quot;</span>))
-b &lt;-<span class="st"> </span><span class="kw">select</span>(b,-<span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;chas&quot;</span>,<span class="st">&quot;rad&quot;</span>,<span class="st">&quot;black&quot;</span>))) %&gt;%<span class="st"> </span>
-<span class="st">     </span><span class="kw">mutate_each</span>(<span class="kw">funs</span>(discr)) %&gt;%<span class="st"> </span>
+b<span class="op">$</span>chas &lt;-<span class="st"> </span><span class="kw">factor</span>(b<span class="op">$</span>chas,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;river&quot;</span>,<span class="st">&quot;noriver&quot;</span>))
+b<span class="op">$</span>rad &lt;-<span class="st"> </span><span class="kw">factor</span>(b<span class="op">$</span>rad)
+b<span class="op">$</span>black &lt;-<span class="st"> </span><span class="kw">cut</span>(b<span class="op">$</span>black,<span class="dt">breaks=</span><span class="dv">4</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;&gt;31.5%&quot;</span>,<span class="st">&quot;18.5-31.5%&quot;</span>,<span class="st">&quot;8-18.5%&quot;</span>,<span class="st">&quot;&lt;8%&quot;</span>))
+discr &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">cut</span>(x,<span class="dt">breaks=</span><span class="dv">4</span>, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medLow&quot;</span>,<span class="st">&quot;medHigh&quot;</span>,<span class="st">&quot;high&quot;</span>))
+b &lt;-<span class="st"> </span><span class="kw">select</span>(b,<span class="op">-</span><span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;chas&quot;</span>,<span class="st">&quot;rad&quot;</span>,<span class="st">&quot;black&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">     </span><span class="kw">mutate_each</span>(<span class="kw">funs</span>(discr)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">     </span><span class="kw">bind_cols</span>(<span class="kw">select</span>(b,<span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;chas&quot;</span>,<span class="st">&quot;rad&quot;</span>,<span class="st">&quot;black&quot;</span>))))
 b &lt;-<span class="st"> </span><span class="kw">as</span>(b,<span class="st">&quot;transactions&quot;</span>)
 b</code></pre></div>
@@ -973,21 +973,21 @@ b</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">itemFrequencyPlot</span>(b, <span class="dt">support=</span><span class="fl">0.3</span>,<span class="dt">cex.names=</span><span class="fl">0.8</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ars &lt;-<span class="st"> </span><span class="kw">apriori</span>(b, <span class="dt">parameter=</span><span class="kw">list</span>(<span class="dt">support=</span><span class="fl">0.025</span>, <span class="dt">confidence=</span><span class="fl">0.75</span>))
 ars</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="kw">discr</span>(Boston$medv))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(<span class="kw">head</span>(<span class="kw">subset</span>(ars, <span class="dt">subset=</span>rhs %in%<span class="st"> &quot;medv=high&quot;</span>),<span class="dv">5</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(<span class="kw">head</span>(<span class="kw">subset</span>(ars, <span class="dt">subset=</span>rhs %in%<span class="st"> &quot;medv=low&quot;</span>),<span class="dv">5</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(<span class="kw">head</span>(<span class="kw">subset</span>(ars, <span class="dt">subset=</span>lhs %in%<span class="st"> &quot;nox=high&quot;</span> |<span class="st"> </span>rhs %in%<span class="st"> &quot;nox=high&quot;</span>),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="kw">discr</span>(Boston<span class="op">$</span>medv))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(<span class="kw">head</span>(<span class="kw">subset</span>(ars, <span class="dt">subset=</span>rhs <span class="op">%in%</span><span class="st"> &quot;medv=high&quot;</span>),<span class="dv">5</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(<span class="kw">head</span>(<span class="kw">subset</span>(ars, <span class="dt">subset=</span>rhs <span class="op">%in%</span><span class="st"> &quot;medv=low&quot;</span>),<span class="dv">5</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(<span class="kw">head</span>(<span class="kw">subset</span>(ars, <span class="dt">subset=</span>lhs <span class="op">%in%</span><span class="st"> &quot;nox=high&quot;</span> <span class="op">|</span><span class="st"> </span>rhs <span class="op">%in%</span><span class="st"> &quot;nox=high&quot;</span>),
              <span class="dv">5</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(arulesViz)
 <span class="kw">plot</span>(ars)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(arulesViz)
 <span class="kw">plot</span>(ars)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">somerules &lt;-<span class="st"> </span><span class="kw">subset</span>(ars,
-               <span class="dt">subset=</span>rhs %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;medv=high&quot;</span>,<span class="st">&quot;medv=medHigh&quot;</span>) &amp;<span class="st"> </span>confidence&gt;<span class="fl">0.75</span>)
+               <span class="dt">subset=</span>rhs <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;medv=high&quot;</span>,<span class="st">&quot;medv=medHigh&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>confidence<span class="op">&gt;</span><span class="fl">0.75</span>)
 <span class="kw">plot</span>(somerules, <span class="dt">method=</span><span class="st">&quot;matrix&quot;</span>, <span class="dt">measure=</span><span class="st">&quot;lift&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">somerules &lt;-<span class="st"> </span><span class="kw">subset</span>(ars,<span class="dt">subset=</span>rhs %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;medv=high&quot;</span>,<span class="st">&quot;medv=medHigh&quot;</span>) &amp;<span class="st"> </span>confidence&gt;<span class="fl">0.75</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">somerules &lt;-<span class="st"> </span><span class="kw">subset</span>(ars,<span class="dt">subset=</span>rhs <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;medv=high&quot;</span>,<span class="st">&quot;medv=medHigh&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>confidence<span class="op">&gt;</span><span class="fl">0.75</span>)
 <span class="kw">plot</span>(somerules, <span class="dt">method=</span><span class="st">&quot;matrix&quot;</span>, <span class="dt">measure=</span><span class="st">&quot;lift&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">somerules &lt;-<span class="st"> </span><span class="kw">subset</span>(ars, <span class="dt">subset=</span>rhs %in%<span class="st"> &quot;medv=high&quot;</span> &amp;<span class="st"> </span>confidence &gt;<span class="st"> </span><span class="fl">0.95</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">somerules &lt;-<span class="st"> </span><span class="kw">subset</span>(ars, <span class="dt">subset=</span>rhs <span class="op">%in%</span><span class="st"> &quot;medv=high&quot;</span> <span class="op">&amp;</span><span class="st"> </span>confidence <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.95</span>)
 <span class="kw">plot</span>(somerules, <span class="dt">method=</span><span class="st">&quot;graph&quot;</span>, <span class="dt">control=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;itemsets&quot;</span>))</code></pre></div>
 </div>
 <div id="clustering" class="section level4">
@@ -999,92 +999,92 @@ randDat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class
 <span class="kw">dist</span>(randDat, <span class="dt">method=</span><span class="st">&quot;minkowski&quot;</span>, <span class="dt">p=</span><span class="dv">4</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># setting a seed for the random number generator</span>
 <span class="kw">data</span>(iris)
-ir3 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[,-<span class="dv">5</span>], <span class="dt">centers=</span><span class="dv">3</span>, <span class="dt">iter.max=</span><span class="dv">200</span>) <span class="co"># not using Species info.</span>
+ir3 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">centers=</span><span class="dv">3</span>, <span class="dt">iter.max=</span><span class="dv">200</span>) <span class="co"># not using Species info.</span>
 ir3</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(ir3$cluster, iris$Species)
-cm &lt;-<span class="st"> </span><span class="kw">table</span>(ir3$cluster, iris$Species)
-<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(ir3<span class="op">$</span>cluster, iris<span class="op">$</span>Species)
+cm &lt;-<span class="st"> </span><span class="kw">table</span>(ir3<span class="op">$</span>cluster, iris<span class="op">$</span>Species)
+<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cluster)
-s &lt;-<span class="st"> </span><span class="kw">silhouette</span>(ir3$cluster, <span class="kw">dist</span>(iris[,-<span class="dv">5</span>]))</code></pre></div>
+s &lt;-<span class="st"> </span><span class="kw">silhouette</span>(ir3<span class="op">$</span>cluster, <span class="kw">dist</span>(iris[,<span class="op">-</span><span class="dv">5</span>]))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(s)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(s)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
-d &lt;-<span class="st"> </span><span class="kw">dist</span>(iris[,-<span class="dv">5</span>])
+d &lt;-<span class="st"> </span><span class="kw">dist</span>(iris[,<span class="op">-</span><span class="dv">5</span>])
 avgS &lt;-<span class="st"> </span><span class="kw">c</span>()
-for(k in <span class="dv">2</span>:<span class="dv">6</span>) {
-   cl &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[,-<span class="dv">5</span>],<span class="dt">centers=</span>k,<span class="dt">iter.max=</span><span class="dv">200</span>)
-   s &lt;-<span class="st"> </span><span class="kw">silhouette</span>(cl$cluster,d)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>) {
+   cl &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[,<span class="op">-</span><span class="dv">5</span>],<span class="dt">centers=</span>k,<span class="dt">iter.max=</span><span class="dv">200</span>)
+   s &lt;-<span class="st"> </span><span class="kw">silhouette</span>(cl<span class="op">$</span>cluster,d)
    avgS &lt;-<span class="st"> </span><span class="kw">c</span>(avgS,<span class="kw">mean</span>(s[,<span class="dv">3</span>]))
 }
-<span class="kw">data.frame</span>(<span class="dt">nClus=</span><span class="dv">2</span>:<span class="dv">6</span>,<span class="dt">Silh=</span>avgS)</code></pre></div>
+<span class="kw">data.frame</span>(<span class="dt">nClus=</span><span class="dv">2</span><span class="op">:</span><span class="dv">6</span>,<span class="dt">Silh=</span>avgS)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cluster)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-pc &lt;-<span class="st"> </span><span class="kw">pam</span>(iris[,-<span class="dv">5</span>],<span class="dt">k=</span><span class="dv">3</span>)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(pc$clustering, iris$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))
-pc$silinfo$avg.width</code></pre></div>
+pc &lt;-<span class="st"> </span><span class="kw">pam</span>(iris[,<span class="op">-</span><span class="dv">5</span>],<span class="dt">k=</span><span class="dv">3</span>)
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(pc<span class="op">$</span>clustering, iris<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))
+pc<span class="op">$</span>silinfo<span class="op">$</span>avg.width</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fpc)
 <span class="kw">data</span>(iris)
-sol &lt;-<span class="st"> </span><span class="kw">pamk</span>(iris[,-<span class="dv">5</span>], <span class="dt">krange=</span><span class="dv">2</span>:<span class="dv">10</span>, <span class="dt">criterion=</span><span class="st">&quot;asw&quot;</span>, <span class="dt">usepam=</span><span class="ot">TRUE</span>)
+sol &lt;-<span class="st"> </span><span class="kw">pamk</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">krange=</span><span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">criterion=</span><span class="st">&quot;asw&quot;</span>, <span class="dt">usepam=</span><span class="ot">TRUE</span>)
 sol</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">scale</span>(iris[,-<span class="dv">5</span>]))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">scale</span>(iris[,<span class="op">-</span><span class="dv">5</span>]))
 h &lt;-<span class="st"> </span><span class="kw">hclust</span>(d)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span>-<span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.5</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span>-<span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span><span class="op">-</span><span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span><span class="op">-</span><span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.4</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clus3 &lt;-<span class="st"> </span><span class="kw">cutree</span>(h, <span class="dv">3</span>)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(clus3, iris$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span>-<span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.5</span>)
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(clus3, iris<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span><span class="op">-</span><span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.5</span>)
 <span class="kw">rect.hclust</span>(h,<span class="dt">k=</span><span class="dv">3</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span>-<span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.4</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(h,<span class="dt">hang=</span><span class="op">-</span><span class="fl">0.1</span>,<span class="dt">labels=</span>iris[[<span class="st">&quot;Species&quot;</span>]],<span class="dt">cex=</span><span class="fl">0.4</span>)
 <span class="kw">rect.hclust</span>(h,<span class="dt">k=</span><span class="dv">3</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
-d &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">scale</span>(iris[,-<span class="dv">5</span>]))
+d &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">scale</span>(iris[,<span class="op">-</span><span class="dv">5</span>]))
 methds &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;complete&#39;</span>,<span class="st">&#39;single&#39;</span>,<span class="st">&#39;average&#39;</span>)
 avgS &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dt">ncol=</span><span class="dv">3</span>,<span class="dt">nrow=</span><span class="dv">5</span>,
-               <span class="dt">dimnames=</span><span class="kw">list</span>(<span class="dv">2</span>:<span class="dv">6</span>,methds))
-for(k in <span class="dv">2</span>:<span class="dv">6</span>) 
-  for(m in <span class="kw">seq_along</span>(methds)) {
+               <span class="dt">dimnames=</span><span class="kw">list</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>,methds))
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>) 
+  <span class="cf">for</span>(m <span class="cf">in</span> <span class="kw">seq_along</span>(methds)) {
     h &lt;-<span class="st"> </span><span class="kw">hclust</span>(d,<span class="dt">meth=</span>methds[m])
     c &lt;-<span class="st"> </span><span class="kw">cutree</span>(h,k)
     s &lt;-<span class="st"> </span><span class="kw">silhouette</span>(c,d)
-    avgS[k<span class="dv">-1</span>,m] &lt;-<span class="st"> </span><span class="kw">mean</span>(s[,<span class="dv">3</span>])
+    avgS[k<span class="op">-</span><span class="dv">1</span>,m] &lt;-<span class="st"> </span><span class="kw">mean</span>(s[,<span class="dv">3</span>])
   }
 avgS</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">di &lt;-<span class="st"> </span><span class="kw">diana</span>(iris[,-<span class="dv">5</span>], <span class="dt">metric=</span><span class="st">&#39;euclidean&#39;</span>, <span class="dt">stand=</span><span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">di &lt;-<span class="st"> </span><span class="kw">diana</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">metric=</span><span class="st">&#39;euclidean&#39;</span>, <span class="dt">stand=</span><span class="ot">TRUE</span>)
 di3 &lt;-<span class="st"> </span><span class="kw">cutree</span>(di, <span class="dv">3</span>)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(di3, iris$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))</code></pre></div>
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(di3, iris<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cm &lt;-<span class="st"> </span>cm[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>),]
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))</code></pre></div>
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fpc)
-d &lt;-<span class="st"> </span><span class="kw">scale</span>(iris[,-<span class="dv">5</span>])
+d &lt;-<span class="st"> </span><span class="kw">scale</span>(iris[,<span class="op">-</span><span class="dv">5</span>])
 db &lt;-<span class="st"> </span><span class="kw">dbscan</span>(d, <span class="dt">eps=</span><span class="fl">0.9</span>, <span class="dt">MinPts=</span><span class="dv">5</span>)
 db
-<span class="kw">table</span>(db$cluster,iris$Species)</code></pre></div>
+<span class="kw">table</span>(db<span class="op">$</span>cluster,iris<span class="op">$</span>Species)</code></pre></div>
 </div>
 <div id="anomaly-detection" class="section level4">
 <h4>Anomaly Detection</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grubbs.outliers &lt;-<span class="st"> </span>function(x, <span class="dt">p.thresh=</span><span class="fl">0.05</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grubbs.outliers &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">p.thresh=</span><span class="fl">0.05</span>) {
     <span class="kw">require</span>(outliers, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
-    x &lt;-<span class="st"> </span>x[!<span class="kw">is.na</span>(x)]
+    x &lt;-<span class="st"> </span>x[<span class="op">!</span><span class="kw">is.na</span>(x)]
     n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
-    zs &lt;-<span class="st"> </span><span class="kw">abs</span>(x -<span class="st"> </span><span class="kw">mean</span>(x)) /<span class="st"> </span><span class="kw">sd</span>(x)
-    outs &lt;-<span class="st"> </span><span class="dv">1</span> -<span class="st"> </span><span class="kw">sapply</span>(zs, function(z) <span class="kw">pgrubbs</span>(z, n, <span class="dt">type=</span><span class="dv">10</span>))
-    posOuts &lt;-<span class="st"> </span><span class="kw">which</span>(outs &lt;=<span class="st"> </span>p.thresh)
+    zs &lt;-<span class="st"> </span><span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(x)
+    outs &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">sapply</span>(zs, <span class="cf">function</span>(z) <span class="kw">pgrubbs</span>(z, n, <span class="dt">type=</span><span class="dv">10</span>))
+    posOuts &lt;-<span class="st"> </span><span class="kw">which</span>(outs <span class="op">&lt;=</span><span class="st"> </span>p.thresh)
     <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">zs=</span>zs, 
                 <span class="dt">pvals=</span>outs, 
                 <span class="dt">outliers=</span>x[posOuts],
                 <span class="dt">positions=</span>posOuts))
 }
 <span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">grubbs.outliers</span>(algae$a2)$outliers</code></pre></div>
+<span class="kw">grubbs.outliers</span>(algae<span class="op">$</span>a2)<span class="op">$</span>outliers</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">table</span>(algae$season)/<span class="kw">length</span>(algae$season)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dbscan.outliers &lt;-<span class="st"> </span>function(data, ...) {
+<span class="kw">table</span>(algae<span class="op">$</span>season)<span class="op">/</span><span class="kw">length</span>(algae<span class="op">$</span>season)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dbscan.outliers &lt;-<span class="st"> </span><span class="cf">function</span>(data, ...) {
     <span class="kw">require</span>(fpc, <span class="dt">quietly=</span><span class="ot">TRUE</span>)
     cl &lt;-<span class="st"> </span><span class="kw">dbscan</span>(data, ...)
-    posOuts &lt;-<span class="st"> </span><span class="kw">which</span>(cl$cluster ==<span class="st"> </span><span class="dv">0</span>)
+    posOuts &lt;-<span class="st"> </span><span class="kw">which</span>(cl<span class="op">$</span>cluster <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
     <span class="kw">list</span>(<span class="dt">positions =</span> posOuts,
          <span class="dt">outliers =</span> data[posOuts,], 
          <span class="dt">dbscanResults =</span> cl)
@@ -1099,44 +1099,44 @@ g &lt;-<span class="st"> </span><span class="kw">mutate</span>(Glass,
                               <span class="dt">normal =</span> <span class="kw">as.character</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>))
                               )
             )
-g %&gt;%<span class="st"> </span><span class="kw">count</span>(Type) %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">prop=</span><span class="dv">100</span>*n/<span class="kw">nrow</span>(g))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outs &lt;-<span class="st"> </span><span class="kw">dbscan.outliers</span>(g[,-<span class="dv">10</span>], <span class="dt">eps=</span><span class="dv">1</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)
-<span class="kw">head</span>(outs$outliers)
-<span class="kw">nrow</span>(outs$outliers)
-<span class="kw">slice</span>(g, outs$positions) %&gt;%<span class="st">  </span><span class="kw">count</span>(Type)
+g <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Type) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">prop=</span><span class="dv">100</span><span class="op">*</span>n<span class="op">/</span><span class="kw">nrow</span>(g))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outs &lt;-<span class="st"> </span><span class="kw">dbscan.outliers</span>(g[,<span class="op">-</span><span class="dv">10</span>], <span class="dt">eps=</span><span class="dv">1</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)
+<span class="kw">head</span>(outs<span class="op">$</span>outliers)
+<span class="kw">nrow</span>(outs<span class="op">$</span>outliers)
+<span class="kw">slice</span>(g, outs<span class="op">$</span>positions) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">count</span>(Type)
 <span class="kw">count</span>(g, Type)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
 <span class="kw">library</span>(dplyr)
-og &lt;-<span class="st"> </span><span class="kw">outliers.ranking</span>(<span class="kw">select</span>(g, -Type))
-<span class="kw">slice</span>(g, og$rank.outliers[<span class="dv">1</span>:<span class="dv">40</span>]) %&gt;%<span class="st">  </span><span class="kw">count</span>(Type)</code></pre></div>
+og &lt;-<span class="st"> </span><span class="kw">outliers.ranking</span>(<span class="kw">select</span>(g, <span class="op">-</span>Type))
+<span class="kw">slice</span>(g, og<span class="op">$</span>rank.outliers[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>]) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">count</span>(Type)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
 <span class="kw">library</span>(dplyr)
-lof.scores &lt;-<span class="st"> </span><span class="kw">lofactor</span>(<span class="kw">select</span>(g, -Type),<span class="dv">10</span>)
-<span class="kw">slice</span>(g, <span class="kw">order</span>(lof.scores,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)[<span class="dv">1</span>:<span class="dv">40</span>]) %&gt;%<span class="st">  </span><span class="kw">count</span>(Type)</code></pre></div>
+lof.scores &lt;-<span class="st"> </span><span class="kw">lofactor</span>(<span class="kw">select</span>(g, <span class="op">-</span>Type),<span class="dv">10</span>)
+<span class="kw">slice</span>(g, <span class="kw">order</span>(lof.scores,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>]) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">count</span>(Type)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(UBL)
 <span class="kw">library</span>(dplyr)
 <span class="kw">count</span>(g,Type)
 ## Undersampling the largest class
-newg &lt;-<span class="st"> </span><span class="kw">RandUnderClassif</span>(Type ~<span class="st"> </span>., g)
+newg &lt;-<span class="st"> </span><span class="kw">RandUnderClassif</span>(Type <span class="op">~</span><span class="st"> </span>., g)
 <span class="kw">count</span>(newg,Type)
 ## Now specifying the degree of undersampling by hand
-newg2 &lt;-<span class="st"> </span><span class="kw">RandUnderClassif</span>(Type ~<span class="st"> </span>., g, <span class="kw">list</span>(<span class="dt">normal=</span><span class="fl">0.4</span>, <span class="dt">rare=</span><span class="dv">1</span>))
+newg2 &lt;-<span class="st"> </span><span class="kw">RandUnderClassif</span>(Type <span class="op">~</span><span class="st"> </span>., g, <span class="kw">list</span>(<span class="dt">normal=</span><span class="fl">0.4</span>, <span class="dt">rare=</span><span class="dv">1</span>))
 <span class="kw">count</span>(newg2,Type)
 ## Oversampling the minority class
-newg3 &lt;-<span class="st"> </span><span class="kw">RandOverClassif</span>(Type ~<span class="st"> </span>.,g)
+newg3 &lt;-<span class="st"> </span><span class="kw">RandOverClassif</span>(Type <span class="op">~</span><span class="st"> </span>.,g)
 <span class="kw">count</span>(newg3,Type)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(e1071)
-trainD &lt;-<span class="st"> </span><span class="kw">filter</span>(g, Type ==<span class="st"> &quot;normal&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span>(-Type) 
+trainD &lt;-<span class="st"> </span><span class="kw">filter</span>(g, Type <span class="op">==</span><span class="st"> &quot;normal&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Type) 
 s &lt;-<span class="st"> </span><span class="kw">svm</span>(trainD, <span class="dt">y=</span><span class="ot">NULL</span>, <span class="dt">type=</span><span class="st">&quot;one-classification&quot;</span>, <span class="dt">nu=</span><span class="fl">0.5</span>)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(g$Type, <span class="kw">predict</span>(s,<span class="kw">select</span>(g, -Type))))</code></pre></div>
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(g<span class="op">$</span>Type, <span class="kw">predict</span>(s,<span class="kw">select</span>(g, <span class="op">-</span>Type))))</code></pre></div>
 </div>
 <div id="predictive-analytics" class="section level4">
 <h4>Predictive Analytics</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
 <span class="kw">data</span>(iris)
-ct1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species ~<span class="st"> </span>., iris)
-ct2 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species ~<span class="st"> </span>., iris, <span class="dt">se=</span><span class="dv">0</span>)</code></pre></div>
+ct1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species <span class="op">~</span><span class="st"> </span>., iris)
+ct2 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species <span class="op">~</span><span class="st"> </span>., iris, <span class="dt">se=</span><span class="dv">0</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
 <span class="kw">prp</span>(ct1, <span class="dt">type=</span><span class="dv">0</span>, <span class="dt">extra=</span><span class="dv">101</span>)  <span class="co"># left tree</span>
 <span class="kw">prp</span>(ct2, <span class="dt">type=</span><span class="dv">0</span>, <span class="dt">extra=</span><span class="dv">101</span>)  <span class="co"># right tree</span></code></pre></div>
@@ -1146,162 +1146,162 @@ ct2 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species ~<spa
 <span class="kw">prp</span>(ct2,<span class="dt">type=</span><span class="dv">0</span>,<span class="dt">extra=</span><span class="dv">101</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris),<span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris),<span class="dv">100</span>)
 tr &lt;-<span class="st"> </span>iris[rndSample, ]
-ts &lt;-<span class="st"> </span>iris[-rndSample, ]
-ct &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species ~<span class="st"> </span>., tr, <span class="dt">se=</span><span class="fl">0.5</span>)
+ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>rndSample, ]
+ct &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(Species <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">se=</span><span class="fl">0.5</span>)
 ps1 &lt;-<span class="st"> </span><span class="kw">predict</span>(ct, ts)
 <span class="kw">head</span>(ps1)
 ps2 &lt;-<span class="st"> </span><span class="kw">predict</span>(ct, ts, <span class="dt">type=</span><span class="st">&quot;class&quot;</span>)
 <span class="kw">head</span>(ps2)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps2, ts$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps2, ts<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(e1071)
 <span class="kw">data</span>(iris)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="dv">100</span>)
 tr &lt;-<span class="st"> </span>iris[rndSample, ]
-ts &lt;-<span class="st"> </span>iris[-rndSample, ]
-s &lt;-<span class="st"> </span><span class="kw">svm</span>(Species ~<span class="st"> </span>., tr)
+ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>rndSample, ]
+s &lt;-<span class="st"> </span><span class="kw">svm</span>(Species <span class="op">~</span><span class="st"> </span>., tr)
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(s, ts)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s2 &lt;-<span class="st"> </span><span class="kw">svm</span>(Species ~<span class="st"> </span>., tr, <span class="dt">cost=</span><span class="dv">10</span>, <span class="dt">kernel=</span><span class="st">&quot;polynomial&quot;</span>, <span class="dt">degree=</span><span class="dv">3</span>)
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s2 &lt;-<span class="st"> </span><span class="kw">svm</span>(Species <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">cost=</span><span class="dv">10</span>, <span class="dt">kernel=</span><span class="st">&quot;polynomial&quot;</span>, <span class="dt">degree=</span><span class="dv">3</span>)
 ps2 &lt;-<span class="st"> </span><span class="kw">predict</span>(s2, ts)
-(cm2 &lt;-<span class="st"> </span><span class="kw">table</span>(ps2, ts$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm2))/<span class="kw">sum</span>(cm2))  <span class="co"># the error rate</span></code></pre></div>
+(cm2 &lt;-<span class="st"> </span><span class="kw">table</span>(ps2, ts<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm2))<span class="op">/</span><span class="kw">sum</span>(cm2))  <span class="co"># the error rate</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Boston,<span class="dt">package=</span><span class="st">&#39;MASS&#39;</span>)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
+sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
 tr &lt;-<span class="st"> </span>Boston[sp,]
-ts &lt;-<span class="st"> </span>Boston[-sp,]
-s1 &lt;-<span class="st"> </span><span class="kw">svm</span>(medv ~<span class="st"> </span>., tr)
+ts &lt;-<span class="st"> </span>Boston[<span class="op">-</span>sp,]
+s1 &lt;-<span class="st"> </span><span class="kw">svm</span>(medv <span class="op">~</span><span class="st"> </span>., tr)
 ps1 &lt;-<span class="st"> </span><span class="kw">predict</span>(s1, ts)
-<span class="kw">mean</span>(<span class="kw">abs</span>(ps1-ts$medv))
-s2 &lt;-<span class="st"> </span><span class="kw">svm</span>(medv ~<span class="st"> </span>., tr, <span class="dt">kernel=</span><span class="st">&quot;radial&quot;</span>, <span class="dt">cost=</span><span class="dv">10</span>, <span class="dt">epsilon=</span><span class="fl">0.02</span>, <span class="dt">gamma=</span><span class="fl">0.01</span>)
+<span class="kw">mean</span>(<span class="kw">abs</span>(ps1<span class="op">-</span>ts<span class="op">$</span>medv))
+s2 &lt;-<span class="st"> </span><span class="kw">svm</span>(medv <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">kernel=</span><span class="st">&quot;radial&quot;</span>, <span class="dt">cost=</span><span class="dv">10</span>, <span class="dt">epsilon=</span><span class="fl">0.02</span>, <span class="dt">gamma=</span><span class="fl">0.01</span>)
 ps2 &lt;-<span class="st"> </span><span class="kw">predict</span>(s2, ts)
-<span class="kw">mean</span>(<span class="kw">abs</span>(ps2-ts$medv))</code></pre></div>
+<span class="kw">mean</span>(<span class="kw">abs</span>(ps2<span class="op">-</span>ts<span class="op">$</span>medv))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nnet)
 <span class="kw">data</span>(iris)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="dv">100</span>)
 tr &lt;-<span class="st"> </span>iris[rndSample, ]
-ts &lt;-<span class="st"> </span>iris[-rndSample, ]
-n &lt;-<span class="st"> </span><span class="kw">nnet</span>(Species ~<span class="st"> </span>., tr, <span class="dt">size=</span><span class="dv">6</span> ,<span class="dt">trace=</span><span class="ot">FALSE</span>, <span class="dt">maxit=</span><span class="dv">1000</span>)
+ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>rndSample, ]
+n &lt;-<span class="st"> </span><span class="kw">nnet</span>(Species <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">size=</span><span class="dv">6</span> ,<span class="dt">trace=</span><span class="ot">FALSE</span>, <span class="dt">maxit=</span><span class="dv">1000</span>)
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(n, ts, <span class="dt">type=</span><span class="st">&quot;class&quot;</span>)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Boston,<span class="dt">package=</span><span class="st">&#39;MASS&#39;</span>)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
+sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
 tr &lt;-<span class="st"> </span>Boston[sp,]
-ts &lt;-<span class="st"> </span>Boston[-sp,]
-nr &lt;-<span class="st"> </span><span class="kw">nnet</span>(medv ~<span class="st"> </span>., tr, <span class="dt">linout=</span><span class="ot">TRUE</span>, <span class="dt">trace=</span><span class="ot">FALSE</span>, <span class="dt">size=</span><span class="dv">6</span>, <span class="dt">decay=</span><span class="fl">0.01</span>, <span class="dt">maxit=</span><span class="dv">2000</span>)
+ts &lt;-<span class="st"> </span>Boston[<span class="op">-</span>sp,]
+nr &lt;-<span class="st"> </span><span class="kw">nnet</span>(medv <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">linout=</span><span class="ot">TRUE</span>, <span class="dt">trace=</span><span class="ot">FALSE</span>, <span class="dt">size=</span><span class="dv">6</span>, <span class="dt">decay=</span><span class="fl">0.01</span>, <span class="dt">maxit=</span><span class="dv">2000</span>)
 psnr &lt;-<span class="st"> </span><span class="kw">predict</span>(nr, ts)
-<span class="kw">mean</span>(<span class="kw">abs</span>(psnr-ts$medv))</code></pre></div>
+<span class="kw">mean</span>(<span class="kw">abs</span>(psnr<span class="op">-</span>ts<span class="op">$</span>medv))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(NeuralNetTools)
 ## Feature importance (left graph)
-<span class="kw">garson</span>(nr) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) 
+<span class="kw">garson</span>(nr) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) 
 ## Network diagram (rigth graph)
 <span class="kw">plotnet</span>(nr)    </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(h2o)
 h2oInstance &lt;-<span class="st"> </span><span class="kw">h2o.init</span>(<span class="dt">ip=</span><span class="st">&quot;localhost&quot;</span>)  <span class="co"># start H2O instance locally</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="dv">100</span>)
 trH  &lt;-<span class="st"> </span><span class="kw">as.h2o</span>(iris[rndSample, ],<span class="st">&quot;trH&quot;</span>)
-tsH &lt;-<span class="st"> </span><span class="kw">as.h2o</span>(iris[-rndSample, ],<span class="st">&quot;tsH&quot;</span>)
-mdl &lt;-<span class="st"> </span><span class="kw">h2o.deeplearning</span>(<span class="dt">x=</span><span class="dv">1</span>:<span class="dv">4</span>, <span class="dt">y=</span><span class="dv">5</span>, <span class="dt">training_frame=</span>trH)
+tsH &lt;-<span class="st"> </span><span class="kw">as.h2o</span>(iris[<span class="op">-</span>rndSample, ],<span class="st">&quot;tsH&quot;</span>)
+mdl &lt;-<span class="st"> </span><span class="kw">h2o.deeplearning</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">y=</span><span class="dv">5</span>, <span class="dt">training_frame=</span>trH)
 preds &lt;-<span class="st"> </span><span class="kw">h2o.predict</span>(mdl,tsH)[,<span class="st">&quot;predict&quot;</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(cm &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">as.vector</span>(preds), <span class="kw">as.vector</span>(tsH$Species)))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(cm &lt;-<span class="st"> </span><span class="kw">table</span>(<span class="kw">as.vector</span>(preds), <span class="kw">as.vector</span>(tsH<span class="op">$</span>Species)))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(h2o)
 h2oInstance &lt;-<span class="st"> </span><span class="kw">h2o.init</span>(<span class="dt">ip=</span><span class="st">&quot;localhost&quot;</span>) <span class="co"># start H2O instance locally</span>
 <span class="kw">data</span>(Boston,<span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(Boston), <span class="dv">354</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Boston), <span class="dv">354</span>)
 trH &lt;-<span class="st"> </span><span class="kw">as.h2o</span>(Boston[rndSample, ],<span class="st">&quot;trH&quot;</span>)
-tsH &lt;-<span class="st"> </span><span class="kw">as.h2o</span>(Boston[-rndSample, ],<span class="st">&quot;tsH&quot;</span>)
-mdl &lt;-<span class="st"> </span><span class="kw">h2o.deeplearning</span>(<span class="dt">x=</span><span class="dv">1</span>:<span class="dv">13</span>, <span class="dt">y=</span><span class="dv">14</span>, <span class="dt">training_frame=</span>trH, 
+tsH &lt;-<span class="st"> </span><span class="kw">as.h2o</span>(Boston[<span class="op">-</span>rndSample, ],<span class="st">&quot;tsH&quot;</span>)
+mdl &lt;-<span class="st"> </span><span class="kw">h2o.deeplearning</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">13</span>, <span class="dt">y=</span><span class="dv">14</span>, <span class="dt">training_frame=</span>trH, 
                         <span class="dt">hidden=</span><span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">100</span>, <span class="dv">100</span>), <span class="dt">epochs=</span><span class="dv">500</span>)
 preds &lt;-<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">h2o.predict</span>(mdl,tsH))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(preds-<span class="kw">as.vector</span>(tsH$medv)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">abs</span>(preds<span class="op">-</span><span class="kw">as.vector</span>(tsH<span class="op">$</span>medv)))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adabag)
 <span class="kw">data</span>(iris)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="dv">100</span>)
 tr &lt;-<span class="st"> </span>iris[rndSample, ]
-ts &lt;-<span class="st"> </span>iris[-rndSample, ]
- m &lt;-<span class="st"> </span><span class="kw">bagging</span>(Species ~<span class="st"> </span>., tr, <span class="dt">mfinal=</span><span class="dv">500</span>)
+ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>rndSample, ]
+ m &lt;-<span class="st"> </span><span class="kw">bagging</span>(Species <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">mfinal=</span><span class="dv">500</span>)
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(m,ts)
 <span class="kw">names</span>(ps)
-ps$confusion
-ps$error*<span class="dv">100</span> <span class="co"># percentage of errors</span></code></pre></div>
+ps<span class="op">$</span>confusion
+ps<span class="op">$</span>error<span class="op">*</span><span class="dv">100</span> <span class="co"># percentage of errors</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ipred)
 <span class="kw">data</span>(Boston,<span class="dt">package=</span><span class="st">&#39;MASS&#39;</span>)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
+sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
 tr &lt;-<span class="st"> </span>Boston[sp,]
-ts &lt;-<span class="st"> </span>Boston[-sp,]
-m &lt;-<span class="st"> </span><span class="kw">bagging</span>(medv ~<span class="st"> </span>., tr, <span class="dt">nbagg=</span><span class="dv">500</span>)
+ts &lt;-<span class="st"> </span>Boston[<span class="op">-</span>sp,]
+m &lt;-<span class="st"> </span><span class="kw">bagging</span>(medv <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">nbagg=</span><span class="dv">500</span>)
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(m, ts)
-<span class="kw">mean</span>(<span class="kw">abs</span>(ps-ts$medv))</code></pre></div>
+<span class="kw">mean</span>(<span class="kw">abs</span>(ps<span class="op">-</span>ts<span class="op">$</span>medv))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
 <span class="kw">library</span>(DMwR2)
 <span class="kw">data</span>(BreastCancer, <span class="dt">package=</span><span class="st">&quot;mlbench&quot;</span>)
-bc &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">knnImputation</span>(BreastCancer[,-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span>)]), <span class="co"># column 1 is an ID</span>
-            <span class="dt">Class=</span>BreastCancer$Class)
+bc &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">knnImputation</span>(BreastCancer[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span>)]), <span class="co"># column 1 is an ID</span>
+            <span class="dt">Class=</span>BreastCancer<span class="op">$</span>Class)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(bc), <span class="dv">500</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(bc), <span class="dv">500</span>)
 tr &lt;-<span class="st"> </span>bc[rndSample, ] 
-ts &lt;-<span class="st"> </span>bc[-rndSample, ]
-m &lt;-<span class="st"> </span><span class="kw">randomForest</span>(Class ~<span class="st"> </span>., tr, <span class="dt">ntree=</span><span class="dv">750</span>)
+ts &lt;-<span class="st"> </span>bc[<span class="op">-</span>rndSample, ]
+m &lt;-<span class="st"> </span><span class="kw">randomForest</span>(Class <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">ntree=</span><span class="dv">750</span>)
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(m, ts)
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts$Class))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts<span class="op">$</span>Class))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adabag)
 <span class="kw">data</span>(iris)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="dv">100</span>)
 tr &lt;-<span class="st"> </span>iris[rndSample, ]
-ts &lt;-<span class="st"> </span>iris[-rndSample, ]
-m1 &lt;-<span class="st"> </span><span class="kw">boosting</span>(Species ~<span class="st"> </span>., tr,  <span class="dt">mfinal=</span><span class="dv">500</span>) <span class="co"># AdaBoost.M1</span>
+ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>rndSample, ]
+m1 &lt;-<span class="st"> </span><span class="kw">boosting</span>(Species <span class="op">~</span><span class="st"> </span>., tr,  <span class="dt">mfinal=</span><span class="dv">500</span>) <span class="co"># AdaBoost.M1</span>
 ps1 &lt;-<span class="st"> </span><span class="kw">predict</span>(m1,ts)
-ps1$confusion
-ps1$error*<span class="dv">100</span> 
-m2 &lt;-<span class="st"> </span><span class="kw">boosting</span>(Species ~<span class="st"> </span>., tr, <span class="dt">coeflearn=</span><span class="st">&quot;Zhu&quot;</span>, <span class="dt">mfinal=</span><span class="dv">500</span>) <span class="co"># SAMME</span>
+ps1<span class="op">$</span>confusion
+ps1<span class="op">$</span>error<span class="op">*</span><span class="dv">100</span> 
+m2 &lt;-<span class="st"> </span><span class="kw">boosting</span>(Species <span class="op">~</span><span class="st"> </span>., tr, <span class="dt">coeflearn=</span><span class="st">&quot;Zhu&quot;</span>, <span class="dt">mfinal=</span><span class="dv">500</span>) <span class="co"># SAMME</span>
 ps2 &lt;-<span class="st"> </span><span class="kw">predict</span>(m2,ts)
-ps2$confusion
-ps2$error*<span class="dv">100</span> </code></pre></div>
+ps2<span class="op">$</span>confusion
+ps2<span class="op">$</span>error<span class="op">*</span><span class="dv">100</span> </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gbm)
 <span class="kw">data</span>(Boston,<span class="dt">package=</span><span class="st">&#39;MASS&#39;</span>)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
+sp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Boston),<span class="dv">354</span>)
 tr &lt;-<span class="st"> </span>Boston[sp,]
-ts &lt;-<span class="st"> </span>Boston[-sp,]
-m &lt;-<span class="st"> </span><span class="kw">gbm</span>(medv ~<span class="st"> </span>., <span class="dt">data=</span>tr, <span class="dt">n.trees=</span><span class="dv">5000</span>)
+ts &lt;-<span class="st"> </span>Boston[<span class="op">-</span>sp,]
+m &lt;-<span class="st"> </span><span class="kw">gbm</span>(medv <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>tr, <span class="dt">n.trees=</span><span class="dv">5000</span>)
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(m, ts, <span class="dt">n.trees=</span><span class="dv">5000</span>)
-<span class="kw">mean</span>(<span class="kw">abs</span>(ps-ts$medv))</code></pre></div>
+<span class="kw">mean</span>(<span class="kw">abs</span>(ps<span class="op">-</span>ts<span class="op">$</span>medv))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(iris), <span class="dv">100</span>)
+rndSample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="dv">100</span>)
 tr &lt;-<span class="st"> </span>iris[rndSample, ]
-ts &lt;-<span class="st"> </span>iris[-rndSample, ]
+ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>rndSample, ]
 
-m &lt;-<span class="st"> </span><span class="kw">gbm</span>(Species ~<span class="st"> </span>., <span class="dt">data=</span>tr, <span class="dt">n.trees=</span><span class="dv">10000</span>, 
+m &lt;-<span class="st"> </span><span class="kw">gbm</span>(Species <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>tr, <span class="dt">n.trees=</span><span class="dv">10000</span>, 
          <span class="dt">cv.folds=</span><span class="dv">5</span>, <span class="dt">n.cores=</span><span class="dv">4</span>)
 (best &lt;-<span class="st"> </span><span class="kw">gbm.perf</span>(m, <span class="dt">plot.it=</span><span class="ot">FALSE</span>, <span class="dt">method=</span><span class="st">&quot;cv&quot;</span>))
 ps &lt;-<span class="st"> </span><span class="kw">predict</span>(m, ts, <span class="dt">n.trees=</span>best, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)[,,<span class="dv">1</span>]
 ps &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">colnames</span>(ps)[<span class="kw">max.col</span>(ps)])
-(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts$Species))
-<span class="dv">100</span>*(<span class="dv">1</span>-<span class="kw">sum</span>(<span class="kw">diag</span>(cm))/<span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
+(cm &lt;-<span class="st"> </span><span class="kw">table</span>(ps, ts<span class="op">$</span>Species))
+<span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">sum</span>(<span class="kw">diag</span>(cm))<span class="op">/</span><span class="kw">sum</span>(cm))  <span class="co"># the error rate</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(m, <span class="dt">plotit=</span><span class="ot">FALSE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(m, <span class="dt">i.var=</span><span class="dv">3</span>, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>,<span class="st">&quot;versicolor&quot;</span>,<span class="st">&quot;virginica&quot;</span>),
-       <span class="dt">col=</span><span class="dv">1</span>:<span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">1</span>)</code></pre></div>
+       <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">1</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(m, <span class="dt">i.var=</span><span class="dv">3</span>, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>,<span class="st">&quot;versicolor&quot;</span>,<span class="st">&quot;virginica&quot;</span>),
-       <span class="dt">col=</span><span class="dv">1</span>:<span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">1</span>)</code></pre></div>
+       <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">1</span>)</code></pre></div>
 <!-- evaluation.Rnw -->
 </div>
 </div>
@@ -1312,7 +1312,7 @@ ps &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
 <span class="kw">library</span>(e1071)
 <span class="kw">data</span>(iris)
-r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(Species ~<span class="st"> </span>., iris),
+r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(Species <span class="op">~</span><span class="st"> </span>., iris),
                            <span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;svm&quot;</span>),
                            <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;err&quot;</span>,<span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">hldSz=</span><span class="fl">0.3</span>))
                            )
@@ -1320,7 +1320,7 @@ r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(<s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
 <span class="kw">library</span>(randomForest)
 <span class="kw">data</span>(Boston, <span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>)
-r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(medv ~<span class="st"> </span>., Boston),
+r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(medv <span class="op">~</span><span class="st"> </span>., Boston),
                            <span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;randomForest&quot;</span>),
                            <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;mse&quot;</span>,
                                           <span class="dt">method=</span><span class="kw">Holdout</span>(<span class="dt">nReps=</span><span class="dv">3</span>,<span class="dt">hldSz=</span><span class="fl">0.3</span>))
@@ -1333,7 +1333,7 @@ r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(<s
 <span class="kw">library</span>(DMwR2)
 <span class="kw">data</span>(Boston, <span class="dt">package=</span><span class="st">&quot;MASS&quot;</span>)
 r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-         <span class="kw">PredTask</span>(medv ~<span class="st"> </span>., Boston),
+         <span class="kw">PredTask</span>(medv <span class="op">~</span><span class="st"> </span>., Boston),
          <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,
                           <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">2</span>))),
          <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;mse&quot;</span>,<span class="st">&quot;mae&quot;</span>),
@@ -1351,11 +1351,11 @@ r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
 <span class="kw">library</span>(e1071)
 <span class="kw">data</span>(iris)
 <span class="kw">data</span>(BreastCancer, <span class="dt">package=</span><span class="st">&quot;mlbench&quot;</span>)
-bc &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">knnImputation</span>(BreastCancer[,-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span>)]), 
-            <span class="dt">Class=</span>BreastCancer$Class)
+bc &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">knnImputation</span>(BreastCancer[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span>)]), 
+            <span class="dt">Class=</span>BreastCancer<span class="op">$</span>Class)
 r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-         <span class="kw">c</span>(<span class="kw">PredTask</span>(Species ~<span class="st"> </span>., iris), 
-           <span class="kw">PredTask</span>(Class ~<span class="st"> </span>., bc)),
+         <span class="kw">c</span>(<span class="kw">PredTask</span>(Species <span class="op">~</span><span class="st"> </span>., iris), 
+           <span class="kw">PredTask</span>(Class <span class="op">~</span><span class="st"> </span>., bc)),
          <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;svm&quot;</span>,
                           <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>),
                                             <span class="dt">gamma=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.001</span>))),
@@ -1390,7 +1390,7 @@ r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
       <span class="kw">sidebarPanel</span>(
           <span class="kw">selectInput</span>(<span class="st">&quot;var&quot;</span>,
                       <span class="st">&quot;Select a Predictor Variable:&quot;</span>,
-                      <span class="dt">choices=</span><span class="kw">colnames</span>(iris)[<span class="dv">1</span>:<span class="dv">4</span>])
+                      <span class="dt">choices=</span><span class="kw">colnames</span>(iris)[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])
       ),
       <span class="kw">mainPanel</span>(
           <span class="kw">plotOutput</span>(<span class="st">&quot;condBP&quot;</span>)
@@ -1401,13 +1401,13 @@ r &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
 <span class="kw">data</span>(iris)
 
 <span class="kw">shinyServer</span>(
-    function(input, output) 
+    <span class="cf">function</span>(input, output) 
         {
-            output$condBP &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(
+            output<span class="op">$</span>condBP &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(
                 {
-                    form &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(input$var,<span class="st">&quot;~ Species&quot;</span>))
-                    <span class="kw">boxplot</span>(form,iris,<span class="dt">ylab=</span>input$var,
-                            <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Distribution of&quot;</span>,input$var,
+                    form &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(input<span class="op">$</span>var,<span class="st">&quot;~ Species&quot;</span>))
+                    <span class="kw">boxplot</span>(form,iris,<span class="dt">ylab=</span>input<span class="op">$</span>var,
+                            <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Distribution of&quot;</span>,input<span class="op">$</span>var,
                                 <span class="st">&quot;for the different Species&quot;</span>))
                 }
             )  

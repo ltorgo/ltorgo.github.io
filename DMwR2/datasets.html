@@ -446,7 +446,7 @@ div.tocify {
 <p>The book uses many packages. Most of them are developed by others and it is only natural that the version numbers change as time goes by, either to introduce new features or to correct eventual bugs. If some of these future changes somehow “break” the code shown in the book we will try to maintain in this web page the eventual changes that are required to what was printed in the book. Still, for your own information these are the packages and versions that were used in the book:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DMwR2&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;tibble&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;DBI&quot;</span>,<span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;Hmisc&quot;</span>, <span class="st">&quot;xts&quot;</span>, <span class="st">&quot;sp&quot;</span>, <span class="st">&quot;ggmap&quot;</span>, <span class="st">&quot;tm&quot;</span>, <span class="st">&quot;CORElearn&quot;</span>, <span class="st">&quot;GGally&quot;</span>, <span class="st">&quot;arules&quot;</span>, <span class="st">&quot;arulesViz&quot;</span>, <span class="st">&quot;cluster&quot;</span>, <span class="st">&quot;fpc&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;UBL&quot;</span>, <span class="st">&quot;e1071&quot;</span>, <span class="st">&quot;rpart.plot&quot;</span>, <span class="st">&quot;NeuralNetTools&quot;</span>, <span class="st">&quot;h2o&quot;</span>, <span class="st">&quot;adabag&quot;</span>, <span class="st">&quot;ipred&quot;</span>, <span class="st">&quot;randomForest&quot;</span>, <span class="st">&quot;gbm&quot;</span>, <span class="st">&quot;performanceEstimation&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;shiny&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;corrplot&quot;</span>, <span class="st">&quot;rpart&quot;</span>, <span class="st">&quot;quantmod&quot;</span>, <span class="st">&quot;TTR&quot;</span>, <span class="st">&quot;nnet&quot;</span>, <span class="st">&quot;kernlab&quot;</span>, <span class="st">&quot;earth&quot;</span>, <span class="st">&quot;PerformanceAnalytics&quot;</span>, <span class="st">&quot;ROCR&quot;</span>, <span class="st">&quot;RWeka&quot;</span>, <span class="st">&quot;Biobase&quot;</span>, <span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;genefilter&quot;</span>, <span class="st">&quot;class&quot;</span>)
 pcks &lt;-<span class="st"> </span><span class="kw">sort</span>(pcks)
-knitr::<span class="kw">kable</span>(<span class="kw">installed.packages</span>()[<span class="kw">which</span>(<span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) %in%<span class="st"> </span>pcks),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)],<span class="dt">row.names =</span> <span class="ot">FALSE</span>,<span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
+knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">installed.packages</span>()[<span class="kw">which</span>(<span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) <span class="op">%in%</span><span class="st"> </span>pcks),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)],<span class="dt">row.names =</span> <span class="ot">FALSE</span>,<span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -461,10 +461,18 @@ Version
 <tbody>
 <tr>
 <td style="text-align:left;">
+adabag
+</td>
+<td style="text-align:left;">
+4.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 car
 </td>
 <td style="text-align:left;">
-2.1-4
+2.1-5
 </td>
 </tr>
 <tr>
@@ -485,10 +493,18 @@ cluster
 </tr>
 <tr>
 <td style="text-align:left;">
+corrplot
+</td>
+<td style="text-align:left;">
+0.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 DBI
 </td>
 <td style="text-align:left;">
-0.6-1
+0.7
 </td>
 </tr>
 <tr>
@@ -504,7 +520,7 @@ DMwR2
 dplyr
 </td>
 <td style="text-align:left;">
-0.5.0
+0.7.4
 </td>
 </tr>
 <tr>
@@ -520,7 +536,7 @@ e1071
 earth
 </td>
 <td style="text-align:left;">
-4.5.0
+4.5.1
 </td>
 </tr>
 <tr>
@@ -608,7 +624,7 @@ PerformanceAnalytics
 performanceEstimation
 </td>
 <td style="text-align:left;">
-1.1.0
+1.1.1
 </td>
 </tr>
 <tr>
@@ -616,7 +632,7 @@ performanceEstimation
 quantmod
 </td>
 <td style="text-align:left;">
-0.4-8
+0.4-10
 </td>
 </tr>
 <tr>
@@ -648,7 +664,7 @@ readxl
 rmarkdown
 </td>
 <td style="text-align:left;">
-1.5
+1.6
 </td>
 </tr>
 <tr>
@@ -656,7 +672,7 @@ rmarkdown
 RMySQL
 </td>
 <td style="text-align:left;">
-0.10.11
+0.10.13
 </td>
 </tr>
 <tr>
@@ -677,10 +693,26 @@ rpart
 </tr>
 <tr>
 <td style="text-align:left;">
+rpart.plot
+</td>
+<td style="text-align:left;">
+2.1.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RWeka
+</td>
+<td style="text-align:left;">
+0.4-34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 shiny
 </td>
 <td style="text-align:left;">
-1.0.3
+1.0.5
 </td>
 </tr>
 <tr>
@@ -688,7 +720,7 @@ shiny
 sp
 </td>
 <td style="text-align:left;">
-1.2-4
+1.2-5
 </td>
 </tr>
 <tr>
@@ -704,7 +736,7 @@ stringr
 tibble
 </td>
 <td style="text-align:left;">
-1.3.1
+1.3.4
 </td>
 </tr>
 <tr>
@@ -712,7 +744,15 @@ tibble
 tidyr
 </td>
 <td style="text-align:left;">
-0.6.3
+0.7.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tm
+</td>
+<td style="text-align:left;">
+0.7-1
 </td>
 </tr>
 <tr>
@@ -720,7 +760,7 @@ tidyr
 TTR
 </td>
 <td style="text-align:left;">
-0.23-1
+0.23-2
 </td>
 </tr>
 <tr>
@@ -728,7 +768,7 @@ TTR
 UBL
 </td>
 <td style="text-align:left;">
-0.0.5
+0.0.6
 </td>
 </tr>
 <tr>
@@ -736,7 +776,7 @@ UBL
 xts
 </td>
 <td style="text-align:left;">
-0.9-7
+0.10-0
 </td>
 </tr>
 </tbody>

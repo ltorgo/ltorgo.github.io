@@ -431,10 +431,10 @@ div.tocify {
 </div>
 <div id="basic-interaction-with-the-r-console" class="section level3">
 <h3>Basic Interaction with the R Console</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span> +<span class="st"> </span><span class="dv">3</span> /<span class="st"> </span><span class="dv">5</span>^<span class="dv">2</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span><span class="op">^</span><span class="dv">2</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">2</span>)
-<span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">5</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>,<span class="dv">5</span>),<span class="dt">y=</span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>,<span class="dv">5</span>),
+<span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">5</span>),<span class="dt">y=</span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">5</span>),
      <span class="dt">main=</span><span class="st">&quot;Five random points&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;X values&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Y values&quot;</span>)</code></pre></div>
 <!-- objs.Rnw -->
 </div>
@@ -447,9 +447,9 @@ y
 y &lt;-<span class="st"> </span><span class="dv">43</span>
 y</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="dv">5</span>
-w &lt;-<span class="st"> </span>z^<span class="dv">2</span>
+w &lt;-<span class="st"> </span>z<span class="op">^</span><span class="dv">2</span>
 w
-i &lt;-<span class="st"> </span>(z *<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span><span class="dv">45</span>)/<span class="dv">2</span>
+i &lt;-<span class="st"> </span>(z <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">45</span>)<span class="op">/</span><span class="dv">2</span>
 i</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()
 <span class="kw">rm</span>(vat,y,z,w,i)</code></pre></div>
@@ -457,20 +457,20 @@ i</code></pre></div>
 </div>
 <div id="r-functions" class="section level3">
 <h3>R Functions</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">12</span>, -<span class="dv">4</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">100</span>, <span class="dv">30</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="op">-</span><span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exists</span>(<span class="st">&quot;se&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span>function(x) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
    v &lt;-<span class="st"> </span><span class="kw">var</span>(x)
    n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
-   <span class="kw">return</span>(<span class="kw">sqrt</span>(v/n))
+   <span class="kw">return</span>(<span class="kw">sqrt</span>(v<span class="op">/</span>n))
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mySample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">20</span>, <span class="dt">sd=</span><span class="dv">4</span>)
 <span class="kw">se</span>(mySample)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">convMeters &lt;-<span class="st"> </span>function(val, <span class="dt">to=</span><span class="st">&quot;inch&quot;</span>) {
-    mult &lt;-<span class="st"> </span>switch(to,<span class="dt">inch=</span><span class="fl">39.3701</span>,<span class="dt">foot=</span><span class="fl">3.28084</span>,<span class="dt">yard=</span><span class="fl">1.09361</span>,<span class="dt">mile=</span><span class="fl">0.000621371</span>,<span class="ot">NA</span>)
-    if (<span class="kw">is.na</span>(mult)) <span class="kw">stop</span>(<span class="st">&quot;Unknown target unit of length.&quot;</span>)
-    else <span class="kw">return</span>(val*mult)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">convMeters &lt;-<span class="st"> </span><span class="cf">function</span>(val, <span class="dt">to=</span><span class="st">&quot;inch&quot;</span>) {
+    mult &lt;-<span class="st"> </span><span class="cf">switch</span>(to,<span class="dt">inch=</span><span class="fl">39.3701</span>,<span class="dt">foot=</span><span class="fl">3.28084</span>,<span class="dt">yard=</span><span class="fl">1.09361</span>,<span class="dt">mile=</span><span class="fl">0.000621371</span>,<span class="ot">NA</span>)
+    <span class="cf">if</span> (<span class="kw">is.na</span>(mult)) <span class="kw">stop</span>(<span class="st">&quot;Unknown target unit of length.&quot;</span>)
+    <span class="cf">else</span> <span class="kw">return</span>(val<span class="op">*</span>mult)
 }
 <span class="kw">convMeters</span>(<span class="dv">23</span>,<span class="st">&quot;foot&quot;</span>)
 <span class="kw">convMeters</span>(<span class="dv">40</span>,<span class="st">&quot;inch&quot;</span>)
@@ -517,15 +517,15 @@ v</code></pre></div>
 <span class="kw">sqrt</span>(v)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">87</span>)
 v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">34</span>, <span class="fl">32.4</span>, <span class="dv">12</span>)
-v1 +<span class="st"> </span>v2</code></pre></div>
+v1 <span class="op">+</span><span class="st"> </span>v2</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">24</span>)
 v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2</span>)
-v1 +<span class="st"> </span>v2</code></pre></div>
+v1 <span class="op">+</span><span class="st"> </span>v2</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">24</span>)
 v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">4</span>)
-v1 +<span class="st"> </span>v2</code></pre></div>
+v1 <span class="op">+</span><span class="st"> </span>v2</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">24</span>)
-<span class="dv">2</span> *<span class="st"> </span>v1</code></pre></div>
+<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>v1</code></pre></div>
 <!-- factors.Rnw -->
 </div>
 <div id="factors" class="section level3">
@@ -535,7 +535,7 @@ g</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="kw">factor</span>(g)
 g</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g[<span class="dv">3</span>]
-g[<span class="dv">3</span>] ==<span class="st"> &quot;m&quot;</span></code></pre></div>
+g[<span class="dv">3</span>] <span class="op">==</span><span class="st"> &quot;m&quot;</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">other.g &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>,<span class="st">&quot;m&quot;</span>))
 other.g</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(g)
@@ -553,18 +553,18 @@ other.g</code></pre></div>
 </div>
 <div id="generating-sequences" class="section level3">
 <h3>Generating Sequences</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span>:<span class="dv">15</span> -<span class="st"> </span><span class="dv">1</span>
-<span class="dv">10</span>:(<span class="dv">15</span> -<span class="st"> </span><span class="dv">1</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span>:<span class="dv">0</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(-<span class="dv">4</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span><span class="op">:</span><span class="dv">15</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+<span class="dv">10</span><span class="op">:</span>(<span class="dv">15</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">:</span><span class="dv">0</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">length =</span> <span class="dv">4</span>)
 <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">length =</span> <span class="dv">2</span>)
-<span class="kw">seq</span>(<span class="dt">length =</span> <span class="dv">10</span>, <span class="dt">from =</span> -<span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.2</span>)</code></pre></div>
+<span class="kw">seq</span>(<span class="dt">length =</span> <span class="dv">10</span>, <span class="dt">from =</span> <span class="op">-</span><span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.2</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">10</span>)
 <span class="kw">rep</span>(<span class="st">&quot;hi&quot;</span>, <span class="dv">3</span>)
-<span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">2</span>, <span class="dv">3</span>)
-<span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">3</span>)</code></pre></div>
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">3</span>)
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">3</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">5</span>)
 <span class="kw">gl</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre></div>
@@ -574,18 +574,18 @@ other.g</code></pre></div>
 </div>
 <div id="sub-setting" class="section level3">
 <h3>Sub-Setting</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, -<span class="dv">3</span>, <span class="dv">4</span>, -<span class="dv">1</span>, <span class="dv">45</span>, <span class="dv">90</span>, -<span class="dv">5</span>)
-x &gt;<span class="st"> </span><span class="dv">0</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x &gt;<span class="st"> </span><span class="dv">0</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x &lt;=<span class="st"> </span>-<span class="dv">2</span> |<span class="st"> </span>x &gt;<span class="st"> </span><span class="dv">5</span>]
-x[x &gt;<span class="st"> </span><span class="dv">40</span> &amp;<span class="st"> </span>x &lt;<span class="st"> </span><span class="dv">100</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">45</span>, <span class="dv">90</span>, <span class="op">-</span><span class="dv">5</span>)
+x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x <span class="op">&lt;=</span><span class="st"> </span><span class="op">-</span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>]
+x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)]
-x[<span class="dv">1</span>:<span class="dv">3</span>]
+x[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)
 x[y]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[-<span class="dv">1</span>]
-x[-<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)]
-x[-(<span class="dv">1</span>:<span class="dv">3</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="op">-</span><span class="dv">1</span>]
+x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)]
+x[<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pH &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">4.5</span>, <span class="dv">7</span>, <span class="fl">7.3</span>, <span class="fl">8.2</span>, <span class="fl">6.3</span>)
 <span class="kw">names</span>(pH) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;area1&quot;</span>, <span class="st">&quot;area2&quot;</span>, <span class="st">&quot;mud&quot;</span>, <span class="st">&quot;dam&quot;</span>, <span class="st">&quot;middle&quot;</span>)
 pH</code></pre></div>
@@ -603,8 +603,8 @@ m</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">23</span>, <span class="dv">66</span>, <span class="dv">77</span>, <span class="dv">33</span>, <span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">12</span>, <span class="dv">78</span>, <span class="dv">23</span>), <span class="dv">2</span>, <span class="dv">5</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">23</span>, <span class="dv">66</span>, <span class="dv">77</span>, <span class="dv">33</span>, <span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">12</span>, <span class="dv">78</span>, <span class="dv">23</span>), <span class="dv">2</span>, <span class="dv">5</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="dv">2</span>, <span class="dv">3</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[-<span class="dv">2</span>, <span class="dv">1</span>]
-m[<span class="dv">1</span>, -<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>]
+m[<span class="dv">1</span>, <span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="dv">1</span>, ]
 m[, <span class="dv">4</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="dv">1</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>]
@@ -621,20 +621,20 @@ m3</code></pre></div>
 results
 results[<span class="st">&quot;store1&quot;</span>, ]
 results[<span class="st">&quot;store2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;1qrt&quot;</span>, <span class="st">&quot;4qrt&quot;</span>)]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span>:<span class="dv">24</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))
 a</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a[<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>]
 a[<span class="dv">1</span>, , <span class="dv">2</span>]
 a[<span class="dv">4</span>, <span class="dv">3</span>, ]
-a[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), , -<span class="dv">2</span>]</code></pre></div>
+a[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), , <span class="op">-</span><span class="dv">2</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">23</span>, <span class="dv">66</span>, <span class="dv">77</span>, <span class="dv">33</span>, <span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">12</span>, <span class="dv">78</span>, <span class="dv">23</span>), <span class="dv">2</span>, <span class="dv">5</span>)
 m
-m *<span class="st"> </span><span class="dv">3</span>
+m <span class="op">*</span><span class="st"> </span><span class="dv">3</span>
 m1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">23</span>, <span class="dv">66</span>, <span class="dv">77</span>, <span class="dv">33</span>, <span class="dv">44</span>), <span class="dv">2</span>, <span class="dv">3</span>)
 m1
 m2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">65</span>, <span class="dv">32</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">78</span>), <span class="dv">2</span>, <span class="dv">3</span>)
 m2
-m1 +<span class="st"> </span>m2</code></pre></div>
+m1 <span class="op">+</span><span class="st"> </span>m2</code></pre></div>
 <!-- lists.Rnw -->
 </div>
 <div id="lists" class="section level3">
@@ -648,14 +648,14 @@ my.lst[[<span class="dv">3</span>]]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst[<span class="dv">1</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(my.lst[<span class="dv">1</span>])
 <span class="kw">mode</span>(my.lst[[<span class="dv">1</span>]])</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst$stud.id</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst<span class="op">$</span>stud.id</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(my.lst)
 <span class="kw">names</span>(my.lst) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;marks&quot;</span>)
 my.lst</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst$parents.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Mike&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst<span class="op">$</span>parents.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Mike&quot;</span>)
 my.lst</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(my.lst)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst &lt;-<span class="st"> </span>my.lst[-<span class="dv">5</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.lst &lt;-<span class="st"> </span>my.lst[<span class="op">-</span><span class="dv">5</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">other &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">age =</span> <span class="dv">19</span>, <span class="dt">sex =</span> <span class="st">&quot;male&quot;</span>)
 lst &lt;-<span class="st"> </span><span class="kw">c</span>(my.lst, other)
 lst</code></pre></div>
@@ -669,22 +669,22 @@ lst</code></pre></div>
                          <span class="dt">pH =</span> <span class="kw">c</span>(<span class="fl">7.4</span>,<span class="fl">6.3</span>,<span class="fl">8.6</span>,<span class="fl">7.2</span>,<span class="fl">8.9</span>))
 my.dataset</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[<span class="dv">3</span>, <span class="dv">2</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset$pH
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset<span class="op">$</span>pH
 my.dataset[[<span class="st">&quot;site&quot;</span>]]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[my.dataset$pH &gt;<span class="st"> </span><span class="dv">7</span>, ]
-my.dataset[my.dataset$site ==<span class="st"> &quot;A&quot;</span>, <span class="st">&quot;pH&quot;</span>]
-my.dataset[my.dataset$season ==<span class="st"> &quot;Summer&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;pH&quot;</span>)]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[pH &gt;<span class="st"> </span><span class="dv">7</span>, ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[my.dataset<span class="op">$</span>pH <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, ]
+my.dataset[my.dataset<span class="op">$</span>site <span class="op">==</span><span class="st"> &quot;A&quot;</span>, <span class="st">&quot;pH&quot;</span>]
+my.dataset[my.dataset<span class="op">$</span>season <span class="op">==</span><span class="st"> &quot;Summer&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;pH&quot;</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[pH <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, ]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(my.dataset)
-my.dataset[site==<span class="st">&#39;B&#39;</span>, ]
+my.dataset[site<span class="op">==</span><span class="st">&#39;B&#39;</span>, ]
 season</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">detach</span>(my.dataset)
 season</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset</span>(my.dataset, pH &gt;<span class="st"> </span><span class="dv">8</span>)
-<span class="kw">subset</span>(my.dataset, season ==<span class="st"> &quot;Summer&quot;</span>, season:pH)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[my.dataset$season ==<span class="st"> &#39;Summer&#39;</span>,<span class="st">&#39;pH&#39;</span>] &lt;-<span class="st"> </span>
-<span class="st">      </span>my.dataset[my.dataset$season ==<span class="st"> &#39;Summer&#39;</span>,<span class="st">&#39;pH&#39;</span>] +<span class="st"> </span><span class="dv">1</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset$NO3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">234.5</span>, <span class="fl">256.6</span>, <span class="fl">654.1</span>, <span class="fl">356.7</span>, <span class="fl">776.4</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset</span>(my.dataset, pH <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>)
+<span class="kw">subset</span>(my.dataset, season <span class="op">==</span><span class="st"> &quot;Summer&quot;</span>, season<span class="op">:</span>pH)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset[my.dataset<span class="op">$</span>season <span class="op">==</span><span class="st"> &#39;Summer&#39;</span>,<span class="st">&#39;pH&#39;</span>] &lt;-<span class="st"> </span>
+<span class="st">      </span>my.dataset[my.dataset<span class="op">$</span>season <span class="op">==</span><span class="st"> &#39;Summer&#39;</span>,<span class="st">&#39;pH&#39;</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.dataset<span class="op">$</span>NO3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">234.5</span>, <span class="fl">256.6</span>, <span class="fl">654.1</span>, <span class="fl">356.7</span>, <span class="fl">776.4</span>)
 my.dataset</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(my.dataset)
 <span class="kw">ncol</span>(my.dataset)
@@ -700,9 +700,9 @@ my.dataset</code></pre></div>
 </div>
 <div id="useful-extensions-to-data-frames" class="section level3">
 <h3>Useful Extensions to Data Frames</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">TempCels =</span> <span class="kw">sample</span>(-<span class="dv">10</span>:<span class="dv">40</span>, <span class="dt">size=</span><span class="dv">100</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>), 
-              <span class="dt">TempFahr =</span> TempCels*<span class="dv">9</span>/<span class="dv">5</span> +<span class="st"> </span><span class="dv">32</span>,
-              <span class="dt">Location =</span> <span class="kw">rep</span>(letters[<span class="dv">1</span>:<span class="dv">2</span>], <span class="dt">each=</span><span class="dv">50</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">TempCels =</span> <span class="kw">sample</span>(<span class="op">-</span><span class="dv">10</span><span class="op">:</span><span class="dv">40</span>, <span class="dt">size=</span><span class="dv">100</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>), 
+              <span class="dt">TempFahr =</span> TempCels<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span>,
+              <span class="dt">Location =</span> <span class="kw">rep</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">each=</span><span class="dv">50</span>))
 dat</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
 <span class="kw">dim</span>(iris)
@@ -712,13 +712,13 @@ ir &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(iris)
 <span class="kw">class</span>(ir)
 ir</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(ir, <span class="dt">n=</span><span class="ot">Inf</span>, <span class="dt">width=</span><span class="ot">Inf</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span>:<span class="dv">15</span>, <span class="st">&quot;Petal.Length&quot;</span>]
-<span class="kw">class</span>(iris[<span class="dv">1</span>:<span class="dv">15</span>, <span class="st">&quot;Petal.Length&quot;</span>])</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ir[<span class="dv">1</span>:<span class="dv">15</span>, <span class="st">&quot;Petal.Length&quot;</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ir$Petal.Length[<span class="dv">1</span>:<span class="dv">15</span>]
-ir[[<span class="st">&quot;Petal.Length&quot;</span>]][<span class="dv">1</span>:<span class="dv">15</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(<span class="kw">filter</span>(ir,Species==<span class="st">&quot;setosa&quot;</span>),Petal.Width,Petal.Length)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(ir,Species ==<span class="st"> &quot;setosa&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">select</span>(Petal.Width,Petal.Length)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="st">&quot;Petal.Length&quot;</span>]
+<span class="kw">class</span>(iris[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="st">&quot;Petal.Length&quot;</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ir[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="st">&quot;Petal.Length&quot;</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ir<span class="op">$</span>Petal.Length[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]
+ir[[<span class="st">&quot;Petal.Length&quot;</span>]][<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(<span class="kw">filter</span>(ir,Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>),Petal.Width,Petal.Length)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(ir,Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Petal.Width,Petal.Length)</code></pre></div>
 </div>
 <div id="objects-classes-and-methods" class="section level3">
 <h3>Objects, Classes, and Methods</h3>

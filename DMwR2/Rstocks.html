@@ -440,19 +440,19 @@ GSPC &lt;-<span class="st"> </span><span class="kw">getSymbols</span>(<span clas
 <h3>Defining the Prediction Tasks</h3>
 <div id="what-to-predict" class="section level4">
 <h4>What to Predict?</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">T.ind &lt;-<span class="st"> </span>function(quotes, <span class="dt">tgt.margin =</span> <span class="fl">0.025</span>, <span class="dt">n.days =</span> <span class="dv">10</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">T.ind &lt;-<span class="st"> </span><span class="cf">function</span>(quotes, <span class="dt">tgt.margin =</span> <span class="fl">0.025</span>, <span class="dt">n.days =</span> <span class="dv">10</span>) {
     v &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">HLC</span>(quotes), <span class="dv">1</span>, mean)
     v[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">Cl</span>(quotes)[<span class="dv">1</span>]
     
     r &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">ncol =</span> n.days, <span class="dt">nrow =</span> <span class="kw">NROW</span>(quotes))
-    for (x in <span class="dv">1</span>:n.days) r[, x] &lt;-<span class="st"> </span><span class="kw">Next</span>(<span class="kw">Delt</span>(v, <span class="dt">k =</span> x), x)
+    <span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n.days) r[, x] &lt;-<span class="st"> </span><span class="kw">Next</span>(<span class="kw">Delt</span>(v, <span class="dt">k =</span> x), x)
     
-    x &lt;-<span class="st"> </span><span class="kw">apply</span>(r, <span class="dv">1</span>, function(x) <span class="kw">sum</span>(x[x &gt;<span class="st"> </span>tgt.margin |<span class="st"> </span>x &lt;<span class="st"> </span>-tgt.margin]))
+    x &lt;-<span class="st"> </span><span class="kw">apply</span>(r, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sum</span>(x[x <span class="op">&gt;</span><span class="st"> </span>tgt.margin <span class="op">|</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span>tgt.margin]))
     
-    if (<span class="kw">is.xts</span>(quotes)) <span class="kw">xts</span>(x, <span class="kw">time</span>(quotes)) else x
+    <span class="cf">if</span> (<span class="kw">is.xts</span>(quotes)) <span class="kw">xts</span>(x, <span class="kw">time</span>(quotes)) <span class="cf">else</span> x
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">candleChart</span>(<span class="kw">last</span>(GSPC,<span class="st">&#39;3 months&#39;</span>),<span class="dt">theme=</span><span class="st">&#39;white&#39;</span>, <span class="dt">TA=</span><span class="ot">NULL</span>)
-avgPrice &lt;-<span class="st"> </span>function(p) <span class="kw">apply</span>(<span class="kw">HLC</span>(p),<span class="dv">1</span>,mean)
+avgPrice &lt;-<span class="st"> </span><span class="cf">function</span>(p) <span class="kw">apply</span>(<span class="kw">HLC</span>(p),<span class="dv">1</span>,mean)
 addAvgPrice &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class="dt">FUN=</span>avgPrice,<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="st">&#39;AvgPrice&#39;</span>)
 addT.ind &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class="dt">FUN=</span>T.ind,<span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">legend=</span><span class="st">&#39;tgtRet&#39;</span>)
 <span class="kw">addAvgPrice</span>(<span class="dt">on=</span><span class="dv">1</span>) 
@@ -461,39 +461,39 @@ addT.ind &lt;-<span class="st"> </span><span class="kw">newTA</span>(<span class
 <div id="which-predictors" class="section level4">
 <h4>Which Predictors?</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(TTR)
-myATR        &lt;-<span class="st"> </span>function(x) <span class="kw">ATR</span>(<span class="kw">HLC</span>(x))[,<span class="st">&#39;atr&#39;</span>]
-mySMI        &lt;-<span class="st"> </span>function(x) <span class="kw">SMI</span>(<span class="kw">HLC</span>(x))[, <span class="st">&quot;SMI&quot;</span>]
-myADX        &lt;-<span class="st"> </span>function(x) <span class="kw">ADX</span>(<span class="kw">HLC</span>(x))[,<span class="st">&#39;ADX&#39;</span>]
-myAroon      &lt;-<span class="st"> </span>function(x) <span class="kw">aroon</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x)))$oscillator
-myBB         &lt;-<span class="st"> </span>function(x) <span class="kw">BBands</span>(<span class="kw">HLC</span>(x))[, <span class="st">&quot;pctB&quot;</span>]
-myChaikinVol &lt;-<span class="st"> </span>function(x) <span class="kw">Delt</span>(<span class="kw">chaikinVolatility</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x))))[, <span class="dv">1</span>]
-myCLV        &lt;-<span class="st"> </span>function(x) <span class="kw">EMA</span>(<span class="kw">CLV</span>(<span class="kw">HLC</span>(x)))[, <span class="dv">1</span>]
-myEMV        &lt;-<span class="st"> </span>function(x) <span class="kw">EMV</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x)),<span class="kw">Vo</span>(x))[,<span class="dv">2</span>]
-myMACD       &lt;-<span class="st"> </span>function(x) <span class="kw">MACD</span>(<span class="kw">Cl</span>(x))[,<span class="dv">2</span>]
-myMFI        &lt;-<span class="st"> </span>function(x) <span class="kw">MFI</span>(<span class="kw">HLC</span>(x),  <span class="kw">Vo</span>(x))
-mySAR        &lt;-<span class="st"> </span>function(x) <span class="kw">SAR</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Cl</span>(x))) [,<span class="dv">1</span>]
-myVolat      &lt;-<span class="st"> </span>function(x) <span class="kw">volatility</span>(<span class="kw">OHLC</span>(x),<span class="dt">calc=</span><span class="st">&quot;garman&quot;</span>)[,<span class="dv">1</span>]</code></pre></div>
+myATR        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">ATR</span>(<span class="kw">HLC</span>(x))[,<span class="st">&#39;atr&#39;</span>]
+mySMI        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">SMI</span>(<span class="kw">HLC</span>(x))[, <span class="st">&quot;SMI&quot;</span>]
+myADX        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">ADX</span>(<span class="kw">HLC</span>(x))[,<span class="st">&#39;ADX&#39;</span>]
+myAroon      &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">aroon</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x)))<span class="op">$</span>oscillator
+myBB         &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">BBands</span>(<span class="kw">HLC</span>(x))[, <span class="st">&quot;pctB&quot;</span>]
+myChaikinVol &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">Delt</span>(<span class="kw">chaikinVolatility</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x))))[, <span class="dv">1</span>]
+myCLV        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">EMA</span>(<span class="kw">CLV</span>(<span class="kw">HLC</span>(x)))[, <span class="dv">1</span>]
+myEMV        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">EMV</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Lo</span>(x)),<span class="kw">Vo</span>(x))[,<span class="dv">2</span>]
+myMACD       &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">MACD</span>(<span class="kw">Cl</span>(x))[,<span class="dv">2</span>]
+myMFI        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">MFI</span>(<span class="kw">HLC</span>(x),  <span class="kw">Vo</span>(x))
+mySAR        &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">SAR</span>(<span class="kw">cbind</span>(<span class="kw">Hi</span>(x),<span class="kw">Cl</span>(x))) [,<span class="dv">1</span>]
+myVolat      &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">volatility</span>(<span class="kw">OHLC</span>(x),<span class="dt">calc=</span><span class="st">&quot;garman&quot;</span>)[,<span class="dv">1</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
-data.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(GSPC) ~<span class="st"> </span><span class="kw">Delt</span>(<span class="kw">Cl</span>(GSPC),<span class="dt">k=</span><span class="dv">1</span>:<span class="dv">10</span>) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">myATR</span>(GSPC) +<span class="st"> </span><span class="kw">mySMI</span>(GSPC) +<span class="st"> </span><span class="kw">myADX</span>(GSPC) +<span class="st"> </span><span class="kw">myAroon</span>(GSPC) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">myBB</span>(GSPC)  +<span class="st"> </span><span class="kw">myChaikinVol</span>(GSPC) +<span class="st"> </span><span class="kw">myCLV</span>(GSPC) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">CMO</span>(<span class="kw">Cl</span>(GSPC)) +<span class="st"> </span><span class="kw">EMA</span>(<span class="kw">Delt</span>(<span class="kw">Cl</span>(GSPC))) +<span class="st"> </span><span class="kw">myEMV</span>(GSPC) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">myVolat</span>(GSPC)  +<span class="st"> </span><span class="kw">myMACD</span>(GSPC) +<span class="st"> </span><span class="kw">myMFI</span>(GSPC) +<span class="st"> </span><span class="kw">RSI</span>(<span class="kw">Cl</span>(GSPC)) +
-<span class="st">        </span><span class="kw">mySAR</span>(GSPC) +<span class="st"> </span><span class="kw">runMean</span>(<span class="kw">Cl</span>(GSPC)) +<span class="st"> </span><span class="kw">runSD</span>(<span class="kw">Cl</span>(GSPC)))
+data.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(GSPC) <span class="op">~</span><span class="st"> </span><span class="kw">Delt</span>(<span class="kw">Cl</span>(GSPC),<span class="dt">k=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">myATR</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">mySMI</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myADX</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myAroon</span>(GSPC) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">myBB</span>(GSPC)  <span class="op">+</span><span class="st"> </span><span class="kw">myChaikinVol</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myCLV</span>(GSPC) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">CMO</span>(<span class="kw">Cl</span>(GSPC)) <span class="op">+</span><span class="st"> </span><span class="kw">EMA</span>(<span class="kw">Delt</span>(<span class="kw">Cl</span>(GSPC))) <span class="op">+</span><span class="st"> </span><span class="kw">myEMV</span>(GSPC) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">myVolat</span>(GSPC)  <span class="op">+</span><span class="st"> </span><span class="kw">myMACD</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myMFI</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">RSI</span>(<span class="kw">Cl</span>(GSPC)) <span class="op">+</span>
+<span class="st">        </span><span class="kw">mySAR</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">runMean</span>(<span class="kw">Cl</span>(GSPC)) <span class="op">+</span><span class="st"> </span><span class="kw">runSD</span>(<span class="kw">Cl</span>(GSPC)))
 <span class="kw">set.seed</span>(<span class="dv">1234</span>)
 rf &lt;-<span class="st"> </span><span class="kw">buildModel</span>(data.model,<span class="dt">method=</span><span class="st">&#39;randomForest&#39;</span>,
                  <span class="dt">training.per=</span><span class="kw">c</span>(<span class="st">&quot;1995-01-01&quot;</span>,<span class="st">&quot;2005-12-30&quot;</span>),
                  <span class="dt">ntree=</span><span class="dv">1000</span>, <span class="dt">importance=</span><span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ex.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(IBM) ~<span class="st"> </span><span class="kw">Delt</span>(<span class="kw">Cl</span>(IBM), <span class="dt">k =</span> <span class="dv">1</span>:<span class="dv">3</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ex.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(IBM) <span class="op">~</span><span class="st"> </span><span class="kw">Delt</span>(<span class="kw">Cl</span>(IBM), <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))
 data &lt;-<span class="st"> </span><span class="kw">modelData</span>(ex.model, <span class="dt">data.window =</span> <span class="kw">c</span>(<span class="st">&quot;2009-01-01&quot;</span>,  <span class="st">&quot;2009-08-10&quot;</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">myFavouriteModellingTool</span>(ex.model@model.formula, <span class="kw">as.data.frame</span>(data))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImpPlot</span>(rf@fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf@fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)
-<span class="kw">rownames</span>(imp)[<span class="kw">which</span>(imp &gt;<span class="st"> </span><span class="dv">30</span>)]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(GSPC) ~<span class="st"> </span><span class="kw">myATR</span>(GSPC) +<span class="st"> </span><span class="kw">mySMI</span>(GSPC) +<span class="st">  </span><span class="kw">myADX</span>(GSPC) +<span class="st"> </span>
-<span class="st">                           </span><span class="kw">myAroon</span>(GSPC) +<span class="st"> </span><span class="kw">myEMV</span>(GSPC) +<span class="st"> </span><span class="kw">myVolat</span>(GSPC) +<span class="st"> </span>
-<span class="st">                           </span><span class="kw">myMACD</span>(GSPC) +<span class="st"> </span><span class="kw">myMFI</span>(GSPC) +<span class="st"> </span><span class="kw">mySAR</span>(GSPC) +<span class="st"> </span>
-<span class="st">                           </span><span class="kw">runMean</span>(<span class="kw">Cl</span>(GSPC)) +<span class="st"> </span><span class="kw">runSD</span>(<span class="kw">Cl</span>(GSPC)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">myFavouriteModellingTool</span>(ex.model<span class="op">@</span>model.formula, <span class="kw">as.data.frame</span>(data))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">varImpPlot</span>(rf<span class="op">@</span>fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf<span class="op">@</span>fitted.model, <span class="dt">type =</span> <span class="dv">1</span>)
+<span class="kw">rownames</span>(imp)[<span class="kw">which</span>(imp <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data.model &lt;-<span class="st"> </span><span class="kw">specifyModel</span>(<span class="kw">T.ind</span>(GSPC) <span class="op">~</span><span class="st"> </span><span class="kw">myATR</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">mySMI</span>(GSPC) <span class="op">+</span><span class="st">  </span><span class="kw">myADX</span>(GSPC) <span class="op">+</span><span class="st"> </span>
+<span class="st">                           </span><span class="kw">myAroon</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myEMV</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myVolat</span>(GSPC) <span class="op">+</span><span class="st"> </span>
+<span class="st">                           </span><span class="kw">myMACD</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">myMFI</span>(GSPC) <span class="op">+</span><span class="st"> </span><span class="kw">mySAR</span>(GSPC) <span class="op">+</span><span class="st"> </span>
+<span class="st">                           </span><span class="kw">runMean</span>(<span class="kw">Cl</span>(GSPC)) <span class="op">+</span><span class="st"> </span><span class="kw">runSD</span>(<span class="kw">Cl</span>(GSPC)))</code></pre></div>
 </div>
 <div id="the-prediction-tasks" class="section level4">
 <h4>The Prediction Tasks</h4>
@@ -505,13 +505,13 @@ Tdata.eval &lt;-<span class="st"> </span><span class="kw">na.omit</span>(<span c
 Tform &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&#39;T.ind.GSPC ~ .&#39;</span>)
 ## The classification task
 buy.thr &lt;-<span class="st"> </span><span class="fl">0.1</span>
-sell.thr &lt;-<span class="st"> </span>-<span class="fl">0.1</span>
+sell.thr &lt;-<span class="st"> </span><span class="op">-</span><span class="fl">0.1</span>
 Tdata.trainC &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">Signal=</span><span class="kw">trading.signals</span>(Tdata.train[[<span class="st">&quot;T.ind.GSPC&quot;</span>]],
                                              buy.thr,sell.thr),
-                      Tdata.train[,-<span class="dv">1</span>])
+                      Tdata.train[,<span class="op">-</span><span class="dv">1</span>])
 Tdata.evalC &lt;-<span class="st">  </span><span class="kw">cbind</span>(<span class="dt">Signal=</span><span class="kw">trading.signals</span>(Tdata.eval[[<span class="st">&quot;T.ind.GSPC&quot;</span>]],
                                              buy.thr,sell.thr),
-                      Tdata.eval[,-<span class="dv">1</span>])
+                      Tdata.eval[,<span class="op">-</span><span class="dv">1</span>])
 TformC &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;Signal ~ .&quot;</span>)</code></pre></div>
 </div>
 <div id="evaluation-criteria" class="section level4">
@@ -529,36 +529,36 @@ TformC &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span cl
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
 <span class="kw">library</span>(nnet)
 ## The first column is the target variable
-norm.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">T.ind.GSPC=</span>Tdata.train[[<span class="dv">1</span>]],<span class="kw">scale</span>(Tdata.train[,-<span class="dv">1</span>]))
-nn &lt;-<span class="st"> </span><span class="kw">nnet</span>(Tform, norm.data[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">decay =</span> <span class="fl">0.01</span>, 
+norm.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">T.ind.GSPC=</span>Tdata.train[[<span class="dv">1</span>]],<span class="kw">scale</span>(Tdata.train[,<span class="op">-</span><span class="dv">1</span>]))
+nn &lt;-<span class="st"> </span><span class="kw">nnet</span>(Tform, norm.data[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, ], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">decay =</span> <span class="fl">0.01</span>, 
            <span class="dt">maxit =</span> <span class="dv">1000</span>, <span class="dt">linout =</span> <span class="ot">TRUE</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>)
-preds &lt;-<span class="st"> </span><span class="kw">predict</span>(nn, norm.data[<span class="dv">1001</span>:<span class="dv">2000</span>, ])</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sigs.nn &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(preds,<span class="fl">0.1</span>,-<span class="fl">0.1</span>)
-true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>], <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+preds &lt;-<span class="st"> </span><span class="kw">predict</span>(nn, norm.data[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, ])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sigs.nn &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(preds,<span class="fl">0.1</span>,<span class="op">-</span><span class="fl">0.1</span>)
+true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>], <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
 <span class="kw">sigs.PR</span>(sigs.nn,true.sigs)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
 <span class="kw">library</span>(nnet)
-norm.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Signal=</span>Tdata.trainC$Signal,<span class="kw">scale</span>(Tdata.trainC[,-<span class="dv">1</span>]))
-nn &lt;-<span class="st"> </span><span class="kw">nnet</span>(Signal ~<span class="st"> </span>., norm.data[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">decay =</span> <span class="fl">0.01</span>, 
+norm.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Signal=</span>Tdata.trainC<span class="op">$</span>Signal,<span class="kw">scale</span>(Tdata.trainC[,<span class="op">-</span><span class="dv">1</span>]))
+nn &lt;-<span class="st"> </span><span class="kw">nnet</span>(Signal <span class="op">~</span><span class="st"> </span>., norm.data[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, ], <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">decay =</span> <span class="fl">0.01</span>, 
            <span class="dt">maxit =</span> <span class="dv">1000</span>, <span class="dt">trace =</span> <span class="ot">FALSE</span>)
-preds &lt;-<span class="st"> </span><span class="kw">predict</span>(nn, norm.data[<span class="dv">1001</span>:<span class="dv">2000</span>, ], <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sigs.PR</span>(preds, norm.data[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="dv">1</span>])</code></pre></div>
+preds &lt;-<span class="st"> </span><span class="kw">predict</span>(nn, norm.data[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, ], <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sigs.PR</span>(preds, norm.data[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, <span class="dv">1</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
 <span class="kw">library</span>(e1071)
-sv &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">gamma =</span> <span class="fl">0.001</span>, <span class="dt">cost =</span> <span class="dv">100</span>)
-s.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(sv, Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, ])
-sigs.svm &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(s.preds, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
-true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>], <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+sv &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, ], <span class="dt">gamma =</span> <span class="fl">0.001</span>, <span class="dt">cost =</span> <span class="dv">100</span>)
+s.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(sv, Tdata.train[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, ])
+sigs.svm &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(s.preds, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
+true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>], <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
 <span class="kw">sigs.PR</span>(sigs.svm, true.sigs)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kernlab)
-ksv &lt;-<span class="st"> </span><span class="kw">ksvm</span>(Signal ~<span class="st"> </span>., Tdata.trainC[<span class="dv">1</span>:<span class="dv">1000</span>, ], <span class="dt">C =</span> <span class="dv">10</span>)
-ks.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(ksv, Tdata.trainC[<span class="dv">1001</span>:<span class="dv">2000</span>, ])
-<span class="kw">sigs.PR</span>(ks.preds, Tdata.trainC[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="dv">1</span>])</code></pre></div>
+ksv &lt;-<span class="st"> </span><span class="kw">ksvm</span>(Signal <span class="op">~</span><span class="st"> </span>., Tdata.trainC[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, ], <span class="dt">C =</span> <span class="dv">10</span>)
+ks.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(ksv, Tdata.trainC[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, ])
+<span class="kw">sigs.PR</span>(ks.preds, Tdata.trainC[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, <span class="dv">1</span>])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(earth)
-e &lt;-<span class="st"> </span><span class="kw">earth</span>(Tform, Tdata.train[<span class="dv">1</span>:<span class="dv">1000</span>, ])
-e.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(e, Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, ])
-sigs.e &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(e.preds, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
-true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span>:<span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>],  <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+e &lt;-<span class="st"> </span><span class="kw">earth</span>(Tform, Tdata.train[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, ])
+e.preds &lt;-<span class="st"> </span><span class="kw">predict</span>(e, Tdata.train[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, ])
+sigs.e &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(e.preds, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
+true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(Tdata.train[<span class="dv">1001</span><span class="op">:</span><span class="dv">2000</span>, <span class="st">&quot;T.ind.GSPC&quot;</span>],  <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
 <span class="kw">sigs.PR</span>(sigs.e, true.sigs)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(e)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">evimp</span>(e, <span class="dt">trim=</span><span class="ot">FALSE</span>)</code></pre></div>
@@ -575,7 +575,7 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
 </div>
 <div id="putting-everything-together-a-simulated-trader" class="section level4">
 <h4>Putting Everything Together: A Simulated Trader</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">policy<span class="fl">.1</span> &lt;-<span class="st"> </span>function(signals,market,opened.pos,money,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">policy.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(signals,market,opened.pos,money,
                      <span class="dt">bet=</span><span class="fl">0.2</span>,<span class="dt">hold.time=</span><span class="dv">10</span>,
                      <span class="dt">exp.prof=</span><span class="fl">0.025</span>, <span class="dt">max.loss=</span> <span class="fl">0.05</span>
                      )
@@ -584,18 +584,18 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
     orders &lt;-<span class="st"> </span><span class="ot">NULL</span>
     nOs &lt;-<span class="st"> </span><span class="kw">NROW</span>(opened.pos)
     <span class="co"># nothing to do!</span>
-    if (!nOs &amp;&amp;<span class="st"> </span>signals[d] ==<span class="st"> &#39;h&#39;</span>) <span class="kw">return</span>(orders)
+    <span class="cf">if</span> (<span class="op">!</span>nOs <span class="op">&amp;&amp;</span><span class="st"> </span>signals[d] <span class="op">==</span><span class="st"> &#39;h&#39;</span>) <span class="kw">return</span>(orders)
 
     <span class="co"># First lets check if we can open new positions</span>
     <span class="co"># i) long positions</span>
-    if (signals[d] ==<span class="st"> &#39;b&#39;</span> &amp;&amp;<span class="st"> </span>!nOs) {
-      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*money/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
-      if (quant &gt;<span class="st"> </span><span class="dv">0</span>) 
+    <span class="cf">if</span> (signals[d] <span class="op">==</span><span class="st"> &#39;b&#39;</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span>nOs) {
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet<span class="op">*</span>money<span class="op">/</span><span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      <span class="cf">if</span> (quant <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) 
         orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
-              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,-<span class="dv">1</span>,-<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
                          <span class="dt">val =</span> <span class="kw">c</span>(quant,
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+exp.prof),
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-max.loss)
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>max.loss)
                                 ),
                          <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
                          <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
@@ -603,18 +603,18 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
                        )
 
     <span class="co"># ii) short positions  </span>
-    } else if (signals[d] ==<span class="st"> &#39;s&#39;</span> &amp;&amp;<span class="st"> </span>!nOs) {
+    } <span class="cf">else</span> <span class="cf">if</span> (signals[d] <span class="op">==</span><span class="st"> &#39;s&#39;</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span>nOs) {
       <span class="co"># this is the nr of stocks we already need to buy </span>
       <span class="co"># because of currently opened short positions</span>
-      need2buy &lt;-<span class="st"> </span><span class="kw">sum</span>(opened.pos[opened.pos[,<span class="st">&#39;pos.type&#39;</span>]==-<span class="dv">1</span>,
-                                 <span class="st">&quot;N.stocks&quot;</span>])*<span class="kw">Cl</span>(market)[d]
-      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*(money-need2buy)/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
-      if (quant &gt;<span class="st"> </span><span class="dv">0</span>)
+      need2buy &lt;-<span class="st"> </span><span class="kw">sum</span>(opened.pos[opened.pos[,<span class="st">&#39;pos.type&#39;</span>]<span class="op">==-</span><span class="dv">1</span>,
+                                 <span class="st">&quot;N.stocks&quot;</span>])<span class="op">*</span><span class="kw">Cl</span>(market)[d]
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet<span class="op">*</span>(money<span class="op">-</span>need2buy)<span class="op">/</span><span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      <span class="cf">if</span> (quant <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
         orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
-              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(-<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
                          <span class="dt">val =</span> <span class="kw">c</span>(quant,
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-exp.prof),
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+max.loss)
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>max.loss)
                                 ),
                          <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
                          <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
@@ -624,11 +624,11 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
     
     <span class="co"># Now lets check if we need to close positions</span>
     <span class="co"># because their holding time is over</span>
-    if (nOs) 
-      for(i in <span class="dv">1</span>:nOs) {
-        if (d -<span class="st"> </span>opened.pos[i,<span class="st">&#39;Odate&#39;</span>] &gt;=<span class="st"> </span>hold.time)
+    <span class="cf">if</span> (nOs) 
+      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nOs) {
+        <span class="cf">if</span> (d <span class="op">-</span><span class="st"> </span>opened.pos[i,<span class="st">&#39;Odate&#39;</span>] <span class="op">&gt;=</span><span class="st"> </span>hold.time)
           orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
-                <span class="kw">data.frame</span>(<span class="dt">order=</span>-opened.pos[i,<span class="st">&#39;pos.type&#39;</span>],
+                <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="op">-</span>opened.pos[i,<span class="st">&#39;pos.type&#39;</span>],
                            <span class="dt">order.type=</span><span class="dv">1</span>,
                            <span class="dt">val =</span> <span class="ot">NA</span>,
                            <span class="dt">action =</span> <span class="st">&#39;close&#39;</span>,
@@ -639,7 +639,7 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
 
     orders
   }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">policy<span class="fl">.2</span> &lt;-<span class="st"> </span>function(signals,market,opened.pos,money,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">policy.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(signals,market,opened.pos,money,
                      <span class="dt">bet=</span><span class="fl">0.2</span>,<span class="dt">exp.prof=</span><span class="fl">0.025</span>, <span class="dt">max.loss=</span> <span class="fl">0.05</span>
                     )
   {
@@ -647,18 +647,18 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
     orders &lt;-<span class="st"> </span><span class="ot">NULL</span>
     nOs &lt;-<span class="st"> </span><span class="kw">NROW</span>(opened.pos)
     <span class="co"># nothing to do!</span>
-    if (!nOs &amp;&amp;<span class="st"> </span>signals[d] ==<span class="st"> &#39;h&#39;</span>) <span class="kw">return</span>(orders)
+    <span class="cf">if</span> (<span class="op">!</span>nOs <span class="op">&amp;&amp;</span><span class="st"> </span>signals[d] <span class="op">==</span><span class="st"> &#39;h&#39;</span>) <span class="kw">return</span>(orders)
 
     <span class="co"># First lets check if we can open new positions</span>
     <span class="co"># i) long positions</span>
-    if (signals[d] ==<span class="st"> &#39;b&#39;</span>) {
-      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*money/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
-      if (quant &gt;<span class="st"> </span><span class="dv">0</span>) 
+    <span class="cf">if</span> (signals[d] <span class="op">==</span><span class="st"> &#39;b&#39;</span>) {
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet<span class="op">*</span>money<span class="op">/</span><span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      <span class="cf">if</span> (quant <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) 
         orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
-              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,-<span class="dv">1</span>,-<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
                          <span class="dt">val =</span> <span class="kw">c</span>(quant,
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+exp.prof),
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-max.loss)
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>max.loss)
                                 ),
                          <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
                          <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
@@ -666,18 +666,18 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
                        )
 
     <span class="co"># ii) short positions  </span>
-    } else if (signals[d] ==<span class="st"> &#39;s&#39;</span>) {
+    } <span class="cf">else</span> <span class="cf">if</span> (signals[d] <span class="op">==</span><span class="st"> &#39;s&#39;</span>) {
       <span class="co"># this is the money already committed to buy stocks</span>
       <span class="co"># because of currently opened short positions</span>
-      need2buy &lt;-<span class="st"> </span><span class="kw">sum</span>(opened.pos[opened.pos[,<span class="st">&#39;pos.type&#39;</span>]==-<span class="dv">1</span>,
-                                 <span class="st">&quot;N.stocks&quot;</span>])*<span class="kw">Cl</span>(market)[d]
-      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet*(money-need2buy)/<span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
-      if (quant &gt;<span class="st"> </span><span class="dv">0</span>)
+      need2buy &lt;-<span class="st"> </span><span class="kw">sum</span>(opened.pos[opened.pos[,<span class="st">&#39;pos.type&#39;</span>]<span class="op">==-</span><span class="dv">1</span>,
+                                 <span class="st">&quot;N.stocks&quot;</span>])<span class="op">*</span><span class="kw">Cl</span>(market)[d]
+      quant &lt;-<span class="st"> </span><span class="kw">round</span>(bet<span class="op">*</span>(money<span class="op">-</span>need2buy)<span class="op">/</span><span class="kw">Cl</span>(market)[d],<span class="dv">0</span>)
+      <span class="cf">if</span> (quant <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
         orders &lt;-<span class="st"> </span><span class="kw">rbind</span>(orders,
-              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(-<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+              <span class="kw">data.frame</span>(<span class="dt">order=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">order.type=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
                          <span class="dt">val =</span> <span class="kw">c</span>(quant,
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>-exp.prof),
-                                 <span class="kw">Cl</span>(market)[d]*(<span class="dv">1</span>+max.loss)
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>exp.prof),
+                                 <span class="kw">Cl</span>(market)[d]<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>max.loss)
                                 ),
                          <span class="dt">action =</span> <span class="kw">c</span>(<span class="st">&#39;open&#39;</span>,<span class="st">&#39;close&#39;</span>,<span class="st">&#39;close&#39;</span>),
                          <span class="dt">posID =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
@@ -691,17 +691,17 @@ true.sigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(
 start &lt;-<span class="st"> </span><span class="dv">1</span>
 len.tr &lt;-<span class="st"> </span><span class="dv">1000</span>
 len.ts &lt;-<span class="st"> </span><span class="dv">500</span>
-tr &lt;-<span class="st"> </span>start:(start+len.tr<span class="dv">-1</span>)
-ts &lt;-<span class="st"> </span>(start+len.tr):(start+len.tr+len.ts<span class="dv">-1</span>)
+tr &lt;-<span class="st"> </span>start<span class="op">:</span>(start<span class="op">+</span>len.tr<span class="op">-</span><span class="dv">1</span>)
+ts &lt;-<span class="st"> </span>(start<span class="op">+</span>len.tr)<span class="op">:</span>(start<span class="op">+</span>len.tr<span class="op">+</span>len.ts<span class="op">-</span><span class="dv">1</span>)
 ## getting the quotes for the testing period
 <span class="kw">data</span>(GSPC)
-date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.train[start+len.tr,])
-marketTP &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date,<span class="st">&#39;/&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span>:len.ts]
+date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.train[start<span class="op">+</span>len.tr,])
+marketTP &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date,<span class="st">&#39;/&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span><span class="op">:</span>len.ts]
 ## learning the model and obtaining its signal predictions for the test period
 <span class="kw">library</span>(e1071)
 s &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[tr,], <span class="dt">cost=</span><span class="dv">10</span>,<span class="dt">gamma=</span><span class="fl">0.01</span>)
 p &lt;-<span class="st"> </span><span class="kw">predict</span>(s, Tdata.train[ts,])
-sig &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(p, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+sig &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(p, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
 ## now using the simulated trader during the testing period
 t1 &lt;-<span class="st"> </span><span class="kw">trading.simulator</span>(marketTP, <span class="dt">signals=</span>sig, <span class="dt">policy.func=</span><span class="st">&#39;policy.1&#39;</span>,
                         <span class="dt">policy.pars=</span><span class="kw">list</span>(<span class="dt">exp.prof=</span><span class="fl">0.05</span>,<span class="dt">bet=</span><span class="fl">0.2</span>,<span class="dt">hold.time=</span><span class="dv">30</span>))</code></pre></div>
@@ -715,14 +715,14 @@ t1 &lt;-<span class="st"> </span><span class="kw">trading.simulator</span>(marke
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">start &lt;-<span class="st"> </span><span class="dv">2000</span>
 len.tr &lt;-<span class="st"> </span><span class="dv">1000</span>
 len.ts &lt;-<span class="st"> </span><span class="dv">500</span>
-tr &lt;-<span class="st"> </span>start:(start +<span class="st"> </span>len.tr -<span class="st"> </span><span class="dv">1</span>)
-ts &lt;-<span class="st"> </span>(start +<span class="st"> </span>len.tr):(start +<span class="st"> </span>len.tr +<span class="st"> </span>len.ts -<span class="st"> </span><span class="dv">1</span>)
+tr &lt;-<span class="st"> </span>start<span class="op">:</span>(start <span class="op">+</span><span class="st"> </span>len.tr <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+ts &lt;-<span class="st"> </span>(start <span class="op">+</span><span class="st"> </span>len.tr)<span class="op">:</span>(start <span class="op">+</span><span class="st"> </span>len.tr <span class="op">+</span><span class="st"> </span>len.ts <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
 <span class="kw">data</span>(GSPC)
-date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.train[start+len.tr,])
-marketTP &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date,<span class="st">&#39;/&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span>:len.ts]
+date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.train[start<span class="op">+</span>len.tr,])
+marketTP &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date,<span class="st">&#39;/&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span><span class="op">:</span>len.ts]
 s &lt;-<span class="st"> </span><span class="kw">svm</span>(Tform, Tdata.train[tr, ], <span class="dt">cost =</span> <span class="dv">10</span>, <span class="dt">gamma =</span> <span class="fl">0.01</span>)
 p &lt;-<span class="st"> </span><span class="kw">predict</span>(s, Tdata.train[ts, ])
-sig &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(p, <span class="fl">0.1</span>, -<span class="fl">0.1</span>)
+sig &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(p, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>)
 t2 &lt;-<span class="st">  </span><span class="kw">trading.simulator</span>(marketTP, sig, 
                          <span class="st">&quot;policy.2&quot;</span>, <span class="kw">list</span>(<span class="dt">exp.prof =</span> <span class="fl">0.05</span>, <span class="dt">bet =</span> <span class="fl">0.3</span>))
 <span class="kw">summary</span>(t2) 
@@ -737,7 +737,7 @@ t2 &lt;-<span class="st">  </span><span class="kw">trading.simulator</span>(mark
 </div>
 <div id="experimental-comparisons" class="section level4">
 <h4>Experimental Comparisons</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tradingWF &lt;-<span class="st"> </span>function(form, train, test, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tradingWF &lt;-<span class="st"> </span><span class="cf">function</span>(form, train, test, 
                       quotes, <span class="dt">pred.target=</span><span class="st">&quot;signals&quot;</span>,
                       learner, <span class="dt">learner.pars=</span><span class="ot">NULL</span>,
                       <span class="dt">predictor.pars=</span><span class="ot">NULL</span>,
@@ -747,19 +747,19 @@ t2 &lt;-<span class="st">  </span><span class="kw">trading.simulator</span>(mark
                       <span class="dt">trans.cost=</span><span class="dv">5</span>, <span class="dt">init.cap=</span><span class="fl">1e+06</span>)
 {
     ## obtain the model(s) and respective predictions for the test set
-    if (learn.test.type ==<span class="st"> &#39;fixed&#39;</span>) {  <span class="co"># a single fixed model</span>
+    <span class="cf">if</span> (learn.test.type <span class="op">==</span><span class="st"> &#39;fixed&#39;</span>) {  <span class="co"># a single fixed model</span>
         m &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,train),learner.pars))
         preds &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;predict&quot;</span>,<span class="kw">c</span>(<span class="kw">list</span>(m,test),predictor.pars))
-    } else {  <span class="co"># either slide or growing window strategies</span>
+    } <span class="cf">else</span> {  <span class="co"># either slide or growing window strategies</span>
         data &lt;-<span class="st"> </span><span class="kw">rbind</span>(train,test)
         n &lt;-<span class="st"> </span><span class="kw">NROW</span>(data)
         train.size &lt;-<span class="st"> </span><span class="kw">NROW</span>(train)
-        sts &lt;-<span class="st"> </span><span class="kw">seq</span>(train.size<span class="dv">+1</span>,n,<span class="dt">by=</span>relearn.step)
+        sts &lt;-<span class="st"> </span><span class="kw">seq</span>(train.size<span class="op">+</span><span class="dv">1</span>,n,<span class="dt">by=</span>relearn.step)
         preds &lt;-<span class="st"> </span><span class="kw">vector</span>()
-        for(s in sts) {  <span class="co"># loop over each relearn step</span>
-            tr &lt;-<span class="st"> </span>if (learn.test.type==<span class="st">&#39;slide&#39;</span>) data[(s-train.size):(s<span class="dv">-1</span>),] 
-                  else data[<span class="dv">1</span>:(s<span class="dv">-1</span>),]
-            ts &lt;-<span class="st"> </span>data[s:<span class="kw">min</span>((s+relearn.step<span class="dv">-1</span>),n),]
+        <span class="cf">for</span>(s <span class="cf">in</span> sts) {  <span class="co"># loop over each relearn step</span>
+            tr &lt;-<span class="st"> </span><span class="cf">if</span> (learn.test.type<span class="op">==</span><span class="st">&#39;slide&#39;</span>) data[(s<span class="op">-</span>train.size)<span class="op">:</span>(s<span class="op">-</span><span class="dv">1</span>),] 
+                  <span class="cf">else</span> data[<span class="dv">1</span><span class="op">:</span>(s<span class="op">-</span><span class="dv">1</span>),]
+            ts &lt;-<span class="st"> </span>data[s<span class="op">:</span><span class="kw">min</span>((s<span class="op">+</span>relearn.step<span class="op">-</span><span class="dv">1</span>),n),]
             
             m &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,tr),learner.pars))
             preds &lt;-<span class="st"> </span><span class="kw">c</span>(preds,<span class="kw">do.call</span>(<span class="st">&quot;predict&quot;</span>,<span class="kw">c</span>(<span class="kw">list</span>(m,ts),predictor.pars)))
@@ -767,35 +767,35 @@ t2 &lt;-<span class="st">  </span><span class="kw">trading.simulator</span>(mark
     } 
     
     ## Getting the trading signals
-    if (pred.target !=<span class="st"> &quot;signals&quot;</span>) {  <span class="co"># the model predicts the T indicator</span>
+    <span class="cf">if</span> (pred.target <span class="op">!=</span><span class="st"> &quot;signals&quot;</span>) {  <span class="co"># the model predicts the T indicator</span>
         predSigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(preds,b.t,s.t)
         tgtName &lt;-<span class="st"> </span><span class="kw">all.vars</span>(form)[<span class="dv">1</span>]
         trueSigs &lt;-<span class="st"> </span><span class="kw">trading.signals</span>(test[[tgtName]],b.t,s.t)
-    } else {  <span class="co"># the model predicts the signals directly</span>
+    } <span class="cf">else</span> {  <span class="co"># the model predicts the signals directly</span>
         tgtName &lt;-<span class="st"> </span><span class="kw">all.vars</span>(form)[<span class="dv">1</span>]
-        if (<span class="kw">is.factor</span>(preds))
+        <span class="cf">if</span> (<span class="kw">is.factor</span>(preds))
             predSigs &lt;-<span class="st"> </span>preds
-        else {
-            if (preds[<span class="dv">1</span>] %in%<span class="st"> </span><span class="kw">levels</span>(train[[tgtName]]))
+        <span class="cf">else</span> {
+            <span class="cf">if</span> (preds[<span class="dv">1</span>] <span class="op">%in%</span><span class="st"> </span><span class="kw">levels</span>(train[[tgtName]]))
                 predSigs &lt;-<span class="st"> </span><span class="kw">factor</span>(preds,<span class="dt">labels=</span><span class="kw">levels</span>(train[[tgtName]]),
                                    <span class="dt">levels=</span><span class="kw">levels</span>(train[[tgtName]]))
-            else 
+            <span class="cf">else</span> 
                 predSigs &lt;-<span class="st"> </span><span class="kw">factor</span>(preds,<span class="dt">labels=</span><span class="kw">levels</span>(train[[tgtName]]),
-                                   <span class="dt">levels=</span><span class="dv">1</span>:<span class="dv">3</span>)
+                                   <span class="dt">levels=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)
         }
         trueSigs &lt;-<span class="st"> </span>test[[tgtName]]
     }
 
     ## obtaining the trading record from trading with the signals
     date &lt;-<span class="st"> </span><span class="kw">rownames</span>(test)[<span class="dv">1</span>]
-    market &lt;-<span class="st"> </span><span class="kw">get</span>(quotes)[<span class="kw">paste</span>(date,<span class="st">&quot;/&quot;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span>:<span class="kw">length</span>(preds),]
+    market &lt;-<span class="st"> </span><span class="kw">get</span>(quotes)[<span class="kw">paste</span>(date,<span class="st">&quot;/&quot;</span>,<span class="dt">sep=</span><span class="st">&#39;&#39;</span>)][<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(preds),]
     tradeRec &lt;-<span class="st"> </span><span class="kw">trading.simulator</span>(market,predSigs,
                                   <span class="dt">policy.func=</span>policy,<span class="dt">policy.pars=</span>policy.pars,
                                   <span class="dt">trans.cost=</span>trans.cost,<span class="dt">init.cap=</span>init.cap)
     
     <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">trueSigs=</span>trueSigs,<span class="dt">predSigs=</span>predSigs,<span class="dt">tradeRec=</span>tradeRec))
 }</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tradingEval &lt;-<span class="st"> </span>function(trueSigs,predSigs,tradeRec,...) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tradingEval &lt;-<span class="st"> </span><span class="cf">function</span>(trueSigs,predSigs,tradeRec,...) 
 {
     ## Signals evaluation
     st &lt;-<span class="st"> </span><span class="kw">sigs.PR</span>(predSigs,trueSigs)
@@ -817,23 +817,23 @@ EST.TASK &lt;-<span class="st"> </span><span class="kw">EstimationTask</span>(<s
                            <span class="dt">evaluator=</span><span class="st">&quot;tradingEval&quot;</span>)
 VARS &lt;-<span class="st"> </span><span class="kw">list</span>()
 
-VARS$svm &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">150</span>),
+VARS<span class="op">$</span>svm &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">150</span>),
                                    <span class="dt">gamma=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.05</span>)))
-VARS$earth &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">nk=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">17</span>),
+VARS<span class="op">$</span>earth &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">nk=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">17</span>),
                                      <span class="dt">degree=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),
                                      <span class="dt">thresh=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.001</span>)))
-VARS$nnet &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">linout=</span><span class="ot">TRUE</span>, <span class="dt">trace=</span><span class="ot">FALSE</span>,
+VARS<span class="op">$</span>nnet &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">linout=</span><span class="ot">TRUE</span>, <span class="dt">trace=</span><span class="ot">FALSE</span>,
                                      <span class="dt">maxit=</span><span class="dv">750</span>,
                                      <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>),
                                      <span class="dt">decay=</span><span class="kw">c</span>(<span class="fl">0.001</span>,<span class="fl">0.01</span>,<span class="fl">0.1</span>)))
 
-VARS$learning &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learn.test.type=</span><span class="kw">c</span>(<span class="st">&quot;fixed&quot;</span>,<span class="st">&quot;slide&quot;</span>,<span class="st">&quot;grow&quot;</span>), <span class="dt">relearn.step=</span><span class="dv">120</span>)
-VARS$trading  &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">policy=</span><span class="kw">c</span>(<span class="st">&quot;policy.1&quot;</span>,<span class="st">&quot;policy.2&quot;</span>),
+VARS<span class="op">$</span>learning &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learn.test.type=</span><span class="kw">c</span>(<span class="st">&quot;fixed&quot;</span>,<span class="st">&quot;slide&quot;</span>,<span class="st">&quot;grow&quot;</span>), <span class="dt">relearn.step=</span><span class="dv">120</span>)
+VARS<span class="op">$</span>trading  &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">policy=</span><span class="kw">c</span>(<span class="st">&quot;policy.1&quot;</span>,<span class="st">&quot;policy.2&quot;</span>),
                      <span class="dt">policy.pars=</span><span class="kw">list</span>(<span class="dt">bet=</span><span class="kw">c</span>(<span class="fl">0.2</span>,<span class="fl">0.5</span>),<span class="dt">exp.prof=</span><span class="fl">0.05</span>,<span class="dt">max.loss=</span><span class="fl">0.05</span>),
-                     <span class="dt">b.t=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.05</span>),<span class="dt">s.t=</span><span class="kw">c</span>(-<span class="fl">0.01</span>,-<span class="fl">0.05</span>))
+                     <span class="dt">b.t=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.05</span>),<span class="dt">s.t=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>,<span class="op">-</span><span class="fl">0.05</span>))
 
 ## Regression (forecast T indicator) Workflows
-for(lrn in LEARNERS) {
+<span class="cf">for</span>(lrn <span class="cf">in</span> LEARNERS) {
     objName &lt;-<span class="st"> </span><span class="kw">paste</span>(lrn,<span class="st">&quot;res&quot;</span>,<span class="st">&quot;regr&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)
     <span class="kw">assign</span>(objName,
            <span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(Tform,Tdata.train,<span class="st">&quot;SP500&quot;</span>),
@@ -844,8 +844,8 @@ for(lrn in LEARNERS) {
                                                 <span class="dt">learner=</span>lrn,
                                                 <span class="dt">pred.target=</span><span class="st">&quot;indicator&quot;</span>),
                                            VARS[[lrn]],
-                                           VARS$learning,
-                                           VARS$trading)
+                                           VARS<span class="op">$</span>learning,
+                                           VARS<span class="op">$</span>trading)
                                          ),
                                  EST.TASK,
                                  <span class="dt">cluster=</span><span class="ot">TRUE</span>) <span class="co"># for parallel computation</span>
@@ -854,11 +854,11 @@ for(lrn in LEARNERS) {
 }
 
 ## Specific settings to make nnet work as a classifier
-VARS$nnet$learner.pars$linout &lt;-<span class="st">  </span><span class="ot">FALSE</span>
-VARS$nnet$predictor.pars &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;class&quot;</span>)
+VARS<span class="op">$</span>nnet<span class="op">$</span>learner.pars<span class="op">$</span>linout &lt;-<span class="st">  </span><span class="ot">FALSE</span>
+VARS<span class="op">$</span>nnet<span class="op">$</span>predictor.pars &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;class&quot;</span>)
 
 ## Classification (forecast signal) workflows
-for(lrn in <span class="kw">c</span>(<span class="st">&quot;svm&quot;</span>,<span class="st">&quot;nnet&quot;</span>)) { <span class="co"># only these because MARS is only for regression</span>
+<span class="cf">for</span>(lrn <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;svm&quot;</span>,<span class="st">&quot;nnet&quot;</span>)) { <span class="co"># only these because MARS is only for regression</span>
     objName &lt;-<span class="st"> </span><span class="kw">paste</span>(lrn,<span class="st">&quot;res&quot;</span>,<span class="st">&quot;class&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)
     <span class="kw">assign</span>(objName,
            <span class="kw">performanceEstimation</span>(<span class="kw">PredTask</span>(TformC,Tdata.trainC,<span class="st">&quot;SP500&quot;</span>),
@@ -869,8 +869,8 @@ for(lrn in <span class="kw">c</span>(<span class="st">&quot;svm&quot;</span>,<sp
                                                 <span class="dt">learner=</span>lrn,
                                                 <span class="dt">pred.target=</span><span class="st">&quot;signals&quot;</span>),
                                            VARS[[lrn]],
-                                           VARS$learning,
-                                           VARS$trading)
+                                           VARS<span class="op">$</span>learning,
+                                           VARS<span class="op">$</span>trading)
                                          ),
                                  EST.TASK,
                                  <span class="dt">cluster=</span><span class="ot">TRUE</span>) <span class="co"># for parallel computation</span>
@@ -904,38 +904,38 @@ toMax &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">r
                      <span class="dt">partial=</span><span class="ot">FALSE</span>),
               <span class="dt">top=</span><span class="dv">100</span>,
               <span class="dt">maxs=</span>toMax)
-bestWFs &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">as.vector</span>(<span class="kw">sapply</span>(best$SP500,function(x) x$Workflow)))
+bestWFs &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">as.vector</span>(<span class="kw">sapply</span>(best<span class="op">$</span>SP500,<span class="cf">function</span>(x) x<span class="op">$</span>Workflow)))
 analysisSet &lt;-<span class="st"> </span><span class="kw">subset</span>(allResults, <span class="dt">workflows=</span>bestWFs, <span class="dt">partial=</span><span class="ot">FALSE</span>)
 <span class="kw">rm</span>(allResults)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(tps &lt;-<span class="st"> </span><span class="kw">topPerformers</span>(<span class="kw">subset</span>(analysisSet,<span class="dt">metrics=</span>tgtStats,<span class="dt">partial=</span><span class="ot">FALSE</span>),
                       <span class="dt">maxs=</span>toMax))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">subset</span>(analysisSet,
-               <span class="dt">workflows=</span>tps$SP500[<span class="kw">c</span>(<span class="st">&quot;prec.sb&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>,<span class="st">&quot;MaxDD&quot;</span>),
+               <span class="dt">workflows=</span>tps<span class="op">$</span>SP500[<span class="kw">c</span>(<span class="st">&quot;prec.sb&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>,<span class="st">&quot;MaxDD&quot;</span>),
                    <span class="st">&quot;Workflow&quot;</span>],
-               <span class="dt">metrics=</span>tgtStats[-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>)],
+               <span class="dt">metrics=</span>tgtStats[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>)],
                <span class="dt">partial=</span><span class="ot">FALSE</span>))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ms &lt;-<span class="st"> </span><span class="kw">metricsSummary</span>(<span class="kw">subset</span>(analysisSet,
                             <span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;NTrades&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>),
                             <span class="dt">partial=</span><span class="ot">FALSE</span>),
                      <span class="dt">summary=</span><span class="st">&quot;median&quot;</span>)[[<span class="st">&quot;SP500&quot;</span>]]
 candidates &lt;-<span class="st"> </span><span class="kw">subset</span>(analysisSet,
-                     <span class="dt">workflows=</span><span class="kw">colnames</span>(ms)[<span class="kw">which</span>(ms[<span class="st">&quot;NTrades&quot;</span>,] &gt;<span class="st"> </span><span class="dv">120</span>)],
+                     <span class="dt">workflows=</span><span class="kw">colnames</span>(ms)[<span class="kw">which</span>(ms[<span class="st">&quot;NTrades&quot;</span>,] <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>)],
                      <span class="dt">partial=</span><span class="ot">FALSE</span>)
 ms &lt;-<span class="st"> </span><span class="kw">metricsSummary</span>(<span class="kw">subset</span>(candidates,
                             <span class="dt">metrics=</span><span class="kw">c</span>(<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;PercProf&quot;</span>),
                             <span class="dt">partial=</span><span class="ot">FALSE</span>),
                      <span class="dt">summary=</span><span class="st">&quot;median&quot;</span>)[[<span class="st">&quot;SP500&quot;</span>]]
-(sms &lt;-<span class="st"> </span><span class="kw">apply</span>(ms,<span class="dv">1</span>,function(x) <span class="kw">names</span>(x[<span class="kw">order</span>(x,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)][<span class="dv">1</span>:<span class="dv">15</span>])))
-(winners &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">intersect</span>(sms[,<span class="dv">1</span>],sms[,<span class="dv">2</span>]),sms[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>],sms[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">2</span>])))
+(sms &lt;-<span class="st"> </span><span class="kw">apply</span>(ms,<span class="dv">1</span>,<span class="cf">function</span>(x) <span class="kw">names</span>(x[<span class="kw">order</span>(x,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)][<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>])))
+(winners &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">intersect</span>(sms[,<span class="dv">1</span>],sms[,<span class="dv">2</span>]),sms[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span>],sms[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">2</span>])))
 winnersResults &lt;-<span class="st"> </span><span class="kw">subset</span>(analysisSet,
                          <span class="dt">metrics=</span>tgtStats,<span class="dt">workflows=</span>winners,
                          <span class="dt">partial=</span><span class="ot">FALSE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(winnersResults,<span class="dt">baseline=</span><span class="st">&quot;nnetRegr.v200&quot;</span>,<span class="dt">maxs=</span>toMax)
-p$Ret$WilcoxonSignedRank.test</code></pre></div>
+p<span class="op">$</span>Ret<span class="op">$</span>WilcoxonSignedRank.test</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(winnersResults,<span class="st">&quot;nnetRegr.v175&quot;</span>,<span class="dt">maxs=</span>toMax)
-p$MaxDD$WilcoxonSignedRank.test</code></pre></div>
+p<span class="op">$</span>MaxDD<span class="op">$</span>WilcoxonSignedRank.test</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sds &lt;-<span class="st"> </span><span class="kw">signifDiffs</span>(p,<span class="dt">p.limit=</span><span class="fl">0.05</span>,<span class="dt">metrics=</span><span class="st">&quot;MaxDD&quot;</span>)
-sds$MaxDD$WilcoxonSignedRank.test$SP500</code></pre></div>
+sds<span class="op">$</span>MaxDD<span class="op">$</span>WilcoxonSignedRank.test<span class="op">$</span>SP500</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;nnetRegr.v200&quot;</span>, winnersResults)
 <span class="kw">getWorkflow</span>(<span class="st">&quot;nnetRegr.v175&quot;</span>, winnersResults)</code></pre></div>
 <!-- TradSys.Rnw -->
@@ -949,7 +949,7 @@ sds$MaxDD$WilcoxonSignedRank.test$SP500</code></pre></div>
 data &lt;-<span class="st"> </span><span class="kw">tail</span>(Tdata.train, <span class="dv">2540</span>) <span class="co"># the last 10 years of the training dataset</span>
 results &lt;-<span class="st"> </span><span class="kw">list</span>()
 wfsOut &lt;-<span class="st"> </span><span class="kw">list</span>()
-for (name in winners) {
+<span class="cf">for</span> (name <span class="cf">in</span> winners) {
     sys &lt;-<span class="st"> </span><span class="kw">getWorkflow</span>(name, analysisSet)
     wfsOut[[name]] &lt;-<span class="st"> </span><span class="kw">runWorkflow</span>(sys, Tform, data, Tdata.eval)
     results[[name]] &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;tradingEval&quot;</span>,wfsOut[[name]])
@@ -958,15 +958,15 @@ results &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results[, <span class="kw">c</span>(<span class="st">&quot;NTrades&quot;</span>,<span class="st">&quot;Ret&quot;</span>,<span class="st">&quot;RetOverBH&quot;</span>,<span class="st">&quot;PercProf&quot;</span>,<span class="st">&quot;MaxDD&quot;</span>)]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;nnetRegr.v203&quot;</span>, analysisSet)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date &lt;-<span class="st"> </span><span class="kw">rownames</span>(Tdata.eval)[<span class="dv">1</span>]
-market &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date, <span class="st">&quot;/&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)][<span class="dv">1</span>:<span class="kw">nrow</span>(Tdata.eval), ]
-<span class="kw">plot</span>(wfsOut[[<span class="st">&quot;nnetRegr.v203&quot;</span>]]$tradeRec, market, 
+market &lt;-<span class="st"> </span>GSPC[<span class="kw">paste</span>(date, <span class="st">&quot;/&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)][<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Tdata.eval), ]
+<span class="kw">plot</span>(wfsOut[[<span class="st">&quot;nnetRegr.v203&quot;</span>]]<span class="op">$</span>tradeRec, market, 
      <span class="dt">theme =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">name =</span> <span class="st">&quot;SP500 - final test&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(PerformanceAnalytics)
-equityWF &lt;-<span class="st"> </span><span class="kw">as.xts</span>(wfsOut[[<span class="st">&quot;nnetRegr.v203&quot;</span>]]$tradeRec@trading$Equity)
+equityWF &lt;-<span class="st"> </span><span class="kw">as.xts</span>(wfsOut[[<span class="st">&quot;nnetRegr.v203&quot;</span>]]<span class="op">$</span>tradeRec<span class="op">@</span>trading<span class="op">$</span>Equity)
 rets &lt;-<span class="st"> </span><span class="kw">Return.calculate</span>(equityWF)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chart.CumReturns</span>(rets, <span class="dt">main=</span><span class="st">&quot;Cumulative returns of the strategy&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;returns&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">yearlyReturn</span>(equityWF)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">100</span>*<span class="kw">yearlyReturn</span>(equityWF), 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">100</span><span class="op">*</span><span class="kw">yearlyReturn</span>(equityWF), 
      <span class="dt">main=</span><span class="st">&#39;Yearly percentage returns of the trading system&#39;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table.DownsideRisk</span>(rets)</code></pre></div>
 </div>
