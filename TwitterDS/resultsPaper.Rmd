@@ -1,0 +1,459 @@
+---
+title: "How to evaluate sentiment classifiers for Twitter time-ordered data?"
+author: Igor Mozetic, Luis Torgo, Vitor Cerqueira and Jasmina Smailovic
+output:
+  html_document: default
+  html_notebook: default
+---
+
+*In* : **PLOS ONE, (13), 3, pp. e0194317, 2018**
+
+## Reproducibility of the Results in the Paper
+
+To reproduce the results shown in the paper (both Figures and Tables) you need to have a current working installation of R ([www.r-project.org](http://www.r-project.org)). 
+
+On top of this installation of R, you also need to install a series of extra packages, which we will load below.
+
+The following code snipet includes basic settings that you need to execute before proceding with replicating our results. Among these settings you have the loading of the necessary extra packages (that you must first install before executing this code), and also the loading of a script file that you can download [here](auxFuncs.R).
+
+```{r setup, message=FALSE}
+
+## Font size used on graphs
+## txtSz <- 14  # this was used for the PDF figures of the paper
+txtSz <- 10
+
+## required packages
+library(knitr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(performanceEstimation)
+library(tidyr)
+
+## Loading a script containing some auxiliary functions
+source("auxFuncs.R")
+```
+
+You also need to download the Rdata files that contain the R objects with the results of the estimation procedures we compare in the paper. Download the two following files:
+
+- The results concerning the [Alpha Metric](kScores.Rdata)
+- The results concerning the [F Metric](fScores.Rdata)
+
+In summary, you should now have on your current R working directory the following files:
+
+- **kScores.Rdata**
+- **fScores.Rdata**
+- **auxFuncs.R**
+- And you should have executed the above code snipet, after installing the packages that are loaded therein using the `library()`function.
+
+## Table 4
+
+The following code produces the results show in Table 4 of the paper. This code will show the table in this page, but for the paper we generated a Latex version of the table, whose code is commented in the code.
+
+```{r}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+medScores <- group_by(res,Strat2,Lang) %>% 
+  summarise(medDif = median(dif2Gold)) %>% 
+  ungroup()
+tab4 <- spread(medScores,Strat2,medDif)
+tab4[,-1] <- round(tab4[,-1],3)
+## Last row with medians
+tab4 <- rbind(tab4, c("Median",round(apply(tab4[,-1],2,median),3)))
+## Table 4
+kable(tab4)
+## Latex version of the table (uncomment next line to get the latex code)
+## Hmisc:::latex(tab4,file="",rowname=NULL)
+```
+
+## Table 5
+
+Similar code, now for Table 5.
+
+```{r}
+metr <- "F"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+medScores <- group_by(res,Strat2,Lang) %>% 
+  summarise(medDif = median(dif2Gold)) %>% ungroup()
+tab5 <- spread(medScores,Strat2,medDif)
+tab5[,-1] <- round(tab5[,-1],3)
+## Last row with medians
+tab5 <- rbind(tab5, c("Median",round(apply(tab5[,-1],2,median),3)))
+kable(tab5)
+## Latex version of the table (uncomment next line to get the latex code)
+## Hmisc:::latex(tab5,file="",rowname=NULL)
+```
+
+## Figure 3
+
+The following code reproduces the graph shown in Figure 3.
+
+```{r}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## dif2Gold is = Estimate - GoldStandard
+g <- ggplot(res, aes(x=Lang,y=dif2Gold,col=Lang)) + 
+  geom_boxplot() + geom_hline(yintercept=0, alpha=0.6) +
+  facet_wrap(~ Strat2) + 
+  guides(col=FALSE) + 
+  xlab("") +
+  ylab("Distribution of the Difference to Gold Standard") +
+  theme(text=element_text(size=txtSz), axis.text.x=element_text(angle=90,vjust=0.3))
+
+## THe graph of figure 3
+g
+
+```
+
+## Figure 4
+
+The following code reproduces the graph shown in Figure 4.
+
+```{r}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## dif2Gold is = Estimate - GoldStandard
+g <- ggplot(res, aes(x=Strat2,y=dif2Gold)) + 
+  geom_boxplot() + geom_hline(yintercept=0, col= "red", alpha=0.5, lwd=1.1) +
+  guides(col=FALSE) + ylab("Distribution of the Difference to Gold Standard") + 
+  xlab("") +
+  theme(text=element_text(size=txtSz))
+#  theme(text=element_text(size=txtSz), axis.text.x=element_text(angle=25,vjust=0.3))
+
+## Graph on figure 4
+g
+```
+
+
+## Figure 5
+
+The following code reproduces the graph shown in Figure 5.
+
+```{r}
+metr <- "F"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## dif2Gold is = Estimate - GoldStandard
+g <- ggplot(res, aes(x=Strat2,y=dif2Gold)) + 
+  geom_boxplot() + geom_hline(yintercept=0, col= "red", alpha=0.5, lwd=1.1) +
+  guides(col=FALSE) + ylab("Distribution of the Difference to Gold Standard") + 
+  xlab("") +
+  theme(text=element_text(size=txtSz))
+#  theme(text=element_text(size=txtSz), axis.text.x=element_text(angle=25,vjust=0.3))
+
+## Graph on figure 5
+g
+```
+
+## Figure 6
+
+The following code reproduces the graph shown in Figure 6.
+
+```{r}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+thrsh1 <- 5
+thrsh2 <- 30
+d1 <- select(res,Strat2,Lang,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1), 
+         ok = between(percDiff,-thrsh1, thrsh1)) %>% 
+  filter(ok) %>%
+  group_by(Strat2,Lang) %>% tally()
+d2 <- select(res,Strat2,Lang,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1), 
+         bad = !between(percDiff,-thrsh2, thrsh2)) %>% 
+  filter(bad) %>%
+  group_by(Strat2,Lang) %>% tally()
+d <- select(res,Strat2,Lang,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1)) %>% 
+  group_by(Strat2,Lang) %>% tally()
+tots <- left_join(d,d1,by=c("Strat2","Lang")) %>% 
+  rename("Total" = n.x, "TotalOK" = n.y) %>% 
+  left_join(d2,by=c("Strat2","Lang")) %>%
+  rename("TotalBad" = n) 
+tots[is.na(tots)] <- 0
+percs <- mutate(tots, OK=100*TotalOK/Total, 
+         Bad=100*TotalBad/Total, 
+         Rest=100-OK-Bad) %>% 
+  select(Strat2,Lang,OK,Bad,Rest)
+dt <- gather(percs,Type,Perc,OK:Rest)
+dt$Type <- factor(dt$Type,levels=c("Bad","Rest","OK"),
+                  labels=c(paste(">",thrsh2),paste("[",thrsh1,",",thrsh2,"]"),paste("<",thrsh1)))
+g <- ggplot(dt,aes(x=Lang,y=Perc,fill=Type)) + 
+  geom_col(position="fill") + 
+  facet_wrap(~ Strat2) +
+  ylab(paste("Proportion of Iterations with Difference to Gold Standard between",thrsh1,"and",thrsh2))
+  xlab("") +
+  theme(text=element_text(size=txtSz), axis.text.x=element_text(angle=90,vjust=0.3))
+
+## Graph on screen
+g
+```
+
+## Figure 7
+
+The following code reproduces the graph shown in Figure 7.
+
+```{r}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+thrsh1 <- 5
+thrsh2 <- 30
+d1 <- select(res,Strat2,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1), 
+         ok = between(percDiff,-thrsh1, thrsh1)) %>% 
+  filter(ok) %>%
+  group_by(Strat2) %>% tally()
+d2 <- select(res,Strat2,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1), 
+         bad = !between(percDiff,-thrsh2, thrsh2)) %>% 
+  filter(bad) %>%
+  group_by(Strat2) %>% tally()
+d <- select(res,Strat2,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1)) %>% 
+  group_by(Strat2) %>% tally()
+tots <- left_join(d,d1,by=c("Strat2")) %>% 
+  rename("Total" = n.x, "TotalOK" = n.y) %>% 
+  left_join(d2,by=c("Strat2")) %>%
+  rename("TotalBad" = n) 
+tots[is.na(tots)] <- 0
+percs <- mutate(tots, OK=100*TotalOK/Total, 
+         Bad=100*TotalBad/Total, 
+         Rest=100-OK-Bad) %>% 
+  select(Strat2,OK,Bad,Rest)
+dt <- gather(percs,Type,Perc,OK:Rest)
+dt$Type <- factor(dt$Type,levels=c("Bad","Rest","OK"),
+                  labels=c(paste(">",thrsh2),paste("[",thrsh1,",",thrsh2,"]"),paste("<",thrsh1)))
+g <- ggplot(dt,aes(x=Strat2,y=Perc,fill=Type)) + 
+  geom_col(position="fill") +
+  ylab(paste("Proportion of Differences to Gold Standard between",thrsh1,"and",thrsh2)) + 
+  xlab("") +
+  theme(text=element_text(size=txtSz), axis.text.x=element_text(angle=25,vjust=0.3))
+
+## Graph on screen
+g
+```
+
+## Figure 8
+
+The following code reproduces the graph shown in Figure 8.
+
+```{r}
+metr <- "F"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+thrsh1 <- 5
+thrsh2 <- 30
+d1 <- select(res,Strat2,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1), 
+         ok = between(percDiff,-thrsh1, thrsh1)) %>% 
+  filter(ok) %>%
+  group_by(Strat2) %>% tally()
+d2 <- select(res,Strat2,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1), 
+         bad = !between(percDiff,-thrsh2, thrsh2)) %>% 
+  filter(bad) %>%
+  group_by(Strat2) %>% tally()
+d <- select(res,Strat2,Iter,rat2Gold) %>% 
+  mutate(percDiff=100*(rat2Gold-1)) %>% 
+  group_by(Strat2) %>% tally()
+tots <- left_join(d,d1,by=c("Strat2")) %>% 
+  rename("Total" = n.x, "TotalOK" = n.y) %>% 
+  left_join(d2,by=c("Strat2")) %>%
+  rename("TotalBad" = n) 
+tots[is.na(tots)] <- 0
+percs <- mutate(tots, OK=100*TotalOK/Total, 
+         Bad=100*TotalBad/Total, 
+         Rest=100-OK-Bad) %>% 
+  select(Strat2,OK,Bad,Rest)
+dt <- gather(percs,Type,Perc,OK:Rest)
+dt$Type <- factor(dt$Type,levels=c("Bad","Rest","OK"),
+                  labels=c(paste(">",thrsh2),paste("[",thrsh1,",",thrsh2,"]"),paste("<",thrsh1)))
+g <- ggplot(dt,aes(x=Strat2,y=Perc,fill=Type)) + 
+  geom_col(position="fill") +
+  ylab(paste("Proportion of Differences to Gold Standard between",thrsh1,"and",thrsh2)) + 
+  xlab("") +
+  theme(text=element_text(size=txtSz), axis.text.x=element_text(angle=25,vjust=0.3))
+
+## Graph on screen
+g
+```
+
+## Figure 9
+
+The following code reproduces the graph shown in Figure 9.
+
+```{r message=FALSE, warning=FALSE}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## The source raw data for the tests (the results on each iteration)
+rawScores <- mutate(res, absDif=abs(dif2Gold)) %>% select(Strat2, Lang, absDif)
+## Now building a performanceEstimation ComparisonResults object
+ds <- unique(rawScores$Lang)  # different languages correspond to diff data sets
+nds <- length(ds)
+tasks <- sapply(ds, function(d) PredTask(x ~.,data.frame(x=1:2,y=2:3),d))
+al <- unique(as.character(rawScores$Strat2)) # different strategies correspond to diff algorithms
+nal <- length(al)
+workflows <- sapply(al, function(a) Workflow(wfID=a))
+estTask <- EstimationTask(metrics=metr)
+peRes <- vector("list",nds)
+names(peRes) <- ds
+for(i in 1:nds) {
+  peRes[[i]] <- vector("list",nal)
+  names(peRes[[i]]) <- al
+}
+for(d in ds) {
+  for(a in al) {
+    peRes[[d]][[a]] <- EstimationResults(tasks[[d]],workflows[[a]],estTask,
+                                         as.matrix(filter(rawScores,Lang==d,Strat2==a) %>% select(absDif)),list())
+  }
+}
+obj <- ComparisonResults(peRes)
+
+## Now onto the tests
+comp <- pairedComparisons(obj, baseline="xval(9:1, strat, rand)")
+
+CDdiagram.Nemenyi(comp)
+
+```
+
+## Figure 10
+
+The following code reproduces the graph shown in Figure 10.
+
+```{r message=FALSE, warning=FALSE}
+metr <- "F"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## The source raw data for the tests (the results on each iteration)
+rawScores <- mutate(res, absDif=abs(dif2Gold)) %>% select(Strat2, Lang, absDif)
+## Now building a performanceEstimation ComparisonResults object
+ds <- unique(rawScores$Lang)  # different languages correspond to diff data sets
+nds <- length(ds)
+tasks <- sapply(ds, function(d) PredTask(x ~.,data.frame(x=1:2,y=2:3),d))
+al <- unique(as.character(rawScores$Strat2)) # different strategies correspond to diff algorithms
+nal <- length(al)
+workflows <- sapply(al, function(a) Workflow(wfID=a))
+estTask <- EstimationTask(metrics=metr)
+peRes <- vector("list",nds)
+names(peRes) <- ds
+for(i in 1:nds) {
+  peRes[[i]] <- vector("list",nal)
+  names(peRes[[i]]) <- al
+}
+for(d in ds) {
+  for(a in al) {
+    peRes[[d]][[a]] <- EstimationResults(tasks[[d]],workflows[[a]],estTask,
+                                         as.matrix(filter(rawScores,Lang==d,Strat2==a) %>% select(absDif)),list())
+  }
+}
+obj <- ComparisonResults(peRes)
+
+## Now onto the tests
+comp <- pairedComparisons(obj, baseline="xval(9:1, strat, rand)")
+
+CDdiagram.Nemenyi(comp)
+```
+
+## Results supporting the graphs of Figure 11
+
+The following code carries out the Wilcoxon signed rank tests supporting the graphs shown in Figure 11.
+
+First for the F metric
+
+```{r  message=FALSE, warning=FALSE}
+metr <- "F"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## The source raw data for the tests (the results on each iteration)
+rawScores <- mutate(res, absDif=abs(dif2Gold)) %>% select(Strat2, Lang, absDif)
+## Now building a performanceEstimation ComparisonResults object
+task <- PredTask(x ~.,data.frame(x=1:2,y=2:3)) # a fake task
+al <- unique(as.character(rawScores$Strat2)) # different strategies correspond to diff algorithms
+nal <- length(al)
+workflows <- sapply(al, function(a) Workflow(wfID=a))
+estTask <- EstimationTask(metrics="alpha")
+## One single data set
+nds <- 1
+peRes3 <- vector("list",nds)
+names(peRes3) <- "Langs"
+for(i in 1:nds) {
+  peRes3[[i]] <- vector("list",nal)
+  names(peRes3[[i]]) <- al
+}
+
+avgScores <- group_by(rawScores,Strat2,Lang) %>% summarize(avgAbsDif = mean(absDif)) %>% ungroup()
+for(a in al) {
+  peRes3[[1]][[a]] <- EstimationResults(task,workflows[[a]],estTask, as.matrix(filter(avgScores,Strat2==a) %>% select(avgAbsDif)),list())
+}
+objW <- ComparisonResults(peRes3)
+
+## Now onto the tests
+
+## Using xval(9:1, strat, block) as baseline
+compX <- pairedComparisons(objW, baseline="xval(9:1, strat, block)")
+compX$alpha$WilcoxonSignedRank.test
+## Using xval(9:1, strat, block) as baseline
+compS <- pairedComparisons(objW, baseline="seq(9:1, 20, equi)")
+compS$alpha$WilcoxonSignedRank.test
+
+```
+
+Now for the Alpha metric
+
+```{r  message=FALSE, warning=FALSE}
+metr <- "Alpha"
+## Loading the results of the selected metric 
+loadAndPrepare(metr)
+
+## The source raw data for the tests (the results on each iteration)
+rawScores <- mutate(res, absDif=abs(dif2Gold)) %>% select(Strat2, Lang, absDif)
+## Now building a performanceEstimation ComparisonResults object
+task <- PredTask(x ~.,data.frame(x=1:2,y=2:3)) # a fake task
+al <- unique(as.character(rawScores$Strat2)) # different strategies correspond to diff algorithms
+nal <- length(al)
+workflows <- sapply(al, function(a) Workflow(wfID=a))
+estTask <- EstimationTask(metrics="alpha")
+## One single data set
+nds <- 1
+peRes3 <- vector("list",nds)
+names(peRes3) <- "Langs"
+for(i in 1:nds) {
+  peRes3[[i]] <- vector("list",nal)
+  names(peRes3[[i]]) <- al
+}
+
+avgScores <- group_by(rawScores,Strat2,Lang) %>% summarize(avgAbsDif = mean(absDif)) %>% ungroup()
+for(a in al) {
+  peRes3[[1]][[a]] <- EstimationResults(task,workflows[[a]],estTask, as.matrix(filter(avgScores,Strat2==a) %>% select(avgAbsDif)),list())
+}
+objW <- ComparisonResults(peRes3)
+
+## Now onto the tests
+
+## Using xval(9:1, strat, block) as baseline
+compX <- pairedComparisons(objW, baseline="xval(9:1, strat, block)")
+compX$alpha$WilcoxonSignedRank.test
+## Using xval(9:1, strat, block) as baseline
+compS <- pairedComparisons(objW, baseline="seq(9:1, 20, equi)")
+compS$alpha$WilcoxonSignedRank.test
+
+```

@@ -1,0 +1,46 @@
+# CURE: ClUster REsampling
+
+This page has all the code and data used in the experiments reported in Paper 910 submitted for consideration at ECML PKDD 2019.
+We will describe below how the experiments can be reproduced. We start by explaning the system requirements and then how to use the code. Finally we show some auxiliary figures that were not included in the paper due to space constraints.
+
+# Requirements
+
+You will need to use [Python 2.7](https://www.python.org/downloads/) for conducting the experiments.
+You will also need the following packages: [Sklearn](https://scikit-learn.org/stable/install.html), [SciPy](https://www.scipy.org/install.html), [Pandas](https://pandas.pydata.org/pandas-docs/stable/install.html) and [Imbalanced-learn](https://pypi.org/project/imbalanced-learn/).
+
+
+# Usage
+
+Tested on Python 2.7.9.
+
+You can download all the code and data sets used in our experiments [here](ecml_public.zip).
+When this is done, you can use the intructions below to reproduce all our experiments.
+
+### Download Datasets and Initialize Databases
+To download all of the necessary datasets:
+
+```python datasets.py```
+
+To initialize the databases:
+
+```python databases.py```
+
+### Run the Experiments and Export the Results
+To schedule the experiments associated with the [preliminary|final] analysis:
+
+```python experiments/schedule_final.py```
+
+To start a runner, pulling unfinished trials until there are none left (note that several runners can operate simultaneously):
+
+```python run.py```
+
+To export the results from a previously initialized database into a CSV file:
+
+```python databases.py```
+
+
+
+*** This experimental framework is based on the framework published in:
+
+Koziarski, Michal, Bartosz Krawczyk, and Michal Woźniak. "Radial-Based oversampling for noisy imbalanced data classification." Neurocomputing (2019).
+
