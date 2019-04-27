@@ -59,7 +59,8 @@ These figures illustrate the impact of changing one of the parameters of our CUR
 ### IR50 Data sets: Data sets with 50 minority class examples
 
 Rankings variation of CURE method for IR50 for $s=0.25$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.25ByAlphaHist.pdf"  width="4200" height="4200">
+
+![Image Title](Figures/std0.25ByAlphaHist.pdf)
 
 
 Rankings variation of CURE method for IR50 for $s=0.45$ and $0.25 \leq \alpha \leq 0.85$
