@@ -60,7 +60,10 @@ These figures illustrate the impact of changing one of the parameters of our CUR
 
 Rankings variation of CURE method for IR50 for $s=0.25$ and $0.25 \leq \alpha \leq 0.85$
 
-![Image Title](Figures/std0.25ByAlphaHist.pdf)
+```{r echo = FALSE, message=FALSE, fig.align='center', fig.cap='Some cool caption', out.width='0.75\\linewidth', fig.pos='H'}
+knitr::include_graphics("./Figures/std0.25ByAlphaHist.pdf")
+```
+
 
 
 Rankings variation of CURE method for IR50 for $s=0.45$ and $0.25 \leq \alpha \leq 0.85$
