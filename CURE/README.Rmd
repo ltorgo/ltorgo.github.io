@@ -60,68 +60,76 @@ These figures illustrate the impact of changing one of the parameters of our CUR
 
 Rankings variation of CURE method for IR50 for $s=0.25$ and $0.25 \leq \alpha \leq 0.85$
 
-```{r echo = FALSE, message=FALSE, fig.align='center', fig.cap='Some cool caption', out.width='0.75\\linewidth', fig.pos='H'}
-knitr::include_graphics("./Figures/std0.25ByAlphaHist.pdf")
-```
+![Image Title](./Figures/std0.25ByAlphaHist.pdf){width=65%}
 
 
 
 Rankings variation of CURE method for IR50 for $s=0.45$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.45ByAlphaHist.pdf"  width="4200" height="4200">
+
+![Image Title](./Figures/std0.45ByAlphaHist.pdf){width=65%}
 
 Rankings variation of CURE method for IR50 for $s=0.65$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.65ByAlphaHist.pdf"  width="4200" height="4200">
+
+![Image Title](./Figures/std0.65ByAlphaHist.pdf){width=65%}
+
 
 
 Rankings variation of CURE method for IR50 for $s=0.85$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.85ByAlphaHist.pdf"  width="4200" height="4200">
+
+![Image Title](./Figures/std0.85ByAlphaHist.pdf){width=65%}
 
 
 Rankings variation of CURE method for IR50 for $s=1.0$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std1.0ByAlphaHist.pdf"  width="4200" height="4200">
+
+![Image Title](./Figures/std1.0ByAlphaHist.pdf){width=65%}
 
 
 ### IR30 Data sets: Data sets with 30 minority class examples
 
 Rankings variation of CURE method for IR30 for $s=0.25$ and $0.25 \leq \alpha \leq 0.85$
-![Image Title](Figures/size30std0.25ByAlphaHist.pdf){width=65%}
+![Image Title](./Figures/size30Std0.25ByAlphaHist.pdf){width=65%}
 
 
 Rankings variation of CURE method for IR30 for $s=0.45$ and $0.25 \leq \alpha \leq 0.85$
-![Image Title](Figures/size30std0.45ByAlphaHist.pdf){width=65%}
+![Image Title](./Figures/size30Std0.45ByAlphaHist.pdf){width=65%}
 
 Rankings variation of CURE method for IR30 for $s=0.65$ and $0.25 \leq \alpha \leq 0.85$
-![Image Title](Figures/size30std0.65ByAlphaHist.pdf){width=65%}
+![Image Title](./Figures/size30Std0.65ByAlphaHist.pdf){width=65%}
 
 Rankings variation of CURE method for IR30 for $s=0.85$ and $0.25 \leq \alpha \leq 0.85$
-![Image Title](Figures/size30std0.85ByAlphaHist.pdf){width=65%}
+![Image Title](./Figures/size30Std0.85ByAlphaHist.pdf){width=65%}
 
 
 Rankings variation of CURE method for IR30 for $s=1.0$ and $0.25 \leq \alpha \leq 0.85$
-![Rankings variation of CURE method for IR30 for $s=1.0$ and $0.25 \leq \alpha \leq 0.85$](Figures/size30std1.0ByAlphaHist.pdf){width=65%}
+![Rankings variation of CURE method for IR30 for $s=1.0$ and $0.25 \leq \alpha \leq 0.85$](./Figures/size30Std1.0ByAlphaHist.pdf){width=65%}
 
 
 ### IR10 Data sets: Data sets with 10 minority class examples
 
 Rankings variation of CURE method for IR10 for $s=0.25$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/size10std0.25ByAlphaHist.pdf"  width="4200" height="4200">
+
+![size10std0.25ByAlphaHist](./Figures/size10std0.25ByAlphaHist.pdf){width=65%}
 
 
 
 Rankings variation of CURE method for IR10 for $s=0.45$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.45ByAlphaHist.pdf"  width="4200" height="4200">
+
+![std0.45ByAlphaHist](./Figures/std0.45ByAlphaHist.pdf){width=65%}
 
 
 Rankings variation of CURE method for IR10 for $s=0.65$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.65ByAlphaHist.pdf"  width="4200" height="4200">
+
+![std0.65ByAlphaHist](./Figures/std0.65ByAlphaHist.pdf){width=65%}
 
 
 
 Rankings variation of CURE method for IR10 for $s=0.85$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std0.85ByAlphaHist.pdf"  width="4200" height="4200">
+
+![std0.85ByAlphaHist](./Figures/std0.85ByAlphaHist.pdf){width=65%}
 
 
 Rankings variation of CURE method for IR10 for $s=1.0$ and $0.25 \leq \alpha \leq 0.85$
-<img src="Figures/std1.0ByAlphaHist.pdf"  width="4200" height="4200">
+
+![std1.0ByAlphaHist](./Figures/std1.0ByAlphaHist.pdf){width=65%}
 
 
