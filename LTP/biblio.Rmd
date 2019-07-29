@@ -1,0 +1,25 @@
+---
+title: Bibliography
+output: html_document
+---
+
+- Books
+    + Recommended for the subject
+        - Charu C. Aggarwal (2015): Data Mining, the textbook. Springer.
+        - Torgo, L. (2017): Data Mining with R, learning with case studies, 2nd edition. CRC Press.    
+        [supporting material to the book](http://ltorgo.github.io/DMwR2/)
+        - J. Han , M. Kamber and J. Pei (2011): Data Mining - Concepts and Techniques (3rd edition). ISBN: 9780123814791		
+    + Other extra books
+        - B. S. Baumer, D. T. Kaplan and N. J. Horton (2017): Modern Data Science with R. CRC Press.
+        - Peter Flach (2012): Machine Learning, Cambridge University Press. ISBN: 978-1-107-42222-3
+        - Kuhn,M. and Johnson,K. (2013): Applied Predictive Modeling. Springer.
+        - Chambers, J. (2008): Software for Data Analysis, programming in R. Springer.
+        - Adler, J. (2010): R in a nutshell. O’Reilly.
+    + Free/web-based books
+        - Wickham,H. (2014): Advanced R. The R Series. CRC Press.    
+            [Free web access](http://adv-r.had.co.nz/)
+        - Grolemund, G. ; Wickham, H. (2016): R for Data Science. O'Reilly.    
+            [Free web access](http://r4ds.had.co.nz/)
+        - Peng, R. (2016): [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/). 
+        - [Several free R books](https://bookdown.org/)
+

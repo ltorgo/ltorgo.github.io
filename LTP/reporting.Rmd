@@ -1,0 +1,11 @@
+---
+title: Reporting in R
+output: html_document
+---
+
+
+Material for this slide set:
+
+- [Slides Handouts](Slides/reporting_handouts.pdf)
+- [R Code of the Slides](Rreporting.html)
+

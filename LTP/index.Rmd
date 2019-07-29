@@ -1,0 +1,58 @@
+---
+title: "Advanced Predictive Analytics using R - LTPlabs"
+output: html_document
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+
+<div class = "col-md-9">
+## **Advanced Predictive Analytics using R** {style="padding-top: 0px;"}
+### by *Luis Torgo* {style="padding-top: 0px;"}
+</div>
+
+<div class = "col-md-3">
+## ![LTP](ltpLabsLogo2.png) {style="width: 200px;"}
+</div>
+
+</div>
+
+<div class="row">
+
+***
+
+This Advanced Predcitive Analytics using R  course provides a short introduction to some key steps of  a typical predictive analytics project, using the [R language and environment](www.r-project.org) as the illustration tool. 
+
+The course addresses reporting tools in R; some of the key definitions and metrics for predictive analytics; relevant data pre-processing techniques; performance estimation, model tunning and comparison; feature selection; and handling imbalanced domains. 
+
+The course is targeted to participants with a significant background on the R environment and language.
+
+This web site provides support material to the course Using the top menus you can find:
+
++ Information about key aspects of the way the course will take place
++ Supporting material used during the course, namely:
+    - The slides handouts
+    - The code shown in the slides for easier replication in your R session
+    - Eventual datasets used during the classes
+    - Any other necessary material
++ Bibliography that may help you with extending your knowledge
++ Contact information
+
+</div>
+
+***
+
+<p>Copyright &copy; July 2019 Luis Torgo. All rights reserved.</p>
+
+
+

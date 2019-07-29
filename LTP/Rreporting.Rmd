@@ -1,0 +1,33 @@
+---
+title: Reporting in R
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+---
+
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(eval =FALSE)
+```
+
+
+The following is a [script file](RCode/Rreporting.R) containing all R code of all sections in this slide set.
+
+
+<!-- rmarkdown.Rnw --> 
+
+
+### rmarkdown
+```{r}
+plot(iris$Sepal.Length,iris$Sepal.Width,col=iris$Species)
+```
+
+
+```{r}
+library(rmarkdown)
+render("initialDoc.Rmd")
+```
+
+

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Performance Estimation in R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">APAR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-info"></span>
+     
+    Information
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="plan.html">Classes plan</a>
+    </li>
+    <li>
+      <a href="info.html">Useful Information</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="ion ion-ios-albums-outline"></span>
+     
+    Classes Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Slides/APAR.pdf">Introduction</a>
+    </li>
+    <li>
+      <a href="reporting.html">Reporting</a>
+    </li>
+    <li>
+      <a href="predAnalytics.html">Predictive Analytics</a>
+    </li>
+    <li>
+      <a href="dataPreProc.html">Data Pre-processing</a>
+    </li>
+    <li>
+      <a href="performance.html">Performance Estimation</a>
+    </li>
+    <li>
+      <a href="stocks.html">Stock Market Case Study</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="biblio.html">
+    <span class="fa fa-book"></span>
+     
+    Bibliography
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="ion ion-android-contact"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Performance Estimation in R</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/RperformanceEstimation.R">script file</a> containing all R code of all sections in this slide set.</p>
+<!-- perfEst.Rnw -->
+<div id="performance-estimation" class="section level3">
+<h3>Performance Estimation</h3>
+</div>
+<div id="the-holdout-method" class="section level3">
+<h3>The Holdout Method</h3>
+<pre class="r"><code>library(DMwR2)
+set.seed(1234)
+data(Boston,package=&#39;MASS&#39;)
+## random selection of the holdout
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(Boston),as.integer(trPerc*nrow(Boston)))
+## division in two samples
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+## obtaining the model and respective predictions on the test set
+m &lt;- rpartXse(medv ~.,tr)
+p &lt;- predict(m,ts)
+## evaluation
+mean((ts$medv-p)^2)</code></pre>
+</div>
+<div id="cross-validation" class="section level3">
+<h3>Cross Validation</h3>
+</div>
+<div id="bootstrap" class="section level3">
+<h3>Bootstrap</h3>
+<pre class="r"><code>data(Boston,package=&#39;MASS&#39;)
+nreps &lt;- 200
+scores &lt;- vector(&quot;numeric&quot;,length=nreps)
+n &lt;- nrow(Boston)
+set.seed(1234)
+for(i in 1:nreps) {
+   # random sample with replacement
+   sp &lt;- sample(n,n,replace=TRUE)
+   # data splitting
+   tr &lt;- Boston[sp,]
+   ts &lt;- Boston[-sp,]
+   # model learning and prediction
+   m &lt;- lm(medv ~.,tr)
+   p &lt;- predict(m,ts)
+   # evaluation
+   scores[i] &lt;- mean((ts$medv-p)^2)
+}
+# calculating means and standard errors
+summary(scores)</code></pre>
+</div>
+<div id="time-series-tasks" class="section level3">
+<h3>Time Series Tasks</h3>
+<pre class="r"><code>set.seed(1234)
+library(xts)
+someSeries &lt;- xts(rnorm(1000),seq.Date(from=Sys.Date(), length.out=1000, 
+                                       by =&quot;1 day&quot;))
+somePreds &lt;- xts(rnorm(1000),seq.Date(from=Sys.Date(), length.out=1000, 
+                                      by =&quot;1 day&quot;))
+(mse &lt;- mean((someSeries-somePreds)^2))
+(mad &lt;- mean(abs(someSeries-somePreds)))
+(U &lt;- sqrt(sum(((someSeries-somePreds)^2)[-1])) / 
+     sqrt(sum(((someSeries-lag(someSeries,1))^2)[-1])))
+(mape &lt;- mean(abs((someSeries-somePreds)/someSeries)))</code></pre>
+</div>
+<div id="the-infra-structure-of-package-performanceestimation" class="section level3">
+<h3>The Infra-Structure of package performanceEstimation</h3>
+<pre class="r"><code>install.packages(&quot;performanceEstimation&quot;)</code></pre>
+<pre class="r"><code>library(devtools)  # You need to install this package before!
+install_github(&quot;ltorgo/performanceEstimation&quot;,ref=&quot;develop&quot;)</code></pre>
+<pre class="r"><code>library(performanceEstimation)
+library(DMwR2)
+data(Boston,package=&#39;MASS&#39;)
+res &lt;- performanceEstimation(
+    PredTask(medv ~ .,Boston),
+    Workflow(&quot;standardWF&quot;,learner=&quot;rpartXse&quot;),
+    EstimationTask(metrics=&quot;mse&quot;,method=CV(nReps=1,nFolds=10)))</code></pre>
+<pre class="r"><code>summary(res)</code></pre>
+<pre class="r"><code>plot(res)</code></pre>
+<pre class="r"><code>data(iris)
+PredTask(Species ~ ., iris)
+PredTask(Species  ~ ., iris,&quot;IrisDS&quot;,copy=TRUE)</code></pre>
+<pre class="r"><code>library(e1071)
+Workflow(&quot;standardWF&quot;,learner=&quot;svm&quot;,learner.pars=list(cost=10,gamma=0.1))</code></pre>
+<pre class="r"><code>Workflow(learner=&quot;svm&quot;,learner.pars=list(cost=5))</code></pre>
+<pre class="r"><code>data(algae,package=&quot;DMwR2&quot;)
+res &lt;- performanceEstimation(
+    PredTask(a1 ~ .,algae[,1:12],&quot;A1&quot;),
+    Workflow(learner=&quot;lm&quot;,pre=&quot;centralImp&quot;,post=&quot;onlyPos&quot;),
+    EstimationTask(&quot;mse&quot;,method=CV())      # defaults to 1x10-fold CV
+                             )  </code></pre>
+<pre class="r"><code>library(e1071)
+data(Boston,package=&quot;MASS&quot;)
+res2 &lt;- performanceEstimation(
+    PredTask(medv ~ .,Boston),
+    workflowVariants(learner=&quot;svm&quot;,
+                     learner.pars=list(cost=1:5,gamma=c(0.1,0.01))),
+    EstimationTask(metrics=&quot;mse&quot;,method=CV()))  </code></pre>
+<pre class="r"><code>summary(res2)</code></pre>
+<pre class="r"><code>getWorkflow(&quot;svm.v1&quot;,res2)
+topPerformers(res2)</code></pre>
+<pre class="r"><code>plot(res2)</code></pre>
+<pre class="r"><code>EstimationTask(metrics=c(&quot;F&quot;,&quot;rec&quot;,&quot;prec&quot;),method=Bootstrap(nReps=100))</code></pre>
+<pre class="r"><code>library(randomForest)
+library(e1071)
+res3 &lt;- performanceEstimation(
+    PredTask(medv ~ ., Boston),
+    workflowVariants(&quot;standardWF&quot;,
+             learner=c(&quot;rpartXse&quot;,&quot;svm&quot;,&quot;randomForest&quot;)),
+    EstimationTask(metrics=&quot;mse&quot;,method=CV(nReps=2,nFolds=5)))</code></pre>
+<pre class="r"><code>rankWorkflows(res3,3)</code></pre>
+<pre class="r"><code>plot(res3)</code></pre>
+<pre class="r"><code>data(Glass,package=&#39;mlbench&#39;)
+res4 &lt;- performanceEstimation(
+    PredTask(Type ~ ., Glass),
+    workflowVariants(learner=&quot;svm&quot;,  # You may omit &quot;standardWF&quot; !
+                     learner.pars=list(cost=c(1,10),
+                                       gamma=c(0.1,0.01))),
+    EstimationTask(metrics=&quot;err&quot;,method=Holdout(nReps=5,hldSz=0.3)))</code></pre>
+<pre class="r"><code>plot(res4) </code></pre>
+<pre class="r"><code>data(Glass,package=&#39;mlbench&#39;)
+data(iris)
+res5 &lt;- performanceEstimation(
+    c(PredTask(Type ~ ., Glass),PredTask(Species ~.,iris)),
+    c(workflowVariants(learner=&quot;svm&quot;,
+                       learner.pars=list(cost=c(1,10),
+                                         gamma=c(0.1,0.01))),
+      workflowVariants(learner=&quot;rpartXse&quot;,
+                       learner.pars=list(se=c(0,0.5,1)),
+                       predictor.pars=list(type=&quot;class&quot;))),
+    EstimationTask(metrics=&quot;err&quot;,method=CV(nReps=3)))</code></pre>
+<pre class="r"><code>plot(res5) </code></pre>
+<pre class="r"><code>topPerformers(res5)
+topPerformer(res5,&quot;err&quot;,&quot;Glass.Type&quot;)</code></pre>
+<pre class="r"><code>library(quantmod)
+library(lubridate)
+getSymbols(&quot;GOOGL&quot;,from=Sys.Date() - years(5))
+gg &lt;- Delt(Cl(GOOGL))
+library(DMwR2)
+library(TTR)
+dat &lt;- createEmbedDS(gg, emb=7)
+dat &lt;- data.frame(cbind(lag(gg,-1),
+                        dat,
+                        MA10=SMA(gg,10),
+                        RSI=RSI(gg),
+                        BB=BBands(gg)$pctB))
+colnames(dat)[1] &lt;- &quot;FutureT&quot;
+dat &lt;- na.omit(dat)</code></pre>
+<pre class="r"><code>library(e1071)
+library(randomForest)
+tsExp &lt;- performanceEstimation(
+    PredTask(FutureT ~ .,dat,&#39;GG&#39;),   
+    c(Workflow(&#39;timeseriesWF&#39;,wfID=&quot;slideSVM&quot;, 
+               type=&quot;slide&quot;,relearn.step=90,
+               learner=&#39;svm&#39;,learner.pars=list(cost=10,gamma=0.01)),
+      Workflow(&#39;timeseriesWF&#39;,wfID=&quot;slideRF&quot;, 
+               type=&quot;slide&quot;,relearn.step=90,
+               learner=&#39;randomForest&#39;,learner.pars=list(ntrees=500))
+      ),
+    EstimationTask(metrics=&quot;theil&quot;,
+                   method=MonteCarlo(nReps=10,szTrain=0.5,szTest=0.25)))</code></pre>
+<pre class="r"><code>summary( tsExp )</code></pre>
+<pre class="r"><code>plot( tsExp )</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

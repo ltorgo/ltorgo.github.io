@@ -1,0 +1,10 @@
+---
+title: Useful Information
+output: html_document
+---
+
+- The [R Web Site](http://www.r-project.org)
+
+- The [R Studio Web Site](http://www.rstudio.com)
+
+- RStudio [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)

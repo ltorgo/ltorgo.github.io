@@ -1,0 +1,16 @@
+---
+title: Predictive Analytics in R
+output: html_document
+---
+
+
+Material for this slide set:
+
+- [Slides Handouts](Slides/predAnalytics_handouts.pdf)
+- [R Code of the Slides](RpredAnalytics.html)
+- [Wine DataSet](RCode/wine.Rdata)
+- [Car Insurance DataSet](RCode/carInsurance.Rdata)
+
+```{r comm, eval=FALSE, echo=FALSE}
+## - [Solutions to exercises](Slides/predAnalytics_sols.pdf)
+```

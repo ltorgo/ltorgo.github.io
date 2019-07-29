@@ -1,0 +1,50 @@
+name: "APAR"
+output_dir: "."
+navbar:
+  title: "APAR"
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "Information"
+      icon: fa-info
+      menu:
+        #- text: "Course Syllabus"
+        #  href: "FDSR_syllabus.pdf"
+        - text: "Classes plan"
+          href: plan.html
+        #- text: "Evaluation"
+          #href: eval.html
+        #- text: "Key Dates"
+        #  href: dates.html
+        - text: "Useful Information"
+          href: info.html
+        #- text: "Practical Assignments"
+          #href: trabalhoPratico.html
+    - text: "Classes Material"
+      icon: ion-ios-albums-outline
+      menu:
+        - text: "Introduction"
+          href: Slides/APAR.pdf
+        - text: "Reporting"
+          href: reporting.html
+        - text: "Predictive Analytics"
+          href: predAnalytics.html
+        - text: "Data Pre-processing"
+          href: dataPreProc.html
+        - text: "Performance Estimation"
+          href: performance.html
+        - text: "Stock Market Case Study"
+          href: stocks.html
+    - text: "Bibliography"
+      icon: fa-book
+      href: biblio.html
+  right:
+    - text: "Contact"
+      icon: ion-android-contact
+      href: about.html
+output:
+  html_document:
+#    theme: spacelab
+    theme: cerulean
+    highlight: textmate

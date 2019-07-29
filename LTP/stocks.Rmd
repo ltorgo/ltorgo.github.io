@@ -1,0 +1,11 @@
+---
+title: Stock Market Case Study
+output: html_document
+---
+
+
+Material for this slide set:
+
+- [Slides Handouts](Slides/stocks_handouts.pdf)
+- [R Code of the Slides](Rstocks.html)
+

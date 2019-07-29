@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Predictive Analytics in R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">APAR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-info"></span>
+     
+    Information
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="plan.html">Classes plan</a>
+    </li>
+    <li>
+      <a href="info.html">Useful Information</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="ion ion-ios-albums-outline"></span>
+     
+    Classes Material
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Slides/APAR.pdf">Introduction</a>
+    </li>
+    <li>
+      <a href="reporting.html">Reporting</a>
+    </li>
+    <li>
+      <a href="predAnalytics.html">Predictive Analytics</a>
+    </li>
+    <li>
+      <a href="dataPreProc.html">Data Pre-processing</a>
+    </li>
+    <li>
+      <a href="performance.html">Performance Estimation</a>
+    </li>
+    <li>
+      <a href="stocks.html">Stock Market Case Study</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="biblio.html">
+    <span class="fa fa-book"></span>
+     
+    Bibliography
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">
+    <span class="ion ion-android-contact"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Predictive Analytics in R</h1>
+
+</div>
+
+
+<p>The following is a <a href="RCode/RpredAnalytics.R">script file</a> containing all R code of all sections in this slide set.</p>
+<!-- metrics.Rnw -->
+<div id="evaluation-metrics" class="section level3">
+<h3>Evaluation Metrics</h3>
+<pre class="r"><code>trueVals &lt;- c(&quot;c1&quot;,&quot;c1&quot;,&quot;c2&quot;,&quot;c1&quot;,&quot;c3&quot;,&quot;c1&quot;,&quot;c2&quot;,&quot;c3&quot;,&quot;c2&quot;,&quot;c3&quot;)
+preds &lt;- c(&quot;c1&quot;,&quot;c2&quot;,&quot;c1&quot;,&quot;c3&quot;,&quot;c3&quot;,&quot;c1&quot;,&quot;c1&quot;,&quot;c3&quot;,&quot;c1&quot;,&quot;c2&quot;)
+confMatrix &lt;- table(trueVals,preds)
+confMatrix
+errorRate &lt;- 1-sum(diag(confMatrix))/sum(confMatrix)
+errorRate</code></pre>
+<pre class="r"><code>trueVals &lt;- c(&quot;c1&quot;,&quot;c1&quot;,&quot;c2&quot;,&quot;c1&quot;,&quot;c3&quot;,&quot;c1&quot;,&quot;c2&quot;,&quot;c3&quot;,&quot;c2&quot;,&quot;c3&quot;)
+preds &lt;- c(&quot;c1&quot;,&quot;c2&quot;,&quot;c1&quot;,&quot;c3&quot;,&quot;c3&quot;,&quot;c1&quot;,&quot;c1&quot;,&quot;c3&quot;,&quot;c1&quot;,&quot;c2&quot;)
+confMatrix &lt;- table(trueVals,preds)
+costMatrix &lt;- matrix(c(10,-2,-4,-2,30,-3,-5,-6,12),ncol=3)
+colnames(costMatrix) &lt;- c(&quot;predC1&quot;,&quot;predC2&quot;,&quot;predC3&quot;)
+rownames(costMatrix) &lt;- c(&quot;obsC1&quot;,&quot;obsC2&quot;,&quot;obsC3&quot;)
+costMatrix
+utilityPreds &lt;- sum(confMatrix*costMatrix)
+utilityPreds</code></pre>
+<pre class="r"><code>trueVals &lt;- c(10.2,-3,5.4,3,-43,21,
+              32.4,10.4,-65,23)
+preds &lt;-  c(13.1,-6,0.4,-1.3,-30,1.6,
+            3.9,16.2,-6,20.4)
+mse &lt;- mean((trueVals-preds)^2)
+mse
+rmse &lt;- sqrt(mse)
+rmse
+mae &lt;- mean(abs(trueVals-preds))
+mae
+nmse &lt;- sum((trueVals-preds)^2) / 
+        sum((trueVals-mean(trueVals))^2)
+nmse</code></pre>
+<pre class="r"><code>nmae &lt;- sum(abs(trueVals-preds)) / 
+        sum(abs(trueVals-mean(trueVals)))
+nmae
+mape &lt;- mean(abs(trueVals-preds)/trueVals)
+mape
+smape &lt;- 1/length(preds) * sum(abs(preds - trueVals) /
+                        (abs(preds)+abs(trueVals)))
+smape
+corr &lt;- cor(trueVals,preds)
+corr</code></pre>
+<!-- linDiscr.Rnw -->
+</div>
+<div id="linear-discriminant" class="section level3">
+<h3>Linear Discriminant</h3>
+<pre class="r"><code>library(MASS)
+data(iris)
+lda(Species ~ ., iris)</code></pre>
+<pre class="r"><code>sp &lt;- sample(1:150,100)
+tr &lt;- iris[sp,]
+ts &lt;- iris[-sp,]
+l &lt;- lda(Species ~ ., tr)
+preds &lt;- predict(l,ts)
+(mtrx &lt;- table(preds$class,ts$Species))
+(err &lt;- 1-sum(diag(mtrx))/sum(mtrx))</code></pre>
+<!-- linRegr.Rnw -->
+</div>
+<div id="multiple-linear-regression" class="section level3">
+<h3>Multiple Linear Regression</h3>
+<pre class="r"><code>library(DMwR2)
+data(algae)
+algae &lt;- algae[-c(62,199),]   # the 2 incomplete samples
+clean.algae &lt;- knnImputation(algae) # lm() does not handle NAs!
+la1 &lt;- lm(a1 ~ .,clean.algae[,1:12])
+la1</code></pre>
+<pre class="r"><code>summary(la1)</code></pre>
+<pre class="r"><code>final.la1 &lt;- step(la1)</code></pre>
+<pre class="r"><code>summary(final.la1)</code></pre>
+<pre class="r"><code>clean.test.algae &lt;- knnImputation(test.algae, 
+    k = 10, distData = clean.algae[, 1:11])
+preds &lt;- predict(final.la1,clean.test.algae)
+mean((preds-algae.sols$a1)^2)</code></pre>
+<pre class="r"><code>plot(algae.sols$a1,preds,main=&#39;Errors Scaterplot&#39;, 
+     ylab=&#39;Predicted Values&#39;,xlab=&#39;True Values&#39;)
+abline(0,1,col=&#39;red&#39;,lty=2)</code></pre>
+<!-- svms.Rnw -->
+</div>
+<div id="support-vector-machines-svms" class="section level3">
+<h3>Support Vector Machines (SVMs)</h3>
+<pre class="r"><code>library(e1071)
+data(Glass,package=&#39;mlbench&#39;)
+tr &lt;- Glass[1:200,]
+ts &lt;- Glass[201:214,]
+s &lt;- svm(Type ~ .,tr)
+predict(s,ts)</code></pre>
+<pre class="r"><code>ps &lt;- predict(s,ts)
+table(ps,ts$Type)
+mc &lt;- table(ps,ts$Type)
+error &lt;- 100*(1-sum(diag(mc))/sum(mc))
+error</code></pre>
+<pre class="r"><code>library(e1071)
+data(Boston,package=&#39;MASS&#39;)
+set.seed(1234)
+sp &lt;- sample(1:nrow(Boston),354)
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+s &lt;- svm(medv ~ .,tr,cost=10,epsilon=0.02)
+preds &lt;- predict(s,ts)
+mean((ts$medv-preds)^2)</code></pre>
+<pre class="r"><code>plot(ts$medv,preds,main=&#39;Errors Scaterplot&#39;,
+      ylab=&#39;Predictions&#39;,xlab=&#39;True&#39;)
+abline(0,1,col=&#39;red&#39;,lty=2)</code></pre>
+<!-- trees.Rnw -->
+</div>
+<div id="tree-based-models" class="section level3">
+<h3>Tree-based Models</h3>
+<pre class="r"><code>library(DMwR2)
+library(rpart.plot)
+data(Glass,package=&#39;mlbench&#39;)
+ac &lt;- rpartXse(Type  ~ .,Glass)
+prp(ac,type=4,extra=101)</code></pre>
+<pre class="r"><code>tr &lt;- Glass[1:200,]
+ts &lt;- Glass[201:214,]
+ac &lt;- rpartXse(Type  ~ .,tr)
+predict(ac,ts)</code></pre>
+<pre class="r"><code>predict(ac,ts,type=&#39;class&#39;)
+ps &lt;- predict(ac,ts,type=&#39;class&#39;)
+table(ps,ts$Type)
+mc &lt;- table(ps,ts$Type)
+err &lt;- 100*(1-sum(diag(mc))/sum(mc))
+err</code></pre>
+<pre class="r"><code>library(DMwR2)
+library(rpart.plot)
+load(&#39;carInsurance.Rdata&#39;)
+d &lt;- ins[,-1]
+ar &lt;- rpartXse(normLoss ~ .,d)
+prp(ar,type=4,extra=101)</code></pre>
+<pre class="r"><code>library(DMwR2)
+library(rpart.plot)
+data(algae)
+d &lt;- algae[,1:12]
+ar &lt;- rpartXse(a1 ~ .,d)</code></pre>
+<pre class="r"><code>prp(ar,type=4,extra=101)</code></pre>
+<pre class="r"><code>tr &lt;- d[1:150,]
+ts &lt;- d[151:205,]
+arv &lt;- rpartXse(normLoss ~ .,tr)
+preds &lt;- predict(arv,ts)
+mae &lt;- mean(abs(preds-ts$normLoss),na.rm=T)
+mae
+mape &lt;- mean(abs(preds-ts$normLoss)/ts$normLoss,na.rm=T)
+mape</code></pre>
+<pre class="r"><code>tr &lt;- d[1:150,]
+ts &lt;- d[151:200,]
+ar &lt;- rpartXse(a1 ~ .,tr)
+preds &lt;- predict(ar,ts)
+mae &lt;- mean(abs(preds-ts$a1))
+mae
+cr &lt;- cor(preds,ts$a1)
+cr</code></pre>
+<!-- rfs.Rnw -->
+</div>
+<div id="model-ensembles" class="section level3">
+<h3>Model Ensembles</h3>
+</div>
+<div id="model-ensembles-and-random-forests" class="section level3">
+<h3>Model Ensembles and Random Forests</h3>
+<pre class="r"><code>simpleBagging &lt;- function(form,data,model=&#39;rpartXse&#39;,nModels=100,...) {
+    ms &lt;- list()
+    n &lt;- nrow(data)
+    for(i in 1:nModels) {
+        tr &lt;- sample(n,n,replace=T)
+        ms[[i]] &lt;- do.call(model,c(list(form,data[tr,]),...))
+    }
+    ms
+}
+
+predict.simpleBagging &lt;- function(models,test) {
+   ps &lt;- sapply(models,function(m) predict(m,test))
+   apply(ps,1,mean)
+}</code></pre>
+<pre class="r"><code>data(Boston,package=&#39;MASS&#39;)
+library(DMwR)
+set.seed(123)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(Boston),as.integer(trPerc*nrow(Boston)))
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+
+m &lt;- simpleBagging(medv ~ .,tr,nModels=300,se=0.5)
+ps &lt;- predict.simpleBagging(m,ts)
+mean(abs(ps-ts$medv))</code></pre>
+<pre class="r"><code>library(ipred)
+data(Boston,package=&#39;MASS&#39;)
+set.seed(123)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(Boston),as.integer(trPerc*nrow(Boston)))
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+
+m &lt;- bagging(medv ~ .,tr,nbagg=100)
+ps &lt;- predict(m,ts)
+mean(abs(ps-ts$medv))</code></pre>
+<pre class="r"><code>randPreds &lt;- function(tgtName,data,model=&#39;rpartXse&#39;,
+                       nVars=(ncol(data)-1)%/%2,nModels=20,...) {
+ 
+   np &lt;- ncol(data)-1
+   if (np &lt;= nVars)
+     stop(paste(&quot;Nro de colunas nos dados insuficiente para escolher&quot;,
+                nVar,&quot;variáveis&quot;))
+   
+   tgtCol &lt;- which(colnames(data) == tgtName)
+   preds &lt;- (1:ncol(data))[-tgtCol]
+ 
+   ms &lt;- list()
+   for(i in 1:nModels) {
+     cols &lt;- sample(preds,nVars)
+     form &lt;- as.formula(paste(paste(names(data)[tgtCol],&#39;~&#39;),
+                              paste(names(data)[cols],collapse=&#39;+&#39;)))
+     ms[[i]] &lt;- do.call(model,c(list(form,data),...))
+   }
+   ms
+}
+ 
+predict.randPreds &lt;- function(models,test) {
+   ps &lt;- sapply(models,function(m) predict(m,test))
+   apply(ps,1,mean)
+}</code></pre>
+<pre class="r"><code>data(Boston,package=&#39;MASS&#39;)
+library(DMwR)
+set.seed(123)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(Boston),as.integer(trPerc*nrow(Boston)))
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+
+m &lt;- randPreds(&quot;medv&quot;,tr,nModels=300,se=0.5)
+ps &lt;- predict.randPreds(m,ts)
+mean(abs(ps-ts$medv))</code></pre>
+<pre class="r"><code>library(randomForest)
+data(Boston,package=&quot;MASS&quot;)
+samp &lt;- sample(1:nrow(Boston),354)
+tr &lt;- Boston[samp,]
+ts &lt;- Boston[-samp,]
+m &lt;- randomForest(medv ~ ., tr)
+ps &lt;- predict(m,ts)
+mean(abs(ts$medv-ps))</code></pre>
+<pre class="r"><code>data(Glass,package=&#39;mlbench&#39;)
+set.seed(1234)
+sp &lt;- sample(1:nrow(Glass),150)
+tr &lt;- Glass[sp,]
+ts &lt;- Glass[-sp,]
+m &lt;- randomForest(Type ~ ., tr,ntree=3000)
+ps &lt;- predict(m,ts)
+table(ps,ts$Type)
+mc &lt;- table(ps,ts$Type)
+err &lt;- 100*(1-sum(diag(mc))/sum(mc))
+err</code></pre>
+<pre class="r"><code>data(Boston,package=&#39;MASS&#39;)
+library(randomForest)
+m &lt;- randomForest(medv ~ ., Boston, 
+                  importance=T)
+importance(m)</code></pre>
+<pre class="r"><code>varImpPlot(m,main=&quot;Feature Relevance Scores&quot;)</code></pre>
+</div>
+<div id="hands-on-random-forests" class="section level3">
+<h3>Hands on Random Forests</h3>
+<pre class="r"><code>library(randomForest)
+library(DMwR)
+data(algae)
+algae &lt;- algae[-c(62,199),]
+algae &lt;- knnImputation(algae)
+rf.a4 &lt;- randomForest(a4 ~.,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- lm(a4 ~ .,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- step(lm.a4)</code></pre>
+<pre class="r"><code>lm.a4</code></pre>
+<pre class="r"><code>psrf &lt;- predict(rf.a4,algae)
+pslm &lt;- predict(lm.a4,algae)
+plot(psrf,pslm,xlab=&quot;Random forest predictions&quot;,ylab=&quot;lm predictions&quot;)
+abline(0,1,col=&quot;green&quot;)</code></pre>
+<pre class="r"><code>data(testAlgae)
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)
+summary(prevs.rf)
+summary(prevs.lm) # notice the difference in the number of NA&#39;s. Why?</code></pre>
+<pre class="r"><code>test.algae &lt;- knnImputation(test.algae,distData=algae[,1:11])
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)</code></pre>
+<pre class="r"><code>library(adabag)
+data(iris)
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(iris),as.integer(trPerc*nrow(iris)))
+ 
+tr &lt;- iris[sp,]
+ts &lt;- iris[-sp,]
+ 
+m &lt;- boosting(Species ~ ., tr)
+ps &lt;- predict(m,ts)
+ 
+ps$confusion
+ps$error</code></pre>
+<pre class="r"><code>library(adabag)
+data(iris)
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(iris),as.integer(trPerc*nrow(iris)))
+ 
+tr &lt;- iris[sp,]
+ts &lt;- iris[-sp,]
+ 
+m &lt;- bagging(Species ~ ., tr,mfinal=50)
+ps &lt;- predict(m,ts)
+ 
+ps$confusion
+ps$error</code></pre>
+<pre class="r"><code>library(adabag)
+data(BreastCancer,package=&quot;mlbench&quot;)
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(BreastCancer),as.integer(trPerc*nrow(BreastCancer)))
+ 
+tr &lt;- BreastCancer[sp,-1]
+ts &lt;- BreastCancer[-sp,-1]
+ 
+m &lt;- bagging(Class ~ ., tr,mfinal=100)
+ps &lt;- predict(m,ts)
+ 
+ptr &lt;- errorevol(m,tr)
+pts &lt;- errorevol(m,ts)</code></pre>
+<pre class="r"><code>plot(ptr$error,type=&quot;l&quot;,xlab=&quot;nr.models&quot;,ylab=&quot;error&quot;,ylim=c(0,0.1)) 
+lines(pts$error,col=&quot;red&quot;)</code></pre>
+<pre class="r"><code>library(gbm)
+data(Boston,package=&#39;MASS&#39;)
+ 
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(Boston),as.integer(trPerc*nrow(Boston)))
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+ 
+m &lt;- gbm(medv ~ .,distribution=&#39;gaussian&#39;,data=tr,
+         n.trees=20000,verbose=F)
+ps &lt;- predict(m,ts,type=&#39;response&#39;,n.trees=20000)
+mean(abs(ps-ts$medv))</code></pre>
+</div>
+<div id="hands-on-boosting" class="section level3">
+<h3>Hands on Boosting</h3>
+<pre class="r"><code>library(randomForest)
+library(DMwR)
+data(algae)
+algae &lt;- algae[-c(62,199),]
+algae &lt;- knnImputation(algae)
+rf.a4 &lt;- randomForest(a4 ~.,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- lm(a4 ~ .,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- step(lm.a4)</code></pre>
+<pre class="r"><code>lm.a4</code></pre>
+<pre class="r"><code>psrf &lt;- predict(rf.a4,algae)
+pslm &lt;- predict(lm.a4,algae)
+plot(psrf,pslm,xlab=&quot;Random forest predictions&quot;,ylab=&quot;lm predictions&quot;)
+abline(0,1,col=&quot;green&quot;)</code></pre>
+<pre class="r"><code>data(testAlgae)
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)
+summary(prevs.rf)
+summary(prevs.lm) # notice the difference in the number of NA&#39;s. Why?</code></pre>
+<pre class="r"><code>test.algae &lt;- knnImputation(test.algae,distData=algae[,1:11])
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)</code></pre>
+<!-- UBLexs.Rnw -->
+<pre class="r"><code>library(UBL) # Loading our infra-structure
+library(e1071) # package containing the svm we will use
+data(ImbC) # The synthetic data set we are going to use
+summary(ImbC) # Summary of the ImbC data
+table(ImbC$Class)</code></pre>
+<pre class="r"><code>set.seed(123)
+samp &lt;- sample(1:nrow(ImbC), nrow(ImbC)*0.7)
+train &lt;- ImbC[samp,]
+test &lt;- ImbC[-samp,]
+model &lt;- svm(Class~., train)
+preds &lt;- predict(model,test)
+table(preds, test$Class) # confusion matrix</code></pre>
+<pre class="r"><code># not using the default distance (Eucledian) because of the nominal feature
+newtrain &lt;- SmoteClassif(Class~., train, C.perc=&quot;balance&quot;, dist=&quot;HEOM&quot;)
+# generate a new model with the changed data
+newmodel &lt;- svm(Class~., newtrain)
+preds &lt;- predict(newmodel,test)
+table(preds, test$Class)</code></pre>
+<pre class="r"><code>newtrain2 &lt;- RandOverClassif(Class~., train, C.perc=&quot;balance&quot;)
+#generate a new model with the modified data set
+newmodel2 &lt;- svm(Class~., newtrain2)
+preds &lt;- predict(newmodel2, test)
+table(preds, test$Class)</code></pre>
+<pre class="r"><code>data(ImbR)
+summary(ImbR)
+set.seed(123)
+samp &lt;- sample(1:nrow(ImbR), as.integer(0.7*nrow(ImbR)))
+trainD &lt;- ImbR[samp,]
+testD &lt;- ImbR[-samp,]</code></pre>
+<pre class="r"><code>library(randomForest)
+model &lt;- randomForest(Tgt~., trainD)
+preds &lt;- predict(model, testD)</code></pre>
+<pre class="r"><code># using the Introduction of Gaussian Noise with the default parameters
+newTrain &lt;- GaussNoiseRegress(Tgt~., trainD)
+newModel &lt;-randomForest(Tgt~., newTrain)
+newPreds &lt;- predict(newModel, testD)</code></pre>
+<pre class="r"><code>res &lt;- data.frame(true=rep(testD$Tgt,2),preds=c(preds,newPreds),
+                  model=c(rep(&quot;original&quot;,nrow(testD)),rep(&quot;resampled&quot;,nrow(testD))))
+library(ggplot2)
+ggplot(res, aes(x=true,y=preds,color=model)) + geom_point() + geom_abline(slope=1,intercept=0)</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

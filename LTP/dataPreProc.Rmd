@@ -1,0 +1,15 @@
+---
+title: Data Pre-Processing in R
+output: html_document
+---
+
+
+Material for this slide set:
+
+- [Slides Handouts](Slides/dataPreProc_handouts.pdf)
+- [R Code of the Slides](RdataPreProc.html)
+- [Car Insurance dataset](RCode/carInsurance.Rdata)
+
+```{r comm, eval=FALSE, echo=FALSE}
+## - [Solutions to exercises](Slides/dataPreProc_sols.pdf)
+```

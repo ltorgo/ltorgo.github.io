@@ -1,0 +1,36 @@
+---
+title: Classes Plan
+output: html_document
+---
+
+- Manhã
+  + Introduction
+  + Reporting in R 
+	  . Rmarkdown
+		. Notebooks
+		. Parameterized reports
+		. Interactive reports
+		. Hands on
+	+ Predictive analytics 
+		. Main tasks
+		. Evaluation metrics
+	+ Data pre-processing 
+		. Unknown values
+		. Feature creation and selection
+- Tarde
+	+ Predictive Analytics (cont. - modeling) 
+		. Linear models
+			§ Linear discriminants
+			§ Linear regression
+		. Support vector machines
+		. Tree-based models
+		. Random forests
+		. Handling imbalanced domains
+			§ Problem description/definition
+			§ Main approaches
+			§ Solutions with package UBL
+	+ Model tuning, comparison and evaluation
+		. Methods of comparison evaluation
+		. Package performanceEstimation
+		. Hands on
+	+ A real world case study: stock market forecasting

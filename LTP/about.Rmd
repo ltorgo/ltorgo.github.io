@@ -1,0 +1,7 @@
+---
+title: Contacts
+output: html_document
+---
+
+- Home page: [https://web.cs.dal.ca/~ltorgo/](https://web.cs.dal.ca/~ltorgo/) 
+- Email: ltorgo (at) dal (dot) ca
