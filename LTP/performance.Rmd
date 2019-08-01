@@ -10,6 +10,7 @@ Material for this slide set:
 - [R Code of the Slides](Rperformance.html)
 - [Wine DataSet](RCode/Wine.Rdata)
 - [Car Insurance DataSet](RCode/carInsurance.Rdata)
+- [Solutions to exercises](Slides/performanceEstimation_sols.pdf)
 
 ```{r comm, eval=FALSE, echo=FALSE}
 ## - [Solutions to exercises](Slides/predAnalytics_sols.pdf)

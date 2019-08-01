@@ -721,6 +721,110 @@ m &lt;- randomForest(medv ~ ., Boston,
 importance(m)</code></pre>
 <pre class="r"><code>varImpPlot(m,main=&quot;Feature Relevance Scores&quot;)</code></pre>
 </div>
+<div id="hands-on-random-forests" class="section level3">
+<h3>Hands on Random Forests</h3>
+<pre class="r"><code>library(randomForest)
+library(DMwR)
+data(algae)
+algae &lt;- algae[-c(62,199),]
+algae &lt;- knnImputation(algae)
+rf.a4 &lt;- randomForest(a4 ~.,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- lm(a4 ~ .,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- step(lm.a4)</code></pre>
+<pre class="r"><code>lm.a4</code></pre>
+<pre class="r"><code>psrf &lt;- predict(rf.a4,algae)
+pslm &lt;- predict(lm.a4,algae)
+plot(psrf,pslm,xlab=&quot;Random forest predictions&quot;,ylab=&quot;lm predictions&quot;)
+abline(0,1,col=&quot;green&quot;)</code></pre>
+<pre class="r"><code>data(testAlgae)
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)
+summary(prevs.rf)
+summary(prevs.lm) # notice the difference in the number of NA&#39;s. Why?</code></pre>
+<pre class="r"><code>test.algae &lt;- knnImputation(test.algae,distData=algae[,1:11])
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)</code></pre>
+<pre class="r"><code>library(adabag)
+data(iris)
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(iris),as.integer(trPerc*nrow(iris)))
+ 
+tr &lt;- iris[sp,]
+ts &lt;- iris[-sp,]
+ 
+m &lt;- boosting(Species ~ ., tr)
+ps &lt;- predict(m,ts)
+ 
+ps$confusion
+ps$error</code></pre>
+<pre class="r"><code>library(adabag)
+data(iris)
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(iris),as.integer(trPerc*nrow(iris)))
+ 
+tr &lt;- iris[sp,]
+ts &lt;- iris[-sp,]
+ 
+m &lt;- bagging(Species ~ ., tr,mfinal=50)
+ps &lt;- predict(m,ts)
+ 
+ps$confusion
+ps$error</code></pre>
+<pre class="r"><code>library(adabag)
+data(BreastCancer,package=&quot;mlbench&quot;)
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(BreastCancer),as.integer(trPerc*nrow(BreastCancer)))
+ 
+tr &lt;- BreastCancer[sp,-1]
+ts &lt;- BreastCancer[-sp,-1]
+ 
+m &lt;- bagging(Class ~ ., tr,mfinal=100)
+ps &lt;- predict(m,ts)
+ 
+ptr &lt;- errorevol(m,tr)
+pts &lt;- errorevol(m,ts)</code></pre>
+<pre class="r"><code>plot(ptr$error,type=&quot;l&quot;,xlab=&quot;nr.models&quot;,ylab=&quot;error&quot;,ylim=c(0,0.1)) 
+lines(pts$error,col=&quot;red&quot;)</code></pre>
+<pre class="r"><code>library(gbm)
+data(Boston,package=&#39;MASS&#39;)
+ 
+set.seed(1234)
+trPerc &lt;- 0.7
+sp &lt;- sample(1:nrow(Boston),as.integer(trPerc*nrow(Boston)))
+tr &lt;- Boston[sp,]
+ts &lt;- Boston[-sp,]
+ 
+m &lt;- gbm(medv ~ .,distribution=&#39;gaussian&#39;,data=tr,
+         n.trees=20000,verbose=F)
+ps &lt;- predict(m,ts,type=&#39;response&#39;,n.trees=20000)
+mean(abs(ps-ts$medv))</code></pre>
+</div>
+<div id="hands-on-boosting" class="section level3">
+<h3>Hands on Boosting</h3>
+<pre class="r"><code>library(randomForest)
+library(DMwR)
+data(algae)
+algae &lt;- algae[-c(62,199),]
+algae &lt;- knnImputation(algae)
+rf.a4 &lt;- randomForest(a4 ~.,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- lm(a4 ~ .,algae[,c(1:11,15)])</code></pre>
+<pre class="r"><code>lm.a4 &lt;- step(lm.a4)</code></pre>
+<pre class="r"><code>lm.a4</code></pre>
+<pre class="r"><code>psrf &lt;- predict(rf.a4,algae)
+pslm &lt;- predict(lm.a4,algae)
+plot(psrf,pslm,xlab=&quot;Random forest predictions&quot;,ylab=&quot;lm predictions&quot;)
+abline(0,1,col=&quot;green&quot;)</code></pre>
+<pre class="r"><code>data(testAlgae)
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)
+summary(prevs.rf)
+summary(prevs.lm) # notice the difference in the number of NA&#39;s. Why?</code></pre>
+<pre class="r"><code>test.algae &lt;- knnImputation(test.algae,distData=algae[,1:11])
+prevs.rf &lt;- predict(rf.a4,test.algae)
+prevs.lm &lt;- predict(lm.a4,test.algae)</code></pre>
 <!-- UBLexs.Rnw -->
 <pre class="r"><code>library(UBL) # Loading our infra-structure
 library(e1071) # package containing the svm we will use
