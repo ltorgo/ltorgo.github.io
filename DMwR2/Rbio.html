@@ -23,47 +23,95 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -99,9 +147,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -120,8 +166,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +189,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +208,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +266,75 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -267,8 +412,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -277,6 +420,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -419,61 +572,61 @@ div.tocify {
 <!-- availData.Rnw -->
 <div id="the-available-data" class="section level3">
 <h3>The Available Data</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)
-<span class="kw">biocLite</span>()
-<span class="kw">biocLite</span>(<span class="st">&quot;ALL&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase)
-<span class="kw">library</span>(ALL)
-<span class="kw">data</span>(ALL)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALL</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pD &lt;-<span class="st"> </span><span class="kw">phenoData</span>(ALL)
-<span class="kw">varMetadata</span>(pD)
-<span class="kw">table</span>(ALL<span class="op">$</span>BT)
-<span class="kw">table</span>(ALL<span class="op">$</span>mol.biol)
-<span class="kw">table</span>(ALL<span class="op">$</span>BT, ALL<span class="op">$</span>mol.bio)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">featureNames</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
-<span class="kw">sampleNames</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tgt.cases &lt;-<span class="st"> </span><span class="kw">which</span>(ALL<span class="op">$</span>BT <span class="op">%in%</span><span class="st"> </span><span class="kw">levels</span>(ALL<span class="op">$</span>BT)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>] <span class="op">&amp;</span><span class="st"> </span>
-<span class="st">                   </span>ALL<span class="op">$</span>mol.bio <span class="op">%in%</span><span class="st"> </span><span class="kw">levels</span>(ALL<span class="op">$</span>mol.bio)[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])
-ALLb &lt;-<span class="st"> </span>ALL[,tgt.cases]
-ALLb</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb<span class="op">$</span>BT &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb<span class="op">$</span>BT)
-ALLb<span class="op">$</span>mol.bio &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb<span class="op">$</span>mol.bio)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(ALLb, <span class="dt">file =</span> <span class="st">&quot;myALL.Rdata&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">biocLite</span>()</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">biocLite</span>(<span class="st">&quot;ALL&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(Biobase)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(ALL)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">data</span>(ALL)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ALL</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pD &lt;-<span class="st"> </span><span class="kw">phenoData</span>(ALL)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">varMetadata</span>(pD)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">table</span>(ALL<span class="op">$</span>BT)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">table</span>(ALL<span class="op">$</span>mol.biol)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">table</span>(ALL<span class="op">$</span>BT, ALL<span class="op">$</span>mol.bio)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">featureNames</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">sampleNames</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">tgt.cases &lt;-<span class="st"> </span><span class="kw">which</span>(ALL<span class="op">$</span>BT <span class="op">%in%</span><span class="st"> </span><span class="kw">levels</span>(ALL<span class="op">$</span>BT)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>] <span class="op">&amp;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">                   </span>ALL<span class="op">$</span>mol.bio <span class="op">%in%</span><span class="st"> </span><span class="kw">levels</span>(ALL<span class="op">$</span>mol.bio)[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">ALLb &lt;-<span class="st"> </span>ALL[,tgt.cases]</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">ALLb</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ALLb<span class="op">$</span>BT &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb<span class="op">$</span>BT)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">ALLb<span class="op">$</span>mol.bio &lt;-<span class="st"> </span><span class="kw">factor</span>(ALLb<span class="op">$</span>mol.bio)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">save</span>(ALLb, <span class="dt">file =</span> <span class="st">&quot;myALL.Rdata&quot;</span>)</a></code></pre></div>
 <div id="exploring-the-dataset" class="section level4">
 <h4>Exploring the Dataset</h4>
 <!-- ExploratoryAnal.Rnw -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
-<span class="kw">dim</span>(es)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">as.vector</span>(es))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)
-<span class="kw">biocLite</span>(<span class="st">&quot;genefilter&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
-<span class="kw">library</span>(ggplot2)
-exprVs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">exprVal=</span><span class="kw">as.vector</span>(es))
-ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Stat=</span><span class="kw">c</span>(<span class="st">&quot;1stQ&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;3rdQ&quot;</span>,<span class="st">&quot;Shorth&quot;</span>),
-                 <span class="dt">Value=</span><span class="kw">c</span>(<span class="kw">quantile</span>(exprVs<span class="op">$</span>exprVal, 
-                         <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)),
-                         <span class="kw">shorth</span>(exprVs<span class="op">$</span>exprVal)),
-                 <span class="dt">Color=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>))
-<span class="kw">ggplot</span>(exprVs,<span class="kw">aes</span>(<span class="dt">x=</span>exprVal)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">xintercept=</span>Value,<span class="dt">color=</span>Color)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">x=</span>Value<span class="op">-</span><span class="fl">0.2</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">label=</span>Stat,<span class="dt">colour=</span>Color),
-              <span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="st">&quot;left&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Expression Levels&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">colour=</span><span class="st">&quot;none&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;none&quot;</span>) </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
-<span class="kw">library</span>(ggplot2)
-exprVs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">exprVal=</span><span class="kw">as.vector</span>(es))
-ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Stat=</span><span class="kw">c</span>(<span class="st">&quot;1stQ&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;3rdQ&quot;</span>,<span class="st">&quot;Shorth&quot;</span>),
-                 <span class="dt">Value=</span><span class="kw">c</span>(<span class="kw">quantile</span>(exprVs<span class="op">$</span>exprVal, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)),
-                     <span class="kw">shorth</span>(exprVs<span class="op">$</span>exprVal)),
-                 <span class="dt">Color=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>))
-<span class="kw">ggplot</span>(exprVs,<span class="kw">aes</span>(<span class="dt">x=</span>exprVal)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">xintercept=</span>Value,<span class="dt">color=</span>Color)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">x=</span>Value<span class="op">-</span><span class="fl">0.2</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">label=</span>Stat,<span class="dt">colour=</span>Color),<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="st">&quot;left&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Expression Levels&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">colour=</span><span class="st">&quot;none&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;none&quot;</span>)    </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(<span class="kw">levels</span>(ALLb<span class="op">$</span>mol.bio), 
-       <span class="cf">function</span>(x) <span class="kw">summary</span>(<span class="kw">as.vector</span>(es[, <span class="kw">which</span>(ALLb<span class="op">$</span>mol.bio <span class="op">==</span><span class="st"> </span>x)])))</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">dim</span>(es)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">as.vector</span>(es))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">biocLite</span>(<span class="st">&quot;genefilter&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(genefilter)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">exprVs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">exprVal=</span><span class="kw">as.vector</span>(es))</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Stat=</span><span class="kw">c</span>(<span class="st">&quot;1stQ&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;3rdQ&quot;</span>,<span class="st">&quot;Shorth&quot;</span>),</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">                 <span class="dt">Value=</span><span class="kw">c</span>(<span class="kw">quantile</span>(exprVs<span class="op">$</span>exprVal, </a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">                         <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)),</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">                         <span class="kw">shorth</span>(exprVs<span class="op">$</span>exprVal)),</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">                 <span class="dt">Color=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>))</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">ggplot</span>(exprVs,<span class="kw">aes</span>(<span class="dt">x=</span>exprVal)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">xintercept=</span>Value,<span class="dt">color=</span>Color)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">x=</span>Value<span class="fl">-0.2</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">label=</span>Stat,<span class="dt">colour=</span>Color),</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">              <span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="st">&quot;left&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Expression Levels&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">colour=</span><span class="st">&quot;none&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;none&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(genefilter)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">exprVs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">exprVal=</span><span class="kw">as.vector</span>(es))</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Stat=</span><span class="kw">c</span>(<span class="st">&quot;1stQ&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;3rdQ&quot;</span>,<span class="st">&quot;Shorth&quot;</span>),</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">                 <span class="dt">Value=</span><span class="kw">c</span>(<span class="kw">quantile</span>(exprVs<span class="op">$</span>exprVal, <span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)),</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">                     <span class="kw">shorth</span>(exprVs<span class="op">$</span>exprVal)),</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">                 <span class="dt">Color=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>))</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="kw">ggplot</span>(exprVs,<span class="kw">aes</span>(<span class="dt">x=</span>exprVal)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">xintercept=</span>Value,<span class="dt">color=</span>Color)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span>ds,<span class="kw">aes</span>(<span class="dt">x=</span>Value<span class="fl">-0.2</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">label=</span>Stat,<span class="dt">colour=</span>Color),<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="st">&quot;left&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Expression Levels&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">colour=</span><span class="st">&quot;none&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;none&quot;</span>)    </a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">sapply</span>(<span class="kw">levels</span>(ALLb<span class="op">$</span>mol.bio), </a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">       <span class="cf">function</span>(x) <span class="kw">summary</span>(<span class="kw">as.vector</span>(es[, <span class="kw">which</span>(ALLb<span class="op">$</span>mol.bio <span class="op">==</span><span class="st"> </span>x)])))</a></code></pre></div>
 <!-- FeatureSel.Rnw -->
 </div>
 </div>
@@ -481,93 +634,93 @@ ds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 <h3>Gene (Feature) Selection</h3>
 <div id="simple-filters-based-on-distribution-properties" class="section level4">
 <h4>Simple Filters Based on Distribution Properties</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)
-<span class="kw">biocLite</span>(<span class="st">&quot;hgu95av2.db&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowIQRs &lt;-<span class="st"> </span><span class="cf">function</span>(em) 
-    <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span><span class="op">*</span><span class="kw">ncol</span>(em))) <span class="op">-</span><span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span><span class="op">*</span><span class="kw">ncol</span>(em)))
-<span class="kw">library</span>(ggplot2)
-dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Main Characteristics of Genes Expression Levels&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowIQRs &lt;-<span class="st"> </span><span class="cf">function</span>(em) <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span><span class="op">*</span><span class="kw">ncol</span>(em))) <span class="op">-</span><span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span><span class="op">*</span><span class="kw">ncol</span>(em)))
-<span class="kw">library</span>(ggplot2)
-dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Main Characteristics of Genes Expression Levels&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
-resFilter &lt;-<span class="st"> </span><span class="kw">nsFilter</span>(ALLb,
-                 <span class="dt">var.func=</span>IQR,
-                 <span class="dt">var.cutoff=</span><span class="kw">IQR</span>(<span class="kw">as.vector</span>(es))<span class="op">/</span><span class="dv">5</span>, 
-                 <span class="dt">feature.exclude=</span><span class="st">&quot;^AFFX&quot;</span>)
-resFilter</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb &lt;-<span class="st"> </span>resFilter<span class="op">$</span>eset
-es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
-<span class="kw">dim</span>(es)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">biocLite</span>(<span class="st">&quot;hgu95av2.db&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">rowIQRs &lt;-<span class="st"> </span><span class="cf">function</span>(em) </a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">    <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span><span class="op">*</span><span class="kw">ncol</span>(em))) <span class="op">-</span><span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span><span class="op">*</span><span class="kw">ncol</span>(em)))</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Main Characteristics of Genes Expression Levels&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">rowIQRs &lt;-<span class="st"> </span><span class="cf">function</span>(em) <span class="kw">rowQ</span>(em,<span class="kw">ceiling</span>(<span class="fl">0.75</span><span class="op">*</span><span class="kw">ncol</span>(em))) <span class="op">-</span><span class="st"> </span><span class="kw">rowQ</span>(em,<span class="kw">floor</span>(<span class="fl">0.25</span><span class="op">*</span><span class="kw">ncol</span>(em)))</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Main Characteristics of Genes Expression Levels&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(genefilter)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">resFilter &lt;-<span class="st"> </span><span class="kw">nsFilter</span>(ALLb,</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">                 <span class="dt">var.func=</span>IQR,</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">                 <span class="dt">var.cutoff=</span><span class="kw">IQR</span>(<span class="kw">as.vector</span>(es))<span class="op">/</span><span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">                 <span class="dt">feature.exclude=</span><span class="st">&quot;^AFFX&quot;</span>)</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">resFilter</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">ALLb &lt;-<span class="st"> </span>resFilter<span class="op">$</span>eset</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">dim</span>(es)</a></code></pre></div>
 </div>
 <div id="anova-filters" class="section level4">
 <h4>ANOVA Filters</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">Anova</span>(ALLb<span class="op">$</span>mol.bio, <span class="dt">p =</span> <span class="fl">0.01</span>)
-ff &lt;-<span class="st"> </span><span class="kw">filterfun</span>(f)
-selGenes &lt;-<span class="st"> </span><span class="kw">genefilter</span>(<span class="kw">exprs</span>(ALLb), ff)
-<span class="kw">sum</span>(selGenes)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb &lt;-<span class="st"> </span>ALLb[selGenes, ]
-ALLb
-es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
-<span class="kw">dim</span>(es)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution Properties of the Selected Genes&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution Properties of the Selected Genes&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw">Anova</span>(ALLb<span class="op">$</span>mol.bio, <span class="dt">p =</span> <span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">ff &lt;-<span class="st"> </span><span class="kw">filterfun</span>(f)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">selGenes &lt;-<span class="st"> </span><span class="kw">genefilter</span>(<span class="kw">exprs</span>(ALLb), ff)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">sum</span>(selGenes)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">ALLb &lt;-<span class="st"> </span>ALLb[selGenes, ]</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">ALLb</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">dim</span>(es)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution Properties of the Selected Genes&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rowMed=</span><span class="kw">rowMedians</span>(es), <span class="dt">rowIQR=</span><span class="kw">rowIQRs</span>(es))</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rowMed, <span class="dt">y=</span>rowIQR)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Median expression level&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;IQR expression level&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution Properties of the Selected Genes&quot;</span>)</a></code></pre></div>
 </div>
 <div id="filtering-using-random-forests" class="section level4">
 <h4>Filtering Using Random Forests</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
-dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(es), <span class="dt">Mut =</span> ALLb<span class="op">$</span>mol.bio)
-dt<span class="op">$</span>Mut &lt;-<span class="st"> </span><span class="kw">droplevels</span>(dt<span class="op">$</span>Mut)
-<span class="kw">set.seed</span>(<span class="dv">1234</span>)
-rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(Mut <span class="op">~</span><span class="st"> </span>., dt, <span class="dt">importance =</span> <span class="ot">TRUE</span>)
-imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf)
-rf.genes &lt;-<span class="st"> </span><span class="kw">rownames</span>(imp)[<span class="kw">order</span>(imp[,<span class="st">&quot;MeanDecreaseAccuracy&quot;</span>], 
-                                <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>]]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(rf.genes, <span class="cf">function</span>(g) <span class="kw">tapply</span>(dt[, g], dt<span class="op">$</span>Mut, median))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
-<span class="kw">library</span>(dplyr)
-d &lt;-<span class="st"> </span><span class="kw">gather</span>(dt[,<span class="kw">c</span>(rf.genes,<span class="st">&quot;Mut&quot;</span>)],Gene,ExprValue,<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(rf.genes))
-dat &lt;-<span class="st"> </span><span class="kw">group_by</span>(d,Mut,Gene) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">med=</span><span class="kw">median</span>(ExprValue), <span class="dt">iqr=</span><span class="kw">IQR</span>(ExprValue))
-<span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>med,<span class="dt">y=</span>iqr,<span class="dt">color=</span>Mut)) <span class="op">+</span><span class="st">  </span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">6</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Gene) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;MEDIAN expression level&quot;</span>,<span class="dt">y=</span><span class="st">&quot;IQR expression level&quot;</span>,<span class="dt">color=</span><span class="st">&quot;Mutation&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(randomForest)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(es), <span class="dt">Mut =</span> ALLb<span class="op">$</span>mol.bio)</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">dt<span class="op">$</span>Mut &lt;-<span class="st"> </span><span class="kw">droplevels</span>(dt<span class="op">$</span>Mut)</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(Mut <span class="op">~</span><span class="st"> </span>., dt, <span class="dt">importance =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf)</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">rf.genes &lt;-<span class="st"> </span><span class="kw">rownames</span>(imp)[<span class="kw">order</span>(imp[,<span class="st">&quot;MeanDecreaseAccuracy&quot;</span>], </a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">                                <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">sapply</span>(rf.genes, <span class="cf">function</span>(g) <span class="kw">tapply</span>(dt[, g], dt<span class="op">$</span>Mut, median))</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">d &lt;-<span class="st"> </span><span class="kw">gather</span>(dt[,<span class="kw">c</span>(rf.genes,<span class="st">&quot;Mut&quot;</span>)],Gene,ExprValue,<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(rf.genes))</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">dat &lt;-<span class="st"> </span><span class="kw">group_by</span>(d,Mut,Gene) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">med=</span><span class="kw">median</span>(ExprValue), <span class="dt">iqr=</span><span class="kw">IQR</span>(ExprValue))</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>med,<span class="dt">y=</span>iqr,<span class="dt">color=</span>Mut)) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">6</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Gene) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;MEDIAN expression level&quot;</span>,<span class="dt">y=</span><span class="st">&quot;IQR expression level&quot;</span>,<span class="dt">color=</span><span class="st">&quot;Mutation&quot;</span>)</a></code></pre></div>
 </div>
 <div id="filtering-using-feature-clustering-ensembles" class="section level4">
 <h4>Filtering Using Feature Clustering Ensembles</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)
-vc &lt;-<span class="st"> </span><span class="kw">varclus</span>(<span class="kw">t</span>(es))
-clus30 &lt;-<span class="st"> </span><span class="kw">cutree</span>(vc<span class="op">$</span>hclust, <span class="dv">30</span>)
-<span class="kw">table</span>(clus30)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">getVarsSet &lt;-<span class="st"> </span><span class="cf">function</span>(cluster,<span class="dt">nvars=</span><span class="dv">30</span>,<span class="dt">seed=</span><span class="ot">NULL</span>,<span class="dt">verb=</span><span class="ot">FALSE</span>) {
-    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(seed)) <span class="kw">set.seed</span>(seed)
-    
-    cls &lt;-<span class="st"> </span><span class="kw">cutree</span>(cluster,nvars)
-    tots &lt;-<span class="st"> </span><span class="kw">table</span>(cls)
-    vars &lt;-<span class="st"> </span><span class="kw">c</span>()
-    vars &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>nvars,<span class="cf">function</span>(clID)
-    {
-        <span class="cf">if</span> (<span class="op">!</span><span class="kw">length</span>(tots[clID])) <span class="kw">stop</span>(<span class="st">&#39;Empty cluster! (&#39;</span>,clID,<span class="st">&#39;)&#39;</span>)
-        x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>tots[clID],<span class="dv">1</span>)
-        <span class="kw">names</span>(cls[cls<span class="op">==</span>clID])[x]
-    })
-    <span class="cf">if</span> (verb)  <span class="kw">structure</span>(vars,<span class="dt">clusMemb=</span>cls,<span class="dt">clusTots=</span>tots)
-    <span class="cf">else</span>       vars
-}
-<span class="kw">getVarsSet</span>(vc<span class="op">$</span>hclust)
-<span class="kw">getVarsSet</span>(vc<span class="op">$</span>hclust)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">library</span>(Hmisc)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">vc &lt;-<span class="st"> </span><span class="kw">varclus</span>(<span class="kw">t</span>(es))</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">clus30 &lt;-<span class="st"> </span><span class="kw">cutree</span>(vc<span class="op">$</span>hclust, <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw">table</span>(clus30)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">getVarsSet &lt;-<span class="st"> </span><span class="cf">function</span>(cluster,<span class="dt">nvars=</span><span class="dv">30</span>,<span class="dt">seed=</span><span class="ot">NULL</span>,<span class="dt">verb=</span><span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(seed)) <span class="kw">set.seed</span>(seed)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">    </a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">    cls &lt;-<span class="st"> </span><span class="kw">cutree</span>(cluster,nvars)</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">    tots &lt;-<span class="st"> </span><span class="kw">table</span>(cls)</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">    vars &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">    vars &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>nvars,<span class="cf">function</span>(clID)</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">    {</a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">        <span class="cf">if</span> (<span class="op">!</span><span class="kw">length</span>(tots[clID])) <span class="kw">stop</span>(<span class="st">&#39;Empty cluster! (&#39;</span>,clID,<span class="st">&#39;)&#39;</span>)</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">        x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>tots[clID],<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb28-11" data-line-number="11">        <span class="kw">names</span>(cls[cls<span class="op">==</span>clID])[x]</a>
+<a class="sourceLine" id="cb28-12" data-line-number="12">    })</a>
+<a class="sourceLine" id="cb28-13" data-line-number="13">    <span class="cf">if</span> (verb)  <span class="kw">structure</span>(vars,<span class="dt">clusMemb=</span>cls,<span class="dt">clusTots=</span>tots)</a>
+<a class="sourceLine" id="cb28-14" data-line-number="14">    <span class="cf">else</span>       vars</a>
+<a class="sourceLine" id="cb28-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb28-16" data-line-number="16"><span class="kw">getVarsSet</span>(vc<span class="op">$</span>hclust)</a>
+<a class="sourceLine" id="cb28-17" data-line-number="17"><span class="kw">getVarsSet</span>(vc<span class="op">$</span>hclust)</a></code></pre></div>
 <!-- PredTasks.Rnw -->
 </div>
 </div>
@@ -581,213 +734,213 @@ clus30 &lt;-<span class="st"> </span><span class="kw">cutree</span>(vc<span clas
 </div>
 <div id="the-experimental-procedure" class="section level4">
 <h4>The Experimental Procedure</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
-<span class="kw">library</span>(DMwR2)
-<span class="kw">data</span>(iris)
-exp &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-    <span class="kw">PredTask</span>(Species <span class="op">~</span><span class="st"> </span>., iris), 
-    <span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>, <span class="dt">predictor.pars=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;class&quot;</span>)),
-    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;acc&quot;</span>,<span class="dt">method=</span><span class="kw">Bootstrap</span>(<span class="dt">nReps=</span><span class="dv">100</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(exp)</code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(performanceEstimation)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">library</span>(DMwR2)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">data</span>(iris)</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">exp &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">    <span class="kw">PredTask</span>(Species <span class="op">~</span><span class="st"> </span>., iris), </a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">    <span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>, <span class="dt">predictor.pars=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;class&quot;</span>)),</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;acc&quot;</span>,<span class="dt">method=</span><span class="kw">Bootstrap</span>(<span class="dt">nReps=</span><span class="dv">100</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">summary</span>(exp)</a></code></pre></div>
 </div>
 <div id="the-modeling-techniques" class="section level4">
 <h4>The Modeling Techniques</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(class)
-<span class="kw">data</span>(iris)
-idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(<span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(iris)))
-tr &lt;-<span class="st"> </span>iris[idx, ]
-ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>idx, ]
-preds &lt;-<span class="st"> </span><span class="kw">knn</span>(tr[, <span class="op">-</span><span class="dv">5</span>], ts[, <span class="op">-</span><span class="dv">5</span>], tr[, <span class="dv">5</span>], <span class="dt">k =</span> <span class="dv">3</span>)
-<span class="kw">table</span>(preds, ts[, <span class="dv">5</span>])</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kNN &lt;-<span class="st"> </span><span class="cf">function</span>(form, train, test, <span class="dt">stand =</span> <span class="ot">TRUE</span>, <span class="dt">stand.stats =</span> <span class="ot">NULL</span>, ...) {
-    <span class="kw">require</span>(class, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
-    tgtCol &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(train) <span class="op">==</span><span class="st"> </span><span class="kw">as.character</span>(form[[<span class="dv">2</span>]]))
-    <span class="cf">if</span> (stand) {
-        <span class="cf">if</span> (<span class="kw">is.null</span>(stand.stats)) 
-            tmp &lt;-<span class="st"> </span><span class="kw">scale</span>(train[, <span class="op">-</span>tgtCol], <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)
-        <span class="cf">else</span> tmp &lt;-<span class="st"> </span><span class="kw">scale</span>(train[, <span class="op">-</span>tgtCol], <span class="dt">center =</span> stand.stats[[<span class="dv">1</span>]], 
-                          <span class="dt">scale =</span> stand.stats[[<span class="dv">2</span>]])
-        train[, <span class="op">-</span>tgtCol] &lt;-<span class="st"> </span>tmp
-        ms &lt;-<span class="st"> </span><span class="kw">attr</span>(tmp, <span class="st">&quot;scaled:center&quot;</span>)
-        ss &lt;-<span class="st"> </span><span class="kw">attr</span>(tmp, <span class="st">&quot;scaled:scale&quot;</span>)
-        test[, <span class="op">-</span>tgtCol] &lt;-<span class="st"> </span><span class="kw">scale</span>(test[, <span class="op">-</span>tgtCol], <span class="dt">center =</span> ms, <span class="dt">scale =</span> ss)
-    }
-    <span class="kw">knn</span>(train[, <span class="op">-</span>tgtCol], test[, <span class="op">-</span>tgtCol], train[, tgtCol], ...)
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">preds.stand &lt;-<span class="st"> </span><span class="kw">kNN</span>(Species <span class="op">~</span><span class="st"> </span>., tr, ts, <span class="dt">k =</span> <span class="dv">3</span>)
-<span class="kw">table</span>(preds.stand,ts[, <span class="dv">5</span>])
-preds.notStand &lt;-<span class="st"> </span><span class="kw">kNN</span>(Species <span class="op">~</span><span class="st"> </span>., tr, ts, <span class="dt">stand =</span> <span class="ot">FALSE</span>, <span class="dt">k =</span> <span class="dv">3</span>)
-<span class="kw">table</span>(preds.notStand, ts[, <span class="dv">5</span>]) </code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(class)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">data</span>(iris)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">as.integer</span>(<span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(iris)))</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">tr &lt;-<span class="st"> </span>iris[idx, ]</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">ts &lt;-<span class="st"> </span>iris[<span class="op">-</span>idx, ]</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">preds &lt;-<span class="st"> </span><span class="kw">knn</span>(tr[, <span class="dv">-5</span>], ts[, <span class="dv">-5</span>], tr[, <span class="dv">5</span>], <span class="dt">k =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw">table</span>(preds, ts[, <span class="dv">5</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">kNN &lt;-<span class="st"> </span><span class="cf">function</span>(form, train, test, <span class="dt">stand =</span> <span class="ot">TRUE</span>, <span class="dt">stand.stats =</span> <span class="ot">NULL</span>, ...) {</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">    <span class="kw">require</span>(class, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">    tgtCol &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(train) <span class="op">==</span><span class="st"> </span><span class="kw">as.character</span>(form[[<span class="dv">2</span>]]))</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">    <span class="cf">if</span> (stand) {</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">        <span class="cf">if</span> (<span class="kw">is.null</span>(stand.stats)) </a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">            tmp &lt;-<span class="st"> </span><span class="kw">scale</span>(train[, <span class="op">-</span>tgtCol], <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">        <span class="cf">else</span> tmp &lt;-<span class="st"> </span><span class="kw">scale</span>(train[, <span class="op">-</span>tgtCol], <span class="dt">center =</span> stand.stats[[<span class="dv">1</span>]], </a>
+<a class="sourceLine" id="cb32-8" data-line-number="8">                          <span class="dt">scale =</span> stand.stats[[<span class="dv">2</span>]])</a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">        train[, <span class="op">-</span>tgtCol] &lt;-<span class="st"> </span>tmp</a>
+<a class="sourceLine" id="cb32-10" data-line-number="10">        ms &lt;-<span class="st"> </span><span class="kw">attr</span>(tmp, <span class="st">&quot;scaled:center&quot;</span>)</a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">        ss &lt;-<span class="st"> </span><span class="kw">attr</span>(tmp, <span class="st">&quot;scaled:scale&quot;</span>)</a>
+<a class="sourceLine" id="cb32-12" data-line-number="12">        test[, <span class="op">-</span>tgtCol] &lt;-<span class="st"> </span><span class="kw">scale</span>(test[, <span class="op">-</span>tgtCol], <span class="dt">center =</span> ms, <span class="dt">scale =</span> ss)</a>
+<a class="sourceLine" id="cb32-13" data-line-number="13">    }</a>
+<a class="sourceLine" id="cb32-14" data-line-number="14">    <span class="kw">knn</span>(train[, <span class="op">-</span>tgtCol], test[, <span class="op">-</span>tgtCol], train[, tgtCol], ...)</a>
+<a class="sourceLine" id="cb32-15" data-line-number="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">preds.stand &lt;-<span class="st"> </span><span class="kw">kNN</span>(Species <span class="op">~</span><span class="st"> </span>., tr, ts, <span class="dt">k =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">table</span>(preds.stand,ts[, <span class="dv">5</span>])</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">preds.notStand &lt;-<span class="st"> </span><span class="kw">kNN</span>(Species <span class="op">~</span><span class="st"> </span>., tr, ts, <span class="dt">stand =</span> <span class="ot">FALSE</span>, <span class="dt">k =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">table</span>(preds.notStand, ts[, <span class="dv">5</span>]) </a></code></pre></div>
 </div>
 <div id="comparing-the-models" class="section level4">
 <h4>Comparing the Models</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">varsEnsemble &lt;-<span class="st"> </span><span class="cf">function</span>(tgt,train,test,
-                         fs.meth,
-                         baseLearner,blPars,
-                         predictor,predPars,
-                         <span class="dt">verb=</span><span class="ot">FALSE</span>)
-{
-    <span class="kw">require</span>(Hmisc,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
-    v &lt;-<span class="st"> </span><span class="kw">varclus</span>(<span class="kw">as.matrix</span>(train[,<span class="op">-</span><span class="kw">which</span>(<span class="kw">colnames</span>(train)<span class="op">==</span>tgt)]))
-    varsSets &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span>fs.meth[[<span class="dv">3</span>]],<span class="cf">function</span>(x)
-        <span class="kw">getVarsSet</span>(v<span class="op">$</span>hclust,<span class="dt">nvars=</span>fs.meth[[<span class="dv">2</span>]]))
-    
-    preds &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dt">ncol=</span><span class="kw">length</span>(varsSets),<span class="dt">nrow=</span><span class="kw">NROW</span>(test))
-    <span class="cf">for</span>(v <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">along=</span>varsSets)) {
-        <span class="cf">if</span> (baseLearner<span class="op">==</span><span class="st">&#39;knn&#39;</span>)
-            preds[,v] &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;kNN&quot;</span>,
-                                 <span class="kw">c</span>(<span class="kw">list</span>(<span class="kw">as.formula</span>(<span class="kw">paste</span>(tgt,
-                                                 <span class="kw">paste</span>(varsSets[[v]],
-                                                       <span class="dt">collapse=</span><span class="st">&#39;+&#39;</span>),
-                                                 <span class="dt">sep=</span><span class="st">&#39;~&#39;</span>)),
-                                        train[,<span class="kw">c</span>(tgt,varsSets[[v]])],
-                                        test[,<span class="kw">c</span>(tgt,varsSets[[v]])]),
-                                   blPars)
-                                 )
-        <span class="cf">else</span> {
-            m &lt;-<span class="st"> </span><span class="kw">do.call</span>(baseLearner,
-                         <span class="kw">c</span>(<span class="kw">list</span>(<span class="kw">as.formula</span>(<span class="kw">paste</span>(tgt,
-                                                 <span class="kw">paste</span>(varsSets[[v]],
-                                                       <span class="dt">collapse=</span><span class="st">&#39;+&#39;</span>),
-                                                 <span class="dt">sep=</span><span class="st">&#39;~&#39;</span>)),
-                                train[,<span class="kw">c</span>(tgt,varsSets[[v]])]),
-                           blPars)
-                         )
-            preds[,v] &lt;-<span class="st"> </span><span class="kw">do.call</span>(predictor,
-                                 <span class="kw">c</span>(<span class="kw">list</span>(m,test[,<span class="kw">c</span>(tgt,varsSets[[v]])]),
-                                   predPars))
-        }
-    }
-
-    ps &lt;-<span class="st"> </span><span class="kw">apply</span>(preds,<span class="dv">1</span>,<span class="cf">function</span>(x)
-        <span class="kw">levels</span>(<span class="kw">factor</span>(x))[<span class="kw">which.max</span>(<span class="kw">table</span>(<span class="kw">factor</span>(x)))])
-    <span class="kw">factor</span>(ps,
-           <span class="dt">levels=</span><span class="dv">1</span><span class="op">:</span><span class="kw">nlevels</span>(train[,tgt]),
-           <span class="dt">labels=</span><span class="kw">levels</span>(train[,tgt]))
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALLb.wf &lt;-<span class="st"> </span><span class="cf">function</span>(form, train, test,
-                    learner, <span class="dt">learner.pars=</span><span class="ot">NULL</span>,
-                    <span class="dt">predictor=</span><span class="st">&quot;predict&quot;</span>,<span class="dt">predictor.pars=</span><span class="ot">NULL</span>,
-                    <span class="dt">featSel.meth =</span> <span class="st">&quot;s2&quot;</span>, 
-                    <span class="dt">available.fsMethods=</span><span class="kw">list</span>(<span class="dt">s1=</span><span class="kw">list</span>(<span class="st">&quot;all&quot;</span>),<span class="dt">s2=</span><span class="kw">list</span>(<span class="st">&#39;rf&#39;</span>,<span class="dv">30</span>),
-                                             <span class="dt">s3=</span><span class="kw">list</span>(<span class="st">&#39;varclus&#39;</span>,<span class="dv">30</span>,<span class="dv">50</span>)),
-                    <span class="dt">.model=</span><span class="ot">FALSE</span>,
-                    ...)
-{
-    ## The characteristics of the selected feature selection method
-    fs.meth &lt;-<span class="st"> </span>available.fsMethods[[featSel.meth]] 
-    
-    ## The target variable
-    tgt &lt;-<span class="st"> </span><span class="kw">as.character</span>(form[[<span class="dv">2</span>]])
-    tgtCol &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(train)<span class="op">==</span>tgt)
-
-    ## Anova filtering  
-    f &lt;-<span class="st"> </span><span class="kw">Anova</span>(train[,tgt],<span class="dt">p=</span><span class="fl">0.01</span>)
-    ff &lt;-<span class="st"> </span><span class="kw">filterfun</span>(f)
-    genes &lt;-<span class="st"> </span><span class="kw">genefilter</span>(<span class="kw">t</span>(train[,<span class="op">-</span>tgtCol]),ff)
-    genes &lt;-<span class="st"> </span><span class="kw">names</span>(genes)[genes]
-    train &lt;-<span class="st"> </span>train[,<span class="kw">c</span>(tgt,genes)]
-    test &lt;-<span class="st"> </span>test[,<span class="kw">c</span>(tgt,genes)]
-    tgtCol &lt;-<span class="st"> </span><span class="dv">1</span>
-
-    ## Specific filtering 
-    <span class="cf">if</span> (fs.meth[[<span class="dv">1</span>]]<span class="op">==</span><span class="st">&#39;varclus&#39;</span>) {
-      pred &lt;-<span class="st"> </span><span class="kw">varsEnsemble</span>(tgt,train,test,fs.meth,
-                            learner,learner.pars,
-                            predictor,predictor.pars,
-                            <span class="kw">list</span>(...))
-
-    } <span class="cf">else</span> {
-      <span class="cf">if</span> (fs.meth[[<span class="dv">1</span>]]<span class="op">==</span><span class="st">&#39;rf&#39;</span>) {
-        <span class="kw">require</span>(randomForest,<span class="dt">quietly=</span><span class="ot">TRUE</span>)
-        rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(form,train,<span class="dt">importance=</span><span class="ot">TRUE</span>)
-        imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf)
-        rf.genes &lt;-<span class="st"> </span><span class="kw">rownames</span>(imp)[<span class="kw">order</span>(imp[,<span class="st">&quot;MeanDecreaseAccuracy&quot;</span>], 
-                                        <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span><span class="op">:</span>fs.meth[[<span class="dv">2</span>]]]]
-        train &lt;-<span class="st"> </span>train[,<span class="kw">c</span>(tgt,rf.genes)]
-        test &lt;-<span class="st"> </span>test[,<span class="kw">c</span>(tgt,rf.genes)]
-      }
-
-      <span class="cf">if</span> (learner <span class="op">==</span><span class="st"> &#39;knn&#39;</span>) 
-        pred &lt;-<span class="st"> </span><span class="kw">kNN</span>(form,train,test,
-                    <span class="dt">stand.stats=</span><span class="kw">list</span>(<span class="kw">rowMedians</span>(<span class="kw">t</span>(<span class="kw">as.matrix</span>(train[,<span class="op">-</span>tgtCol]))),
-                        <span class="kw">rowIQRs</span>(<span class="kw">t</span>(<span class="kw">as.matrix</span>(train[,<span class="op">-</span>tgtCol])))),
-                    ...)
-      <span class="cf">else</span> {
-        model &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,train),learner.pars))
-        pred &lt;-<span class="st"> </span><span class="kw">do.call</span>(predictor,<span class="kw">c</span>(<span class="kw">list</span>(model,test),predictor.pars))
-      }
-
-    }
-
-    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">trues=</span><span class="kw">responseValues</span>(form,test), <span class="dt">preds=</span>pred, 
-                <span class="dt">model=</span><span class="cf">if</span> (.model <span class="op">&amp;&amp;</span><span class="st"> </span>learner<span class="op">!=</span><span class="st">&quot;knn&quot;</span>) model <span class="cf">else</span> <span class="ot">NULL</span>))
-
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">list</span>()
-vars<span class="op">$</span>randomForest &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">ntree=</span><span class="kw">c</span>(<span class="dv">500</span>,<span class="dv">750</span>,<span class="dv">1000</span>),
-                                            <span class="dt">mtry=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>)),
-                          <span class="dt">preditor.pars=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;response&quot;</span>))
-vars<span class="op">$</span>svm &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">100</span>),
-                                   <span class="dt">gamma=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.001</span>,<span class="fl">0.0001</span>)))
-vars<span class="op">$</span>knn &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">k=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>),
-                                   <span class="dt">stand=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)))
-vars<span class="op">$</span>featureSel &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">featSel.meth=</span><span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>, <span class="st">&quot;s3&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">varsEnsemble &lt;-<span class="st"> </span><span class="cf">function</span>(tgt,train,test,</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">                         fs.meth,</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">                         baseLearner,blPars,</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">                         predictor,predPars,</a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">                         <span class="dt">verb=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">    <span class="kw">require</span>(Hmisc,<span class="dt">quietly=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb34-8" data-line-number="8">    v &lt;-<span class="st"> </span><span class="kw">varclus</span>(<span class="kw">as.matrix</span>(train[,<span class="op">-</span><span class="kw">which</span>(<span class="kw">colnames</span>(train)<span class="op">==</span>tgt)]))</a>
+<a class="sourceLine" id="cb34-9" data-line-number="9">    varsSets &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span>fs.meth[[<span class="dv">3</span>]],<span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb34-10" data-line-number="10">        <span class="kw">getVarsSet</span>(v<span class="op">$</span>hclust,<span class="dt">nvars=</span>fs.meth[[<span class="dv">2</span>]]))</a>
+<a class="sourceLine" id="cb34-11" data-line-number="11">    </a>
+<a class="sourceLine" id="cb34-12" data-line-number="12">    preds &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dt">ncol=</span><span class="kw">length</span>(varsSets),<span class="dt">nrow=</span><span class="kw">NROW</span>(test))</a>
+<a class="sourceLine" id="cb34-13" data-line-number="13">    <span class="cf">for</span>(v <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">along=</span>varsSets)) {</a>
+<a class="sourceLine" id="cb34-14" data-line-number="14">        <span class="cf">if</span> (baseLearner<span class="op">==</span><span class="st">&#39;knn&#39;</span>)</a>
+<a class="sourceLine" id="cb34-15" data-line-number="15">            preds[,v] &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;kNN&quot;</span>,</a>
+<a class="sourceLine" id="cb34-16" data-line-number="16">                                 <span class="kw">c</span>(<span class="kw">list</span>(<span class="kw">as.formula</span>(<span class="kw">paste</span>(tgt,</a>
+<a class="sourceLine" id="cb34-17" data-line-number="17">                                                 <span class="kw">paste</span>(varsSets[[v]],</a>
+<a class="sourceLine" id="cb34-18" data-line-number="18">                                                       <span class="dt">collapse=</span><span class="st">&#39;+&#39;</span>),</a>
+<a class="sourceLine" id="cb34-19" data-line-number="19">                                                 <span class="dt">sep=</span><span class="st">&#39;~&#39;</span>)),</a>
+<a class="sourceLine" id="cb34-20" data-line-number="20">                                        train[,<span class="kw">c</span>(tgt,varsSets[[v]])],</a>
+<a class="sourceLine" id="cb34-21" data-line-number="21">                                        test[,<span class="kw">c</span>(tgt,varsSets[[v]])]),</a>
+<a class="sourceLine" id="cb34-22" data-line-number="22">                                   blPars)</a>
+<a class="sourceLine" id="cb34-23" data-line-number="23">                                 )</a>
+<a class="sourceLine" id="cb34-24" data-line-number="24">        <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb34-25" data-line-number="25">            m &lt;-<span class="st"> </span><span class="kw">do.call</span>(baseLearner,</a>
+<a class="sourceLine" id="cb34-26" data-line-number="26">                         <span class="kw">c</span>(<span class="kw">list</span>(<span class="kw">as.formula</span>(<span class="kw">paste</span>(tgt,</a>
+<a class="sourceLine" id="cb34-27" data-line-number="27">                                                 <span class="kw">paste</span>(varsSets[[v]],</a>
+<a class="sourceLine" id="cb34-28" data-line-number="28">                                                       <span class="dt">collapse=</span><span class="st">&#39;+&#39;</span>),</a>
+<a class="sourceLine" id="cb34-29" data-line-number="29">                                                 <span class="dt">sep=</span><span class="st">&#39;~&#39;</span>)),</a>
+<a class="sourceLine" id="cb34-30" data-line-number="30">                                train[,<span class="kw">c</span>(tgt,varsSets[[v]])]),</a>
+<a class="sourceLine" id="cb34-31" data-line-number="31">                           blPars)</a>
+<a class="sourceLine" id="cb34-32" data-line-number="32">                         )</a>
+<a class="sourceLine" id="cb34-33" data-line-number="33">            preds[,v] &lt;-<span class="st"> </span><span class="kw">do.call</span>(predictor,</a>
+<a class="sourceLine" id="cb34-34" data-line-number="34">                                 <span class="kw">c</span>(<span class="kw">list</span>(m,test[,<span class="kw">c</span>(tgt,varsSets[[v]])]),</a>
+<a class="sourceLine" id="cb34-35" data-line-number="35">                                   predPars))</a>
+<a class="sourceLine" id="cb34-36" data-line-number="36">        }</a>
+<a class="sourceLine" id="cb34-37" data-line-number="37">    }</a>
+<a class="sourceLine" id="cb34-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb34-39" data-line-number="39">    ps &lt;-<span class="st"> </span><span class="kw">apply</span>(preds,<span class="dv">1</span>,<span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb34-40" data-line-number="40">        <span class="kw">levels</span>(<span class="kw">factor</span>(x))[<span class="kw">which.max</span>(<span class="kw">table</span>(<span class="kw">factor</span>(x)))])</a>
+<a class="sourceLine" id="cb34-41" data-line-number="41">    <span class="kw">factor</span>(ps,</a>
+<a class="sourceLine" id="cb34-42" data-line-number="42">           <span class="dt">levels=</span><span class="dv">1</span><span class="op">:</span><span class="kw">nlevels</span>(train[,tgt]),</a>
+<a class="sourceLine" id="cb34-43" data-line-number="43">           <span class="dt">labels=</span><span class="kw">levels</span>(train[,tgt]))</a>
+<a class="sourceLine" id="cb34-44" data-line-number="44">}</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">ALLb.wf &lt;-<span class="st"> </span><span class="cf">function</span>(form, train, test,</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">                    learner, <span class="dt">learner.pars=</span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">                    <span class="dt">predictor=</span><span class="st">&quot;predict&quot;</span>,<span class="dt">predictor.pars=</span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">                    <span class="dt">featSel.meth =</span> <span class="st">&quot;s2&quot;</span>, </a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">                    <span class="dt">available.fsMethods=</span><span class="kw">list</span>(<span class="dt">s1=</span><span class="kw">list</span>(<span class="st">&quot;all&quot;</span>),<span class="dt">s2=</span><span class="kw">list</span>(<span class="st">&#39;rf&#39;</span>,<span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">                                             <span class="dt">s3=</span><span class="kw">list</span>(<span class="st">&#39;varclus&#39;</span>,<span class="dv">30</span>,<span class="dv">50</span>)),</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">                    <span class="dt">.model=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">                    ...)</a>
+<a class="sourceLine" id="cb35-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb35-10" data-line-number="10">    <span class="co">## The characteristics of the selected feature selection method</span></a>
+<a class="sourceLine" id="cb35-11" data-line-number="11">    fs.meth &lt;-<span class="st"> </span>available.fsMethods[[featSel.meth]] </a>
+<a class="sourceLine" id="cb35-12" data-line-number="12">    </a>
+<a class="sourceLine" id="cb35-13" data-line-number="13">    <span class="co">## The target variable</span></a>
+<a class="sourceLine" id="cb35-14" data-line-number="14">    tgt &lt;-<span class="st"> </span><span class="kw">as.character</span>(form[[<span class="dv">2</span>]])</a>
+<a class="sourceLine" id="cb35-15" data-line-number="15">    tgtCol &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(train)<span class="op">==</span>tgt)</a>
+<a class="sourceLine" id="cb35-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb35-17" data-line-number="17">    <span class="co">## Anova filtering  </span></a>
+<a class="sourceLine" id="cb35-18" data-line-number="18">    f &lt;-<span class="st"> </span><span class="kw">Anova</span>(train[,tgt],<span class="dt">p=</span><span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb35-19" data-line-number="19">    ff &lt;-<span class="st"> </span><span class="kw">filterfun</span>(f)</a>
+<a class="sourceLine" id="cb35-20" data-line-number="20">    genes &lt;-<span class="st"> </span><span class="kw">genefilter</span>(<span class="kw">t</span>(train[,<span class="op">-</span>tgtCol]),ff)</a>
+<a class="sourceLine" id="cb35-21" data-line-number="21">    genes &lt;-<span class="st"> </span><span class="kw">names</span>(genes)[genes]</a>
+<a class="sourceLine" id="cb35-22" data-line-number="22">    train &lt;-<span class="st"> </span>train[,<span class="kw">c</span>(tgt,genes)]</a>
+<a class="sourceLine" id="cb35-23" data-line-number="23">    test &lt;-<span class="st"> </span>test[,<span class="kw">c</span>(tgt,genes)]</a>
+<a class="sourceLine" id="cb35-24" data-line-number="24">    tgtCol &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb35-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb35-26" data-line-number="26">    <span class="co">## Specific filtering </span></a>
+<a class="sourceLine" id="cb35-27" data-line-number="27">    <span class="cf">if</span> (fs.meth[[<span class="dv">1</span>]]<span class="op">==</span><span class="st">&#39;varclus&#39;</span>) {</a>
+<a class="sourceLine" id="cb35-28" data-line-number="28">      pred &lt;-<span class="st"> </span><span class="kw">varsEnsemble</span>(tgt,train,test,fs.meth,</a>
+<a class="sourceLine" id="cb35-29" data-line-number="29">                            learner,learner.pars,</a>
+<a class="sourceLine" id="cb35-30" data-line-number="30">                            predictor,predictor.pars,</a>
+<a class="sourceLine" id="cb35-31" data-line-number="31">                            <span class="kw">list</span>(...))</a>
+<a class="sourceLine" id="cb35-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb35-33" data-line-number="33">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb35-34" data-line-number="34">      <span class="cf">if</span> (fs.meth[[<span class="dv">1</span>]]<span class="op">==</span><span class="st">&#39;rf&#39;</span>) {</a>
+<a class="sourceLine" id="cb35-35" data-line-number="35">        <span class="kw">require</span>(randomForest,<span class="dt">quietly=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb35-36" data-line-number="36">        rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(form,train,<span class="dt">importance=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb35-37" data-line-number="37">        imp &lt;-<span class="st"> </span><span class="kw">importance</span>(rf)</a>
+<a class="sourceLine" id="cb35-38" data-line-number="38">        rf.genes &lt;-<span class="st"> </span><span class="kw">rownames</span>(imp)[<span class="kw">order</span>(imp[,<span class="st">&quot;MeanDecreaseAccuracy&quot;</span>], </a>
+<a class="sourceLine" id="cb35-39" data-line-number="39">                                        <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span><span class="op">:</span>fs.meth[[<span class="dv">2</span>]]]]</a>
+<a class="sourceLine" id="cb35-40" data-line-number="40">        train &lt;-<span class="st"> </span>train[,<span class="kw">c</span>(tgt,rf.genes)]</a>
+<a class="sourceLine" id="cb35-41" data-line-number="41">        test &lt;-<span class="st"> </span>test[,<span class="kw">c</span>(tgt,rf.genes)]</a>
+<a class="sourceLine" id="cb35-42" data-line-number="42">      }</a>
+<a class="sourceLine" id="cb35-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb35-44" data-line-number="44">      <span class="cf">if</span> (learner <span class="op">==</span><span class="st"> &#39;knn&#39;</span>) </a>
+<a class="sourceLine" id="cb35-45" data-line-number="45">        pred &lt;-<span class="st"> </span><span class="kw">kNN</span>(form,train,test,</a>
+<a class="sourceLine" id="cb35-46" data-line-number="46">                    <span class="dt">stand.stats=</span><span class="kw">list</span>(<span class="kw">rowMedians</span>(<span class="kw">t</span>(<span class="kw">as.matrix</span>(train[,<span class="op">-</span>tgtCol]))),</a>
+<a class="sourceLine" id="cb35-47" data-line-number="47">                        <span class="kw">rowIQRs</span>(<span class="kw">t</span>(<span class="kw">as.matrix</span>(train[,<span class="op">-</span>tgtCol])))),</a>
+<a class="sourceLine" id="cb35-48" data-line-number="48">                    ...)</a>
+<a class="sourceLine" id="cb35-49" data-line-number="49">      <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb35-50" data-line-number="50">        model &lt;-<span class="st"> </span><span class="kw">do.call</span>(learner,<span class="kw">c</span>(<span class="kw">list</span>(form,train),learner.pars))</a>
+<a class="sourceLine" id="cb35-51" data-line-number="51">        pred &lt;-<span class="st"> </span><span class="kw">do.call</span>(predictor,<span class="kw">c</span>(<span class="kw">list</span>(model,test),predictor.pars))</a>
+<a class="sourceLine" id="cb35-52" data-line-number="52">      }</a>
+<a class="sourceLine" id="cb35-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb35-54" data-line-number="54">    }</a>
+<a class="sourceLine" id="cb35-55" data-line-number="55"></a>
+<a class="sourceLine" id="cb35-56" data-line-number="56">    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">trues=</span><span class="kw">responseValues</span>(form,test), <span class="dt">preds=</span>pred, </a>
+<a class="sourceLine" id="cb35-57" data-line-number="57">                <span class="dt">model=</span><span class="cf">if</span> (.model <span class="op">&amp;&amp;</span><span class="st"> </span>learner<span class="op">!=</span><span class="st">&quot;knn&quot;</span>) model <span class="cf">else</span> <span class="ot">NULL</span>))</a>
+<a class="sourceLine" id="cb35-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb35-59" data-line-number="59">}</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">vars &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">vars<span class="op">$</span>randomForest &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">ntree=</span><span class="kw">c</span>(<span class="dv">500</span>,<span class="dv">750</span>,<span class="dv">1000</span>),</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">                                            <span class="dt">mtry=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>)),</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">                          <span class="dt">preditor.pars=</span><span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;response&quot;</span>))</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">vars<span class="op">$</span>svm &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">cost=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">                                   <span class="dt">gamma=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.001</span>,<span class="fl">0.0001</span>)))</a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">vars<span class="op">$</span>knn &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">k=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>),</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">                                   <span class="dt">stand=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)))</a>
+<a class="sourceLine" id="cb36-9" data-line-number="9">vars<span class="op">$</span>featureSel &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">featSel.meth=</span><span class="kw">c</span>(<span class="st">&quot;s1&quot;</span>, <span class="st">&quot;s2&quot;</span>, <span class="st">&quot;s3&quot;</span>))</a></code></pre></div>
 <p><em>Note</em>: The <code>myALL.Rdata</code> file loaded below can be obtained at the section <strong>Other Information</strong> on the top menus of this web page.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
-<span class="kw">library</span>(class)
-<span class="kw">library</span>(randomForest)
-<span class="kw">library</span>(e1071)
-<span class="kw">library</span>(genefilter)
-<span class="kw">load</span>(<span class="st">&#39;myALL.Rdata&#39;</span>)  <span class="co"># loading the previously saved object with the data</span>
-
-es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)
-
-## simple filtering
-ALLb &lt;-<span class="st"> </span><span class="kw">nsFilter</span>(ALLb,
-                 <span class="dt">var.func=</span>IQR,<span class="dt">var.cutoff=</span><span class="kw">IQR</span>(<span class="kw">as.vector</span>(es))<span class="op">/</span><span class="dv">5</span>, 
-                 <span class="dt">feature.exclude=</span><span class="st">&quot;^AFFX&quot;</span>)
-ALLb &lt;-<span class="st"> </span>ALLb<span class="op">$</span>eset
-
-## the source dataset after the basic filtering
-dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(<span class="kw">exprs</span>(ALLb)),<span class="dt">Mut=</span>ALLb<span class="op">$</span>mol.bio)
-
-<span class="kw">set.seed</span>(<span class="dv">1234</span>)
-## The learners to evaluate
-TODO &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;knn&#39;</span>,<span class="st">&#39;svm&#39;</span>,<span class="st">&#39;randomForest&#39;</span>)
-<span class="cf">for</span>(td <span class="cf">in</span> TODO) {
-    <span class="kw">assign</span>(td,
-         <span class="kw">performanceEstimation</span>(
-             <span class="kw">PredTask</span>(Mut <span class="op">~</span><span class="st"> </span>.,dt,<span class="st">&#39;ALL&#39;</span>),
-             <span class="kw">do.call</span>(<span class="st">&#39;workflowVariants&#39;</span>,
-                     <span class="kw">c</span>(<span class="kw">list</span>(<span class="st">&#39;ALLb.wf&#39;</span>,<span class="dt">learner=</span>td,<span class="dt">varsRootName=</span>td),
-                       vars[[td]],
-                       vars<span class="op">$</span>featureSel
-                       )
-                     ),
-             <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;acc&quot;</span>,<span class="dt">method=</span><span class="kw">Bootstrap</span>(<span class="dt">nReps=</span><span class="dv">100</span>)),
-             <span class="dt">cluster=</span><span class="ot">TRUE</span>
-         )
-         )
-    <span class="kw">save</span>(<span class="dt">list=</span>td,<span class="dt">file=</span><span class="kw">paste</span>(td,<span class="st">&#39;Rdata&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;.&#39;</span>))
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## load results of the exps
-<span class="kw">load</span>(<span class="st">&quot;knn.Rdata&quot;</span>)
-<span class="kw">load</span>(<span class="st">&quot;svm.Rdata&quot;</span>)
-<span class="kw">load</span>(<span class="st">&quot;randomForest.Rdata&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(svm, <span class="dt">maxs =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all.trials &lt;-<span class="st"> </span><span class="kw">mergeEstimationRes</span>(svm, knn, randomForest, <span class="dt">by =</span><span class="st">&quot;workflows&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(all.trials, <span class="dt">top=</span><span class="dv">10</span>, <span class="dt">maxs =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;svm.v8&quot;</span>, all.trials)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top10WFnames &lt;-<span class="st"> </span><span class="kw">rankWorkflows</span>(all.trials, <span class="dt">top=</span><span class="dv">10</span>, 
-                              <span class="dt">maxs =</span> <span class="ot">TRUE</span>)[[<span class="st">&quot;ALL&quot;</span>]][[<span class="st">&quot;acc&quot;</span>]][,<span class="st">&quot;Workflow&quot;</span>]
-<span class="kw">sapply</span>(top10WFnames, <span class="cf">function</span>(WFid) <span class="kw">getWorkflow</span>(WFid,all.trials)<span class="op">@</span>pars<span class="op">$</span>featSel.meth)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames),<span class="dt">baseline=</span><span class="st">&quot;svm.v8&quot;</span>)
-ps<span class="op">$</span>acc<span class="op">$</span>WilcoxonSignedRank.test</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iteration &lt;-<span class="st"> </span><span class="dv">1</span>  <span class="co"># any number between 1 and 100 in this case</span>
-itInfo &lt;-<span class="st"> </span><span class="kw">getIterationsInfo</span>(all.trials,<span class="dt">workflow=</span><span class="st">&quot;svm.v8&quot;</span>,<span class="dt">it=</span>iteration)
-<span class="kw">table</span>(itInfo<span class="op">$</span>trues, itInfo<span class="op">$</span>preds)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">library</span>(performanceEstimation)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">library</span>(class)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw">library</span>(randomForest)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="kw">library</span>(e1071)</a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="kw">library</span>(genefilter)</a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="kw">load</span>(<span class="st">&#39;myALL.Rdata&#39;</span>)  <span class="co"># loading the previously saved object with the data</span></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8">es &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALLb)</a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb37-10" data-line-number="10"><span class="co">## simple filtering</span></a>
+<a class="sourceLine" id="cb37-11" data-line-number="11">ALLb &lt;-<span class="st"> </span><span class="kw">nsFilter</span>(ALLb,</a>
+<a class="sourceLine" id="cb37-12" data-line-number="12">                 <span class="dt">var.func=</span>IQR,<span class="dt">var.cutoff=</span><span class="kw">IQR</span>(<span class="kw">as.vector</span>(es))<span class="op">/</span><span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb37-13" data-line-number="13">                 <span class="dt">feature.exclude=</span><span class="st">&quot;^AFFX&quot;</span>)</a>
+<a class="sourceLine" id="cb37-14" data-line-number="14">ALLb &lt;-<span class="st"> </span>ALLb<span class="op">$</span>eset</a>
+<a class="sourceLine" id="cb37-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb37-16" data-line-number="16"><span class="co">## the source dataset after the basic filtering</span></a>
+<a class="sourceLine" id="cb37-17" data-line-number="17">dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(<span class="kw">exprs</span>(ALLb)),<span class="dt">Mut=</span>ALLb<span class="op">$</span>mol.bio)</a>
+<a class="sourceLine" id="cb37-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb37-19" data-line-number="19"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb37-20" data-line-number="20"><span class="co">## The learners to evaluate</span></a>
+<a class="sourceLine" id="cb37-21" data-line-number="21">TODO &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;knn&#39;</span>,<span class="st">&#39;svm&#39;</span>,<span class="st">&#39;randomForest&#39;</span>)</a>
+<a class="sourceLine" id="cb37-22" data-line-number="22"><span class="cf">for</span>(td <span class="cf">in</span> TODO) {</a>
+<a class="sourceLine" id="cb37-23" data-line-number="23">    <span class="kw">assign</span>(td,</a>
+<a class="sourceLine" id="cb37-24" data-line-number="24">         <span class="kw">performanceEstimation</span>(</a>
+<a class="sourceLine" id="cb37-25" data-line-number="25">             <span class="kw">PredTask</span>(Mut <span class="op">~</span><span class="st"> </span>.,dt,<span class="st">&#39;ALL&#39;</span>),</a>
+<a class="sourceLine" id="cb37-26" data-line-number="26">             <span class="kw">do.call</span>(<span class="st">&#39;workflowVariants&#39;</span>,</a>
+<a class="sourceLine" id="cb37-27" data-line-number="27">                     <span class="kw">c</span>(<span class="kw">list</span>(<span class="st">&#39;ALLb.wf&#39;</span>,<span class="dt">learner=</span>td,<span class="dt">varsRootName=</span>td),</a>
+<a class="sourceLine" id="cb37-28" data-line-number="28">                       vars[[td]],</a>
+<a class="sourceLine" id="cb37-29" data-line-number="29">                       vars<span class="op">$</span>featureSel</a>
+<a class="sourceLine" id="cb37-30" data-line-number="30">                       )</a>
+<a class="sourceLine" id="cb37-31" data-line-number="31">                     ),</a>
+<a class="sourceLine" id="cb37-32" data-line-number="32">             <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;acc&quot;</span>,<span class="dt">method=</span><span class="kw">Bootstrap</span>(<span class="dt">nReps=</span><span class="dv">100</span>)),</a>
+<a class="sourceLine" id="cb37-33" data-line-number="33">             <span class="dt">cluster=</span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb37-34" data-line-number="34">         )</a>
+<a class="sourceLine" id="cb37-35" data-line-number="35">         )</a>
+<a class="sourceLine" id="cb37-36" data-line-number="36">    <span class="kw">save</span>(<span class="dt">list=</span>td,<span class="dt">file=</span><span class="kw">paste</span>(td,<span class="st">&#39;Rdata&#39;</span>,<span class="dt">sep=</span><span class="st">&#39;.&#39;</span>))</a>
+<a class="sourceLine" id="cb37-37" data-line-number="37">}</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co">## load results of the exps</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">load</span>(<span class="st">&quot;knn.Rdata&quot;</span>)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw">load</span>(<span class="st">&quot;svm.Rdata&quot;</span>)</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw">load</span>(<span class="st">&quot;randomForest.Rdata&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">rankWorkflows</span>(svm, <span class="dt">maxs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">all.trials &lt;-<span class="st"> </span><span class="kw">mergeEstimationRes</span>(svm, knn, randomForest, <span class="dt">by =</span><span class="st">&quot;workflows&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">rankWorkflows</span>(all.trials, <span class="dt">top=</span><span class="dv">10</span>, <span class="dt">maxs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">getWorkflow</span>(<span class="st">&quot;svm.v8&quot;</span>, all.trials)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">top10WFnames &lt;-<span class="st"> </span><span class="kw">rankWorkflows</span>(all.trials, <span class="dt">top=</span><span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">                              <span class="dt">maxs =</span> <span class="ot">TRUE</span>)[[<span class="st">&quot;ALL&quot;</span>]][[<span class="st">&quot;acc&quot;</span>]][,<span class="st">&quot;Workflow&quot;</span>]</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="kw">sapply</span>(top10WFnames, <span class="cf">function</span>(WFid) <span class="kw">getWorkflow</span>(WFid,all.trials)<span class="op">@</span>pars<span class="op">$</span>featSel.meth)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames))</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">ps &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(<span class="kw">subset</span>(all.trials,<span class="dt">workflows=</span>top10WFnames),<span class="dt">baseline=</span><span class="st">&quot;svm.v8&quot;</span>)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">ps<span class="op">$</span>acc<span class="op">$</span>WilcoxonSignedRank.test</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">iteration &lt;-<span class="st"> </span><span class="dv">1</span>  <span class="co"># any number between 1 and 100 in this case</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">itInfo &lt;-<span class="st"> </span><span class="kw">getIterationsInfo</span>(all.trials,<span class="dt">workflow=</span><span class="st">&quot;svm.v8&quot;</span>,<span class="dt">it=</span>iteration)</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="kw">table</span>(itInfo<span class="op">$</span>trues, itInfo<span class="op">$</span>preds)</a></code></pre></div>
 </div>
 </div>
 

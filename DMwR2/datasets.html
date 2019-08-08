@@ -23,47 +23,95 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -99,9 +147,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -120,8 +166,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +189,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +208,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +266,75 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -267,8 +412,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -277,6 +420,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -418,7 +571,7 @@ div.tocify {
 <div id="r-version" class="section level3">
 <h3>R Version</h3>
 <p>The R code in the book was executed in the following version of R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.version</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">R.version</a></code></pre></div>
 <pre><code>##                _                           
 ## platform       x86_64-apple-darwin15.6.0   
 ## arch           x86_64                      
@@ -426,27 +579,27 @@ div.tocify {
 ## system         x86_64, darwin15.6.0        
 ## status                                     
 ## major          3                           
-## minor          4.0                         
-## year           2017                        
+## minor          6.0                         
+## year           2019                        
 ## month          04                          
-## day            21                          
-## svn rev        72570                       
+## day            26                          
+## svn rev        76424                       
 ## language       R                           
-## version.string R version 3.4.0 (2017-04-21)
-## nickname       You Stupid Darkness</code></pre>
+## version.string R version 3.6.0 (2019-04-26)
+## nickname       Planting of a Tree</code></pre>
 </div>
 <div id="book-package" class="section level3">
 <h3>Book Package</h3>
 <p>The book has an associated R package - <strong>DMwR2</strong>. This package includes several functions and datasets used in the book. <strong>You should install it</strong> to take full advantage of the code and examples shown in the book. The package can be installed as any standard R package by doing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;DMwR2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;DMwR2&quot;</span>)</a></code></pre></div>
 <p>Alternatively, you may wish to install the development version that may include some eventual bug corrections that may have not been pushed yet to the R central repository (CRAN). Still, unless you have a good reason for it, we recommend that you stick to the CRAN version that is installed as shown above. For further information on the development version (including how to install it), check the <a href="https://github.com/ltorgo/DMwR2">web page of the package</a></p>
 </div>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
 <p>The book uses many packages. Most of them are developed by others and it is only natural that the version numbers change as time goes by, either to introduce new features or to correct eventual bugs. If some of these future changes somehow “break” the code shown in the book we will try to maintain in this web page the eventual changes that are required to what was printed in the book. Still, for your own information these are the packages and versions that were used in the book:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DMwR2&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;tibble&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;DBI&quot;</span>,<span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;Hmisc&quot;</span>, <span class="st">&quot;xts&quot;</span>, <span class="st">&quot;sp&quot;</span>, <span class="st">&quot;ggmap&quot;</span>, <span class="st">&quot;tm&quot;</span>, <span class="st">&quot;CORElearn&quot;</span>, <span class="st">&quot;GGally&quot;</span>, <span class="st">&quot;arules&quot;</span>, <span class="st">&quot;arulesViz&quot;</span>, <span class="st">&quot;cluster&quot;</span>, <span class="st">&quot;fpc&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;UBL&quot;</span>, <span class="st">&quot;e1071&quot;</span>, <span class="st">&quot;rpart.plot&quot;</span>, <span class="st">&quot;NeuralNetTools&quot;</span>, <span class="st">&quot;h2o&quot;</span>, <span class="st">&quot;adabag&quot;</span>, <span class="st">&quot;ipred&quot;</span>, <span class="st">&quot;randomForest&quot;</span>, <span class="st">&quot;gbm&quot;</span>, <span class="st">&quot;performanceEstimation&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;shiny&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;corrplot&quot;</span>, <span class="st">&quot;rpart&quot;</span>, <span class="st">&quot;quantmod&quot;</span>, <span class="st">&quot;TTR&quot;</span>, <span class="st">&quot;nnet&quot;</span>, <span class="st">&quot;kernlab&quot;</span>, <span class="st">&quot;earth&quot;</span>, <span class="st">&quot;PerformanceAnalytics&quot;</span>, <span class="st">&quot;ROCR&quot;</span>, <span class="st">&quot;RWeka&quot;</span>, <span class="st">&quot;Biobase&quot;</span>, <span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;genefilter&quot;</span>, <span class="st">&quot;class&quot;</span>)
-pcks &lt;-<span class="st"> </span><span class="kw">sort</span>(pcks)
-knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">installed.packages</span>()[<span class="kw">which</span>(<span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) <span class="op">%in%</span><span class="st"> </span>pcks),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)],<span class="dt">row.names =</span> <span class="ot">FALSE</span>,<span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pcks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DMwR2&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;tibble&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;DBI&quot;</span>,<span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;Hmisc&quot;</span>, <span class="st">&quot;xts&quot;</span>, <span class="st">&quot;sp&quot;</span>, <span class="st">&quot;ggmap&quot;</span>, <span class="st">&quot;tm&quot;</span>, <span class="st">&quot;CORElearn&quot;</span>, <span class="st">&quot;GGally&quot;</span>, <span class="st">&quot;arules&quot;</span>, <span class="st">&quot;arulesViz&quot;</span>, <span class="st">&quot;cluster&quot;</span>, <span class="st">&quot;fpc&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;UBL&quot;</span>, <span class="st">&quot;e1071&quot;</span>, <span class="st">&quot;rpart.plot&quot;</span>, <span class="st">&quot;NeuralNetTools&quot;</span>, <span class="st">&quot;h2o&quot;</span>, <span class="st">&quot;adabag&quot;</span>, <span class="st">&quot;ipred&quot;</span>, <span class="st">&quot;randomForest&quot;</span>, <span class="st">&quot;gbm&quot;</span>, <span class="st">&quot;performanceEstimation&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;shiny&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;corrplot&quot;</span>, <span class="st">&quot;rpart&quot;</span>, <span class="st">&quot;quantmod&quot;</span>, <span class="st">&quot;TTR&quot;</span>, <span class="st">&quot;nnet&quot;</span>, <span class="st">&quot;kernlab&quot;</span>, <span class="st">&quot;earth&quot;</span>, <span class="st">&quot;PerformanceAnalytics&quot;</span>, <span class="st">&quot;ROCR&quot;</span>, <span class="st">&quot;RWeka&quot;</span>, <span class="st">&quot;Biobase&quot;</span>, <span class="st">&quot;ALL&quot;</span>, <span class="st">&quot;genefilter&quot;</span>, <span class="st">&quot;class&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">pcks &lt;-<span class="st"> </span><span class="kw">sort</span>(pcks)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">installed.packages</span>()[<span class="kw">which</span>(<span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) <span class="op">%in%</span><span class="st"> </span>pcks),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)],<span class="dt">row.names =</span> <span class="ot">FALSE</span>,<span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -464,7 +617,23 @@ Version
 adabag
 </td>
 <td style="text-align:left;">
-4.1
+4.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+arules
+</td>
+<td style="text-align:left;">
+1.6-3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+arulesViz
+</td>
+<td style="text-align:left;">
+1.3-3
 </td>
 </tr>
 <tr>
@@ -472,7 +641,7 @@ adabag
 car
 </td>
 <td style="text-align:left;">
-2.1-5
+3.0-2
 </td>
 </tr>
 <tr>
@@ -480,7 +649,7 @@ car
 class
 </td>
 <td style="text-align:left;">
-7.3-14
+7.3-15
 </td>
 </tr>
 <tr>
@@ -488,7 +657,15 @@ class
 cluster
 </td>
 <td style="text-align:left;">
-2.0.6
+2.0.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORElearn
+</td>
+<td style="text-align:left;">
+1.53.1
 </td>
 </tr>
 <tr>
@@ -496,7 +673,7 @@ cluster
 corrplot
 </td>
 <td style="text-align:left;">
-0.77
+0.84
 </td>
 </tr>
 <tr>
@@ -504,7 +681,7 @@ corrplot
 DBI
 </td>
 <td style="text-align:left;">
-0.7
+1.0.0
 </td>
 </tr>
 <tr>
@@ -520,7 +697,7 @@ DMwR2
 dplyr
 </td>
 <td style="text-align:left;">
-0.7.4
+0.8.3
 </td>
 </tr>
 <tr>
@@ -528,7 +705,7 @@ dplyr
 e1071
 </td>
 <td style="text-align:left;">
-1.6-8
+1.7-1
 </td>
 </tr>
 <tr>
@@ -536,7 +713,7 @@ e1071
 earth
 </td>
 <td style="text-align:left;">
-4.5.1
+5.1.1
 </td>
 </tr>
 <tr>
@@ -544,7 +721,7 @@ earth
 forcats
 </td>
 <td style="text-align:left;">
-0.2.0
+0.4.0
 </td>
 </tr>
 <tr>
@@ -552,7 +729,7 @@ forcats
 fpc
 </td>
 <td style="text-align:left;">
-2.1-10
+2.2-1
 </td>
 </tr>
 <tr>
@@ -560,7 +737,15 @@ fpc
 gbm
 </td>
 <td style="text-align:left;">
-2.1.3
+2.1.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GGally
+</td>
+<td style="text-align:left;">
+1.4.0
 </td>
 </tr>
 <tr>
@@ -568,7 +753,7 @@ gbm
 ggmap
 </td>
 <td style="text-align:left;">
-2.7
+3.0.0
 </td>
 </tr>
 <tr>
@@ -576,7 +761,7 @@ ggmap
 ggplot2
 </td>
 <td style="text-align:left;">
-2.2.1
+3.1.1
 </td>
 </tr>
 <tr>
@@ -584,7 +769,15 @@ ggplot2
 Hmisc
 </td>
 <td style="text-align:left;">
-4.0-3
+4.2-0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ipred
+</td>
+<td style="text-align:left;">
+0.9-9
 </td>
 </tr>
 <tr>
@@ -592,7 +785,7 @@ Hmisc
 kernlab
 </td>
 <td style="text-align:left;">
-0.9-25
+0.9-27
 </td>
 </tr>
 <tr>
@@ -600,7 +793,15 @@ kernlab
 lubridate
 </td>
 <td style="text-align:left;">
-1.6.0
+1.7.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NeuralNetTools
+</td>
+<td style="text-align:left;">
+1.5.2
 </td>
 </tr>
 <tr>
@@ -616,7 +817,7 @@ nnet
 PerformanceAnalytics
 </td>
 <td style="text-align:left;">
-1.4.3541
+1.5.2
 </td>
 </tr>
 <tr>
@@ -624,7 +825,7 @@ PerformanceAnalytics
 performanceEstimation
 </td>
 <td style="text-align:left;">
-1.1.1
+1.1.0
 </td>
 </tr>
 <tr>
@@ -632,7 +833,7 @@ performanceEstimation
 quantmod
 </td>
 <td style="text-align:left;">
-0.4-10
+0.4-14
 </td>
 </tr>
 <tr>
@@ -640,7 +841,7 @@ quantmod
 randomForest
 </td>
 <td style="text-align:left;">
-4.6-12
+4.6-14
 </td>
 </tr>
 <tr>
@@ -648,7 +849,7 @@ randomForest
 readr
 </td>
 <td style="text-align:left;">
-1.1.1
+1.3.1
 </td>
 </tr>
 <tr>
@@ -656,7 +857,7 @@ readr
 readxl
 </td>
 <td style="text-align:left;">
-1.0.0
+1.3.1
 </td>
 </tr>
 <tr>
@@ -664,15 +865,7 @@ readxl
 rmarkdown
 </td>
 <td style="text-align:left;">
-1.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMySQL
-</td>
-<td style="text-align:left;">
-0.10.13
+1.13
 </td>
 </tr>
 <tr>
@@ -688,7 +881,7 @@ ROCR
 rpart
 </td>
 <td style="text-align:left;">
-4.1-11
+4.1-15
 </td>
 </tr>
 <tr>
@@ -696,15 +889,7 @@ rpart
 rpart.plot
 </td>
 <td style="text-align:left;">
-2.1.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RWeka
-</td>
-<td style="text-align:left;">
-0.4-34
+3.0.7
 </td>
 </tr>
 <tr>
@@ -712,7 +897,7 @@ RWeka
 shiny
 </td>
 <td style="text-align:left;">
-1.0.5
+1.3.2
 </td>
 </tr>
 <tr>
@@ -720,7 +905,7 @@ shiny
 sp
 </td>
 <td style="text-align:left;">
-1.2-5
+1.3-1
 </td>
 </tr>
 <tr>
@@ -728,7 +913,7 @@ sp
 stringr
 </td>
 <td style="text-align:left;">
-1.2.0
+1.4.0
 </td>
 </tr>
 <tr>
@@ -736,7 +921,7 @@ stringr
 tibble
 </td>
 <td style="text-align:left;">
-1.3.4
+2.1.3
 </td>
 </tr>
 <tr>
@@ -744,7 +929,7 @@ tibble
 tidyr
 </td>
 <td style="text-align:left;">
-0.7.1
+0.8.3
 </td>
 </tr>
 <tr>
@@ -752,7 +937,7 @@ tidyr
 tm
 </td>
 <td style="text-align:left;">
-0.7-1
+0.7-6
 </td>
 </tr>
 <tr>
@@ -760,7 +945,7 @@ tm
 TTR
 </td>
 <td style="text-align:left;">
-0.23-2
+0.23-4
 </td>
 </tr>
 <tr>
@@ -776,7 +961,7 @@ UBL
 xts
 </td>
 <td style="text-align:left;">
-0.10-0
+0.11-2
 </td>
 </tr>
 </tbody>
@@ -791,40 +976,40 @@ xts
 <ul>
 <li>Data set about forest fires loaded on page 71
 <ul>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/forestFires.txt">forestFires.txt</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/forestFires.txt">forestFires.txt</a></li>
 </ul></li>
 </ul></li>
 <li>Chapter 4 (Algae Blooms case study)
 <ul>
 <li>Text files with the data mentioned on page 195 (please note that it is much easier to load the data directly from the book R package as mentioned in the book)
 <ul>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/Analysis.txt">Analysis.txt</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/Eval.txt">Eval.txt</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/Sols.txt">Sols.txt</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/Analysis.txt">Analysis.txt</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/Eval.txt">Eval.txt</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/Sols.txt">Sols.txt</a></li>
 </ul></li>
 </ul></li>
 <li>Chapter 5 (Stock Market case study)
 <ul>
 <li>Files containing the results of the experiments described in pages 275-276, that are loaded on page 278
 <ul>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/svm_res_regr.Rdata">svm_res_regr.Rdata</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/nnet_res_regr.Rdata">nnet_res_regr.Rdata</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/earth_res_regr.Rdata">earth_res_regr.Rdata</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/svm_res_class.Rdata">svm_res_class.Rdata</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/nnet_res_class.Rdata">nnet_res_class.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/svm_res_regr.Rdata">svm_res_regr.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/nnet_res_regr.Rdata">nnet_res_regr.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/earth_res_regr.Rdata">earth_res_regr.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/svm_res_class.Rdata">svm_res_class.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/nnet_res_class.Rdata">nnet_res_class.Rdata</a></li>
 </ul></li>
 </ul></li>
 <li>Chapter 7 (Micro Arrays case study)
 <ul>
 <li>File containing the pre-processed data set loaded on page 376
 <ul>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/myALL.Rdata">myALL.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/myALL.Rdata">myALL.Rdata</a></li>
 </ul></li>
 <li>Files containing the results of the experiments described on page 377 that are loaded on the same page
 <ul>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/knn.Rdata">knn.Rdata</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/svm.Rdata">svm.Rdata</a></li>
-<li><a href="http://www.dcc.fc.up.pt/~ltorgo/DMwR2/Data/randomForest.Rdata">randomForest.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/knn.Rdata">knn.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/svm.Rdata">svm.Rdata</a></li>
+<li><a href="https://web.cs.dal.ca/~ltorgo/AuxFiles/randomForest.Rdata">randomForest.Rdata</a></li>
 </ul></li>
 </ul></li>
 </ul>

@@ -23,47 +23,95 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -99,9 +147,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -120,8 +166,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +189,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +208,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +266,75 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -267,8 +412,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -277,6 +420,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -419,160 +572,160 @@ div.tocify {
 <!-- loadData.Rnw -->
 <div id="loading-the-data-into-r" class="section level3">
 <h3>Loading the Data into R</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;Analysis.txt&#39;</span>,
-           <span class="dt">header=</span><span class="ot">FALSE</span>,
-           <span class="dt">dec=</span><span class="st">&#39;.&#39;</span>,
-           <span class="dt">col.names=</span><span class="kw">c</span>(<span class="st">&#39;season&#39;</span>,<span class="st">&#39;size&#39;</span>,<span class="st">&#39;speed&#39;</span>,<span class="st">&#39;mxPH&#39;</span>,<span class="st">&#39;mnO2&#39;</span>,<span class="st">&#39;Cl&#39;</span>,
-           <span class="st">&#39;NO3&#39;</span>,<span class="st">&#39;NH4&#39;</span>,<span class="st">&#39;oPO4&#39;</span>,<span class="st">&#39;PO4&#39;</span>,<span class="st">&#39;Chla&#39;</span>,<span class="st">&#39;a1&#39;</span>,<span class="st">&#39;a2&#39;</span>,<span class="st">&#39;a3&#39;</span>,<span class="st">&#39;a4&#39;</span>,
-           <span class="st">&#39;a5&#39;</span>,<span class="st">&#39;a6&#39;</span>,<span class="st">&#39;a7&#39;</span>),
-           <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&#39;XXXXXXX&#39;</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tibble<span class="op">::</span><span class="kw">as_tibble</span>(algae)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">algae</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">algae &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;Analysis.txt&#39;</span>,</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">           <span class="dt">header=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">           <span class="dt">dec=</span><span class="st">&#39;.&#39;</span>,</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">           <span class="dt">col.names=</span><span class="kw">c</span>(<span class="st">&#39;season&#39;</span>,<span class="st">&#39;size&#39;</span>,<span class="st">&#39;speed&#39;</span>,<span class="st">&#39;mxPH&#39;</span>,<span class="st">&#39;mnO2&#39;</span>,<span class="st">&#39;Cl&#39;</span>,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">           <span class="st">&#39;NO3&#39;</span>,<span class="st">&#39;NH4&#39;</span>,<span class="st">&#39;oPO4&#39;</span>,<span class="st">&#39;PO4&#39;</span>,<span class="st">&#39;Chla&#39;</span>,<span class="st">&#39;a1&#39;</span>,<span class="st">&#39;a2&#39;</span>,<span class="st">&#39;a3&#39;</span>,<span class="st">&#39;a4&#39;</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">           <span class="st">&#39;a5&#39;</span>,<span class="st">&#39;a6&#39;</span>,<span class="st">&#39;a7&#39;</span>),</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">           <span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&#39;XXXXXXX&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">tibble<span class="op">::</span><span class="kw">as_tibble</span>(algae)</a></code></pre></div>
 <!-- vizSum.Rnw -->
 </div>
 <div id="data-visualization-and-summarization" class="section level3">
 <h3>Data Visualization and Summarization</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">summary</span>(algae)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
-<span class="kw">library</span>(car)
-<span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
-gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-vpL &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;npc&quot;</span>), <span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;npc&quot;</span>), 
-                           <span class="dt">just=</span><span class="st">&quot;left&quot;</span>, 
-                           <span class="dt">y=</span><span class="fl">0.5</span>, <span class="dt">x=</span><span class="dv">0</span>)
-<span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>)
-<span class="kw">print</span>(gh,<span class="dt">vp=</span>vpL)
-<span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae<span class="op">$</span>oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),
-               <span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae<span class="op">$</span>oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),<span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae<span class="op">$</span>NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">1</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">median</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">3</span>)
-<span class="kw">identify</span>(algae<span class="op">$</span>NH4)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(algae<span class="op">$</span>NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)
-clickedRows &lt;-<span class="st"> </span><span class="kw">identify</span>(algae<span class="op">$</span>NH4)
-algae[clickedRows, ]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-<span class="kw">filter</span>(algae, NH4 <span class="op">&gt;</span><span class="st"> </span><span class="dv">19000</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats)
-algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
-                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
-                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
-                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,<span class="op">!</span><span class="kw">is.na</span>(mnO2)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,<span class="dv">1</span>)), <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))
-<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season, <span class="dt">color=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>minO2) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,<span class="op">!</span><span class="kw">is.na</span>(mnO2)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, 
-                     <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="dv">1</span>)), 
-                     <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))
-<span class="co">#data2graph &lt;- algae[!is.na(algae$mnO2),]</span>
-<span class="co">#data2graph &lt;- cbind(data2graph,</span>
-<span class="co">#                    minO2=cut(data2graph$mnO2,</span>
-<span class="co">#                              quantile(data2graph$mnO2,c(0,0.25,.5,.75,1)),</span>
-<span class="co">#                              include.lowest=TRUE))</span>
-<span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season,<span class="dt">col=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>minO2) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">summary</span>(algae)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">gh &lt;-<span class="st"> </span><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;The Histogram of mxPH (maximum pH)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">vpL &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">height=</span><span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;npc&quot;</span>), <span class="dt">width=</span><span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;npc&quot;</span>), </a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">                           <span class="dt">just=</span><span class="st">&quot;left&quot;</span>, </a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">                           <span class="dt">y=</span><span class="fl">0.5</span>, <span class="dt">x=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>)</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw">print</span>(gh,<span class="dt">vp=</span>vpL)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="kw">qqPlot</span>(algae<span class="op">$</span>mxPH,<span class="dt">main=</span><span class="st">&#39;Normal QQ plot of maximum pH&#39;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae<span class="op">$</span>oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">               <span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(<span class="dv">0</span>),<span class="dt">y=</span>oPO4)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="kw">mean</span>(algae<span class="op">$</span>oPO4, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),<span class="dt">linetype=</span><span class="dv">2</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Orthophosphate (oPO4)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">plot</span>(algae<span class="op">$</span>NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">mean</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">median</span>(algae<span class="op">$</span>NH4, <span class="dt">na.rm =</span> T), <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">identify</span>(algae<span class="op">$</span>NH4)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">plot</span>(algae<span class="op">$</span>NH4, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">clickedRows &lt;-<span class="st"> </span><span class="kw">identify</span>(algae<span class="op">$</span>NH4)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">algae[clickedRows, ]</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">filter</span>(algae, NH4 <span class="op">&gt;</span><span class="st"> </span><span class="dv">19000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(forcats)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">ggplot</span>(algae,<span class="kw">aes</span>(<span class="dt">x=</span>size,<span class="dt">y=</span>a1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;River Size&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Algal A1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,<span class="op">!</span><span class="kw">is.na</span>(mnO2)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,<span class="dv">1</span>)), <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season, <span class="dt">color=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>minO2) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">data2graph &lt;-<span class="st"> </span><span class="kw">filter</span>(algae,<span class="op">!</span><span class="kw">is.na</span>(mnO2)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">minO2=</span><span class="kw">cut</span>(mnO2, </a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">                     <span class="kw">quantile</span>(mnO2,<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="dv">1</span>)), </a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">                     <span class="dt">include.lowest=</span><span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co">#data2graph &lt;- algae[!is.na(algae$mnO2),]</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">#data2graph &lt;- cbind(data2graph,</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="co">#                    minO2=cut(data2graph$mnO2,</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">#                              quantile(data2graph$mnO2,c(0,0.25,.5,.75,1)),</span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co">#                              include.lowest=TRUE))</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="kw">ggplot</span>(data2graph,<span class="kw">aes</span>(<span class="dt">x=</span>a3,<span class="dt">y=</span>season,<span class="dt">col=</span>season)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>minO2) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <!-- Unknown.Rnw -->
 </div>
 <div id="unknown-values" class="section level3">
 <h3>Unknown Values</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DMwR2)
-<span class="kw">library</span>(dplyr)  
-<span class="kw">data</span>(algae)  </code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">library</span>(DMwR2)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">library</span>(dplyr)  </a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw">data</span>(algae)  </a></code></pre></div>
 <div id="removing-the-observations-with-unknown-values" class="section level4">
 <h4>Removing the Observations with Unknown Values</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(algae, <span class="op">!</span><span class="kw">complete.cases</span>(algae) )</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">na.omit</span>(algae)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) <span class="co"># only necessary if you executed the above na.omit()</span>
-algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">c</span>(<span class="dv">62</span>, <span class="dv">199</span>), ]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(algae, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-<span class="kw">manyNAs</span>(algae, <span class="fl">0.2</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">filter</span>(algae, <span class="op">!</span><span class="kw">complete.cases</span>(algae) )</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">algae &lt;-<span class="st"> </span><span class="kw">na.omit</span>(algae)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) <span class="co"># only necessary if you executed the above na.omit()</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">c</span>(<span class="dv">62</span>, <span class="dv">199</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">apply</span>(algae, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x)))</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">manyNAs</span>(algae, <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a></code></pre></div>
 </div>
 <div id="filling-in-the-unknowns-with-the-most-frequent-values" class="section level4">
 <h4>Filling in the Unknowns with the Most Frequent Values</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">48</span>, <span class="st">&quot;mxPH&quot;</span>] &lt;-<span class="st"> </span><span class="kw">mean</span>(algae<span class="op">$</span>mxPH, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="kw">is.na</span>(algae<span class="op">$</span>Chla), <span class="st">&quot;Chla&quot;</span>] &lt;-<span class="st"> </span><span class="kw">median</span>(algae<span class="op">$</span>Chla, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
-algae &lt;-<span class="st"> </span><span class="kw">centralImputation</span>(algae)</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">algae[<span class="dv">48</span>, <span class="st">&quot;mxPH&quot;</span>] &lt;-<span class="st"> </span><span class="kw">mean</span>(algae<span class="op">$</span>mxPH, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">algae[<span class="kw">is.na</span>(algae<span class="op">$</span>Chla), <span class="st">&quot;Chla&quot;</span>] &lt;-<span class="st"> </span><span class="kw">median</span>(algae<span class="op">$</span>Chla, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">algae &lt;-<span class="st"> </span><span class="kw">centralImputation</span>(algae)</a></code></pre></div>
 </div>
 <div id="filling-in-the-unknown-values-by-exploring-correlations" class="section level4">
 <h4>Filling in the Unknown Values by Exploring Correlations</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(algae[, <span class="dv">4</span><span class="op">:</span><span class="dv">18</span>], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">symnum</span>(<span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(corrplot)
-cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
-<span class="kw">corrplot</span>(cm, <span class="dt">type=</span><span class="st">&quot;upper&quot;</span>, <span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>)
-<span class="kw">corrplot</span>(cm, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>, 
-         <span class="dt">diag=</span><span class="ot">FALSE</span>, <span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(corrplot)
-cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)
-<span class="kw">corrplot</span>(cm,<span class="dt">type=</span><span class="st">&quot;upper&quot;</span>,<span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>)
-<span class="kw">corrplot</span>(cm,<span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>, <span class="dt">diag=</span><span class="ot">FALSE</span>,<span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
-<span class="kw">lm</span>(PO4 <span class="op">~</span><span class="st"> </span>oPO4, <span class="dt">data =</span> algae)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae[<span class="dv">28</span>, <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="fl">42.897</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.293</span> <span class="op">*</span><span class="st"> </span>algae[<span class="dv">28</span>, <span class="st">&quot;oPO4&quot;</span>]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
-fillPO4 &lt;-<span class="st"> </span><span class="cf">function</span>(oP) <span class="kw">ifelse</span>(<span class="kw">is.na</span>(oP),<span class="ot">NA</span>,<span class="fl">42.897</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.293</span> <span class="op">*</span><span class="st"> </span>oP)
-algae[<span class="kw">is.na</span>(algae<span class="op">$</span>PO4), <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="kw">sapply</span>(algae[<span class="kw">is.na</span>(algae<span class="op">$</span>PO4), <span class="st">&quot;oPO4&quot;</span>], fillPO4)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(forcats)
-algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
-                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
-                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
-                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))
-<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2) 
-algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,
-                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),
-                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),
-                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))
-<span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(size <span class="op">~</span><span class="st"> </span>speed)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speed) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speed) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">cor</span>(algae[, <span class="dv">4</span><span class="op">:</span><span class="dv">18</span>], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">symnum</span>(<span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(corrplot)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">corrplot</span>(cm, <span class="dt">type=</span><span class="st">&quot;upper&quot;</span>, <span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>)</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">corrplot</span>(cm, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>, </a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">         <span class="dt">diag=</span><span class="ot">FALSE</span>, <span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(corrplot)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">cm &lt;-<span class="st"> </span><span class="kw">cor</span>(algae[,<span class="dv">4</span><span class="op">:</span><span class="dv">18</span>],<span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">corrplot</span>(cm,<span class="dt">type=</span><span class="st">&quot;upper&quot;</span>,<span class="dt">tl.pos=</span><span class="st">&quot;d&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>)</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="kw">corrplot</span>(cm,<span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;lower&quot;</span>, <span class="dt">method=</span><span class="st">&quot;number&quot;</span>,<span class="dt">tl.cex=</span><span class="fl">0.75</span>, <span class="dt">diag=</span><span class="ot">FALSE</span>,<span class="dt">tl.pos=</span><span class="st">&quot;n&quot;</span>, <span class="dt">cl.pos=</span><span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="kw">lm</span>(PO4 <span class="op">~</span><span class="st"> </span>oPO4, <span class="dt">data =</span> algae)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">algae[<span class="dv">28</span>, <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="fl">42.897</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.293</span> <span class="op">*</span><span class="st"> </span>algae[<span class="dv">28</span>, <span class="st">&quot;oPO4&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">fillPO4 &lt;-<span class="st"> </span><span class="cf">function</span>(oP) <span class="kw">ifelse</span>(<span class="kw">is.na</span>(oP),<span class="ot">NA</span>,<span class="fl">42.897</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.293</span> <span class="op">*</span><span class="st"> </span>oP)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">algae[<span class="kw">is.na</span>(algae<span class="op">$</span>PO4), <span class="st">&quot;PO4&quot;</span>] &lt;-<span class="st"> </span><span class="kw">sapply</span>(algae[<span class="kw">is.na</span>(algae<span class="op">$</span>PO4), <span class="st">&quot;oPO4&quot;</span>], fillPO4)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">library</span>(forcats)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4">                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),</a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),</a>
+<a class="sourceLine" id="cb38-6" data-line-number="6">                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">library</span>(ggplot2) </a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">algae &lt;-<span class="st"> </span><span class="kw">mutate</span>(algae,</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">                <span class="dt">size=</span><span class="kw">fct_relevel</span>(size,<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;large&quot;</span>)),</a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">                <span class="dt">speed=</span><span class="kw">fct_relevel</span>(speed,<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>)),</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">                <span class="dt">season=</span><span class="kw">fct_relevel</span>(season,<span class="kw">c</span>(<span class="st">&quot;spring&quot;</span>,<span class="st">&quot;summer&quot;</span>,<span class="st">&quot;autumn&quot;</span>,<span class="st">&quot;winter&quot;</span>)))</a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>season)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">    </span><span class="kw">facet_wrap</span>(size <span class="op">~</span><span class="st"> </span>speed)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speed) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">ggplot</span>(algae, <span class="kw">aes</span>(<span class="dt">x=</span>mxPH, <span class="dt">y=</span>size, <span class="dt">color=</span>size)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speed) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.4</span>)</a></code></pre></div>
 </div>
 <div id="filling-in-the-unknown-values-by-exploring-similarities-between-cases" class="section level4">
 <h4>Filling in the Unknown Values by Exploring Similarities between Cases</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">meth =</span> <span class="st">&quot;median&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">meth =</span> <span class="st">&quot;median&quot;</span>)</a></code></pre></div>
 <!-- LinRegr.Rnw -->
 </div>
 </div>
@@ -580,133 +733,133 @@ algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="
 <h3>Obtaining Prediction Models</h3>
 <div id="multiple-linear-regression" class="section level4">
 <h4>Multiple Linear Regression</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)
-algae &lt;-<span class="st">  </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
-clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lm.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm2.a1 &lt;-<span class="st"> </span><span class="kw">update</span>(lm.a1, . <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>season)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lm2.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm.a1,lm2.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(final.lm)</code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>)</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">algae &lt;-<span class="st">  </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">clean.algae &lt;-<span class="st"> </span><span class="kw">knnImputation</span>(algae, <span class="dt">k =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">lm.a1 &lt;-<span class="st"> </span><span class="kw">lm</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> clean.algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">summary</span>(lm.a1)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">anova</span>(lm.a1)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">lm2.a1 &lt;-<span class="st"> </span><span class="kw">update</span>(lm.a1, . <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>season)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">summary</span>(lm2.a1)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">anova</span>(lm.a1,lm2.a1)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">final.lm &lt;-<span class="st"> </span><span class="kw">step</span>(lm.a1)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">summary</span>(final.lm)</a></code></pre></div>
 <!-- RTs.Rnw -->
 </div>
 <div id="regression-trees" class="section level4">
 <h4>Regression Trees</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart)
-<span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) 
-algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]
-rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rt.a1</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
-<span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
-<span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">printcp</span>(rt.a1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rt2.a1 &lt;-<span class="st"> </span><span class="kw">prune</span>(rt.a1, <span class="dt">cp =</span> <span class="fl">0.08</span>)
-rt2.a1</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(rt.a1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>]))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first.tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])
-<span class="kw">snip.rpart</span>(first.tree, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(first.tree)
-<span class="kw">text</span>(first.tree)
-<span class="kw">snip.rpart</span>(first.tree)</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">data</span>(algae, <span class="dt">package=</span><span class="st">&quot;DMwR2&quot;</span>) </a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">algae &lt;-<span class="st"> </span>algae[<span class="op">-</span><span class="kw">manyNAs</span>(algae), ]</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">rt.a1 &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">rt.a1</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">library</span>(rpart.plot)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">library</span>(rpart.plot)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">prp</span>(rt.a1,<span class="dt">extra=</span><span class="dv">101</span>,<span class="dt">box.col=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">split.box.col=</span><span class="st">&quot;grey&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">printcp</span>(rt.a1)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">rt2.a1 &lt;-<span class="st"> </span><span class="kw">prune</span>(rt.a1, <span class="dt">cp =</span> <span class="fl">0.08</span>)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">rt2.a1</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">(rt.a1 &lt;-<span class="st"> </span><span class="kw">rpartXse</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>]))</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">first.tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(a1 <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="kw">snip.rpart</span>(first.tree, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">plot</span>(first.tree)</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="kw">text</span>(first.tree)</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="kw">snip.rpart</span>(first.tree)</a></code></pre></div>
 <!-- EvalAndSel.Rnw -->
 </div>
 </div>
 <div id="model-evaluation-and-selection" class="section level3">
 <h3>Model Evaluation and Selection</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(final.lm, clean.algae)
-rt.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(rt.a1, algae)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
-(mae.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(rt.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])<span class="op">^</span><span class="dv">2</span>))
-(mse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(nmse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>
-<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>))
-(nmse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>
-<span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lm.a1=</span>lm.predictions.a1,
-                 <span class="dt">rt.a1=</span>rt.predictions.a1,
-                 <span class="dt">true.a1=</span>algae[[<span class="st">&quot;a1&quot;</span>]])
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Linear Model&quot;</span>)
-<span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]],<span class="dt">main=</span><span class="st">&quot;Linear Model&quot;</span>,
-     <span class="dt">xlab=</span><span class="st">&quot;Predictions&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;True Values&quot;</span>)
-<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
-algae[<span class="kw">identify</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]]),]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sensible.lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(lm.predictions.a1 <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, lm.predictions.a1)
-(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))
-(smae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(sensible.lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(performanceEstimation)
-res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-    <span class="kw">PredTask</span>(a1 <span class="op">~</span><span class="st"> </span>., algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>], <span class="st">&quot;a1&quot;</span>),
-    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>,<span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
-      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),
-    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>))
-)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(res) </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>( res ) </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getWorkflow</span>(<span class="st">&quot;rpartXse.v1&quot;</span>, res)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DSs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(algae)[<span class="dv">12</span><span class="op">:</span><span class="dv">18</span>],
-          <span class="cf">function</span>(x,names.attrs) { 
-            f &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(x, <span class="st">&quot;~ .&quot;</span>))
-            <span class="kw">PredTask</span>(f, algae[,<span class="kw">c</span>(names.attrs,x)], x, <span class="dt">copy=</span><span class="ot">TRUE</span>) 
-          },
-          <span class="kw">names</span>(algae)[<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>])
-res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-    DSs,
-    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>, <span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
-      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>, <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),
-    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span> ,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>, <span class="dt">nFolds=</span><span class="dv">10</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res.all)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res.all)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topPerformers</span>(res.all)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(randomForest)
-res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(
-    DSs,
-    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),
-      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,
-                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>))),
-      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;randomForest&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,
-                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">ntree=</span><span class="kw">c</span>(<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">700</span>)))),
-    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rankWorkflows</span>(res.all, <span class="dt">top=</span><span class="dv">3</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(res.all,<span class="dt">baseline=</span><span class="st">&quot;randomForest.v3&quot;</span>)
-p<span class="op">$</span>nmse<span class="op">$</span>F.test
-p<span class="op">$</span>nmse<span class="op">$</span>BonferroniDunn.test</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CDdiagram.BD</span>(p)</code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(final.lm, clean.algae)</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">rt.predictions.a1 &lt;-<span class="st"> </span><span class="kw">predict</span>(rt.a1, algae)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">(mae.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(rt.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">(mse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">(mse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])<span class="op">^</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">(nmse.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>((lm.predictions.a1<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3">(nmse.a1.rt &lt;-<span class="st"> </span><span class="kw">mean</span>((rt.predictions.a1<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">               </span><span class="kw">mean</span>((<span class="kw">mean</span>(algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">-</span>algae[[<span class="st">&#39;a1&#39;</span>]])<span class="op">^</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">dg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lm.a1=</span>lm.predictions.a1,</a>
+<a class="sourceLine" id="cb68-3" data-line-number="3">                 <span class="dt">rt.a1=</span>rt.predictions.a1,</a>
+<a class="sourceLine" id="cb68-4" data-line-number="4">                 <span class="dt">true.a1=</span>algae[[<span class="st">&quot;a1&quot;</span>]])</a>
+<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>lm.a1,<span class="dt">y=</span>true.a1)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Linear Model&quot;</span>)</a>
+<a class="sourceLine" id="cb68-8" data-line-number="8"><span class="kw">ggplot</span>(dg,<span class="kw">aes</span>(<span class="dt">x=</span>rt.a1,<span class="dt">y=</span>true.a1)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">slope=</span><span class="dv">1</span>,<span class="dt">intercept=</span><span class="dv">0</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-10" data-line-number="10"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Regression Tree&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">plot</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]],<span class="dt">main=</span><span class="st">&quot;Linear Model&quot;</span>,</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">     <span class="dt">xlab=</span><span class="st">&quot;Predictions&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;True Values&quot;</span>)</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb69-4" data-line-number="4">algae[<span class="kw">identify</span>(lm.predictions.a1,algae[[<span class="st">&#39;a1&#39;</span>]]),]</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">sensible.lm.predictions.a1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(lm.predictions.a1 <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, lm.predictions.a1)</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">(mae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">(smae.a1.lm &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">abs</span>(sensible.lm.predictions.a1 <span class="op">-</span><span class="st"> </span>algae[[<span class="st">&quot;a1&quot;</span>]])))</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">library</span>(performanceEstimation)</a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">    <span class="kw">PredTask</span>(a1 <span class="op">~</span><span class="st"> </span>., algae[, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>], <span class="st">&quot;a1&quot;</span>),</a>
+<a class="sourceLine" id="cb71-4" data-line-number="4">    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>,<span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),</a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,<span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),</a>
+<a class="sourceLine" id="cb71-6" data-line-number="6">    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb71-7" data-line-number="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">summary</span>(res) </a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">plot</span>(res)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">plot</span>( res ) </a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">getWorkflow</span>(<span class="st">&quot;rpartXse.v1&quot;</span>, res)</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">DSs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(algae)[<span class="dv">12</span><span class="op">:</span><span class="dv">18</span>],</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">          <span class="cf">function</span>(x,names.attrs) { </a>
+<a class="sourceLine" id="cb76-3" data-line-number="3">            f &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(x, <span class="st">&quot;~ .&quot;</span>))</a>
+<a class="sourceLine" id="cb76-4" data-line-number="4">            <span class="kw">PredTask</span>(f, algae[,<span class="kw">c</span>(names.attrs,x)], x, <span class="dt">copy=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb76-5" data-line-number="5">          },</a>
+<a class="sourceLine" id="cb76-6" data-line-number="6">          <span class="kw">names</span>(algae)[<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>])</a>
+<a class="sourceLine" id="cb76-7" data-line-number="7">res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(</a>
+<a class="sourceLine" id="cb76-8" data-line-number="8">    DSs,</a>
+<a class="sourceLine" id="cb76-9" data-line-number="9">    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>, <span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),</a>
+<a class="sourceLine" id="cb76-10" data-line-number="10">      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>, <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>)))),</a>
+<a class="sourceLine" id="cb76-11" data-line-number="11">    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span> ,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>, <span class="dt">nFolds=</span><span class="dv">10</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">plot</span>(res.all)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">plot</span>(res.all)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">topPerformers</span>(res.all)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">library</span>(randomForest)</a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">res.all &lt;-<span class="st"> </span><span class="kw">performanceEstimation</span>(</a>
+<a class="sourceLine" id="cb80-3" data-line-number="3">    DSs,</a>
+<a class="sourceLine" id="cb80-4" data-line-number="4">    <span class="kw">c</span>(<span class="kw">Workflow</span>(<span class="dt">learner=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,<span class="dt">post=</span><span class="st">&quot;onlyPos&quot;</span>),</a>
+<a class="sourceLine" id="cb80-5" data-line-number="5">      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;rpartXse&quot;</span>,</a>
+<a class="sourceLine" id="cb80-6" data-line-number="6">                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">se=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>))),</a>
+<a class="sourceLine" id="cb80-7" data-line-number="7">      <span class="kw">workflowVariants</span>(<span class="dt">learner=</span><span class="st">&quot;randomForest&quot;</span>, <span class="dt">pre=</span><span class="st">&quot;knnImp&quot;</span>,</a>
+<a class="sourceLine" id="cb80-8" data-line-number="8">                       <span class="dt">learner.pars=</span><span class="kw">list</span>(<span class="dt">ntree=</span><span class="kw">c</span>(<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">700</span>)))),</a>
+<a class="sourceLine" id="cb80-9" data-line-number="9">    <span class="kw">EstimationTask</span>(<span class="dt">metrics=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">method=</span><span class="kw">CV</span>(<span class="dt">nReps=</span><span class="dv">5</span>,<span class="dt">nFolds=</span><span class="dv">10</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">rankWorkflows</span>(res.all, <span class="dt">top=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">pairedComparisons</span>(res.all,<span class="dt">baseline=</span><span class="st">&quot;randomForest.v3&quot;</span>)</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2">p<span class="op">$</span>nmse<span class="op">$</span>F.test</a>
+<a class="sourceLine" id="cb82-3" data-line-number="3">p<span class="op">$</span>nmse<span class="op">$</span>BonferroniDunn.test</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">CDdiagram.BD</span>(p)</a></code></pre></div>
 <!-- Preds.Rnw -->
 </div>
 <div id="predictions-for-the-seven-algae" class="section level3">
 <h3>Predictions for the Seven Algae</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wfs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">taskNames</span>(res.all),
-              <span class="cf">function</span>(t) <span class="kw">topPerformer</span>(res.all,<span class="dt">metric=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">task=</span>t))
-wfs[[<span class="st">&quot;a1&quot;</span>]]
-wfs[[<span class="st">&quot;a7&quot;</span>]]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.test.algae &lt;-<span class="st"> </span><span class="kw">cbind</span>(test.algae, algae.sols)
-pts &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">140</span>,<span class="dv">7</span>,<span class="dv">2</span>),
-             <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">140</span>, <span class="kw">paste0</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>), <span class="kw">c</span>(<span class="st">&quot;trues&quot;</span>,<span class="st">&quot;preds&quot;</span>)))
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>) {
-    res &lt;-<span class="st"> </span><span class="kw">runWorkflow</span>(wfs[[i]],
-                       <span class="kw">as.formula</span>(<span class="kw">paste</span>(<span class="kw">names</span>(wfs)[i],<span class="st">&quot;~.&quot;</span>)),
-                       algae[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>,<span class="dv">11</span><span class="op">+</span>i)],
-                       full.test.algae[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>,<span class="dv">11</span><span class="op">+</span>i)])
-    pts[,i,<span class="st">&quot;trues&quot;</span>] &lt;-<span class="st"> </span>res<span class="op">$</span>trues
-    pts[,i,<span class="st">&quot;preds&quot;</span>] &lt;-<span class="st"> </span>res<span class="op">$</span>preds
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pts[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a3&quot;</span>),]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg.preds &lt;-<span class="st"> </span><span class="kw">apply</span>(algae[,<span class="dv">12</span><span class="op">:</span><span class="dv">18</span>], <span class="dv">2</span>, mean)
-<span class="kw">apply</span>((pts[,,<span class="st">&quot;trues&quot;</span>] <span class="op">-</span><span class="st"> </span>pts[,,<span class="st">&quot;preds&quot;</span>])<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span> ,sum) <span class="op">/</span>
-<span class="st">    </span><span class="kw">apply</span>( (<span class="kw">scale</span>(pts[,,<span class="st">&quot;trues&quot;</span>], avg.preds, <span class="ot">FALSE</span>))<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, sum)</code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">wfs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">taskNames</span>(res.all),</a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">              <span class="cf">function</span>(t) <span class="kw">topPerformer</span>(res.all,<span class="dt">metric=</span><span class="st">&quot;nmse&quot;</span>,<span class="dt">task=</span>t))</a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">wfs[[<span class="st">&quot;a1&quot;</span>]]</a>
+<a class="sourceLine" id="cb84-4" data-line-number="4">wfs[[<span class="st">&quot;a7&quot;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">full.test.algae &lt;-<span class="st"> </span><span class="kw">cbind</span>(test.algae, algae.sols)</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2">pts &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">140</span>,<span class="dv">7</span>,<span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb85-3" data-line-number="3">             <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">140</span>, <span class="kw">paste0</span>(<span class="st">&quot;a&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>), <span class="kw">c</span>(<span class="st">&quot;trues&quot;</span>,<span class="st">&quot;preds&quot;</span>)))</a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>) {</a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">    res &lt;-<span class="st"> </span><span class="kw">runWorkflow</span>(wfs[[i]],</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6">                       <span class="kw">as.formula</span>(<span class="kw">paste</span>(<span class="kw">names</span>(wfs)[i],<span class="st">&quot;~.&quot;</span>)),</a>
+<a class="sourceLine" id="cb85-7" data-line-number="7">                       algae[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>,<span class="dv">11</span><span class="op">+</span>i)],</a>
+<a class="sourceLine" id="cb85-8" data-line-number="8">                       full.test.algae[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>,<span class="dv">11</span><span class="op">+</span>i)])</a>
+<a class="sourceLine" id="cb85-9" data-line-number="9">    pts[,i,<span class="st">&quot;trues&quot;</span>] &lt;-<span class="st"> </span>res<span class="op">$</span>trues</a>
+<a class="sourceLine" id="cb85-10" data-line-number="10">    pts[,i,<span class="st">&quot;preds&quot;</span>] &lt;-<span class="st"> </span>res<span class="op">$</span>preds</a>
+<a class="sourceLine" id="cb85-11" data-line-number="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">pts[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="kw">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a3&quot;</span>),]</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">avg.preds &lt;-<span class="st"> </span><span class="kw">apply</span>(algae[,<span class="dv">12</span><span class="op">:</span><span class="dv">18</span>], <span class="dv">2</span>, mean)</a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw">apply</span>((pts[,,<span class="st">&quot;trues&quot;</span>] <span class="op">-</span><span class="st"> </span>pts[,,<span class="st">&quot;preds&quot;</span>])<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span> ,sum) <span class="op">/</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="st">    </span><span class="kw">apply</span>( (<span class="kw">scale</span>(pts[,,<span class="st">&quot;trues&quot;</span>], avg.preds, <span class="ot">FALSE</span>))<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, sum)</a></code></pre></div>
 </div>
 
 

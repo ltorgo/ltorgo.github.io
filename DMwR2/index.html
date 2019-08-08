@@ -20,7 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 
@@ -53,9 +54,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -74,8 +73,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -91,7 +96,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -111,6 +115,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -132,19 +173,85 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -296,10 +403,7 @@ $(document).ready(function () {
 <h3 id="about-the-author">About the Author</h3>
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-3">
-<div class="figure">
-<img src="images/ltorgo.jpg" />
-
-</div>
+<p><img src="images/ltorgo.jpg" /></p>
 </div>
 <div class="col-sm-9">
 <p><a href="http://www.dcc.fc.up.pt/~ltorgo">Luís Torgo</a> is an associate professor in the Department of Computer Science at the <a href="https://sigarra.up.pt/fcup/en/WEB_PAGE.INICIAL">Faculty of Sciences</a> of the <a href="https://sigarra.up.pt/up/en/WEB_BASE.GERA_PAGINA?p_pagina=home">University of Porto</a> in Portugal. He teaches Data Mining in R in the <a href="http://www.stern.nyu.edu/">NYU Stern School of Business</a>’ <a href="http://www.stern.nyu.edu/programs-admissions/global-degrees/business-analytics/program-overview">MS in Business Analytics</a> program. An active researcher in machine learning and data mining for more than 20 years, Dr. Torgo is also a researcher in the <a href="http://www.liaad.up.pt">Laboratory of Articial Intelligence and Data Analysis (LIAAD)</a> of <a href="https://www.inesctec.pt/">INESC Tec LA</a>.</p>
@@ -311,10 +415,7 @@ Copyright © 2016 Luis Torgo. All rights reserved.
 </p>
 </div>
 <div class="col-sm-3">
-<div class="figure">
-<img src="images/cover.png" />
-
-</div>
+<p><img src="images/cover.png" /></p>
 <p><br><br> <i>The book can be found at</i>:</p>
 <p><a href="https://www.crcpress.com/Data-Mining-with-R-Learning-with-Case-Studies-Second-Edition/Torgo/p/book/9781482234893"><img src="images/CRCPress.jpg" /></a></p>
 <p><a href="https://www.amazon.com/Data-Mining-Learning-Knowledge-Discovery/dp/1482234890/ref=dp_ob_title_bk"><img src="images/amazon.jpg" /></a></p>
