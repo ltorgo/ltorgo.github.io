@@ -1,0 +1,91 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+# EDPs: a Visual Interpretation of Regression Error
+## *Inês Areosa, Luís Torgo*
+
+This page contains the code, data and resulting plots of the experiments in the EPIA 2019 Paper: *Visual Interpretation of Regression Error*.
+
+First, it is provided an explanation on how the full experiments can be reproduced, followed with an example of the EDP tool. 
+
+Finally we provide a zip file with plots corresponding to all 18 data sets, not included in the paper due to space limitation.
+
+
+## Requirements
+[R](www.r-project.org) is required for reproducing the experiments. The following R extra packages, available on [CRAN](https://cran.r-project.org/web/packages/), are also needed:
+
+* dplyr
+* GGally
+* plyr
+* gridExtra
+* reshape2
+
+
+## Usage
+
+Tested on R 3.5.2
+
+The full code and the data sets can be downloaded [here](edp_code.zip). The resultant plots can be downloaded [here](edp_plots.zip)
+
+
+### Load Functions and Dataset
+
+```{r, warning=FALSE}
+## Loading functions required (as well as required packages)
+source("performance_functions.R")
+
+## Loading Dataset
+load("dataSetsWithPreds.Rdata")
+names(DSsPreds) <- c('a1','a2','a3','a4','a6','a7','Abalone','acceleration','availPwr','bank8FM','cpuSm','fuelCons','boston','maxTorque','machineCpu','servo','airfoild','concreteStrength')
+nmod <- 4
+
+```
+
+### Run the Experiments for the Full Benchmark Dataset
+
+```Rscript DataSet_Performance.R```
+
+### An Example on How to Employ EDP Functions
+
+Choose what type of error the end user wants to analyse: "Absolute", Logarithmic ("Log") or "Residual"
+```{r}
+err <- "Absolute"
+```
+
+Choose a particular data set from the full benchmark
+```{r}
+y_observed <- "servo"
+dataset <- DSsPreds[[y_observed]][complete.cases(DSsPreds[[y_observed]]),]
+#Show part of dataset
+head(dataset, n=10)
+```
+
+Choose which model is to be analysed and prepare the data
+```{r}
+mod <- "svm"
+single_error_ds <- single_model_data(data=dataset[1:(length(dataset) - nmod)], model=dataset[[mod]], feature_y=names(dataset)[1], type=err)
+head(single_error_ds, n=10)
+```
+
+
+Choose a predictor and calculate the EDP. Here is the example with a numeric ("vgain") and a categorical ("screw"), as well as the bivariate EDP for both features:
+
+```{r, echo=FALSE, results='hide', fig.keep='all'}
+edp(single_error_ds, "vgain", type=err, jitter=FALSE)
+edp(single_error_ds, "screw", type=err, jitter=FALSE)
+
+# Bivariate EDP: Option "All" for the comparative facet to show theoverall error distribution
+plot(multiple_edp(single_error_ds, c("vgain", "screw"), type=err, option='All', ncols=3, mode="wrap"))
+```
+
+
+
+
+
+
+
+
+
