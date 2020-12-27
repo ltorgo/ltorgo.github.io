@@ -17,11 +17,13 @@ Finally we provide a zip file with plots corresponding to all 18 data sets, not 
 ## Requirements
 [R](www.r-project.org) is required for reproducing the experiments. The following R extra packages, available on [CRAN](https://cran.r-project.org/web/packages/), are also needed:
 
+
 * dplyr
-* GGally
-* plyr
 * gridExtra
 * reshape2
+* RColorBrewer
+* gtable
+* ggplot2
 
 
 ## Usage
@@ -33,53 +35,62 @@ The full code and the data sets can be downloaded [here](code.zip). The resultan
 
 ### Load Functions and Dataset
 
-```{r, eval=FALSE,warning=FALSE}
+```{r, warning=FALSE}
 ## Loading functions required (as well as required packages)
-## source("performance_functions.R")
+source('Functions_ClassificationEDP.R')
+
 
 ## Loading Dataset
-load("dataSetsWithPreds.Rdata")
-names(DSsPreds) <- c('a1','a2','a3','a4','a6','a7','Abalone','acceleration','availPwr','bank8FM','cpuSm','fuelCons','boston','maxTorque','machineCpu','servo','airfoild','concreteStrength')
-nmod <- 4
+load("benchmarkWithPreds.Rdata")
 
 ```
 
 ### Run the Experiments for the Full Benchmark Dataset
 
-```Rscript DataSet_Performance.R```
+```Rscript Calculate_results.R```
 
-### An Example on How to Employ EDP Functions
+### An Example on How to Employ EDP Function
 
-Choose what type of error the end user wants to analyse: "Absolute", Logarithmic ("Log") or "Residual"
-```{r eval=FALSE}
-err <- "Absolute"
-```
 
-Choose a particular data set from the full benchmark
-```{r eval=FALSE}
-y_observed <- "servo"
-dataset <- DSsPreds[[y_observed]][complete.cases(DSsPreds[[y_observed]]),]
+Choose a particular data set from the full benchmark. Here an example for "Adult". Column *Class* shows the true prediction, while *svm*, *randomForest*, *nnet* and *naiveBayes* show the predictions for each of the models, as described in the paper
+```{r }
+
+data_set <- DSOut[["Adult"]][complete.cases(DSOut[["Adult"]]),]
+
 #Show part of dataset
-head(dataset, n=10)
+head(data_set, n=10)
 ```
 
-Choose which model is to be analysed and prepare the data
-```{r eval=FALSE}
+Choose which model is to be analysed and prepare the data. The last field, *details*, defines the information to present the error:
+
+- "show_all" shows what was the model prediction versus the true prediction (when wrong)
+- "reduced" shows only what category did the model fail to predict
+```{r }
 mod <- "svm"
-single_error_ds <- single_model_data(data=dataset[1:(length(dataset) - nmod)], model=dataset[[mod]], feature_y=names(dataset)[1], type=err)
-head(single_error_ds, n=10)
+
+db <- prep_data(data_set[,-which(names(data_set) %in% c("svm","randomForest", "nnet", "naiveBayes"))], data_set[, mod], "Class", details = "show_all") #First field should include entire dataset excepting model predictions; Second field should include the model predictions; third field should be the name of the predicted class
+    
+head(db, n=10)
 ```
 
 
-Choose a predictor and calculate the EDP. Here is the example with a numeric ("vgain") and a categorical ("screw"), as well as the bivariate EDP for both features:
+Choose a predictor and calculate the EDP. Here is the example with a numeric ("capital.gain") and a categorical ("relationship").
+There is an option for additional zoom in the error part, that can be added by including the condition, *zoom = TRUE*, as the example in the second EDP.
+The numerical feature bins can be controlled one of the three features:
 
-```{r, eval=FALSE, echo=FALSE, results='hide', fig.keep='all'}
-edp(single_error_ds, "vgain", type=err, jitter=FALSE)
-edp(single_error_ds, "screw", type=err, jitter=FALSE)
+- nquant: Number of bins (of equal size)
+- size: size of bins
+- quantil_break: Breaks in terms of quantiles
+- breaks: List of breaking points
 
-# Bivariate EDP: Option "All" for the comparative facet to show theoverall error distribution
-plot(multiple_edp(single_error_ds, c("vgain", "screw"), type=err, option='All', ncols=3, mode="wrap"))
+```{r, results='hide', fig.keep='all'}
+cep(db, "capital.gain")
+
+cep(db, "relationship", zoom = TRUE)
+
+
 ```
+
 
 
 
