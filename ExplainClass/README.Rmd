@@ -9,12 +9,14 @@ editor_options:
 
 This page contains the code, data and resulting plots of the experiments in the paper: *Explaining the Predictive Performance of Black Box Classification Models*.
 
-First, it is provided an explanation on how the full experiments can be reproduced, followed with an example of the EDP tool. 
+## Experiments of the Univariate Analysis (based on EDPs)
+
+First, we provide an explanation on how the full experiments can be reproduced, followed with an example of the EDP tool. 
 
 Finally we provide a zip file with plots corresponding to all 18 data sets, not included in the paper due to space limitation.
 
 
-## Requirements
+### Software Requirements
 [R](www.r-project.org) is required for reproducing the experiments. The following R extra packages, available on [CRAN](https://cran.r-project.org/web/packages/), are also needed:
 
 
@@ -25,17 +27,16 @@ Finally we provide a zip file with plots corresponding to all 18 data sets, not 
 * gtable
 * ggplot2
 
-
-## Usage
-
 Tested on R 4.0.2
+
+### Usage
 
 The full code and the data sets can be downloaded [here](code.zip). The resultant plots can be downloaded [here](plots.zip)
 
 
-### Load Functions and Dataset
+#### Load Functions and Dataset
 
-```{r, warning=FALSE}
+```{r, eval=FALSE, warning=FALSE}
 ## Loading functions required (as well as required packages)
 source('Functions_ClassificationEDP.R')
 
@@ -45,7 +46,7 @@ load("benchmarkWithPreds.Rdata")
 
 ```
 
-### Run the Experiments for the Full Benchmark Dataset
+#### Run the Experiments for the Full Benchmark Dataset
 
 ```Rscript Calculate_results.R```
 
@@ -53,7 +54,7 @@ load("benchmarkWithPreds.Rdata")
 
 
 Choose a particular data set from the full benchmark. Here an example for "Adult". Column *Class* shows the true prediction, while *svm*, *randomForest*, *nnet* and *naiveBayes* show the predictions for each of the models, as described in the paper
-```{r }
+```{r eval=FALSE}
 
 data_set <- DSOut[["Adult"]][complete.cases(DSOut[["Adult"]]),]
 
@@ -65,7 +66,7 @@ Choose which model is to be analysed and prepare the data. The last field, *deta
 
 - "show_all" shows what was the model prediction versus the true prediction (when wrong)
 - "reduced" shows only what category did the model fail to predict
-```{r }
+```{r eval=FALSE}
 mod <- "svm"
 
 db <- prep_data(data_set[,-which(names(data_set) %in% c("svm","randomForest", "nnet", "naiveBayes"))], data_set[, mod], "Class", details = "show_all") #First field should include entire dataset excepting model predictions; Second field should include the model predictions; third field should be the name of the predicted class
@@ -83,20 +84,56 @@ The numerical feature bins can be controlled one of the three features:
 - quantil_break: Breaks in terms of quantiles
 - breaks: List of breaking points
 
-```{r, results='hide', fig.keep='all'}
+```{r, eval=FALSE, results='hide', fig.keep='all'}
 cep(db, "capital.gain")
 
 cep(db, "relationship", zoom = TRUE)
-
-
 ```
 
+## Experiments of the Multivariat Analysis (based on Caren)
+
+Caren is linux command-line java-based software to derive association rules. It also implements distribution rules, a form of rules to study patterns of a numeric property of interest.
+In this paper we developed a categorical version of these rules to shed light on abnormal behavior in the performance of classification models. You can download this version [here](caren-2.6.5.zip)
 
 
+### Data
+
+The dataset formated used in this study is (example with breast-base dataset):
+
+```
+age,menopause,tumor.size,inv.nodes,node.caps,deg.malig,breast,breast.quad,irradiat,CM
+'40-49','premeno','30-34','0-2','no','3','left','left_up','no',0
+'60-69','ge40','30-34','0-2','no','3','left','left_low','no',0
+'40-49','premeno','25-29','0-2','no','1','right','right_low','no',0
+'60-69','ge40','40-44','3-5','yes','3','right','left_low','no',21
+...
+```
+
+where CM is the categorical property of interest. In this example it represent the confusion matrix obtained from model SVM in dataset breast-base. '0' represents an hit
+and '21' codifies an error where an example of class '2' was predicted with class '1'.
 
 
+### comand line commands
+
+Check caren switch with command 
+```
+> java -cp . caren -help
+```
+
+Example of used command to derive rules for dataset breast-base
+
+```
+> java -cp . caren d:\PJA\caren\TorgoPescas\ines\breast-base_svm.csv  0.01  0.5  -Att  -s,  -GCM  -Cat  -ovrb1  -Dist  -imp0.00000000000001  -null?  -fr
+```
+
+All obtained rules were derived using similar commands i.e. same minsup (0.01), same pruning filter (-imp), same nulls treatment (-null?), relative frequency of bins in distribution (-fr), etc.
 
 
+#### Example of a rule:
 
+```
+Ant sup = 0.03750  pvalue = 0.0010004171846829683000  
+CM={ 12/0.333,21/0.667 }    <--    breast.quad='right_up'  &  menopause='ge40'
+```
 
 
